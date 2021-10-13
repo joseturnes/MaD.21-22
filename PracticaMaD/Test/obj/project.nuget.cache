@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Yvsf2nRAvxiC/RNSIloRlraEBaBQQUillZQqk/ZgeBt+zNFnT5AyNRxrNO6jcH2gxMirk1orjwxE47Ey5vSqVA==",
+  "dgSpecHash": "wppBWqJwiPA/lqNphREG/uGQsVmpOK94grG2PzbrRBWFNh91+OSxI24I9TWEY1AhRGE4eCEnSB0BIsq/Nvlm5w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\siroc\\Desktop\\MaD\\PracticaMaD\\Test\\Test.csproj",
+  "projectFilePath": "C:\\Users\\siroc\\Desktop\\MaD\\MaD.21-22\\PracticaMaD\\Test\\Test.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\siroc\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
     "C:\\Users\\siroc\\.nuget\\packages\\microsoft.net.test.sdk\\16.5.0\\microsoft.net.test.sdk.16.5.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\siroc\\Desktop\\MaD\\PracticaMaD\\Test\\Test.csproj": {}
+    "C:\\Users\\siroc\\Desktop\\MaD\\MaD.21-22\\PracticaMaD\\Test\\Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\siroc\\Desktop\\MaD\\PracticaMaD\\Test\\Test.csproj": {
+    "C:\\Users\\siroc\\Desktop\\MaD\\MaD.21-22\\PracticaMaD\\Test\\Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\siroc\\Desktop\\MaD\\PracticaMaD\\Test\\Test.csproj",
+        "projectUniqueName": "C:\\Users\\siroc\\Desktop\\MaD\\MaD.21-22\\PracticaMaD\\Test\\Test.csproj",
         "projectName": "Test",
-        "projectPath": "C:\\Users\\siroc\\Desktop\\MaD\\PracticaMaD\\Test\\Test.csproj",
+        "projectPath": "C:\\Users\\siroc\\Desktop\\MaD\\MaD.21-22\\PracticaMaD\\Test\\Test.csproj",
         "packagesPath": "C:\\Users\\siroc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\siroc\\Desktop\\MaD\\PracticaMaD\\Test\\obj\\",
+        "outputPath": "C:\\Users\\siroc\\Desktop\\MaD\\MaD.21-22\\PracticaMaD\\Test\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\siroc\\AppData\\Roaming\\NuGet\\NuGet.Config",
