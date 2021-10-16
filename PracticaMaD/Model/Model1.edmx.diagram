@@ -5,7 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e08c9185a572417fa13df3d71cbd6417" Name="Diagram1">
-        <EntityTypeShape EntityType="Es.Udc.DotNet.Model.UserProfile" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.Model.UserProfile" Width="1.5" PointX="7.375" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.Model.ImageUpload" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.Model.Publication" Width="1.5" PointX="5.375" PointY="0.5" />
+        <AssociationConnector Association="Es.Udc.DotNet.Model.FK_Image" />
+        <AssociationConnector Association="Es.Udc.DotNet.Model.FK_Usr" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.Model.Comment" Width="1.5" PointX="3.5" PointY="3.75" />
+        <AssociationConnector Association="Es.Udc.DotNet.Model.FK_Pub" />
+        <AssociationConnector Association="Es.Udc.DotNet.Model.FK_User_Comment" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.Model.Like_table" Width="1.5" PointX="9.25" PointY="0.5" />
+        <AssociationConnector Association="Es.Udc.DotNet.Model.FK_Pub_like_table" />
+        <AssociationConnector Association="Es.Udc.DotNet.Model.FK_User_Like" />
+        <AssociationConnector Association="Es.Udc.DotNet.Model.FK_Usr_Follow" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
