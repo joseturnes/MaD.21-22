@@ -12,32 +12,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class UserProfile
+    public partial class Publication
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserProfile()
+        public Publication()
         {
             this.Comment = new HashSet<Comment>();
-            this.Publication = new HashSet<Publication>();
-            this.Publication1 = new HashSet<Publication>();
+            this.UserProfile1 = new HashSet<UserProfile>();
         }
     
+        public long pubId { get; set; }
+        public long imgId { get; set; }
         public long usrId { get; set; }
-        public string loginName { get; set; }
-        public string enPassword { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string email { get; set; }
-        public string language { get; set; }
-        public string country { get; set; }
+        public long likes { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comment { get; set; }
+        public virtual ImageUpload ImageUpload { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Publication> Publication { get; set; }
-        public virtual UserProfile UserProfile1 { get; set; }
-        public virtual UserProfile UserProfile2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Publication> Publication1 { get; set; }
+        public virtual ICollection<UserProfile> UserProfile1 { get; set; }
     }
 }

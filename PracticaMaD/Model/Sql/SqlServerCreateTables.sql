@@ -107,7 +107,6 @@ CREATE TABLE Comment (
 CREATE TABLE Like_table (
 	usrId bigint NOT NULL,
 	pubId bigint NOT NULL,
-	liked bit NOT NULL,
 	
 	CONSTRAINT [PK_Like_table] PRIMARY KEY (usrId,pubId),
 	CONSTRAINT [FK_Pub_like_table] FOREIGN KEY (pubId) REFERENCES Publication(pubId),
