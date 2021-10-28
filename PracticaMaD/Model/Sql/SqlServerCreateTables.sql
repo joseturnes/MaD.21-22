@@ -26,6 +26,8 @@ USE [photogram]
 
 
 /* ********** Drop Table UserProfile if already exists *********** */
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Follow_table]') AND type in ('U'))
+DROP TABLE [Follow_table]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Like_table]') AND type in ('U'))
 DROP TABLE [Like_table]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Comment]') AND type in ('U'))
@@ -61,30 +63,29 @@ CREATE TABLE UserProfile (
 	country varchar(2),
 
 	CONSTRAINT [PK_UserProfile] PRIMARY KEY (usrId),
-	CONSTRAINT [UniqueKey_Login] UNIQUE (loginName),
-	CONSTRAINT [FK_Usr_Follow] FOREIGN KEY (usrId) REFERENCES UserProfile(usrId)
+	CONSTRAINT [UniqueKey_Login] UNIQUE (loginName)
 )
 
 
 CREATE TABLE ImageUpload (
 	imgId bigint IDENTITY(1,1) NOT NULL,
 	title varchar(30) NOT NULL,
-	description varchar(50) NOT NULL,
+	descriptions varchar(50) NOT NULL,
 	uploadDate Date NOT NULL,
 	f float,
 	t float,
 	wb varchar(50),
 	category varchar(50) NOT NULL,
 
-
-	CONSTRAINT [PK_Image] PRIMARY KEY (imgId)
+	CONSTRAINT [PK_Image] PRIMARY KEY (imgId),
 )
 
 CREATE TABLE Publication (
 	pubId bigint IDENTITY(1,1) NOT NULL,
-	imgId bigint NOT NULL,
+	imgId bigint NOT NULL UNIQUE,
 	usrId bigint NOT NULL,
 	likes bigint NOT NULL,
+	pubDate date NOT NULL,
 	
 	CONSTRAINT [PK_Publication] PRIMARY KEY (pubId),
 	CONSTRAINT [FK_Image] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId),
@@ -92,11 +93,14 @@ CREATE TABLE Publication (
 	
 )
 
+
+
 CREATE TABLE Comment (
 	commentId bigint IDENTITY(1,1) NOT NULL,
 	content varchar(100) NOT NULL,
 	usrId bigint NOT NULL,
 	pubId bigint NOT NULL,
+	comDate date NOT NULL,
 	
 	CONSTRAINT [PK_Comment] PRIMARY KEY (commentId),
 	CONSTRAINT [FK_Pub] FOREIGN KEY (pubId) REFERENCES Publication(pubId),
@@ -114,13 +118,23 @@ CREATE TABLE Like_table (
 	
 )
 
+CREATE TABLE Follow_table (
+	usrId bigint NOT NULL,
+	usrFollows bigint NOT NULL,
+	
+	CONSTRAINT [PK_Follow_table] PRIMARY KEY (usrId,usrFollows),
+	CONSTRAINT [FK_User_Followed] FOREIGN KEY (usrFollows) REFERENCES UserProfile(usrId),
+	CONSTRAINT [FK_User] FOREIGN KEY (usrId) REFERENCES UserProfile(usrId)
+	
+)
+
 CREATE NONCLUSTERED INDEX [IX_UserProfileIndexByLoginName]
 ON [UserProfile] ([loginName] ASC)
 
 PRINT N'Table UserProfile created.'
 GO
 
-PRINT N'Table Image created.'
+PRINT N'Table ImageUpload created.'
 GO
 
 PRINT N'Table Publication created.'
@@ -130,6 +144,9 @@ PRINT N'Table Comment created.'
 GO
 
 PRINT N'Table Like_Table created.'
+GO
+
+PRINT N'Table Follow_Table created.'
 GO
 
 GO

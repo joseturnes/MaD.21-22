@@ -25,6 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public long imgId { get; set; }
         public long usrId { get; set; }
         public long likes { get; set; }
+        public System.DateTime pubDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comment { get; set; }

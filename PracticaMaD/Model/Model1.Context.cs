@@ -13,10 +13,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class photogramEntities2 : DbContext
+    public partial class photogramEntities : DbContext
     {
-        public photogramEntities2()
-            : base("name=photogramEntities2")
+        public photogramEntities()
+            : base("name=photogramEntities")
         {
         }
     

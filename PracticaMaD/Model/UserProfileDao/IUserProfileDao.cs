@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using System;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 {
@@ -13,5 +14,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
         /// <returns>The UserProfile</returns>
         /// <exception cref="InstanceNotFoundException"/>
         UserProfile FindByLoginName(String loginName);
+
+        /// <summary>
+        /// Finds a List of followers
+        /// </summary>
+        /// <param name="userId">userId</param>
+        /// <returns>The followers list or an empty list</returns>
+        List<UserProfile> FindFollowers(int userId, int startIndex, int count);
+
     }
+
+
 }

@@ -1,6 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
@@ -90,6 +91,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             return userProfile;
         }
 
+        public List<UserProfile> FindFollowers(int userId,int startIndex,
+            int count)
+        {
+            DbSet<UserProfile> followers = Context.Set<UserProfile>();
+
+            var result =
+                (from a in followers
+                 where a.UserProfile1.usrId == userId
+                 select a).Skip(startIndex).Take(count).ToList();
+
+            return result;
+        }
+
+
+
+
         #endregion IUserProfileDao Members
     }
 }
+
+

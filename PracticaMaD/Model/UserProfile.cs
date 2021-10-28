@@ -20,6 +20,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
             this.Comment = new HashSet<Comment>();
             this.Publication = new HashSet<Publication>();
             this.Publication1 = new HashSet<Publication>();
+            this.UserProfile2 = new HashSet<UserProfile>();
         }
     
         public long usrId { get; set; }
@@ -35,9 +36,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual ICollection<Comment> Comment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Publication> Publication { get; set; }
-        public virtual UserProfile UserProfile1 { get; set; }
-        public virtual UserProfile UserProfile2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Publication> Publication1 { get; set; }
+        public virtual UserProfile UserProfile1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserProfile> UserProfile2 { get; set; }
     }
 }

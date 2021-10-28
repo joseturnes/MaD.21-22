@@ -22,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     
         public long imgId { get; set; }
         public string title { get; set; }
-        public string description { get; set; }
+        public string descriptions { get; set; }
         public System.DateTime uploadDate { get; set; }
         public Nullable<double> f { get; set; }
         public Nullable<double> t { get; set; }
