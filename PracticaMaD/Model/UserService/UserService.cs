@@ -5,10 +5,8 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using System;
-using Es.Udc.DotNet.PracticaMaD.Model;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 
-namespace Es.Udc.DotNet.MiniPortal.Model.UserService
+namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     public class UserService : IUserService
     {
@@ -146,6 +144,10 @@ namespace Es.Udc.DotNet.MiniPortal.Model.UserService
             return true;
         }
 
+        public bool UserTracking(string loginName)
+        {
+            throw new NotImplementedException();
+        }
         #endregion IUserService Members
     }
 }

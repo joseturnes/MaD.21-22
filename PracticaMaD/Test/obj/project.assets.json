@@ -166,19 +166,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\siroc\\.nuget\\packages\\": {}
+    "C:\\Users\\ritac\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\siroc\\Desktop\\MaD\\MaD.21-22\\PracticaMaD\\Test\\Test.csproj",
+      "projectUniqueName": "C:\\Users\\ritac\\Desktop\\MARCOS DE DESARROLLO\\MaD.21-22\\PracticaMaD\\Test\\Test.csproj",
       "projectName": "Test",
-      "projectPath": "C:\\Users\\siroc\\Desktop\\MaD\\MaD.21-22\\PracticaMaD\\Test\\Test.csproj",
-      "packagesPath": "C:\\Users\\siroc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\siroc\\Desktop\\MaD\\MaD.21-22\\PracticaMaD\\Test\\obj\\",
+      "projectPath": "C:\\Users\\ritac\\Desktop\\MARCOS DE DESARROLLO\\MaD.21-22\\PracticaMaD\\Test\\Test.csproj",
+      "packagesPath": "C:\\Users\\ritac\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ritac\\Desktop\\MARCOS DE DESARROLLO\\MaD.21-22\\PracticaMaD\\Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\siroc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ritac\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

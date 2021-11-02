@@ -4,9 +4,8 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using System;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 
-namespace Es.Udc.DotNet.MiniPortal.Model.UserService
+namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
     public interface IUserService
     {
@@ -73,5 +72,12 @@ namespace Es.Udc.DotNet.MiniPortal.Model.UserService
         /// <param name="loginName"> User loginName. </param>
         /// <returns> Boolean to indicate if the loginName exists </returns>
         bool UserExists(string loginName);
+
+        /// <summary>
+        /// Checks if the user follow other users.
+        /// </summary>
+        /// <param name="loginName"> User loginName. </param>
+        /// <returns> Boolean to indicate if the user follow it </returns>
+        bool UserTracking (string loginName);
     }
 }
