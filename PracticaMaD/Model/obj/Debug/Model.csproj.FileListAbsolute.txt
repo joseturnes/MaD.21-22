@@ -54,3 +54,4 @@ C:\Users\siroc\Desktop\MaD\MaD.21-22\PracticaMaD\Model\bin\Debug\Ninject.dll
 C:\Users\siroc\Desktop\MaD\MaD.21-22\PracticaMaD\Model\bin\Debug\Ninject.Extensions.Interception.dll
 C:\Users\siroc\Desktop\MaD\MaD.21-22\PracticaMaD\Model\bin\Debug\Ninject.xml
 C:\Users\siroc\Desktop\MaD\MaD.21-22\PracticaMaD\Model\bin\Debug\Ninject.Extensions.Interception.xml
+C:\Users\siroc\Desktop\MaD\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.AssemblyReference.cache

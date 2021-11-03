@@ -1,5 +1,7 @@
 using Es.Udc.DotNet.PracticaMaD.Model.PublicationDao;
 using Ninject;
+using System;
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
 {
@@ -14,19 +16,47 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
             throw new System.NotImplementedException();
         }
 
-        public void LikedPublication(long imgId)
+        public void LikedPublication(long pubId)
         {
-            throw new System.NotImplementedException();
+            Publication pub = PublicationDao.Find(pubId);
+
+            if (pub.Equals(null))
+            {
+                throw new InstanceNotFoundException(pubId, typeof(long).FullName);
+            }
+
+            pub.likes++;
+            PublicationDao.Update(pub);
         }
 
-        public void UpdatePublication(long imgId, PublicationDetails publicationDetails)
+        public void UpdatePublication(long pubId, PublicationDetails publicationDetails)
         {
-            throw new System.NotImplementedException();
+            Publication pub = PublicationDao.Find(pubId);
+
+            if (pub.Equals(null))
+            {
+                throw new InstanceNotFoundException(pubId, typeof(long).FullName);
+            }
+
+            pub.imgId = (long)publicationDetails.imgId;
+            pub.usrId = publicationDetails.userId;
+            pub.likes = publicationDetails.likes;
+            pub.pubDate = publicationDetails.pubDate;
+
+            PublicationDao.Update(pub);
         }
 
-        public void UploadPublication()
+        public void UploadPublication(long userId, long imgId)
         {
-            throw new System.NotImplementedException();
+            Publication pub = new Publication();
+            
+            pub.imgId = imgId;
+            pub.usrId = userId;
+            pub.likes = 0;
+            pub.pubDate = DateTime.Now;
+
+            PublicationDao.Create(pub);
+
         }
 
         #region IPublicationService Members
