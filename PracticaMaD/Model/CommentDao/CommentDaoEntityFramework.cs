@@ -11,9 +11,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
     public class CommentDaoEntityFramework :
         GenericDaoEntityFramework<Comment, Int64>, ICommentDao
     {
+
+        public CommentDaoEntityFramework()
+        {
+        }
         public List<Comment> FindByPubIdOrderByDateAsc(int pubId, int startIndex, int count)
         {
-            throw new NotImplementedException();
+            DbSet<Comment> comments = Context.Set<Comment>();
+
+            var result =
+                (from a in comments
+                 where a.pubId == pubId
+                 orderby a.comDate
+                 select a).Skip(startIndex).Take(count).ToList();
+
+            return result;
         }
     }
 }

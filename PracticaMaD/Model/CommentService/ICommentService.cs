@@ -3,10 +3,11 @@ using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using System;
 using Ninject;
+using System.Collections.Generic;
 
-namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
+namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
-    public interface IComment
+    public interface ICommentService
     {
         [Inject]
         ICommentDao CommentDao { set; }
@@ -16,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         /// </summary>
         /// <param name="pubId"> The publication id. </param>
         /// <param name="comment"> The comment. </param>
-        void AddComment(long pubId, string comment);
+        void AddComment(long pubId, string comment, long userId);
 
         /// <summary>
         /// Update a comment.
@@ -24,7 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         /// <param name="commentId"> The comment id. </param>
         /// <param name="commentDetails"> The comment details. </param>
         /// <exception cref="InstanceNotFoundException"/>
-        void UpdateComment(long commentId, CommentDetails commentDetails );
+        void UpdateComment(long commentId, String content );
 
         /// <summary>
         /// Remove a comment.
@@ -38,7 +39,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
         /// </summary>
         /// <param name="pubId"> The publication id. </param>
         /// <exception cref="InstanceNotFoundException"/>
-        List ShowComments(long pubId);
+        List<Comment> ShowComments(long pubId, int startindex, int count);
 
     }
 }

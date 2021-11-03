@@ -4,9 +4,10 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using System;
 using Ninject;
 
-namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationDao
+
+namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
 {
-    public interface IPublication
+    public interface IPublicationService
     {
         [Inject]
         IPublicationDao PublicationDao { set; }

@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "cAJETjT8Qs20a2zRhAoHyYUKLAu4iNTy/C6tyHUHGz+rXVaAd70C+S5kzdA9NYgtLPRZPzR9avuYptEgO7EHZw==",
+  "dgSpecHash": "wppBWqJwiPA/lqNphREG/uGQsVmpOK94grG2PzbrRBWFNh91+OSxI24I9TWEY1AhRGE4eCEnSB0BIsq/Nvlm5w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ritac\\Desktop\\MARCOS DE DESARROLLO\\MaD.21-22\\PracticaMaD\\Test\\Test.csproj",
+  "projectFilePath": "C:\\Users\\siroc\\Desktop\\MaD\\MaD.21-22\\PracticaMaD\\Test\\Test.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ritac\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
-    "C:\\Users\\ritac\\.nuget\\packages\\microsoft.net.test.sdk\\16.5.0\\microsoft.net.test.sdk.16.5.0.nupkg.sha512",
-    "C:\\Users\\ritac\\.nuget\\packages\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512",
-    "C:\\Users\\ritac\\.nuget\\packages\\nunit3testadapter\\3.16.1\\nunit3testadapter.3.16.1.nupkg.sha512"
+    "C:\\Users\\siroc\\.nuget\\packages\\microsoft.codecoverage\\16.5.0\\microsoft.codecoverage.16.5.0.nupkg.sha512",
+    "C:\\Users\\siroc\\.nuget\\packages\\microsoft.net.test.sdk\\16.5.0\\microsoft.net.test.sdk.16.5.0.nupkg.sha512",
+    "C:\\Users\\siroc\\.nuget\\packages\\nunit\\3.12.0\\nunit.3.12.0.nupkg.sha512",
+    "C:\\Users\\siroc\\.nuget\\packages\\nunit3testadapter\\3.16.1\\nunit3testadapter.3.16.1.nupkg.sha512"
   ],
   "logs": []
 }
