@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EsUdcDotNetPracticaMaDStoreContainer" CdmEntityContainer="photogramEntities">
+    <EntitySetMapping Name="Comment">
+      <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Comment">
+        <MappingFragment StoreEntitySet="Comment">
+          <ScalarProperty Name="commentId" ColumnName="commentId" />
+          <ScalarProperty Name="content" ColumnName="content" />
+          <ScalarProperty Name="usrId" ColumnName="usrId" />
+          <ScalarProperty Name="pubId" ColumnName="pubId" />
+          <ScalarProperty Name="comDate" ColumnName="comDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImageUpload">
+      <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.ImageUpload">
+        <MappingFragment StoreEntitySet="ImageUpload">
+          <ScalarProperty Name="imgId" ColumnName="imgId" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="descriptions" ColumnName="descriptions" />
+          <ScalarProperty Name="uploadDate" ColumnName="uploadDate" />
+          <ScalarProperty Name="f" ColumnName="f" />
+          <ScalarProperty Name="t" ColumnName="t" />
+          <ScalarProperty Name="wb" ColumnName="wb" />
+          <ScalarProperty Name="category" ColumnName="category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publication">
+      <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Publication">
+        <MappingFragment StoreEntitySet="Publication">
+          <ScalarProperty Name="pubId" ColumnName="pubId" />
+          <ScalarProperty Name="imgId" ColumnName="imgId" />
+          <ScalarProperty Name="usrId" ColumnName="usrId" />
+          <ScalarProperty Name="likes" ColumnName="likes" />
+          <ScalarProperty Name="pubDate" ColumnName="pubDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfile">
+      <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfile">
+          <ScalarProperty Name="usrId" ColumnName="usrId" />
+          <ScalarProperty Name="loginName" ColumnName="loginName" />
+          <ScalarProperty Name="enPassword" ColumnName="enPassword" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="language" ColumnName="language" />
+          <ScalarProperty Name="country" ColumnName="country" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Follow_table" TypeName="Es.Udc.DotNet.PracticaMaD.Follow_table" StoreEntitySet="Follow_table">
+      <EndProperty Name="UserProfile">
+        <ScalarProperty Name="usrId" ColumnName="usrId" />
+      </EndProperty>
+      <EndProperty Name="UserProfile1">
+        <ScalarProperty Name="usrId" ColumnName="usrFollows" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Like_table" TypeName="Es.Udc.DotNet.PracticaMaD.Like_table" StoreEntitySet="Like_table">
+      <EndProperty Name="Publication">
+        <ScalarProperty Name="pubId" ColumnName="pubId" />
+      </EndProperty>
+      <EndProperty Name="UserProfile">
+        <ScalarProperty Name="usrId" ColumnName="usrId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

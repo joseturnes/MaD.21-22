@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Es.Udc.DotNet.PracticaMaD" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="commentId" />
+    </Key>
+    <Property Name="commentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="content" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="usrId" Type="Int64" Nullable="false" />
+    <Property Name="pubId" Type="Int64" Nullable="false" />
+    <Property Name="comDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Publication" Relationship="Self.FK_Pub" FromRole="Comment" ToRole="Publication" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK_User_Comment" FromRole="Comment" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="ImageUpload">
+    <Key>
+      <PropertyRef Name="imgId" />
+    </Key>
+    <Property Name="imgId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="descriptions" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="uploadDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="f" Type="Double" />
+    <Property Name="t" Type="Double" />
+    <Property Name="wb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Publication" Relationship="Self.FK_Image" FromRole="ImageUpload" ToRole="Publication" />
+  </EntityType>
+  <EntityType Name="Publication">
+    <Key>
+      <PropertyRef Name="pubId" />
+    </Key>
+    <Property Name="pubId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imgId" Type="Int64" Nullable="false" />
+    <Property Name="usrId" Type="Int64" Nullable="false" />
+    <Property Name="likes" Type="Int64" Nullable="false" />
+    <Property Name="pubDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Comment" Relationship="Self.FK_Pub" FromRole="Publication" ToRole="Comment" />
+    <NavigationProperty Name="ImageUpload" Relationship="Self.FK_Image" FromRole="Publication" ToRole="ImageUpload" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK_Usr" FromRole="Publication" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfile1" Relationship="Self.Like_table" FromRole="Publication" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="usrId" />
+    </Key>
+    <Property Name="usrId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="loginName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="enPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="language" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="country" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Comment" Relationship="Self.FK_User_Comment" FromRole="UserProfile" ToRole="Comment" />
+    <NavigationProperty Name="Publication" Relationship="Self.FK_Usr" FromRole="UserProfile" ToRole="Publication" />
+    <NavigationProperty Name="UserProfile1" Relationship="Self.Follow_table" FromRole="UserProfile" ToRole="UserProfile1" />
+    <NavigationProperty Name="UserProfile2" Relationship="Self.Follow_table" FromRole="UserProfile1" ToRole="UserProfile" />
+    <NavigationProperty Name="Publication1" Relationship="Self.Like_table" FromRole="UserProfile" ToRole="Publication" />
+  </EntityType>
+  <Association Name="FK_Pub">
+    <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publication">
+        <PropertyRef Name="pubId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="pubId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Comment">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="usrId" />
+      </Principal>
+      <Dependent Role="Comment">
+        <PropertyRef Name="usrId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Image">
+    <End Role="ImageUpload" Type="Self.ImageUpload" Multiplicity="1" />
+    <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageUpload">
+        <PropertyRef Name="imgId" />
+      </Principal>
+      <Dependent Role="Publication">
+        <PropertyRef Name="imgId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usr">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
+    <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="usrId" />
+      </Principal>
+      <Dependent Role="Publication">
+        <PropertyRef Name="usrId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Follow_table">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+    <End Role="UserProfile1" Type="Self.UserProfile" Multiplicity="*" />
+  </Association>
+  <Association Name="Like_table">
+    <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="photogramEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Comment" EntityType="Self.Comment" />
+    <EntitySet Name="ImageUpload" EntityType="Self.ImageUpload" />
+    <EntitySet Name="Publication" EntityType="Self.Publication" />
+    <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
+    <AssociationSet Name="FK_Pub" Association="Self.FK_Pub">
+      <End Role="Publication" EntitySet="Publication" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Comment" Association="Self.FK_User_Comment">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="Comment" EntitySet="Comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image" Association="Self.FK_Image">
+      <End Role="ImageUpload" EntitySet="ImageUpload" />
+      <End Role="Publication" EntitySet="Publication" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usr" Association="Self.FK_Usr">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="Publication" EntitySet="Publication" />
+    </AssociationSet>
+    <AssociationSet Name="Follow_table" Association="Self.Follow_table">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="UserProfile1" EntitySet="UserProfile" />
+    </AssociationSet>
+    <AssociationSet Name="Like_table" Association="Self.Like_table">
+      <End Role="Publication" EntitySet="Publication" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

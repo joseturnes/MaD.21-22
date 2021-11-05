@@ -5,6 +5,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using System;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
@@ -144,10 +145,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             return true;
         }
 
-        public bool UserTracking(string loginName)
+       
+        public void follow(string followedLogin, string followerLogin)
         {
-            throw new NotImplementedException();
+            UserProfile user1 = UserProfileDao.FindByLoginName(followedLogin);
+            UserProfile user2 = UserProfileDao.FindByLoginName(followerLogin);
+
+            if (user1.Equals(null))
+            {
+                throw new InstanceNotFoundException(followedLogin, typeof(UserProfile).FullName);
+            }
+            if (user2.Equals(null))
+            {
+                throw new InstanceNotFoundException(followerLogin, typeof(UserProfile).FullName);
+            }
+
+            if (!user1.UserProfile1.Contains(user2))
+            {
+                user1.UserProfile2.Add(user2);
+                user2.UserProfile1.Add(user1);
+            }
+
         }
-        #endregion IUserService Members
     }
+        #endregion IUserService Members
 }

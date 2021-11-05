@@ -74,10 +74,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         bool UserExists(string loginName);
 
         /// <summary>
-        /// Checks if the user follow other users.
+        /// One user follows another user
         /// </summary>
-        /// <param name="loginName"> User loginName. </param>
-        /// <returns> Boolean to indicate if the user follow it </returns>
-        bool UserTracking (string loginName);
+        /// <param name="followedLogin">followedLoign</param>
+        /// <param name="followerLogin">followerLoign</param>
+        /// <returns>Nothing</returns>
+        /// <exception cref="InstanceNotFoundException"/>
+        void follow(string followedLogin, string followerLogin);
     }
 }

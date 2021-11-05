@@ -60,7 +60,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
         }
 
         #region IPublicationService Members
-
         /// <exception cref="InstanceNotFoundException"/>
         public void RemovePublication(long imgId)
         {

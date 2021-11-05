@@ -98,7 +98,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 
             var result =
                 (from a in followers
-                 where a.UserProfile1.usrId == userId
+                 where a.UserProfile1.Equals(a)
                  select a).Skip(startIndex).Take(count).ToList();
 
             return result;
