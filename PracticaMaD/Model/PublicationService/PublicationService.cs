@@ -2,6 +2,8 @@ using Es.Udc.DotNet.PracticaMaD.Model.PublicationDao;
 using Ninject;
 using System;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
 {
@@ -10,23 +12,41 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
 
         [Inject]
         public IPublicationDao PublicationDao { private get; set; }
+        [Inject]
+        public IUserProfileDao UserProfileDao { private get; set; }
+
+        #region IPublicationService Members
 
         public PublicationDetails FindPublication(string keyword, string category)
         {
             throw new System.NotImplementedException();
         }
 
-        public void LikedPublication(long pubId)
+        public void LikedPublication(long pubId, long userId)
         {
             Publication pub = PublicationDao.Find(pubId);
+            UserProfile user = UserProfileDao.Find(userId);
 
             if (pub.Equals(null))
             {
                 throw new InstanceNotFoundException(pubId, typeof(long).FullName);
             }
 
+            if (user.Equals(null))
+            {
+                throw new InstanceNotFoundException(userId, typeof(long).FullName);
+            }
+
+            if (pub.UserProfile1.Contains(user) || user.Publication1.Contains(pub))
+            {
+                throw new AlreadyLikedException(pub.pubId);
+            }
+
             pub.likes++;
+            pub.UserProfile1.Add(user);
             PublicationDao.Update(pub);
+            user.Publication1.Add(pub);
+            UserProfileDao.Update(user);
         }
 
         public void UpdatePublication(long pubId, PublicationDetails publicationDetails)
@@ -46,7 +66,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
             PublicationDao.Update(pub);
         }
 
-        public void UploadPublication(long userId, long imgId)
+        public long UploadPublication(long userId, long imgId)
         {
             Publication pub = new Publication();
             
@@ -57,13 +77,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
 
             PublicationDao.Create(pub);
 
+            return pub.pubId;
+
         }
 
-        #region IPublicationService Members
+        
         /// <exception cref="InstanceNotFoundException"/>
-        public void RemovePublication(long imgId)
-        {
-            PublicationDao.Remove(imgId);
+        public void RemovePublication(long pubId)
+        {          
+            PublicationDao.Remove(pubId);
         }
 
         #endregion IPublicationService Members

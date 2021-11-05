@@ -115,3 +115,4 @@ C:\software\prueba\MaD.21-22\PracticaMaD\Model\bin\Debug\Microsoft.Practices.Ent
 C:\software\prueba\MaD.21-22\PracticaMaD\Model\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Logging.dll
 C:\software\prueba\MaD.21-22\PracticaMaD\Model\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.xml
 C:\software\prueba\MaD.21-22\PracticaMaD\Model\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Logging.xml
+C:\software\prueba\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.AssemblyReference.cache

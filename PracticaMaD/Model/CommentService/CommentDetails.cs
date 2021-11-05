@@ -5,7 +5,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
 
     /// <summary>
-    /// VO Class which contains the user details
+    /// VO Class which contains the comment details
     /// </summary>
     [Serializable()]
     public class CommentDetails
@@ -24,7 +24,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         #endregion
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommetDetails"/>
+        /// Initializes a new instance of the <see cref="CommentDetails"/>
         /// class.
         /// </summary>
         /// <param name="content">The user's comment.</param>

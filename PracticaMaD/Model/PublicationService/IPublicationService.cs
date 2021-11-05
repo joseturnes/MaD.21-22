@@ -16,7 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
         /// Upload a image in a publication.
         /// </summary>
         ///<param name="userProfileId"> The user profile id. </param>
-        void UploadPublication(long userId, long imagId);
+        long UploadPublication(long userId, long imagId);
 
         /// <summary>
         /// Update a publication.
@@ -31,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
         /// </summary>
         /// <param name="imgId"> The image id. </param>
         /// <exception cref="InstanceNotFoundException"/>
-        void RemovePublication(long imgId);
+        void RemovePublication(long pubId);
 
         /// <summary>
         /// Remove a publication.
@@ -47,6 +47,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
         /// </summary>
         /// <param name="imgId"> The image id. </param>
         /// <exception cref="InstanceNotFoundException"/>
-        void LikedPublication(long pubId);
+        void LikedPublication(long pubId,long usrId);
     }
 }

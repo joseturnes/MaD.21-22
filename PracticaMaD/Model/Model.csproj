@@ -85,6 +85,11 @@
     <Compile Include="ImageUpload.cs">
       <DependentUpon>photogram.tt</DependentUpon>
     </Compile>
+    <Compile Include="ImageUploadDao\IImageUploadDao.cs" />
+    <Compile Include="ImageUploadDao\ImageUploadDaoEntityFramework.cs" />
+    <Compile Include="ImageUploadService\IImageUploadService.cs" />
+    <Compile Include="ImageUploadService\ImageUploadDetails.cs" />
+    <Compile Include="ImageUploadService\ImageUploadService.cs" />
     <Compile Include="photogram.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -103,6 +108,7 @@
     <Compile Include="Publication.cs">
       <DependentUpon>photogram.tt</DependentUpon>
     </Compile>
+    <Compile Include="PublicationService\Exceptions\AlreadyLikedException.cs" />
     <Compile Include="PublicationService\IPublicationService.cs" />
     <Compile Include="PublicationDao\PublicationDaoEntityFramework.cs" />
     <Compile Include="PublicationDao\IPublicationDao.cs" />
