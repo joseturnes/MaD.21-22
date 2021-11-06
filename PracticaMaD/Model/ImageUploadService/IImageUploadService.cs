@@ -18,5 +18,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         /// </summary>
         ///<param name="ImageUploadDetails"> The image params. </param>
         long UploadImage(ImageUploadDetails img);
+
+        /// <summary>
+        /// Search images by keywords.
+        /// </summary>
+        ///<param name="keywords"> The search params. </param>
+        List<ImageUpload> SearchByKeywords(string keywords, int startIndex, int count);
     }
 }

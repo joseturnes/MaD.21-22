@@ -13,6 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         [Inject]
         public IImageUploadDao ImageUploadDao { private get; set; }
 
+
         public long UploadImage(ImageUploadDetails img)
         {
             ImageUpload image = new ImageUpload();
@@ -27,6 +28,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             ImageUploadDao.Create(image);
 
             return image.imgId;
+        }
+
+        public List<ImageUpload> SearchByKeywords(string keywords, int startIndex, int count)
+        {
+            return ImageUploadDao.FindByTitleOrDescriptionOrCategory(keywords,startIndex,count+1);
         }
     }
 }
