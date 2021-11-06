@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Es.Udc.DotNet.PracticaMaD.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="commentId" />
@@ -33,6 +33,7 @@
           <Property Name="uploadDate" Type="date" Nullable="false" />
           <Property Name="f" Type="float" />
           <Property Name="t" Type="float" />
+          <Property Name="iso" Type="varchar" MaxLength="20" />
           <Property Name="wb" Type="varchar" MaxLength="50" />
           <Property Name="category" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -203,8 +204,7 @@
             <End Role="Publication" EntitySet="Publication" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Es.Udc.DotNet.PracticaMaD" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -220,20 +220,6 @@
           <NavigationProperty Name="Publication" Relationship="Self.FK_Pub" FromRole="Comment" ToRole="Publication" />
           <NavigationProperty Name="UserProfile" Relationship="Self.FK_User_Comment" FromRole="Comment" ToRole="UserProfile" />
         </EntityType>
-        <EntityType Name="ImageUpload">
-          <Key>
-            <PropertyRef Name="imgId" />
-          </Key>
-          <Property Name="imgId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="descriptions" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="uploadDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="f" Type="Double" />
-          <Property Name="t" Type="Double" />
-          <Property Name="wb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Publication" Relationship="Self.FK_Image" FromRole="ImageUpload" ToRole="Publication" />
-        </EntityType>
         <EntityType Name="Publication">
           <Key>
             <PropertyRef Name="pubId" />
@@ -244,9 +230,9 @@
           <Property Name="likes" Type="Int64" Nullable="false" />
           <Property Name="pubDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Comment" Relationship="Self.FK_Pub" FromRole="Publication" ToRole="Comment" />
-          <NavigationProperty Name="ImageUpload" Relationship="Self.FK_Image" FromRole="Publication" ToRole="ImageUpload" />
           <NavigationProperty Name="UserProfile" Relationship="Self.FK_Usr" FromRole="Publication" ToRole="UserProfile" />
           <NavigationProperty Name="UserProfile1" Relationship="Self.Like_table" FromRole="Publication" ToRole="UserProfile" />
+          <NavigationProperty Name="ImageUpload" Relationship="Es.Udc.DotNet.PracticaMaD.FK_Image" FromRole="Publication" ToRole="ImageUpload" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -290,18 +276,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Image">
-          <End Role="ImageUpload" Type="Self.ImageUpload" Multiplicity="1" />
-          <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ImageUpload">
-              <PropertyRef Name="imgId" />
-            </Principal>
-            <Dependent Role="Publication">
-              <PropertyRef Name="imgId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Usr">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
           <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
@@ -324,7 +298,6 @@
         </Association>
         <EntityContainer Name="photogramEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Comment" EntityType="Self.Comment" />
-          <EntitySet Name="ImageUpload" EntityType="Self.ImageUpload" />
           <EntitySet Name="Publication" EntityType="Self.Publication" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
           <AssociationSet Name="FK_Pub" Association="Self.FK_Pub">
@@ -334,10 +307,6 @@
           <AssociationSet Name="FK_User_Comment" Association="Self.FK_User_Comment">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Comment" EntitySet="Comment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Image" Association="Self.FK_Image">
-            <End Role="ImageUpload" EntitySet="ImageUpload" />
-            <End Role="Publication" EntitySet="Publication" />
           </AssociationSet>
           <AssociationSet Name="FK_Usr" Association="Self.FK_Usr">
             <End Role="UserProfile" EntitySet="UserProfile" />
@@ -351,7 +320,39 @@
             <End Role="Publication" EntitySet="Publication" />
             <End Role="UserProfile" EntitySet="UserProfile" />
           </AssociationSet>
+          <EntitySet Name="ImageUpload" EntityType="Es.Udc.DotNet.PracticaMaD.ImageUpload" />
+          <AssociationSet Name="FK_Image" Association="Es.Udc.DotNet.PracticaMaD.FK_Image">
+            <End Role="ImageUpload" EntitySet="ImageUpload" />
+            <End Role="Publication" EntitySet="Publication" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ImageUpload">
+          <Key>
+            <PropertyRef Name="imgId" />
+          </Key>
+          <Property Name="imgId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="descriptions" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="uploadDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="f" Type="Double" />
+          <Property Name="t" Type="Double" />
+          <Property Name="iso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="wb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Publication" Relationship="Es.Udc.DotNet.PracticaMaD.FK_Image" FromRole="ImageUpload" ToRole="Publication" />
+        </EntityType>
+        <Association Name="FK_Image">
+          <End Type="Es.Udc.DotNet.PracticaMaD.ImageUpload" Role="ImageUpload" Multiplicity="1" />
+          <End Type="Es.Udc.DotNet.PracticaMaD.Publication" Role="Publication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ImageUpload">
+              <PropertyRef Name="imgId" />
+            </Principal>
+            <Dependent Role="Publication">
+              <PropertyRef Name="imgId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -366,20 +367,6 @@
                 <ScalarProperty Name="usrId" ColumnName="usrId" />
                 <ScalarProperty Name="pubId" ColumnName="pubId" />
                 <ScalarProperty Name="comDate" ColumnName="comDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ImageUpload">
-            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.ImageUpload">
-              <MappingFragment StoreEntitySet="ImageUpload">
-                <ScalarProperty Name="imgId" ColumnName="imgId" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="descriptions" ColumnName="descriptions" />
-                <ScalarProperty Name="uploadDate" ColumnName="uploadDate" />
-                <ScalarProperty Name="f" ColumnName="f" />
-                <ScalarProperty Name="t" ColumnName="t" />
-                <ScalarProperty Name="wb" ColumnName="wb" />
-                <ScalarProperty Name="category" ColumnName="category" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -424,6 +411,21 @@
               <ScalarProperty Name="usrId" ColumnName="usrId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="ImageUpload">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.ImageUpload">
+              <MappingFragment StoreEntitySet="ImageUpload">
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="wb" ColumnName="wb" />
+                <ScalarProperty Name="iso" ColumnName="iso" />
+                <ScalarProperty Name="t" ColumnName="t" />
+                <ScalarProperty Name="f" ColumnName="f" />
+                <ScalarProperty Name="uploadDate" ColumnName="uploadDate" />
+                <ScalarProperty Name="descriptions" ColumnName="descriptions" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="imgId" ColumnName="imgId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

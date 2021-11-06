@@ -46,15 +46,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual ICollection<Publication> Publication1 { get; set; }
 
         /// <summary>
-    	/// A hash code for this instance, suitable for use in hashing algorithms and data structures 
-    	/// like a hash table. It uses the Josh Bloch implementation from "Effective Java"
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures 
+        /// like a hash table. It uses the Josh Bloch implementation from "Effective Java"
         /// Primary key of entity is not included in the hash calculation to avoid errors
-    	/// with Entity Framework creation of key values.
-    	/// </summary>
-    	/// <returns>
-    	/// Returns a hash code for this instance.
-    	/// </returns>
-    	public override int GetHashCode()
+        /// with Entity Framework creation of key values.
+        /// </summary>
+        /// <returns>
+        /// Returns a hash code for this instance.
+        /// </returns>
+        public override int GetHashCode()
         {
             unchecked
             {
@@ -142,8 +142,5 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
 
             return strUserProfile.ToString();
         }
-
-
     }
 }
-

@@ -26,6 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public System.DateTime uploadDate { get; set; }
         public Nullable<double> f { get; set; }
         public Nullable<double> t { get; set; }
+        public string iso { get; set; }
         public string wb { get; set; }
         public string category { get; set; }
     

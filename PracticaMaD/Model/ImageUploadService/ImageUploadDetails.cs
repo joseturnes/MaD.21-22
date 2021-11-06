@@ -19,18 +19,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         public float t { get; set; }
 
+        public string iso { get; set; }
+
         public string wb { get; set; }
 
         public string category { get; set; }
 
         public ImageUploadDetails(string title, string descriptions,System.DateTime uploadDate,
-            float f, float t, string wb, string category)
+            float f, float t, string iso, string wb, string category)
         {
             this.title = title;
             this.descriptions = descriptions;
             this.uploadDate = uploadDate;
             this.f = f;
             this.t = t;
+            this.iso = iso;
             this.wb = wb;
             this.category = category;
         }
@@ -56,6 +59,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
                 && (this.uploadDate == target.uploadDate)
                 && (this.f == target.f)
                 && (this.t == target.t)
+                && (this.iso == target.iso)
                 && (this.wb == target.wb)
                 && (this.category == target.category);
         }
@@ -78,19 +82,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         /// </returns>
         public override String ToString()
         {
-            String strCommentDetails;
+            String strImageUploadDetails;
 
-            strCommentDetails =
+            strImageUploadDetails =
                 "[ title = " + title + " | " +
                 "descriptions = " + descriptions + " | " +
                 "uploadDate = " + uploadDate + " | " +
                 "f = " + f + " | " +
                 "t = " + t + " | " +
+                "iso = " + iso + " | " +
                 "wb = " + wb + " | " +
                 "category = " + category + " ]";
 
 
-            return strCommentDetails;
+            return strImageUploadDetails;
         }
 
 

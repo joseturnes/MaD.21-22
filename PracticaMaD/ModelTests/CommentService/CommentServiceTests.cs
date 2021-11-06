@@ -82,7 +82,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "wb", "category");
+                    DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
                 long pubId = publicationService.UploadPublication(userId, imgId);
@@ -116,7 +116,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "wb", "category");
+                    DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
                 long pubId = publicationService.UploadPublication(userId, imgId);
@@ -155,7 +155,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "wb", "category");
+                    DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
                 long pubId = publicationService.UploadPublication(userId, imgId);
@@ -195,7 +195,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "wb", "category");
+                    DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
                 long pubId = publicationService.UploadPublication(userId, imgId);
@@ -232,7 +232,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "wb", "category");
+                    DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
                 long pubId = publicationService.UploadPublication(userId, imgId);
@@ -259,7 +259,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "wb", "category");
+                    DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
                 long pubId = publicationService.UploadPublication(userId, imgId);
@@ -304,7 +304,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "wb", "category");
+                    DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
                 long pubId = publicationService.UploadPublication(userId, imgId);

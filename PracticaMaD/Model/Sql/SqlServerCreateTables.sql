@@ -74,6 +74,7 @@ CREATE TABLE ImageUpload (
 	uploadDate Date NOT NULL,
 	f float,
 	t float,
+	iso varchar(20),
 	wb varchar(50),
 	category varchar(50) NOT NULL,
 

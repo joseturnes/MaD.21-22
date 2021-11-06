@@ -12,20 +12,6 @@
     <NavigationProperty Name="Publication" Relationship="Self.FK_Pub" FromRole="Comment" ToRole="Publication" />
     <NavigationProperty Name="UserProfile" Relationship="Self.FK_User_Comment" FromRole="Comment" ToRole="UserProfile" />
   </EntityType>
-  <EntityType Name="ImageUpload">
-    <Key>
-      <PropertyRef Name="imgId" />
-    </Key>
-    <Property Name="imgId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="descriptions" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="uploadDate" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="f" Type="Double" />
-    <Property Name="t" Type="Double" />
-    <Property Name="wb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="Publication" Relationship="Self.FK_Image" FromRole="ImageUpload" ToRole="Publication" />
-  </EntityType>
   <EntityType Name="Publication">
     <Key>
       <PropertyRef Name="pubId" />
@@ -36,9 +22,9 @@
     <Property Name="likes" Type="Int64" Nullable="false" />
     <Property Name="pubDate" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="Comment" Relationship="Self.FK_Pub" FromRole="Publication" ToRole="Comment" />
-    <NavigationProperty Name="ImageUpload" Relationship="Self.FK_Image" FromRole="Publication" ToRole="ImageUpload" />
     <NavigationProperty Name="UserProfile" Relationship="Self.FK_Usr" FromRole="Publication" ToRole="UserProfile" />
     <NavigationProperty Name="UserProfile1" Relationship="Self.Like_table" FromRole="Publication" ToRole="UserProfile" />
+    <NavigationProperty Name="ImageUpload" Relationship="Es.Udc.DotNet.PracticaMaD.FK_Image" FromRole="Publication" ToRole="ImageUpload" />
   </EntityType>
   <EntityType Name="UserProfile">
     <Key>
@@ -82,18 +68,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Image">
-    <End Role="ImageUpload" Type="Self.ImageUpload" Multiplicity="1" />
-    <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ImageUpload">
-        <PropertyRef Name="imgId" />
-      </Principal>
-      <Dependent Role="Publication">
-        <PropertyRef Name="imgId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Usr">
     <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
     <End Role="Publication" Type="Self.Publication" Multiplicity="*" />
@@ -116,7 +90,6 @@
   </Association>
   <EntityContainer Name="photogramEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Comment" EntityType="Self.Comment" />
-    <EntitySet Name="ImageUpload" EntityType="Self.ImageUpload" />
     <EntitySet Name="Publication" EntityType="Self.Publication" />
     <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
     <AssociationSet Name="FK_Pub" Association="Self.FK_Pub">
@@ -126,10 +99,6 @@
     <AssociationSet Name="FK_User_Comment" Association="Self.FK_User_Comment">
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="Comment" EntitySet="Comment" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Image" Association="Self.FK_Image">
-      <End Role="ImageUpload" EntitySet="ImageUpload" />
-      <End Role="Publication" EntitySet="Publication" />
     </AssociationSet>
     <AssociationSet Name="FK_Usr" Association="Self.FK_Usr">
       <End Role="UserProfile" EntitySet="UserProfile" />
@@ -143,5 +112,37 @@
       <End Role="Publication" EntitySet="Publication" />
       <End Role="UserProfile" EntitySet="UserProfile" />
     </AssociationSet>
+    <EntitySet Name="ImageUpload" EntityType="Es.Udc.DotNet.PracticaMaD.ImageUpload" />
+    <AssociationSet Name="FK_Image" Association="Es.Udc.DotNet.PracticaMaD.FK_Image">
+      <End Role="ImageUpload" EntitySet="ImageUpload" />
+      <End Role="Publication" EntitySet="Publication" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="ImageUpload">
+    <Key>
+      <PropertyRef Name="imgId" />
+    </Key>
+    <Property Name="imgId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="descriptions" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="uploadDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="f" Type="Double" />
+    <Property Name="t" Type="Double" />
+    <Property Name="iso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="wb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Publication" Relationship="Es.Udc.DotNet.PracticaMaD.FK_Image" FromRole="ImageUpload" ToRole="Publication" />
+  </EntityType>
+  <Association Name="FK_Image">
+    <End Type="Es.Udc.DotNet.PracticaMaD.ImageUpload" Role="ImageUpload" Multiplicity="1" />
+    <End Type="Es.Udc.DotNet.PracticaMaD.Publication" Role="Publication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageUpload">
+        <PropertyRef Name="imgId" />
+      </Principal>
+      <Dependent Role="Publication">
+        <PropertyRef Name="imgId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

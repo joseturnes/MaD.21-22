@@ -53,7 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 float f2 = 1;
 
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now,f1,f2,"wb","category");
+                    DateTime.Now,f1,f2, "ISO", "wb","category");
 
                 long id = imageUploadService.UploadImage(img);
                 ImageUpload result = imageUploadDao.Find(id);

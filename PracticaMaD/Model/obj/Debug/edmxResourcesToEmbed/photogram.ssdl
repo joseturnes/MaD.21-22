@@ -28,6 +28,7 @@
     <Property Name="uploadDate" Type="date" Nullable="false" />
     <Property Name="f" Type="float" />
     <Property Name="t" Type="float" />
+    <Property Name="iso" Type="varchar" MaxLength="20" />
     <Property Name="wb" Type="varchar" MaxLength="50" />
     <Property Name="category" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>

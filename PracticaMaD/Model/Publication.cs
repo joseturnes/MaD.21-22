@@ -29,9 +29,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comment { get; set; }
-        public virtual ImageUpload ImageUpload { get; set; }
         public virtual UserProfile UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserProfile> UserProfile1 { get; set; }
+        public virtual ImageUpload ImageUpload { get; set; }
     }
 }

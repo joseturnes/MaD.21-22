@@ -73,7 +73,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
                 UserProfileDetails user1 = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId1 = userService.RegisterUser(loginName, clearPassword, user1);
 
-                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "wb", "category");
+                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId1 = imageUploadService.UploadImage(img);
 
@@ -82,7 +82,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
                 UserProfileDetails user2 = new UserProfileDetails("pepe", "perez", email, language, country);
                 long userId2 = userService.RegisterUser("pepeperez", clearPassword, user2);
 
-                ImageUploadDetails img2 = new ImageUploadDetails("cascadas", "Cascadas", DateTime.Now, 1, 1, "wb", "category");
+                ImageUploadDetails img2 = new ImageUploadDetails("cascadas", "Cascadas", DateTime.Now, 1, 1, "ISO", "wb","category");
 
                 long imgId2 = imageUploadService.UploadImage(img);
 
@@ -111,7 +111,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
                 UserProfileDetails user1 = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId1 = userService.RegisterUser(loginName, clearPassword, user1);
 
-                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "wb", "category");
+                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId1 = imageUploadService.UploadImage(img);
 
@@ -120,7 +120,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
                 UserProfileDetails user2 = new UserProfileDetails("pepe", "perez", email, language, country);
                 long userId2 = userService.RegisterUser("pepeperez", clearPassword, user2);
 
-                ImageUploadDetails img2 = new ImageUploadDetails("cascadas", "Cascadas", DateTime.Now, 1, 1, "wb", "category");
+                ImageUploadDetails img2 = new ImageUploadDetails("cascadas", "Cascadas", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId2 = imageUploadService.UploadImage(img);
 
@@ -151,7 +151,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
                 UserProfileDetails user2 = new UserProfileDetails("pepe", "perez", email, language, country);
                 long userId2 = userService.RegisterUser("pepeperez", clearPassword, user2);
 
-                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "wb", "category");
+                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
 
@@ -187,7 +187,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
                 UserProfileDetails user2 = new UserProfileDetails("pepe", "perez", email, language, country);
                 long userId2 = userService.RegisterUser("pepeperez", clearPassword, user2);
 
-                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "wb", "category");
+                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
 
@@ -220,11 +220,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
-                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "wb", "category");
+                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
 
-                ImageUploadDetails img2 = new ImageUploadDetails("cascadas", "Cascadas", DateTime.Now, 1, 1, "wb", "category");
+                ImageUploadDetails img2 = new ImageUploadDetails("cascadas", "Cascadas", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId2 = imageUploadService.UploadImage(img2);
 
@@ -258,7 +258,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
                 
-                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now,1,1,"wb","category");
+                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now,1,1, "ISO", "wb", "category");
                 
                 long imgId = imageUploadService.UploadImage(img);
 
@@ -287,7 +287,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
-                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "wb", "category");
+                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
 
@@ -319,7 +319,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
-                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "wb", "category");
+                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
                 long imgId = imageUploadService.UploadImage(img);
 

@@ -21,6 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             image.uploadDate = DateTime.Now;
             image.f = img.f;
             image.t = img.t;
+            image.iso = img.iso;
             image.wb = img.wb;
             image.category = img.category;
             ImageUploadDao.Create(image);

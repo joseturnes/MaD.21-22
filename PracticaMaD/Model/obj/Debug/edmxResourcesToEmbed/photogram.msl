@@ -12,20 +12,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ImageUpload">
-      <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.ImageUpload">
-        <MappingFragment StoreEntitySet="ImageUpload">
-          <ScalarProperty Name="imgId" ColumnName="imgId" />
-          <ScalarProperty Name="title" ColumnName="title" />
-          <ScalarProperty Name="descriptions" ColumnName="descriptions" />
-          <ScalarProperty Name="uploadDate" ColumnName="uploadDate" />
-          <ScalarProperty Name="f" ColumnName="f" />
-          <ScalarProperty Name="t" ColumnName="t" />
-          <ScalarProperty Name="wb" ColumnName="wb" />
-          <ScalarProperty Name="category" ColumnName="category" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Publication">
       <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Publication">
         <MappingFragment StoreEntitySet="Publication">
@@ -67,5 +53,20 @@
         <ScalarProperty Name="usrId" ColumnName="usrId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="ImageUpload">
+      <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.ImageUpload">
+        <MappingFragment StoreEntitySet="ImageUpload">
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="wb" ColumnName="wb" />
+          <ScalarProperty Name="iso" ColumnName="iso" />
+          <ScalarProperty Name="t" ColumnName="t" />
+          <ScalarProperty Name="f" ColumnName="f" />
+          <ScalarProperty Name="uploadDate" ColumnName="uploadDate" />
+          <ScalarProperty Name="descriptions" ColumnName="descriptions" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="imgId" ColumnName="imgId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
