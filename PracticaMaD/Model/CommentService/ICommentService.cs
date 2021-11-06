@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// </summary>
         /// <param name="pubId"> The publication id. </param>
         /// <param name="comment"> The comment. </param>
-        void AddComment(long pubId, string comment, long userId);
+        long AddComment(long pubId, string comment, long userId);
 
         /// <summary>
         /// Update a comment.

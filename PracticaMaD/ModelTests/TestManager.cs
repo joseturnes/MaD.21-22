@@ -1,4 +1,6 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.PracticaMaD.Model.PublicationDao;
 using Es.Udc.DotNet.PracticaMaD.Model.PublicationService;
@@ -38,6 +40,12 @@ namespace Es.Udc.DotNet.PracticaMaD.ModelTests
 
             kernel.Bind<IPublicationDao>().
                 To<PublicationDaoEntityFramework>();
+
+            kernel.Bind<ICommentDao>().
+                To<CommentDaoEntityFramework>();
+
+            kernel.Bind<ICommentService>().
+                To<CommentService>();
 
             string connectionString =
                 ConfigurationManager.ConnectionStrings["photogramEntities"].ConnectionString;

@@ -97,6 +97,44 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
         }
 
         [TestMethod()]
+        [ExpectedException(typeof(InstanceNotFoundException))]
+        public void FindNonExistingPublicationTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                kernel = TestManager.ConfigureNInjectKernel();
+                userService = kernel.Get<IUserService>();
+                publicationDao = kernel.Get<IPublicationDao>();
+                publicationService = kernel.Get<IPublicationService>();
+                imageUploadService = kernel.Get<IImageUploadService>();
+
+                UserProfileDetails user1 = new UserProfileDetails(firstName, lastName, email, language, country);
+                long userId1 = userService.RegisterUser(loginName, clearPassword, user1);
+
+                ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "wb", "category");
+
+                long imgId1 = imageUploadService.UploadImage(img);
+
+                long pubId1 = publicationService.UploadPublication(userId1, imgId1);
+
+                UserProfileDetails user2 = new UserProfileDetails("pepe", "perez", email, language, country);
+                long userId2 = userService.RegisterUser("pepeperez", clearPassword, user2);
+
+                ImageUploadDetails img2 = new ImageUploadDetails("cascadas", "Cascadas", DateTime.Now, 1, 1, "wb", "category");
+
+                long imgId2 = imageUploadService.UploadImage(img);
+
+                long pubId2 = publicationService.UploadPublication(userId2, imgId2);
+
+                publicationDao.Find(-1);
+
+
+
+                // transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
+        [TestMethod()]
         public void LikedPublicationTest()
         {
             using (var scope = new TransactionScope())
@@ -121,7 +159,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
                 publicationService.LikedPublication(pubId, userId);
 
-                Assert.IsTrue(publicationDao.Find(pubId).likes == 1);
+                Assert.IsTrue(publicationDao.Find(pubId).pubId == pubId);
 
                 publicationService.LikedPublication(pubId, userId2);
 

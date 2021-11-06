@@ -23,13 +23,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         /// <exception cref="InstanceNotFoundException"/>
         /// 
-        public void AddComment(long pubId, String comment, long userId)
+        public long AddComment(long pubId, String comment, long userId)
         {
-
-
             Publication pub = PublicationDao.Find(pubId);
             UserProfile user = UserProfileDao.Find(userId);
-
 
             if (pub.Equals(null))
             {
@@ -50,6 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
                 CommentDao.Create(newComment);
             
+            return newComment.commentId;
 
         }
 
