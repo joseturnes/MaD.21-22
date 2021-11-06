@@ -392,3 +392,17 @@ PracticaMaD/Web/bin/Web.dll
 PracticaMaD/Web/obj/Debug/Web.csproj.FileListAbsolute.txt
 
 PracticaMaD/Web/obj/Debug/Web.dll
+
+PracticaMaD/Model/bin/Debug/Model.dll
+
+PracticaMaD/Model/obj/Debug/Model.csproj.FileListAbsolute.txt
+
+PracticaMaD/Model/obj/Debug/Model.dll
+
+PracticaMaD/ModelTests/bin/Debug/Model.dll
+
+PracticaMaD/ModelTests/bin/Debug/ModelTests.dll
+
+*.cache
+
+PracticaMaD/ModelTests/obj/Debug/ModelTests.dll
