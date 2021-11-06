@@ -26,6 +26,10 @@ USE [photogram]
 
 
 /* ********** Drop Table UserProfile if already exists *********** */
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[ImageTags]') AND type in ('U'))
+DROP TABLE [ImageTags]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Tag]') AND type in ('U'))
+DROP TABLE [Tag]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Follow_table]') AND type in ('U'))
 DROP TABLE [Follow_table]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Like_table]') AND type in ('U'))
@@ -78,7 +82,7 @@ CREATE TABLE ImageUpload (
 	wb varchar(50),
 	category varchar(50) NOT NULL,
 
-	CONSTRAINT [PK_Image] PRIMARY KEY (imgId),
+	CONSTRAINT [PK_Image] PRIMARY KEY (imgId)
 )
 
 CREATE TABLE Publication (
@@ -129,6 +133,20 @@ CREATE TABLE Follow_table (
 	
 )
 
+CREATE TABLE Tag(
+	tagId bigint IDENTITY(1,1) NOT NULL,
+	tagname varchar(30) NOT NULL,
+	CONSTRAINT [PK_TagTable] PRIMARY KEY (tagId)
+)
+
+CREATE TABLE ImageTags(
+	tagId bigint NOT NULL,
+	imgId bigint NOT NULL,
+	CONSTRAINT [PK_ImageTags] PRIMARY KEY (tagId,imgId),
+	CONSTRAINT [FK_Tag_ImageTags] FOREIGN KEY (tagId) REFERENCES Tag(tagId),
+	CONSTRAINT [FK_Image_ImageTags] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId)
+)
+
 CREATE NONCLUSTERED INDEX [IX_UserProfileIndexByLoginName]
 ON [UserProfile] ([loginName] ASC)
 
@@ -148,6 +166,12 @@ PRINT N'Table Like_Table created.'
 GO
 
 PRINT N'Table Follow_Table created.'
+GO
+
+PRINT N'Table Tag created.'
+GO
+
+PRINT N'Table ImageTags created.'
 GO
 
 GO

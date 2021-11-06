@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="527e919b459d4678a441b6d4d38bb09a" Name="Diagram1">
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Comment" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Comment" Width="1.5" PointX="7.625" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Publication" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.UserProfile" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.FK_Pub" ManuallyRouted="false" />
@@ -15,6 +15,8 @@
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Like_table" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.ImageUpload" Width="1.5" PointX="0.75" PointY="3" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.FK_Image" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Tag" Width="1.5" PointX="3" PointY="6.75" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.ImageTags" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

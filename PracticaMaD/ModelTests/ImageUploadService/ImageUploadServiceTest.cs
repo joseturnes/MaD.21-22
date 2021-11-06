@@ -9,6 +9,8 @@ using Ninject;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.ModelTests;
+using Es.Udc.DotNet.PracticaMaD.Model.TagService;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
 {
@@ -18,6 +20,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
         private static IKernel kernel;
         private static IImageUploadService imageUploadService;
         private static IImageUploadDao imageUploadDao;
+        private static ITagService tagService;
+        private static ITagDao tagDao;
 
 
         private TransactionScope transaction;
@@ -29,6 +33,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
             kernel = TestManager.ConfigureNInjectKernel();
             imageUploadService = kernel.Get<IImageUploadService>();
             imageUploadDao = kernel.Get<IImageUploadDao>();
+            tagService = kernel.Get<ITagService>();
+            tagDao = kernel.Get<ITagDao>();
         }
 
 
@@ -56,12 +62,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 float f1 = 1;
                 float f2 = 1;
 
+                long tagId = tagService.CreateTag("Luces");
+
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades");
+                tags.Add("Luces");
+
+
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
                     DateTime.Now,f1,f2, "ISO", "wb","category");
 
-                long id = imageUploadService.UploadImage(img);
+                long id = imageUploadService.UploadImage(img,tags);
                 ImageUpload result = imageUploadDao.Find(id);
                 Assert.IsTrue(result.imgId == id);
+                Assert.IsTrue(result.Tag.Contains(tagDao.Find(tagId)));
+                Assert.IsTrue(tagDao.Find(tagId).ImageUpload.Contains(result));
+                imageUploadDao.Remove(id);
+                Assert.IsFalse(tagDao.Find(tagId).ImageUpload.Contains(result));
+                Assert.IsTrue(tagDao.Find(tagId).tagname == "Luces");
+
             }
         }
 
@@ -83,10 +103,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 ImageUploadDetails img4 = new ImageUploadDetails("Arboles2", "Description arboles",
                     DateTime.Now, f1, f2, "ISO", "wb", "arboles category");
 
-                long id = imageUploadService.UploadImage(img);
-                long id2 = imageUploadService.UploadImage(img2);
-                long id3 = imageUploadService.UploadImage(img3);
-                long id4 = imageUploadService.UploadImage(img4);
+                long id = imageUploadService.UploadImage(img, null);
+                long id2 = imageUploadService.UploadImage(img2, null);
+                long id3 = imageUploadService.UploadImage(img3, null);
+                long id4 = imageUploadService.UploadImage(img4, null);
                 ImageUpload result = imageUploadDao.Find(id);
                 ImageUpload result2 = imageUploadDao.Find(id2);
                 ImageUpload result3 = imageUploadDao.Find(id3);

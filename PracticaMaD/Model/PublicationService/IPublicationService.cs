@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
         /// <summary>
         /// Update a publication.
         /// </summary>
-        /// <param name="imgId"> The image id. </param>
+        /// <param name="pubId"> The publication id. </param>
         /// <param name="publicationDetails"> The publication details. </param>
         /// <exception cref="InstanceNotFoundException"/>
         void UpdatePublication(long pubId, PublicationDetails publicationDetails );

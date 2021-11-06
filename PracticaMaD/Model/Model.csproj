@@ -114,6 +114,14 @@
     <Compile Include="PublicationDao\IPublicationDao.cs" />
     <Compile Include="PublicationService\PublicationDetails.cs" />
     <Compile Include="PublicationService\PublicationService.cs" />
+    <Compile Include="Tag.cs">
+      <DependentUpon>photogram.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TagDao\ITagDao.cs" />
+    <Compile Include="TagDao\TagDaoEntityFramework.cs" />
+    <Compile Include="TagService\Exceptions\AlreadyCreatedException.cs" />
+    <Compile Include="TagService\ITagService.cs" />
+    <Compile Include="TagService\TagService.cs" />
     <Compile Include="UserProfile.cs">
       <DependentUpon>photogram.tt</DependentUpon>
     </Compile>

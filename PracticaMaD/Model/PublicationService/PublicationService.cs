@@ -4,6 +4,7 @@ using System;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
 {
@@ -14,6 +15,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
         public IPublicationDao PublicationDao { private get; set; }
         [Inject]
         public IUserProfileDao UserProfileDao { private get; set; }
+        [Inject]
+        public IImageUploadDao ImageUploadDao { private get; set; }
 
         #region IPublicationService Members
 
@@ -90,8 +93,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
         
         /// <exception cref="InstanceNotFoundException"/>
         public void RemovePublication(long pubId)
-        {          
+        {
+            Publication pub = PublicationDao.Find(pubId);
+            long imgId = pub.imgId;
             PublicationDao.Remove(pubId);
+            ImageUploadDao.Remove(imgId);
         }
 
         #endregion IPublicationService Members
