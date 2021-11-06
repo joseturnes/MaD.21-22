@@ -24,6 +24,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
 
         private TestContext testContextInstance;
 
+        private void initializeKernel()
+        {
+            kernel = TestManager.ConfigureNInjectKernel();
+            imageUploadService = kernel.Get<IImageUploadService>();
+            imageUploadDao = kernel.Get<IImageUploadDao>();
+        }
 
 
         /// <summary>
@@ -46,9 +52,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                imageUploadService = kernel.Get<IImageUploadService>();
-                imageUploadDao = kernel.Get<IImageUploadDao>();
+                initializeKernel();
                 float f1 = 1;
                 float f2 = 1;
 
@@ -66,9 +70,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                imageUploadService = kernel.Get<IImageUploadService>();
-                imageUploadDao = kernel.Get<IImageUploadDao>();
+                initializeKernel();
                 float f1 = 1;
                 float f2 = 1;
 

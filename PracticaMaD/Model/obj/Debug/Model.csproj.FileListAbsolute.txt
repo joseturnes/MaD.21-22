@@ -176,3 +176,4 @@ C:\software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.CoreCompileInputs
 C:\software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.CopyComplete
 C:\software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.dll
 C:\software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.pdb
+C:\software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.AssemblyReference.cache

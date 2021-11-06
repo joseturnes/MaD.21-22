@@ -48,6 +48,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
         private TestContext testContextInstance;
 
+        private void initializeKernel()
+        {
+            kernel = TestManager.ConfigureNInjectKernel();
+            userService = kernel.Get<IUserService>();
+            publicationService = kernel.Get<IPublicationService>();
+            commentService = kernel.Get<ICommentService>();
+            commentDao = kernel.Get<ICommentDao>();
+            imageUploadService = kernel.Get<IImageUploadService>();
+        }
+
 
 
         /// <summary>
@@ -71,12 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationService = kernel.Get<IPublicationService>();
-                commentService = kernel.Get<ICommentService>();
-                commentDao = kernel.Get<ICommentDao>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -105,12 +110,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationService = kernel.Get<IPublicationService>();
-                commentService = kernel.Get<ICommentService>();
-                commentDao = kernel.Get<ICommentDao>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -144,12 +144,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationService = kernel.Get<IPublicationService>();
-                commentService = kernel.Get<ICommentService>();
-                commentDao = kernel.Get<ICommentDao>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -184,12 +179,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationService = kernel.Get<IPublicationService>();
-                commentService = kernel.Get<ICommentService>();
-                commentDao = kernel.Get<ICommentDao>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -221,12 +211,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationService = kernel.Get<IPublicationService>();
-                commentService = kernel.Get<ICommentService>();
-                commentDao = kernel.Get<ICommentDao>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -248,12 +233,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationService = kernel.Get<IPublicationService>();
-                commentService = kernel.Get<ICommentService>();
-                commentDao = kernel.Get<ICommentDao>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -293,12 +273,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationService = kernel.Get<IPublicationService>();
-                commentService = kernel.Get<ICommentService>();
-                commentDao = kernel.Get<ICommentDao>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);

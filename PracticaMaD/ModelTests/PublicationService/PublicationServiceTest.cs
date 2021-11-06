@@ -41,6 +41,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
         private TestContext testContextInstance;
 
+        private void initializeKernel()
+        {
+            kernel = TestManager.ConfigureNInjectKernel();
+            userService = kernel.Get<IUserService>();
+            publicationDao = kernel.Get<IPublicationDao>();
+            publicationService = kernel.Get<IPublicationService>();
+            imageUploadService = kernel.Get<IImageUploadService>();
+        }
+
 
 
         /// <summary>
@@ -64,11 +73,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationDao = kernel.Get<IPublicationDao>();
-                publicationService = kernel.Get<IPublicationService>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user1 = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId1 = userService.RegisterUser(loginName, clearPassword, user1);
@@ -102,11 +107,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationDao = kernel.Get<IPublicationDao>();
-                publicationService = kernel.Get<IPublicationService>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user1 = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId1 = userService.RegisterUser(loginName, clearPassword, user1);
@@ -139,11 +140,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationDao = kernel.Get<IPublicationDao>();
-                publicationService = kernel.Get<IPublicationService>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -170,16 +167,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
         }
 
         [TestMethod()]
-        [ExpectedException(typeof(AlreadyLikedException))]
         public void AlreadyLikedPublicationTest()
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationDao = kernel.Get<IPublicationDao>();
-                publicationService = kernel.Get<IPublicationService>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -201,6 +193,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
                 publicationService.LikedPublication(pubId, userId2);
 
+                Assert.IsTrue(publicationDao.Find(pubId).likes == 1);
+
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }
@@ -211,11 +205,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationDao = kernel.Get<IPublicationDao>();
-                publicationService = kernel.Get<IPublicationService>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -249,11 +239,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationDao = kernel.Get<IPublicationDao>();
-                publicationService = kernel.Get<IPublicationService>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -278,11 +264,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationDao = kernel.Get<IPublicationDao>();
-                publicationService = kernel.Get<IPublicationService>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -310,11 +292,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                publicationDao = kernel.Get<IPublicationDao>();
-                publicationService = kernel.Get<IPublicationService>();
-                imageUploadService = kernel.Get<IImageUploadService>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);

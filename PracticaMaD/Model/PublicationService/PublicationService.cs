@@ -39,14 +39,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
 
             if (pub.UserProfile1.Contains(user) || user.Publication1.Contains(pub))
             {
-                throw new AlreadyLikedException(pub.pubId);
+                pub.likes--;
+                pub.UserProfile1.Remove(user);
+                PublicationDao.Update(pub);
+                user.Publication1.Remove(pub);
+                UserProfileDao.Update(user);
             }
-
-            pub.likes++;
-            pub.UserProfile1.Add(user);
-            PublicationDao.Update(pub);
-            user.Publication1.Add(pub);
-            UserProfileDao.Update(user);
+            else
+            {
+                pub.likes++;
+                pub.UserProfile1.Add(user);
+                PublicationDao.Update(pub);
+                user.Publication1.Add(pub);
+                UserProfileDao.Update(user);
+            }
         }
 
         public void UpdatePublication(long pubId, PublicationDetails publicationDetails)

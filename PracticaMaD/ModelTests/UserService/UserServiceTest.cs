@@ -37,6 +37,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
         private TestContext testContextInstance;
 
+        private void initializeKernel()
+        {
+            kernel = TestManager.ConfigureNInjectKernel();
+            userService = kernel.Get<IUserService>();
+            userProfileDao = kernel.Get<IUserProfileDao>();
+        }
+
        
 
         /// <summary>
@@ -66,9 +73,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
             // Register user and find profile
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
@@ -97,9 +102,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 // Register user
                 userService.RegisterUser(loginName, clearPassword,
@@ -121,9 +124,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 // Register user
                 var userId = userService.RegisterUser(loginName, clearPassword,
@@ -152,9 +153,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 // Register user
                 var userId = userService.RegisterUser(loginName, clearPassword,
@@ -184,9 +183,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 // Register user
                 var userId = userService.RegisterUser(loginName, clearPassword,
@@ -207,9 +204,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         [ExpectedException(typeof(InstanceNotFoundException))]
         public void LoginNonExistingUserTest()
         {
-            kernel = TestManager.ConfigureNInjectKernel();
-            userService = kernel.Get<IUserService>();
-            userProfileDao = kernel.Get<IUserProfileDao>();
+            initializeKernel();
 
             // Login for a user that has not been registered
             var actual =
@@ -224,9 +219,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 var expected =
                     new UserProfileDetails(firstName, lastName, email, language, country);
@@ -251,9 +244,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         [ExpectedException(typeof(InstanceNotFoundException))]
         public void FindUserProfileDetailsForNonExistingUserTest()
         {
-            kernel = TestManager.ConfigureNInjectKernel();
-            userService = kernel.Get<IUserService>();
-            userProfileDao = kernel.Get<IUserProfileDao>();
+            initializeKernel();
 
             userService.FindUserProfileDetails(NON_EXISTENT_USER_ID);
         }
@@ -266,9 +257,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 // Register user and update profile details
                 var userId = userService.RegisterUser(loginName, clearPassword,
@@ -299,9 +288,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 userService.UpdateUserProfileDetails(NON_EXISTENT_USER_ID,
                     new UserProfileDetails(firstName, lastName, email, language, country));
@@ -318,9 +305,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 // Register user
                 var userId = userService.RegisterUser(loginName, clearPassword,
@@ -347,9 +332,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 // Register user
                 var userId = userService.RegisterUser(loginName, clearPassword,
@@ -370,9 +353,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         [ExpectedException(typeof(InstanceNotFoundException))]
         public void ChangePasswordForNonExistingUserTest()
         {
-            kernel = TestManager.ConfigureNInjectKernel();
-            userService = kernel.Get<IUserService>();
-            userProfileDao = kernel.Get<IUserProfileDao>();
+            initializeKernel();
 
             userService.ChangePassword(NON_EXISTENT_USER_ID,
                 clearPassword, clearPassword + "X");
@@ -386,9 +367,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 // Register user
                 userService.RegisterUser(loginName, clearPassword,
@@ -410,9 +389,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 String invalidLoginName = loginName + "_someFakeUserSuffix";
 
@@ -432,9 +409,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 // Register user
                 var userId1 = userService.RegisterUser(loginName, clearPassword,
@@ -466,9 +441,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         {
             using (var scope = new TransactionScope())
             {
-                kernel = TestManager.ConfigureNInjectKernel();
-                userService = kernel.Get<IUserService>();
-                userProfileDao = kernel.Get<IUserProfileDao>();
+                initializeKernel();
 
                 // Register user
                 var userId2 = userService.RegisterUser("user2", "1234",
