@@ -23,6 +23,14 @@
           <Property Name="usrId" Type="bigint" Nullable="false" />
           <Property Name="usrFollows" Type="bigint" Nullable="false" />
         </EntityType>
+        <EntityType Name="ImageTags">
+          <Key>
+            <PropertyRef Name="tagId" />
+            <PropertyRef Name="imgId" />
+          </Key>
+          <Property Name="tagId" Type="bigint" Nullable="false" />
+          <Property Name="imgId" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="ImageUpload">
           <Key>
             <PropertyRef Name="imgId" />
@@ -55,6 +63,13 @@
           <Property Name="likes" Type="bigint" Nullable="false" />
           <Property Name="pubDate" Type="date" Nullable="false" />
         </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tagname" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
         <EntityType Name="UserProfile">
           <Key>
             <PropertyRef Name="usrId" />
@@ -80,6 +95,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Image_ImageTags">
+          <End Role="ImageUpload" Type="Self.ImageUpload" Multiplicity="1" />
+          <End Role="ImageTags" Type="Self.ImageTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ImageUpload">
+              <PropertyRef Name="imgId" />
+            </Principal>
+            <Dependent Role="ImageTags">
+              <PropertyRef Name="imgId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pub">
           <End Role="Publication" Type="Self.Publication" Multiplicity="1" />
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
@@ -101,6 +128,18 @@
             </Principal>
             <Dependent Role="Like_table">
               <PropertyRef Name="pubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tag_ImageTags">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="ImageTags" Type="Self.ImageTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="tagId" />
+            </Principal>
+            <Dependent Role="ImageTags">
+              <PropertyRef Name="tagId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -167,13 +206,19 @@
         <EntityContainer Name="EsUdcDotNetPracticaMaDStoreContainer">
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Follow_table" EntityType="Self.Follow_table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageTags" EntityType="Self.ImageTags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ImageUpload" EntityType="Self.ImageUpload" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Like_table" EntityType="Self.Like_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Publication" EntityType="Self.Publication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Image" Association="Self.FK_Image">
             <End Role="ImageUpload" EntitySet="ImageUpload" />
             <End Role="Publication" EntitySet="Publication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_ImageTags" Association="Self.FK_Image_ImageTags">
+            <End Role="ImageUpload" EntitySet="ImageUpload" />
+            <End Role="ImageTags" EntitySet="ImageTags" />
           </AssociationSet>
           <AssociationSet Name="FK_Pub" Association="Self.FK_Pub">
             <End Role="Publication" EntitySet="Publication" />
@@ -182,6 +227,10 @@
           <AssociationSet Name="FK_Pub_like_table" Association="Self.FK_Pub_like_table">
             <End Role="Publication" EntitySet="Publication" />
             <End Role="Like_table" EntitySet="Like_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tag_ImageTags" Association="Self.FK_Tag_ImageTags">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="ImageTags" EntitySet="ImageTags" />
           </AssociationSet>
           <AssociationSet Name="FK_User" Association="Self.FK_User">
             <End Role="UserProfile" EntitySet="UserProfile" />
@@ -325,6 +374,11 @@
             <End Role="ImageUpload" EntitySet="ImageUpload" />
             <End Role="Publication" EntitySet="Publication" />
           </AssociationSet>
+          <EntitySet Name="Tag" EntityType="Es.Udc.DotNet.PracticaMaD.Tag" />
+          <AssociationSet Name="ImageTags" Association="Es.Udc.DotNet.PracticaMaD.ImageTags">
+            <End Role="ImageUpload" EntitySet="ImageUpload" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ImageUpload">
           <Key>
@@ -340,6 +394,7 @@
           <Property Name="wb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Publication" Relationship="Es.Udc.DotNet.PracticaMaD.FK_Image" FromRole="ImageUpload" ToRole="Publication" />
+          <NavigationProperty Name="Tag" Relationship="Es.Udc.DotNet.PracticaMaD.ImageTags" FromRole="ImageUpload" ToRole="Tag" />
         </EntityType>
         <Association Name="FK_Image">
           <End Type="Es.Udc.DotNet.PracticaMaD.ImageUpload" Role="ImageUpload" Multiplicity="1" />
@@ -352,6 +407,18 @@
               <PropertyRef Name="imgId" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tagname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ImageUpload" Relationship="Es.Udc.DotNet.PracticaMaD.ImageTags" FromRole="Tag" ToRole="ImageUpload" />
+        </EntityType>
+        <Association Name="ImageTags">
+          <End Type="Es.Udc.DotNet.PracticaMaD.ImageUpload" Role="ImageUpload" Multiplicity="*" />
+          <End Type="Es.Udc.DotNet.PracticaMaD.Tag" Role="Tag" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -426,6 +493,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tag">
+            <EntityTypeMapping TypeName="Es.Udc.DotNet.PracticaMaD.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="tagname" ColumnName="tagname" />
+                <ScalarProperty Name="tagId" ColumnName="tagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ImageTags" TypeName="Es.Udc.DotNet.PracticaMaD.ImageTags" StoreEntitySet="ImageTags">
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="tagId" ColumnName="tagId" />
+            </EndProperty>
+            <EndProperty Name="ImageUpload">
+              <ScalarProperty Name="imgId" ColumnName="imgId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -4,6 +4,8 @@ using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.PracticaMaD.Model.PublicationDao;
 using Es.Udc.DotNet.PracticaMaD.Model.PublicationService;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Ninject;
@@ -22,6 +24,12 @@ namespace Es.Udc.DotNet.PracticaMaD.ModelTests
         {
            
             IKernel kernel = new StandardKernel();
+
+            kernel.Bind<ITagService>().
+                To<TagService>();
+
+            kernel.Bind<ITagDao>().
+                To<TagDaoEntityFramework>();
 
             kernel.Bind<IImageUploadService>().
                 To<ImageUploadService>();

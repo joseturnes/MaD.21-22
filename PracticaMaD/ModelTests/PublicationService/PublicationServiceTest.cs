@@ -36,6 +36,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
         private static IImageUploadService imageUploadService;
         private static IPublicationService publicationService;
         private static IPublicationDao publicationDao;
+        private static IImageUploadDao imageUploadDao;
 
         private TransactionScope transaction;
 
@@ -48,6 +49,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
             publicationDao = kernel.Get<IPublicationDao>();
             publicationService = kernel.Get<IPublicationService>();
             imageUploadService = kernel.Get<IImageUploadService>();
+            imageUploadDao = kernel.Get<IImageUploadDao>();
         }
 
 
@@ -80,7 +82,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
                 ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
-                long imgId1 = imageUploadService.UploadImage(img);
+                long imgId1 = imageUploadService.UploadImage(img, null);
 
                 long pubId1 = publicationService.UploadPublication(userId1, imgId1);
 
@@ -89,7 +91,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
                 ImageUploadDetails img2 = new ImageUploadDetails("cascadas", "Cascadas", DateTime.Now, 1, 1, "ISO", "wb","category");
 
-                long imgId2 = imageUploadService.UploadImage(img);
+                long imgId2 = imageUploadService.UploadImage(img, null);
 
                 long pubId2 = publicationService.UploadPublication(userId2, imgId2);
 
@@ -114,7 +116,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
                 ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
-                long imgId1 = imageUploadService.UploadImage(img);
+                long imgId1 = imageUploadService.UploadImage(img, null);
 
                 long pubId1 = publicationService.UploadPublication(userId1, imgId1);
 
@@ -123,7 +125,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
                 ImageUploadDetails img2 = new ImageUploadDetails("cascadas", "Cascadas", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
-                long imgId2 = imageUploadService.UploadImage(img);
+                long imgId2 = imageUploadService.UploadImage(img, null);
 
                 long pubId2 = publicationService.UploadPublication(userId2, imgId2);
 
@@ -150,7 +152,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
                 ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
-                long imgId = imageUploadService.UploadImage(img);
+                long imgId = imageUploadService.UploadImage(img, null);
 
                 long pubId = publicationService.UploadPublication(userId, imgId);
 
@@ -181,7 +183,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
                 ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
-                long imgId = imageUploadService.UploadImage(img);
+                long imgId = imageUploadService.UploadImage(img, null);
 
                 long pubId = publicationService.UploadPublication(userId, imgId);
 
@@ -212,11 +214,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
                 ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
-                long imgId = imageUploadService.UploadImage(img);
+                long imgId = imageUploadService.UploadImage(img, null);
 
                 ImageUploadDetails img2 = new ImageUploadDetails("cascadas", "Cascadas", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
-                long imgId2 = imageUploadService.UploadImage(img2);
+                long imgId2 = imageUploadService.UploadImage(img2, null);
 
                 long pubId = publicationService.UploadPublication(userId, imgId);
 
@@ -246,7 +248,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
                 
                 ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now,1,1, "ISO", "wb", "category");
                 
-                long imgId = imageUploadService.UploadImage(img);
+                long imgId = imageUploadService.UploadImage(img, null);
 
                 long pubId = publicationService.UploadPublication(userId,imgId);
 
@@ -271,15 +273,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
                 ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
-                long imgId = imageUploadService.UploadImage(img);
+                long imgId = imageUploadService.UploadImage(img, null);
 
                 long pubId = publicationService.UploadPublication(userId, imgId);
 
                 publicationService.RemovePublication(pubId);
 
                 Assert.IsFalse(publicationDao.Find(pubId).pubId == pubId);
-
-
 
 
                 // transaction.Complete() is not called, so Rollback is executed.
@@ -299,7 +299,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Test
 
                 ImageUploadDetails img = new ImageUploadDetails("arboles", "Arboles otoñales", DateTime.Now, 1, 1, "ISO", "wb", "category");
 
-                long imgId = imageUploadService.UploadImage(img);
+                long imgId = imageUploadService.UploadImage(img, null);
 
                 long pubId = publicationService.UploadPublication(userId, imgId);
 
