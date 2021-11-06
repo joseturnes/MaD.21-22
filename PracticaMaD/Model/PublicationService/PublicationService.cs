@@ -5,6 +5,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.PublicationService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
+using Es.Udc.DotNet.ModelUtil.Transactions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
 {
@@ -25,6 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
             throw new System.NotImplementedException();
         }
 
+        [Transactional]
         public void LikedPublication(long pubId, long userId)
         {
             Publication pub = PublicationDao.Find(pubId);
@@ -58,6 +60,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
             }
         }
 
+        [Transactional]
         public void UpdatePublication(long pubId, PublicationDetails publicationDetails)
         {
             Publication pub = PublicationDao.Find(pubId);
@@ -75,6 +78,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
             PublicationDao.Update(pub);
         }
 
+        [Transactional]
         public long UploadPublication(long userId, long imgId)
         {
             Publication pub = new Publication();
@@ -90,7 +94,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
 
         }
 
-        
+        [Transactional]
         /// <exception cref="InstanceNotFoundException"/>
         public void RemovePublication(long pubId)
         {

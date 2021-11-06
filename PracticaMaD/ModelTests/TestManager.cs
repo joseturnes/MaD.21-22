@@ -1,4 +1,5 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
@@ -30,6 +31,9 @@ namespace Es.Udc.DotNet.PracticaMaD.ModelTests
 
             kernel.Bind<ITagDao>().
                 To<TagDaoEntityFramework>();
+
+            kernel.Bind<ICategoryDao>().
+                To<CategoryDaoEntityFramework>();
 
             kernel.Bind<IImageUploadService>().
                 To<ImageUploadService>();

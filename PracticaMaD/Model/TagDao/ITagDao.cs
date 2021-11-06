@@ -10,5 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
     public interface ITagDao : IGenericDao<Tag, Int64>
     {
         Tag FindByName(string name);
+
+        List<Tag> FindAll();
     }
 }

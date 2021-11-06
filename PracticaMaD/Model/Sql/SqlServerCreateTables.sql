@@ -26,6 +26,7 @@ USE [photogram]
 
 
 /* ********** Drop Table UserProfile if already exists *********** */
+
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[ImageTags]') AND type in ('U'))
 DROP TABLE [ImageTags]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Tag]') AND type in ('U'))
@@ -40,6 +41,8 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Publication]
 DROP TABLE [Publication]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[ImageUpload]') AND type in ('U'))
 DROP TABLE [ImageUpload]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Category]') AND type in ('U'))
+DROP TABLE [Category]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[UserProfile]') AND type in ('U'))
 DROP TABLE [UserProfile]
 
@@ -71,6 +74,12 @@ CREATE TABLE UserProfile (
 )
 
 
+Create Table Category(
+	categoryId bigint NOT NULL,
+	categoryName varchar(30) NOT NULL,
+	CONSTRAINT [PK_Category] PRIMARY KEY (categoryId)
+)
+
 CREATE TABLE ImageUpload (
 	imgId bigint IDENTITY(1,1) NOT NULL,
 	title varchar(30) NOT NULL,
@@ -80,9 +89,10 @@ CREATE TABLE ImageUpload (
 	t float,
 	iso varchar(20),
 	wb varchar(50),
-	category varchar(50) NOT NULL,
+	categoryId bigint,
 
-	CONSTRAINT [PK_Image] PRIMARY KEY (imgId)
+	CONSTRAINT [PK_Image] PRIMARY KEY (imgId),
+	CONSTRAINT [FK_Category] FOREIGN KEY (categoryId) REFERENCES Category(categoryId)
 )
 
 CREATE TABLE Publication (
@@ -147,6 +157,13 @@ CREATE TABLE ImageTags(
 	CONSTRAINT [FK_Image_ImageTags] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId)
 )
 
+INSERT INTO Category (categoryId,categoryName) VALUES (1,'Retrato')
+INSERT INTO Category (categoryId,categoryName) VALUES (2,'Paisaje Nocturno')
+INSERT INTO Category (categoryId,categoryName) VALUES (3,'Paisaje')
+INSERT INTO Category (categoryId,categoryName) VALUES (4,'Ciudades')
+
+
+
 CREATE NONCLUSTERED INDEX [IX_UserProfileIndexByLoginName]
 ON [UserProfile] ([loginName] ASC)
 
@@ -172,6 +189,9 @@ PRINT N'Table Tag created.'
 GO
 
 PRINT N'Table ImageTags created.'
+GO
+
+PRINT N'Table Category created.'
 GO
 
 GO

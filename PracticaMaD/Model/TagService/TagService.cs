@@ -36,5 +36,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
             }
             return tag.tagId;            
         }
+
+        [Transactional]
+        public List<Tag> GetAllTags()
+        {
+            return TagDao.FindAll();
+        }
     }
 }

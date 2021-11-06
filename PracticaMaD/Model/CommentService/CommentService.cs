@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Es.Udc.DotNet.PracticaMaD.Model.PublicationDao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.ModelUtil.Transactions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
@@ -23,6 +24,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         /// <exception cref="InstanceNotFoundException"/>
         /// 
+        [Transactional]
         public long AddComment(long pubId, String comment, long userId)
         {
             Publication pub = PublicationDao.Find(pubId);
@@ -51,6 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         }
 
+        [Transactional]
         public List<Comment> ShowComments(long pubId, int startIndex, int count)
         {
             Publication pub = PublicationDao.Find(pubId);
@@ -63,6 +66,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             return CommentDao.FindByPubIdOrderByDateAsc((int)pubId, startIndex ,count+1);
         }
 
+        [Transactional]
         public void UpdateComment(long commentId, String content)
         {
             Comment comment = CommentDao.Find(commentId);
@@ -77,8 +81,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             CommentDao.Update(comment);
         }
 
-        
 
+        [Transactional]
         /// <exception cref="InstanceNotFoundException"/>
         public void RemoveComment(long commentId)
         {

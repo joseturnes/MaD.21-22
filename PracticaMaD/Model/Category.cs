@@ -12,29 +12,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class ImageUpload
+    public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ImageUpload()
+        public Category()
         {
-            this.Publication = new HashSet<Publication>();
-            this.Tag = new HashSet<Tag>();
+            this.ImageUpload = new HashSet<ImageUpload>();
         }
     
-        public long imgId { get; set; }
-        public string title { get; set; }
-        public string descriptions { get; set; }
-        public System.DateTime uploadDate { get; set; }
-        public Nullable<double> f { get; set; }
-        public Nullable<double> t { get; set; }
-        public string iso { get; set; }
-        public string wb { get; set; }
         public long categoryId { get; set; }
+        public string categoryName { get; set; }
     
-        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Publication> Publication { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tag> Tag { get; set; }
+        public virtual ICollection<ImageUpload> ImageUpload { get; set; }
     }
 }

@@ -15,6 +15,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         {
         }
 
+        public List<Tag> FindAll()
+        {
+            DbSet<Tag> tags = Context.Set<Tag>();
+
+            var result = tags.ToList<Tag>();
+
+            return result;
+        }
+
         public Tag FindByName(string name)
         {
             Tag tag = null;
@@ -34,5 +43,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 
             return tag;
         }
+
+        
     }
 }

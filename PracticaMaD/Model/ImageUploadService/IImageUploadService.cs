@@ -1,4 +1,5 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
 using System;
@@ -15,12 +16,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         IImageUploadDao ImageUploadDao { set; }
         [Inject]
         ITagDao TagDao { set; }
+        [Inject]
+        ICategoryDao CategoryDao { set; }
 
         /// <summary>
         /// Upload an image.
         /// </summary>
         ///<param name="ImageUploadDetails"> The image params. </param>
-        long UploadImage(ImageUploadDetails img, List<string> tags);
+        long UploadImage(ImageUploadDetails img, List<string> tags, string category);
 
         /// <summary>
         /// Search images by keywords.

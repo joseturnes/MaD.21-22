@@ -17,6 +17,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         /// <exception cref="AlreadyCreatedException"/>
         long CreateTag(string name);
 
+        List<Tag> GetAllTags();
+
 
     }
 }

@@ -74,6 +74,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs">
+      <DependentUpon>photogram.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CategoryDao\CategoryDaoEntityFramework.cs" />
+    <Compile Include="CategoryDao\ICategoryDao.cs" />
     <Compile Include="Comment.cs">
       <DependentUpon>photogram.tt</DependentUpon>
     </Compile>

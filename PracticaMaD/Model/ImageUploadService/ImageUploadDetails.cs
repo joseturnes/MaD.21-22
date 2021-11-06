@@ -23,10 +23,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         public string wb { get; set; }
 
-        public string category { get; set; }
 
         public ImageUploadDetails(string title, string descriptions,System.DateTime uploadDate,
-            float f, float t, string iso, string wb, string category)
+            float f, float t, string iso, string wb)
         {
             this.title = title;
             this.descriptions = descriptions;
@@ -35,7 +34,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             this.t = t;
             this.iso = iso;
             this.wb = wb;
-            this.category = category;
         }
 
         /// <summary>
@@ -60,8 +58,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
                 && (this.f == target.f)
                 && (this.t == target.t)
                 && (this.iso == target.iso)
-                && (this.wb == target.wb)
-                && (this.category == target.category);
+                && (this.wb == target.wb);
         }
 
         // The GetHashCode method is used in hashing algorithms and data 
@@ -91,8 +88,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
                 "f = " + f + " | " +
                 "t = " + t + " | " +
                 "iso = " + iso + " | " +
-                "wb = " + wb + " | " +
-                "category = " + category + " ]";
+                "wb = " + wb + " ]";
 
 
             return strImageUploadDetails;

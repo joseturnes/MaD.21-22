@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
             var result =
                 (from a in images
-                 where (a.title.Contains(keyword) || a.descriptions.Contains(keyword) || a.category.Contains(keyword))
+                 where (a.title.Contains(keyword) || a.descriptions.Contains(keyword))
                  orderby a.uploadDate
                  select a).Skip(startIndex).Take(count).ToList();
 

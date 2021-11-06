@@ -4,19 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="527e919b459d4678a441b6d4d38bb09a" Name="Diagram1">
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Comment" Width="1.5" PointX="7.625" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Publication" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.UserProfile" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.FK_Pub" ManuallyRouted="false" />
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.FK_User_Comment" ManuallyRouted="false" />
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.FK_Usr" ManuallyRouted="false" />
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Follow_table" ManuallyRouted="false" />
-        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Like_table" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.ImageUpload" Width="1.5" PointX="0.75" PointY="3" />
+      <Diagram DiagramId="527e919b459d4678a441b6d4d38bb09a" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Category" Width="1.5" PointX="0.5" PointY="6.25" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Comment" Width="1.5" PointX="10.375" PointY="4.875" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.ImageUpload" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Publication" Width="1.5" PointX="5.25" PointY="4.375" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Tag" Width="1.5" PointX="5" PointY="8" />
+        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.UserProfile" Width="1.5" PointX="7.875" PointY="5.875" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.FK_Category" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.FK_Pub" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.FK_User_Comment" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.FK_Image" />
-        <EntityTypeShape EntityType="Es.Udc.DotNet.PracticaMaD.Tag" Width="1.5" PointX="3" PointY="6.75" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.FK_Usr" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Follow_table" />
         <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.ImageTags" />
+        <AssociationConnector Association="Es.Udc.DotNet.PracticaMaD.Like_table" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
