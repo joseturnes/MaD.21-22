@@ -15,13 +15,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
         /// <summary>
         /// Upload a image in a publication.
         /// </summary>
-        ///<param name="userProfileId"> The user profile id. </param>
+        ///<param name="userId"> The user id. </param>
         long UploadPublication(long userId, long imagId);
 
         /// <summary>
         /// Update a publication.
         /// </summary>
-        /// <param name="imgId"> The image id. </param>
+        /// <param name="pubId"> The publication id. </param>
         /// <param name="publicationDetails"> The publication details. </param>
         /// <exception cref="InstanceNotFoundException"/>
         void UpdatePublication(long pubId, PublicationDetails publicationDetails );
@@ -29,12 +29,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
         /// <summary>
         /// Remove a publication.
         /// </summary>
-        /// <param name="imgId"> The image id. </param>
+        /// <param name="pubId"> The publication id. </param>
         /// <exception cref="InstanceNotFoundException"/>
         void RemovePublication(long pubId);
 
         /// <summary>
-        /// Remove a publication.
+        /// Find a publication.
         /// </summary>
         /// <param name="keyword"> The keyword. </param>
         /// <param name="category"> The publcation category. </param>
@@ -45,7 +45,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
         /// <summary>
         /// Feedback with the publication.
         /// </summary>
-        /// <param name="imgId"> The image id. </param>
+        /// <param name="pubId"> The publication id. </param>
         /// <exception cref="InstanceNotFoundException"/>
         void LikedPublication(long pubId,long usrId);
     }

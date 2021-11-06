@@ -27,10 +27,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
         /// Initializes a new instance of the <see cref="PublicationDetails"/>
         /// class.
         /// </summary>
-        /// <param name="content">The user's comment.</param>
+        /// <param name="imgId">The image id.</param>
         /// <param name="userId">The publication owner user id</param>
         /// <param name="likes">The number of likes .</param>
-        /// <param name="comDate">The date of the publication</param>
+        /// <param name="pubDate">The date of the publication</param>
 
         public PublicationDetails(float imgId, long userId,
             long likes, DateTime pubDate)
@@ -54,7 +54,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.PublicationService
 
         // The GetHashCode method is used in hashing algorithms and data 
         // structures such as a hash table. In order to ensure that it works 
-        // properly, we suppose that the FirstName does not change.        
+        // properly, we suppose that the imgId does not change.        
         public override int GetHashCode()
         {
             return this.imgId.GetHashCode();

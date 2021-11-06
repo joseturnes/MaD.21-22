@@ -42,11 +42,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         /// Initializes a new instance of the <see cref="ImageUploadDetails"/>
         /// class.
         /// </summary>
-        /// <param name="title">The user's comment.</param>
-        /// <param name="descriptions">The comment user's id</param>
+        /// <param name="title">The image title.</param>
+        /// <param name="descriptions">The image descriptions</param>
         /// <param name="uploadDate">Image upload date.</param>
         /// <param name="f">Focal of the image</param>
-        /// <param name="t"></param>
+        /// <param name="t">Exposition time</param>
         /// <param name="wb">WhiteBalance of the image</param>
         /// <param name="category">The category of the image</param>
         /// 
@@ -66,7 +66,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         // The GetHashCode method is used in hashing algorithms and data 
         // structures such as a hash table. In order to ensure that it works 
-        // properly, we suppose that the FirstName does not change.        
+        // properly, we suppose that the title does not change.        
         public override int GetHashCode()
         {
             return this.title.GetHashCode();
