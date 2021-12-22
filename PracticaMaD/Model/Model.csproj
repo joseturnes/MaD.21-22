@@ -84,7 +84,9 @@
     </Compile>
     <Compile Include="CommentDao\CommentDaoEntityFramework.cs" />
     <Compile Include="CommentDao\ICommentDao.cs" />
+    <Compile Include="CommentService\CommentConversor.cs" />
     <Compile Include="CommentService\CommentDetails.cs" />
+    <Compile Include="CommentService\CommentDto.cs" />
     <Compile Include="CommentService\CommentService.cs" />
     <Compile Include="CommentService\ICommentService.cs" />
     <Compile Include="ImageUpload.cs">
@@ -93,7 +95,9 @@
     <Compile Include="ImageUploadDao\IImageUploadDao.cs" />
     <Compile Include="ImageUploadDao\ImageUploadDaoEntityFramework.cs" />
     <Compile Include="ImageUploadService\IImageUploadService.cs" />
+    <Compile Include="ImageUploadService\ImageUploadConversor.cs" />
     <Compile Include="ImageUploadService\ImageUploadDetails.cs" />
+    <Compile Include="ImageUploadService\ImageUploadDto.cs" />
     <Compile Include="ImageUploadService\ImageUploadService.cs" />
     <Compile Include="photogram.Context.cs">
       <AutoGen>True</AutoGen>
@@ -110,15 +114,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>photogram.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Publication.cs">
-      <DependentUpon>photogram.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PublicationService\Exceptions\AlreadyLikedException.cs" />
-    <Compile Include="PublicationService\IPublicationService.cs" />
-    <Compile Include="PublicationDao\PublicationDaoEntityFramework.cs" />
-    <Compile Include="PublicationDao\IPublicationDao.cs" />
-    <Compile Include="PublicationService\PublicationDetails.cs" />
-    <Compile Include="PublicationService\PublicationService.cs" />
     <Compile Include="Tag.cs">
       <DependentUpon>photogram.tt</DependentUpon>
     </Compile>
@@ -136,7 +131,9 @@
     <Compile Include="UserService\Exceptions\IncorrectPasswordException.cs" />
     <Compile Include="UserService\IUserService.cs" />
     <Compile Include="UserService\LoginResult.cs" />
+    <Compile Include="UserService\UserProfileConversor.cs" />
     <Compile Include="UserService\UserProfileDetails.cs" />
+    <Compile Include="UserService\UserProfileDto.cs" />
     <Compile Include="UserService\UserService.cs" />
     <Compile Include="UserService\Util\PasswordEncrypter.cs" />
   </ItemGroup>

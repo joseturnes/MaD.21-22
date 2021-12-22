@@ -37,8 +37,6 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Like_table]'
 DROP TABLE [Like_table]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Comment]') AND type in ('U'))
 DROP TABLE [Comment]
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Publication]') AND type in ('U'))
-DROP TABLE [Publication]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[ImageUpload]') AND type in ('U'))
 DROP TABLE [ImageUpload]
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID('[Category]') AND type in ('U'))
@@ -82,6 +80,9 @@ Create Table Category(
 
 CREATE TABLE ImageUpload (
 	imgId bigint IDENTITY(1,1) NOT NULL,
+	url varchar(400) NOT NULL,
+	usrId bigint NOT NULL,
+	likes bigint NOT NULL,
 	title varchar(30) NOT NULL,
 	descriptions varchar(50) NOT NULL,
 	uploadDate Date NOT NULL,
@@ -92,20 +93,8 @@ CREATE TABLE ImageUpload (
 	categoryId bigint,
 
 	CONSTRAINT [PK_Image] PRIMARY KEY (imgId),
+	CONSTRAINT [FK_Usr] FOREIGN KEY (usrId) REFERENCES UserProfile(usrId),
 	CONSTRAINT [FK_Category] FOREIGN KEY (categoryId) REFERENCES Category(categoryId)
-)
-
-CREATE TABLE Publication (
-	pubId bigint IDENTITY(1,1) NOT NULL,
-	imgId bigint NOT NULL UNIQUE,
-	usrId bigint NOT NULL,
-	likes bigint NOT NULL,
-	pubDate date NOT NULL,
-	
-	CONSTRAINT [PK_Publication] PRIMARY KEY (pubId),
-	CONSTRAINT [FK_Image] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId),
-	CONSTRAINT [FK_Usr] FOREIGN KEY (usrId) REFERENCES UserProfile(usrId)
-	
 )
 
 
@@ -114,21 +103,21 @@ CREATE TABLE Comment (
 	commentId bigint IDENTITY(1,1) NOT NULL,
 	content varchar(100) NOT NULL,
 	usrId bigint NOT NULL,
-	pubId bigint NOT NULL,
+	imgId bigint NOT NULL,
 	comDate date NOT NULL,
 	
 	CONSTRAINT [PK_Comment] PRIMARY KEY (commentId),
-	CONSTRAINT [FK_Pub] FOREIGN KEY (pubId) REFERENCES Publication(pubId),
+	CONSTRAINT [FK_Image] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId),
 	CONSTRAINT [FK_User_Comment] FOREIGN KEY (usrId) REFERENCES UserProfile(usrId)
 	
 )
 
 CREATE TABLE Like_table (
 	usrId bigint NOT NULL,
-	pubId bigint NOT NULL,
+	imgId bigint NOT NULL,
 	
-	CONSTRAINT [PK_Like_table] PRIMARY KEY (usrId,pubId),
-	CONSTRAINT [FK_Pub_like_table] FOREIGN KEY (pubId) REFERENCES Publication(pubId),
+	CONSTRAINT [PK_Like_table] PRIMARY KEY (usrId,imgId),
+	CONSTRAINT [FK_Pub_like_table] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId),
 	CONSTRAINT [FK_User_Like] FOREIGN KEY (usrId) REFERENCES UserProfile(usrId)
 	
 )
@@ -146,6 +135,7 @@ CREATE TABLE Follow_table (
 CREATE TABLE Tag(
 	tagId bigint IDENTITY(1,1) NOT NULL,
 	tagname varchar(30) NOT NULL,
+	timesUsed bigInt NOT NULL,
 	CONSTRAINT [PK_TagTable] PRIMARY KEY (tagId)
 )
 
@@ -171,9 +161,6 @@ PRINT N'Table UserProfile created.'
 GO
 
 PRINT N'Table ImageUpload created.'
-GO
-
-PRINT N'Table Publication created.'
 GO
 
 PRINT N'Table Comment created.'

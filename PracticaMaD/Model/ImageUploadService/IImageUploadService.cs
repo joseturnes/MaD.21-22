@@ -29,6 +29,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         /// Search images by keywords.
         /// </summary>
         ///<param name="keywords"> The search params. </param>
-        List<ImageUpload> SearchByKeywords(string keywords, int startIndex, int count);
+        List<ImageUploadDto> SearchByKeywords(string keywords, int startIndex, int count);
+
+        /// <summary>
+        /// Update a publication.
+        /// </summary>
+        /// <param name="imgId"> The publication id. </param>
+        /// <param name="ImageUploadDetails"> The publication details. </param>
+        /// <exception cref="InstanceNotFoundException"/>
+        void UpdatePublication(long pubId, ImageUploadDetails imageDetails);
+
+        /// <summary>
+        /// Remove a image.
+        /// </summary>
+        /// <param name="pubId"> The publication id. </param>
+        /// <exception cref="InstanceNotFoundException"/>
+        void RemoveImage(long imgId);
+
+        /// <summary>
+        /// Feedback with the publication.
+        /// </summary>
+        /// <param name="pubId"> The publication id. </param>
+        /// <exception cref="InstanceNotFoundException"/>
+        void LikedImage(long imgId, long usrId);
+
+        void UnlikeImage(long imgId, long usrId);
+
+        List<ImageUploadDto> recentUploads(long userId, int startIndex, int count);
+
+        long countComments(long imgId, int startIndex, int count);
     }
 }

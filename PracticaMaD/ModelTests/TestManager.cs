@@ -3,8 +3,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
-using Es.Udc.DotNet.PracticaMaD.Model.PublicationDao;
-using Es.Udc.DotNet.PracticaMaD.Model.PublicationService;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
@@ -44,14 +42,8 @@ namespace Es.Udc.DotNet.PracticaMaD.ModelTests
             kernel.Bind<IUserService>().
                 To<UserService>();
 
-            kernel.Bind<IPublicationService>().
-                To<PublicationService>();
-
             kernel.Bind<IUserProfileDao>().
                 To<UserProfileDaoEntityFramework>();
-
-            kernel.Bind<IPublicationDao>().
-                To<PublicationDaoEntityFramework>();
 
             kernel.Bind<ICommentDao>().
                 To<CommentDaoEntityFramework>();

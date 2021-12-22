@@ -17,11 +17,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ImageUpload()
         {
-            this.Publication = new HashSet<Publication>();
+            this.Comment = new HashSet<Comment>();
             this.Tag = new HashSet<Tag>();
+            this.UserProfile1 = new HashSet<UserProfile>();
         }
     
         public long imgId { get; set; }
+        public long usrId { get; set; }
+        public long likes { get; set; }
         public string title { get; set; }
         public string descriptions { get; set; }
         public System.DateTime uploadDate { get; set; }
@@ -29,12 +32,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public Nullable<double> t { get; set; }
         public string iso { get; set; }
         public string wb { get; set; }
-        public long categoryId { get; set; }
+        public Nullable<long> categoryId { get; set; }
+        public string url { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Publication> Publication { get; set; }
+        public virtual ICollection<Comment> Comment { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tag> Tag { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserProfile> UserProfile1 { get; set; }
     }
 }

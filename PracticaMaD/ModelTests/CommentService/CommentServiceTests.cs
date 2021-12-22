@@ -11,8 +11,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using System.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Es.Udc.DotNet.PracticaMaD.Model.PublicationService;
-using Es.Udc.DotNet.PracticaMaD.Model.PublicationDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Es.Udc.DotNet.PracticaMaD.ModelTests;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
@@ -38,8 +36,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         private static IImageUploadDao imageUploadDao;
         private static IUserService userService;
         private static IUserProfileDao userProfileDao;
-        private static IPublicationService publicationService;
-        private static IPublicationDao publicationDao;
         private static ICommentService commentService;
         private static ICommentDao commentDao;
 
@@ -52,7 +48,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         {
             kernel = TestManager.ConfigureNInjectKernel();
             userService = kernel.Get<IUserService>();
-            publicationService = kernel.Get<IPublicationService>();
             commentService = kernel.Get<ICommentService>();
             commentDao = kernel.Get<ICommentDao>();
             imageUploadService = kernel.Get<IImageUploadService>();
@@ -60,252 +55,249 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
 
 
-        /// <summary>
-        /// Gets or sets the test context which provides information about and functionality for the
-        /// current test run.
-        /// </summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
+        ///// <summary>
+        ///// Gets or sets the test context which provides information about and functionality for the
+        ///// current test run.
+        ///// </summary>
+        //public TestContext TestContext
+        //{
+        //    get
+        //    {
+        //        return testContextInstance;
+        //    }
+        //    set
+        //    {
+        //        testContextInstance = value;
+        //    }
+        //}
 
-        [TestMethod()]
-        public void AddCommentTest()
-        {
-            using (var scope = new TransactionScope())
-            {
-                initializeKernel();
-
-                UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
-                long userId = userService.RegisterUser(loginName, clearPassword, user);
-
-                ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "ISO", "wb");
+        //[TestMethod()]
+        //public void AddCommentTest()
+        //{
+        //    using (var scope = new TransactionScope())
+        //    {
+        //        initializeKernel();
 
-                long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
-                long pubId = publicationService.UploadPublication(userId, imgId);
+        //        UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
+        //        long userId = userService.RegisterUser(loginName, clearPassword, user);
 
-                long commentId1 = commentService.AddComment(pubId, "Commentary1", userId);
-                long commentId2 = commentService.AddComment(pubId, "Commentary2", userId);
+        //        ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
+        //            DateTime.Now, 1, 1, "ISO","wb",1200);
 
-                Comment comment1 = commentDao.Find(commentId1);
-                Comment comment2 = commentDao.Find(commentId2);
+        //        long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
 
-                Assert.IsTrue(comment1.content.Equals("Commentary1"));
-                Assert.IsTrue(comment2.content.Equals("Commentary2"));
 
-                // transaction.Complete() is not called, so Rollback is executed.
-            }
-        }
+        //        Comment comment1 = commentDao.Find(commentId1);
+        //        Comment comment2 = commentDao.Find(commentId2);
 
-        [TestMethod()]
-        public void ShowCommentsTest()
-        {
-            using (var scope = new TransactionScope())
-            {
-                initializeKernel();
-
-                UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
-                long userId = userService.RegisterUser(loginName, clearPassword, user);
-
-                ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "ISO", "wb");
-
-                long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
-                long pubId = publicationService.UploadPublication(userId, imgId);
+        //        Assert.IsTrue(comment1.content.Equals("Commentary1"));
+        //        Assert.IsTrue(comment2.content.Equals("Commentary2"));
 
-                long commentId1 = commentService.AddComment(pubId, "Commentary1", userId);
-                long commentId2 = commentService.AddComment(pubId, "Commentary2", userId);
+        //        // transaction.Complete() is not called, so Rollback is executed.
+        //    }
+        //}
 
-                Comment comment1 = commentDao.Find(commentId1);
-                Comment comment2 = commentDao.Find(commentId2);
+        //[TestMethod()]
+        //public void ShowCommentsTest()
+        //{
+        //    using (var scope = new TransactionScope())
+        //    {
+        //        initializeKernel();
 
-                Assert.IsTrue(comment1.content.Equals("Commentary1"));
-                Assert.IsTrue(comment2.content.Equals("Commentary2"));
+        //        UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
+        //        long userId = userService.RegisterUser(loginName, clearPassword, user);
 
-                List<Comment> result = commentService.ShowComments(pubId, startindex, count);
+        //        ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
+        //            DateTime.Now, 1, 1, "ISO", "wb");
 
-                Assert.IsTrue(result.Contains(comment1));
-                Assert.IsTrue(result.Contains(comment2));
-
-                // transaction.Complete() is not called, so Rollback is executed.
-            }
-        }
+        //        long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
+        //        long pubId = publicationService.UploadPublication(userId, imgId);
 
-        [TestMethod()]
-        public void UpdateCommentTest()
-        {
-            using (var scope = new TransactionScope())
-            {
-                initializeKernel();
+        //        long commentId1 = commentService.AddComment(pubId, "Commentary1", userId);
+        //        long commentId2 = commentService.AddComment(pubId, "Commentary2", userId);
 
-                UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
-                long userId = userService.RegisterUser(loginName, clearPassword, user);
+        //        Comment comment1 = commentDao.Find(commentId1);
+        //        Comment comment2 = commentDao.Find(commentId2);
 
-                ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "ISO", "wb");
+        //        Assert.IsTrue(comment1.content.Equals("Commentary1"));
+        //        Assert.IsTrue(comment2.content.Equals("Commentary2"));
 
-                long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
-                long pubId = publicationService.UploadPublication(userId, imgId);
+        //        List<Comment> result = commentService.ShowComments(pubId, startindex, count);
 
-                long commentId1 = commentService.AddComment(pubId, "Commentary1", userId);
-                long commentId2 = commentService.AddComment(pubId, "Commentary2", userId);
+        //        Assert.IsTrue(result.Contains(comment1));
+        //        Assert.IsTrue(result.Contains(comment2));
 
-                Comment comment1 = commentDao.Find(commentId1);
-                Comment comment2 = commentDao.Find(commentId2);
+        //        // transaction.Complete() is not called, so Rollback is executed.
+        //    }
+        //}
 
-                Assert.IsTrue(comment1.content.Equals("Commentary1"));
-                Assert.IsTrue(comment2.content.Equals("Commentary2"));
+        //[TestMethod()]
+        //public void UpdateCommentTest()
+        //{
+        //    using (var scope = new TransactionScope())
+        //    {
+        //        initializeKernel();
 
-                commentService.UpdateComment(commentId1, "ModifiedComentary1");
-                comment1 = commentDao.Find(commentId1);
-                Assert.IsTrue(comment1.content.Equals("ModifiedComentary1"));
+        //        UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
+        //        long userId = userService.RegisterUser(loginName, clearPassword, user);
 
+        //        ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
+        //            DateTime.Now, 1, 1, "ISO", "wb");
 
-                // transaction.Complete() is not called, so Rollback is executed.
-            }
-        }
+        //        long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
+        //        long pubId = publicationService.UploadPublication(userId, imgId);
 
-        [TestMethod()]
-        [ExpectedException(typeof(InstanceNotFoundException))]
-        public void UpdateInvalidCommentTest()
-        {
-            using (var scope = new TransactionScope())
-            {
-                initializeKernel();
+        //        long commentId1 = commentService.AddComment(pubId, "Commentary1", userId);
+        //        long commentId2 = commentService.AddComment(pubId, "Commentary2", userId);
 
-                UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
-                long userId = userService.RegisterUser(loginName, clearPassword, user);
+        //        Comment comment1 = commentDao.Find(commentId1);
+        //        Comment comment2 = commentDao.Find(commentId2);
 
-                ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "ISO", "wb");
+        //        Assert.IsTrue(comment1.content.Equals("Commentary1"));
+        //        Assert.IsTrue(comment2.content.Equals("Commentary2"));
 
-                long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
-                long pubId = publicationService.UploadPublication(userId, imgId);
+        //        commentService.UpdateComment(commentId1, "ModifiedComentary1");
+        //        comment1 = commentDao.Find(commentId1);
+        //        Assert.IsTrue(comment1.content.Equals("ModifiedComentary1"));
 
-                long commentId1 = commentService.AddComment(pubId, "Commentary1", userId);
-                long commentId2 = commentService.AddComment(pubId, "Commentary2", userId);
 
-                Comment comment1 = commentDao.Find(commentId1);
-                Comment comment2 = commentDao.Find(commentId2);
+        //        // transaction.Complete() is not called, so Rollback is executed.
+        //    }
+        //}
 
-                Assert.IsTrue(comment1.content.Equals("Commentary1"));
-                Assert.IsTrue(comment2.content.Equals("Commentary2"));
+        //[TestMethod()]
+        //[ExpectedException(typeof(InstanceNotFoundException))]
+        //public void UpdateInvalidCommentTest()
+        //{
+        //    using (var scope = new TransactionScope())
+        //    {
+        //        initializeKernel();
 
-                commentService.RemoveComment(commentId1);
-                commentService.UpdateComment(commentId1, "ModifiedComentary1");
-                // transaction.Complete() is not called, so Rollback is executed.
-            }
-        }
+        //        UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
+        //        long userId = userService.RegisterUser(loginName, clearPassword, user);
 
-        [TestMethod()]
-        [ExpectedException(typeof(InstanceNotFoundException))]
-        public void ShowCommentsInvalidPublicationTest()
-        {
-            using (var scope = new TransactionScope())
-            {
-                initializeKernel();
+        //        ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
+        //            DateTime.Now, 1, 1, "ISO", "wb");
 
-                UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
-                long userId = userService.RegisterUser(loginName, clearPassword, user);
+        //        long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
+        //        long pubId = publicationService.UploadPublication(userId, imgId);
 
-                ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "ISO", "wb");
+        //        long commentId1 = commentService.AddComment(pubId, "Commentary1", userId);
+        //        long commentId2 = commentService.AddComment(pubId, "Commentary2", userId);
 
-                long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
-                long pubId = publicationService.UploadPublication(userId, imgId);
+        //        Comment comment1 = commentDao.Find(commentId1);
+        //        Comment comment2 = commentDao.Find(commentId2);
 
-                commentService.ShowComments(-1,startindex,count);
+        //        Assert.IsTrue(comment1.content.Equals("Commentary1"));
+        //        Assert.IsTrue(comment2.content.Equals("Commentary2"));
 
-                // transaction.Complete() is not called, so Rollback is executed.
-            }
-        }
+        //        commentService.RemoveComment(commentId1);
+        //        commentService.UpdateComment(commentId1, "ModifiedComentary1");
+        //        // transaction.Complete() is not called, so Rollback is executed.
+        //    }
+        //}
 
-        [TestMethod()]
-        public void RemoveCommentTest()
-        {
-            using (var scope = new TransactionScope())
-            {
-                initializeKernel();
+        //[TestMethod()]
+        //[ExpectedException(typeof(InstanceNotFoundException))]
+        //public void ShowCommentsInvalidPublicationTest()
+        //{
+        //    using (var scope = new TransactionScope())
+        //    {
+        //        initializeKernel();
 
-                UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
-                long userId = userService.RegisterUser(loginName, clearPassword, user);
+        //        UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
+        //        long userId = userService.RegisterUser(loginName, clearPassword, user);
 
-                ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "ISO", "wb");
+        //        ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
+        //            DateTime.Now, 1, 1, "ISO", "wb");
 
-                long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
-                long pubId = publicationService.UploadPublication(userId, imgId);
+        //        long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
+        //        long pubId = publicationService.UploadPublication(userId, imgId);
 
-                long commentId1 = commentService.AddComment(pubId, "Commentary1", userId);
-                long commentId2 = commentService.AddComment(pubId, "Commentary2", userId);
+        //        commentService.ShowComments(-1,startindex,count);
 
-                Comment comment1 = commentDao.Find(commentId1);
-                Comment comment2 = commentDao.Find(commentId2);
+        //        // transaction.Complete() is not called, so Rollback is executed.
+        //    }
+        //}
 
-                Assert.IsTrue(comment1.content.Equals("Commentary1"));
-                Assert.IsTrue(comment2.content.Equals("Commentary2"));
+        //[TestMethod()]
+        //public void RemoveCommentTest()
+        //{
+        //    using (var scope = new TransactionScope())
+        //    {
+        //        initializeKernel();
 
-                List<Comment> result = commentService.ShowComments(pubId, startindex, count);
+        //        UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
+        //        long userId = userService.RegisterUser(loginName, clearPassword, user);
 
-                Assert.IsTrue(result.Contains(comment1));
-                Assert.IsTrue(result.Contains(comment2));
+        //        ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
+        //            DateTime.Now, 1, 1, "ISO", "wb");
 
-                commentService.RemoveComment(commentId1);
-                result = commentService.ShowComments(pubId, startindex, count);
-                Assert.IsTrue(result.Contains(comment2));
-                Assert.IsFalse(result.Contains(comment1));
+        //        long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
+        //        long pubId = publicationService.UploadPublication(userId, imgId);
 
-                // transaction.Complete() is not called, so Rollback is executed.
-            }
-        }
+        //        long commentId1 = commentService.AddComment(pubId, "Commentary1", userId);
+        //        long commentId2 = commentService.AddComment(pubId, "Commentary2", userId);
 
-        [TestMethod()]
-        [ExpectedException(typeof(InstanceNotFoundException))]
-        public void RemoveInvalidCommentTest()
-        {
-            using (var scope = new TransactionScope())
-            {
-                initializeKernel();
+        //        Comment comment1 = commentDao.Find(commentId1);
+        //        Comment comment2 = commentDao.Find(commentId2);
 
-                UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
-                long userId = userService.RegisterUser(loginName, clearPassword, user);
+        //        Assert.IsTrue(comment1.content.Equals("Commentary1"));
+        //        Assert.IsTrue(comment2.content.Equals("Commentary2"));
 
-                ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now, 1, 1, "ISO", "wb");
+        //        List<Comment> result = commentService.ShowComments(pubId, startindex, count);
 
-                long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
-                long pubId = publicationService.UploadPublication(userId, imgId);
+        //        Assert.IsTrue(result.Contains(comment1));
+        //        Assert.IsTrue(result.Contains(comment2));
 
-                long commentId1 = commentService.AddComment(pubId, "Commentary1", userId);
-                long commentId2 = commentService.AddComment(pubId, "Commentary2", userId);
+        //        commentService.RemoveComment(commentId1);
+        //        result = commentService.ShowComments(pubId, startindex, count);
+        //        Assert.IsTrue(result.Contains(comment2));
+        //        Assert.IsFalse(result.Contains(comment1));
 
-                Comment comment1 = commentDao.Find(commentId1);
-                Comment comment2 = commentDao.Find(commentId2);
+        //        // transaction.Complete() is not called, so Rollback is executed.
+        //    }
+        //}
 
-                Assert.IsTrue(comment1.content.Equals("Commentary1"));
-                Assert.IsTrue(comment2.content.Equals("Commentary2"));
+        //[TestMethod()]
+        //[ExpectedException(typeof(InstanceNotFoundException))]
+        //public void RemoveInvalidCommentTest()
+        //{
+        //    using (var scope = new TransactionScope())
+        //    {
+        //        initializeKernel();
 
-                List<Comment> result = commentService.ShowComments(pubId, startindex, count);
+        //        UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
+        //        long userId = userService.RegisterUser(loginName, clearPassword, user);
 
-                Assert.IsTrue(result.Contains(comment1));
-                Assert.IsTrue(result.Contains(comment2));
+        //        ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
+        //            DateTime.Now, 1, 1, "ISO", "wb");
 
-                commentService.RemoveComment(commentId1);
-                result = commentService.ShowComments(pubId, startindex, count);
-                Assert.IsTrue(result.Contains(comment2));
-                Assert.IsFalse(result.Contains(comment1));
-                commentService.RemoveComment(commentId1);
+        //        long imgId = imageUploadService.UploadImage(img, null, "Paisaje");
+        //        long pubId = publicationService.UploadPublication(userId, imgId);
 
-                // transaction.Complete() is not called, so Rollback is executed.
-            }
-        }
+        //        long commentId1 = commentService.AddComment(pubId, "Commentary1", userId);
+        //        long commentId2 = commentService.AddComment(pubId, "Commentary2", userId);
+
+        //        Comment comment1 = commentDao.Find(commentId1);
+        //        Comment comment2 = commentDao.Find(commentId2);
+
+        //        Assert.IsTrue(comment1.content.Equals("Commentary1"));
+        //        Assert.IsTrue(comment2.content.Equals("Commentary2"));
+
+        //        List<Comment> result = commentService.ShowComments(pubId, startindex, count);
+
+        //        Assert.IsTrue(result.Contains(comment1));
+        //        Assert.IsTrue(result.Contains(comment2));
+
+        //        commentService.RemoveComment(commentId1);
+        //        result = commentService.ShowComments(pubId, startindex, count);
+        //        Assert.IsTrue(result.Contains(comment2));
+        //        Assert.IsFalse(result.Contains(comment1));
+        //        commentService.RemoveComment(commentId1);
+
+        //        // transaction.Complete() is not called, so Rollback is executed.
+        //    }
+        //}
     }
 }

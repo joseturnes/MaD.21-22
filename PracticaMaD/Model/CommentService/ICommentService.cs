@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// </summary>
         /// <param name="pubId"> The publication id. </param>
         /// <param name="comment"> The comment. </param>
-        long AddComment(long pubId, string comment, long userId);
+        long AddComment(long imgId, string comment, long userId);
 
         /// <summary>
         /// Update a comment.
@@ -39,7 +39,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// </summary>
         /// <param name="pubId"> The publication id. </param>
         /// <exception cref="InstanceNotFoundException"/>
-        List<Comment> ShowComments(long pubId, int startindex, int count);
+        List<CommentDto> ShowComments(long imgId, int startindex, int count);
+
+        /// <exception cref="InstanceNotFoundException"/>
+        long CountComents(long imgId);
 
     }
 }

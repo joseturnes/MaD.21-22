@@ -1,14 +1,13 @@
-using System;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
-
-    /// <summary>
-    /// VO Class which contains the comment details
-    /// </summary>
     [Serializable()]
-    public class CommentDetails
+    public class CommentDto
     {
         #region Properties Region
 
@@ -32,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// <param name="imgId">The publications that the comment references .</param>
         /// <param name="comDate">The date of the comment</param>
 
-        public CommentDetails(String content, long userId,
+        public CommentDto(String content, long userId,
             long imgId, DateTime comDate)
         {
             this.content = content;
@@ -44,7 +43,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         public override bool Equals(object obj)
         {
 
-            CommentDetails target = (CommentDetails)obj;
+            CommentDto target = (CommentDto)obj;
 
             return (this.content == target.content)
                   && (this.userId == userId)
@@ -70,16 +69,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// </returns>
         public override String ToString()
         {
-            String strCommentDetails;
+            String strCommentDto;
 
-            strCommentDetails =
+            strCommentDto =
                 "[ content = " + content + " | " +
                 "userId = " + userId.ToString() + " | " +
                 "pubId = " + imgId.ToString() + " | " +
                 "comDate = " + comDate.ToString() + " ]";
 
 
-            return strCommentDetails;
+            return strCommentDto;
         }
     }
 }

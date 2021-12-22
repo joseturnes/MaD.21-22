@@ -167,6 +167,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             }
 
         }
+
+        public List<UserProfileDto> FollowerList(long userId, int startIndex, int count)
+        {
+            List<UserProfile> users = UserProfileDao.FindFollowers(userId, startIndex, count);
+            return UserProfileConversor.toUserProfilesDtos(users);
+        }
+
+        public List<UserProfileDto> ListOfFollows(long userId, int startIndex, int count)
+        {
+            List<UserProfile> users = UserProfileDao.FindFollows(userId, startIndex, count);
+            return UserProfileConversor.toUserProfilesDtos(users);
+        }
     }
         #endregion IUserService Members
 }

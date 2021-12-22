@@ -17,10 +17,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public long commentId { get; set; }
         public string content { get; set; }
         public long usrId { get; set; }
-        public long pubId { get; set; }
+        public long imgId { get; set; }
         public System.DateTime comDate { get; set; }
     
-        public virtual Publication Publication { get; set; }
+        public virtual ImageUpload ImageUpload { get; set; }
         public virtual UserProfile UserProfile { get; set; }
     }
 }

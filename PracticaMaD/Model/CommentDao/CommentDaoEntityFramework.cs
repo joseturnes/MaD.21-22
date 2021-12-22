@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentDao
 
             var result =
                 (from a in comments
-                 where a.pubId == pubId
+                 where a.imgId == pubId
                  orderby a.comDate
                  select a).Skip(startIndex).Take(count).ToList();
 

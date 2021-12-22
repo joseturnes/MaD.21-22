@@ -50,40 +50,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 
             #endregion Option 1: Using Linq.
 
-            #region Option 2: Using eSQL over dbSet
-
-            //string sqlQuery = "Select * FROM UserProfile where loginName=@loginName";
-            //DbParameter loginNameParameter =
-            //    new System.Data.SqlClient.SqlParameter("loginName", loginName);
-
-            //userProfile = Context.Database.SqlQuery<UserProfile>(sqlQuery, loginNameParameter).FirstOrDefault<UserProfile>();
-
-            #endregion Option 2: Using eSQL over dbSet
-
-            #region Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
-            //String sqlQuery =
-            //    "SELECT VALUE u FROM MiniPortalEntities.UserProfiles AS u " +
-            //    "WHERE u.loginName=@loginName";
-
-            //ObjectParameter param = new ObjectParameter("loginName", loginName);
-
-            //ObjectQuery<UserProfile> query =
-            //  ((System.Data.Entity.Infrastructure.IObjectContextAdapter)Context).ObjectContext.CreateQuery<UserProfile>(sqlQuery, param);
-
-            //var result = query.Execute(MergeOption.AppendOnly);
-
-            //try
-            //{
-            //    userProfile = result.First<UserProfile>();
-            //}
-            //catch (Exception)
-            //{
-            //    userProfile = null;
-            //}
-
-            #endregion Option 3: Using Entity SQL and Object Services provided by old ObjectContext.
-
             if (userProfile == null)
                 throw new InstanceNotFoundException(loginName,
                     typeof(UserProfile).FullName);
@@ -91,7 +57,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             return userProfile;
         }
 
-        public List<UserProfile> FindFollowers(int userId,int startIndex,
+        public List<UserProfile> FindFollowers(long userId,int startIndex,
             int count)
         {
             DbSet<UserProfile> followers = Context.Set<UserProfile>();
@@ -99,6 +65,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             var result =
                 (from a in followers
                  where a.UserProfile1.Equals(a)
+                 select a).Skip(startIndex).Take(count).ToList();
+
+            return result;
+        }
+
+        public List<UserProfile> FindFollows(long userId, int startIndex, int count)
+        {
+            DbSet<UserProfile> followers = Context.Set<UserProfile>();
+
+            var result =
+                (from a in followers
+                 where a.UserProfile2.Equals(a)
                  select a).Skip(startIndex).Take(count).ToList();
 
             return result;

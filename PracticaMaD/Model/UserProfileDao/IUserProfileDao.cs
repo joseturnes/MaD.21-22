@@ -21,7 +21,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
         /// <param name="userId">userId</param>
         /// <returns>The followers list or an empty list</returns>
         /// <exception cref="InstanceNotFoundException"/>
-        List<UserProfile> FindFollowers(int userId, int startIndex, int count);
+        List<UserProfile> FindFollowers(long userId, int startIndex, int count);
+
+
+        List<UserProfile> FindFollows(long userId, int startIndex, int count);
 
 
 

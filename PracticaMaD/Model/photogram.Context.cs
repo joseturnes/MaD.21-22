@@ -13,10 +13,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class photogramEntities : DbContext
+    public partial class photogramEntities1 : DbContext
     {
-        public photogramEntities()
-            : base("name=photogramEntities")
+        public photogramEntities1()
+            : base("name=photogramEntities1")
         {
         }
     
@@ -28,7 +28,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Comment> Comment { get; set; }
         public virtual DbSet<ImageUpload> ImageUpload { get; set; }
-        public virtual DbSet<Publication> Publication { get; set; }
         public virtual DbSet<Tag> Tag { get; set; }
         public virtual DbSet<UserProfile> UserProfile { get; set; }
     }

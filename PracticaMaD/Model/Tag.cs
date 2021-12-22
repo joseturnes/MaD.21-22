@@ -22,6 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
     
         public long tagId { get; set; }
         public string tagname { get; set; }
+        public long timesUsed { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ImageUpload> ImageUpload { get; set; }

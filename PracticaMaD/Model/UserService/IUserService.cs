@@ -4,6 +4,7 @@ using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using System;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 {
@@ -81,5 +82,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <returns>Nothing</returns>
         /// <exception cref="InstanceNotFoundException"/>
         void follow(string followedLogin, string followerLogin);
+
+        List<UserProfileDto> FollowerList(long userId, int startIndex, int count);
+
+        List<UserProfileDto> ListOfFollows(long userId, int startIndex, int count);
     }
 }

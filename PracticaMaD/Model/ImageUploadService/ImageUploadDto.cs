@@ -1,41 +1,34 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
+namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 {
-    /// <summary>
-    /// VO Class which contains the image details
-    /// </summary>
     [Serializable()]
-    public class ImageUploadDetails
+    public class ImageUploadDto
     {
+        public String url { get; set; }
 
         public string title { get; set; }
 
         public string descriptions { get; set; }
 
         public System.DateTime uploadDate { get; set; }
-
-        public float f { get; set; }
-
-        public float t { get; set; }
-
-        public string iso { get; set; }
-
+       
         public long likes { get; set; }
 
-        public string wb { get; set; }
+        
 
 
-        public ImageUploadDetails(string title, string descriptions,System.DateTime uploadDate,
-            float f, float t, string iso, string wb, long likes)
+        public ImageUploadDto(string url, string title, string descriptions, System.DateTime uploadDate,
+             long likes)
         {
+            this.url = url;
             this.title = title;
             this.descriptions = descriptions;
             this.uploadDate = uploadDate;
-            this.f = f;
-            this.t = t;
-            this.iso = iso;
-            this.wb = wb;
             this.likes = likes;
         }
 
@@ -53,15 +46,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         /// 
         public override bool Equals(object obj)
         {
-            ImageUploadDetails target = (ImageUploadDetails)obj;
+            ImageUploadDto target = (ImageUploadDto)obj;
 
             return (this.title == target.title)
                 && (this.descriptions == target.descriptions)
+                && (this.url == target.url)
                 && (this.uploadDate == target.uploadDate)
-                && (this.f == target.f)
-                && (this.t == target.t)
-                && (this.iso == target.iso)
-                && (this.wb == target.wb)
                 & (this.likes == target.likes);
         }
 
@@ -83,20 +73,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         /// </returns>
         public override String ToString()
         {
-            String strImageUploadDetails;
+            String strImageUploadDto;
 
-            strImageUploadDetails =
+            strImageUploadDto =
                 "[ title = " + title + " | " +
+                "url = " + url + " | " +
                 "descriptions = " + descriptions + " | " +
                 "uploadDate = " + uploadDate + " | " +
-                "f = " + f + " | " +
-                "t = " + t + " | " +
-                "iso = " + iso + " | " +
-                "likes = " + likes + " | " +
-                "wb = " + wb + " ]";
+                "likes = " + likes + " ]";
 
 
-            return strImageUploadDetails;
+            return strImageUploadDto;
         }
 
 

@@ -2,10 +2,10 @@ using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 using Ninject;
 using System;
 using System.Collections.Generic;
-using Es.Udc.DotNet.PracticaMaD.Model.PublicationDao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
@@ -16,7 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         public ICommentDao CommentDao { private get; set; }
 
         [Inject]
-        public IPublicationDao PublicationDao { private get; set; }
+        public IImageUploadDao ImageUploadDao { private get; set; }
 
         [Inject]
         public IUserProfileDao UserProfileDao { private get; set; }
@@ -25,14 +25,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// <exception cref="InstanceNotFoundException"/>
         /// 
         [Transactional]
-        public long AddComment(long pubId, String comment, long userId)
+        public long AddComment(long imgId, String comment, long userId)
         {
-            Publication pub = PublicationDao.Find(pubId);
+            ImageUpload img = ImageUploadDao.Find(imgId);
             UserProfile user = UserProfileDao.Find(userId);
 
-            if (pub.Equals(null))
+            if (img.Equals(null))
             {
-                throw new InstanceNotFoundException(pubId, typeof(long).FullName);
+                throw new InstanceNotFoundException(imgId, typeof(long).FullName);
             }
 
             if (user.Equals(null))
@@ -44,7 +44,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
                 newComment.content = comment;
                 newComment.usrId = userId;
-                newComment.pubId = pubId;
+                newComment.imgId = imgId;
                 newComment.comDate = DateTime.Now;
 
                 CommentDao.Create(newComment);
@@ -54,16 +54,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         }
 
         [Transactional]
-        public List<Comment> ShowComments(long pubId, int startIndex, int count)
+        public List<CommentDto> ShowComments(long imgId, int startIndex, int count)
         {
-            Publication pub = PublicationDao.Find(pubId);
+            ImageUpload pub = ImageUploadDao.Find(imgId);
 
             if (pub.Equals(null))
             {
-                throw new InstanceNotFoundException(pubId, typeof(long).FullName);
+                throw new InstanceNotFoundException(imgId, typeof(long).FullName);
             }
 
-            return CommentDao.FindByPubIdOrderByDateAsc((int)pubId, startIndex ,count+1);
+            List <Comment> coments = CommentDao.FindByPubIdOrderByDateAsc((int)imgId, startIndex, count + 1);
+            List<CommentDto> result = new List<CommentDto>();
+            coments.ToArray();
+
+            result = CommentConversor.toCommentDtos(coments);
+
+            return result;
         }
 
         [Transactional]
@@ -94,6 +100,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             }
 
             CommentDao.Remove(commentId);
+        }
+
+        [Transactional]
+        /// <exception cref="InstanceNotFoundException"/>
+        public long CountComents(long imgId)
+        {
+            ImageUpload img = ImageUploadDao.Find(imgId);
+
+            if (img.Equals(null))
+            {
+                throw new InstanceNotFoundException(img, typeof(ImageUpload).FullName);
+            }
+
+            return img.Comment.Count;
         }
 
 
