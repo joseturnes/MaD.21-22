@@ -86,5 +86,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         List<UserProfileDto> FollowerList(long userId, int startIndex, int count);
 
         List<UserProfileDto> ListOfFollows(long userId, int startIndex, int count);
+
+        int getNumberOfFollows(long userId);
     }
 }

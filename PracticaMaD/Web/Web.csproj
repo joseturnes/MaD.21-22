@@ -104,6 +104,8 @@
   <ItemGroup>
     <Content Include="Css\styles.css" />
     <Content Include="Pages\UserExists.aspx" />
+    <Content Include="Pages\User\Follows.aspx" />
+    <Content Include="Pages\User\Perfil.aspx" />
     <Content Include="Pages\User\UpdateUserProfile.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -139,6 +141,20 @@
     <Compile Include="HTTP\View\ApplicationObjects\Countries.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Languages.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
+    <Compile Include="Pages\User\Follows.aspx.cs">
+      <DependentUpon>Follows.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Follows.aspx.designer.cs">
+      <DependentUpon>Follows.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\Perfil.aspx.cs">
+      <DependentUpon>Perfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Perfil.aspx.designer.cs">
+      <DependentUpon>Perfil.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PracticaMaD.Master.cs">
       <DependentUpon>PracticaMaD.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -252,42 +268,20 @@
     <Content Include="Pages\App_LocalResources\UserExists.aspx.resx" />
     <Content Include="Pages\App_LocalResources\UserExists.aspx.es.resx" />
     <Content Include="Pages\App_LocalResources\UserExists.aspx.gl.resx" />
+    <Content Include="Pages\User\App_LocalResources\Follows.resx" />
     <EmbeddedResource Include="Pages\User\App_LocalResources\Register.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.resx">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Pages\User\App_LocalResources\Perfil.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\Authentication.aspx.es.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Pages\User\App_LocalResources\ChangePassword.aspx.es.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Pages\App_LocalResources\MainPage.aspx.es.resx">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Pages\User\App_LocalResources\Register.aspx.es.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.es.resx">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\User\App_LocalResources\Authentication.aspx.gl.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Pages\User\App_LocalResources\ChangePassword.aspx.gl.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Pages\App_LocalResources\MainPage.aspx.gl.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Pages\User\App_LocalResources\Register.aspx.gl.resx">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.gl.resx">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Global.asax" />

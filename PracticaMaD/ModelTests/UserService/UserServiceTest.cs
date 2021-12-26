@@ -454,5 +454,38 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
             }
         }
 
+        /// <summary>
+        /// A test to check if getFollows method works correctly
+        /// </summary>
+        [TestMethod]
+        public void GetFollowsTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+
+                // Register user
+                var userId1 = userService.RegisterUser(loginName, clearPassword,
+                    new UserProfileDetails(firstName, lastName, email, language, country));
+
+                // Register user
+                var userId2 = userService.RegisterUser("user2", "1234",
+                    new UserProfileDetails(firstName, lastName, email, language, country));
+
+                userService.follow(loginName, "user2");
+                UserProfile user1 = userProfileDao.FindByLoginName(loginName);
+                UserProfile user2 = userProfileDao.FindByLoginName("user2");
+                int number = userService.getNumberOfFollows(userId1);
+
+                Assert.AreEqual(1, number);
+                //Assert.IsTrue( userService.ListOfFollows(userId2, 0, 30).Contains(UserProfileConversor.toUserProfileDto(user1)));
+                Assert.AreEqual (userService.ListOfFollows(userId1, 0, 30)[0], UserProfileConversor.toUserProfileDto(user2));
+                //Assert.
+
+                // transaction.Complete() is not called, so Rollback is executed.
+            }
+        }
+
+
     }
 }

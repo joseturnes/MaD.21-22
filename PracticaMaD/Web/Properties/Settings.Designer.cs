@@ -22,5 +22,68 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int PracticaMaD_defaultCount {
+            get {
+                return ((int)(this["PracticaMaD_defaultCount"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Es.Udc.DotNet.PracticaMaD.Model.UserService.IUserService")]
+        public string ObjectDS_User_Service {
+            get {
+                return ((string)(this["ObjectDS_User_Service"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ListOfFollows")]
+        public string ObjectDS_User_Follows_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_User_Follows_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("startIndex")]
+        public string ObjectDS_User_StartIndexParameter {
+            get {
+                return ((string)(this["ObjectDS_User_StartIndexParameter"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("count")]
+        public string ObjectDS_User_CountParameter {
+            get {
+                return ((string)(this["ObjectDS_User_CountParameter"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("getNumberOfFollows")]
+        public string ObjectDS_Follows_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_Follows_CountMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ObjectDS_User_Dto {
+            get {
+                return ((string)(this["ObjectDS_User_Dto"]));
+            }
+        }
     }
 }

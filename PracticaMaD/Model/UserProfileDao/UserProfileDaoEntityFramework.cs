@@ -57,6 +57,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             return userProfile;
         }
 
+        /// <summary>
+        /// Finds a UserProfile by his id
+        /// </summary>
+        /// <param name="loginName"></param>
+        /// <returns></returns>
+        /// <exception cref="InstanceNotFoundException"></exception>
+        private UserProfile FindById(long id)
+        {
+            UserProfile userProfile = null;
+
+            DbSet<UserProfile> userProfiles = Context.Set<UserProfile>();
+
+            var result =
+                (from u in userProfiles
+                 where u.usrId == id
+                 select u);
+
+            userProfile = result.FirstOrDefault();
+
+       
+
+            if (userProfile == null)
+                throw new InstanceNotFoundException(id,
+                    typeof(UserProfile).FullName);
+
+            return userProfile;
+        }
+
         public List<UserProfile> FindFollowers(long userId,int startIndex,
             int count)
         {
@@ -72,20 +100,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 
         public List<UserProfile> FindFollows(long userId, int startIndex, int count)
         {
-            DbSet<UserProfile> followers = Context.Set<UserProfile>();
+            UserProfile userProfile = null;
+
+            DbSet<UserProfile> userProfiles = Context.Set<UserProfile>();
 
             var result =
-                (from a in followers
-                 where a.UserProfile2.Equals(a)
-                 select a).Skip(startIndex).Take(count).ToList();
+                (from u in userProfiles
+                 where u.usrId == userId
+                 select u).FirstOrDefault();
 
-            return result;
+            return result.UserProfile2.Skip(startIndex).Take(count).ToList();
         }
 
+        public int getNumberOfFollows(long id)
+        {
+            UserProfile userProfile = null;
 
+            DbSet<UserProfile> userProfiles = Context.Set<UserProfile>();
 
+            var result =
+                (from u in userProfiles
+                 where u.usrId == id
+                 select u).FirstOrDefault();
 
-        #endregion IUserProfileDao Members
+            return result.UserProfile2.Count();
+
+            #endregion IUserProfileDao Members
+        }
     }
 }
 

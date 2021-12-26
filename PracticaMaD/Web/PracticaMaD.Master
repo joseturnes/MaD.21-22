@@ -35,6 +35,10 @@
                     <asp:HyperLink ID="lnkAuthenticate" runat="server"
                         NavigateUrl="~/Pages/User/Authentication.aspx"
                         meta:resourcekey="lnkAuthenticate" />
+                    <asp:Label ID="lblDash4" runat="server" Text="-" />
+                    <asp:HyperLink ID="lnkPerfil" runat="server"
+                        NavigateUrl="~/Pages/User/Perfil.aspx"
+                        meta:resourcekey="lnkPerfil" />
                     <asp:Label ID="lblDash2" runat="server" Text="-" />
                     <asp:HyperLink ID="lnkUpdate" runat="server"
                         NavigateUrl="~/Pages/User/UpdateUserProfile.aspx"

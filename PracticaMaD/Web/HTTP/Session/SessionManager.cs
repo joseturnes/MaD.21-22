@@ -4,6 +4,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 
@@ -268,6 +269,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
             return userProfileDetails;
         }
 
+
         /// <summary>
         /// Gets the user info stored in the session.
         /// </summary>
@@ -279,6 +281,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session
                 return (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
             else
                 return null;
+        }
+
+        /// <summary>
+        /// Gets the userId stored in the session.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public static long GetUserId(HttpContext context)
+        {
+            UserSession userSession = null;
+            if (IsUserAuthenticated(context))
+            {
+                userSession = (UserSession)context.Session[USER_SESSION_ATTRIBUTE];
+                return userSession.UserProfileId;
+            }
+            else
+                return -1;
         }
 
         /// <summary>
