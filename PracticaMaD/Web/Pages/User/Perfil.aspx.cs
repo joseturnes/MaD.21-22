@@ -41,8 +41,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             }
         }
 
+        protected void BtnUploadImageClick(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                /* Get data. */
+                Int64 userId = SessionManager.GetUserId(Context);
 
-    }    
+                String url = String.Format("./UploadImage.aspx?userId={0}", userId);
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+
+            }
+        }
+    }
 }
-    
+
+
 

@@ -37,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         /// <param name="imgId"> The publication id. </param>
         /// <param name="ImageUploadDetails"> The publication details. </param>
         /// <exception cref="InstanceNotFoundException"/>
-        void UpdatePublication(long pubId, ImageUploadDetails imageDetails);
+        void UpdateImage(long pubId, ImageUploadDetails imageDetails);
 
         /// <summary>
         /// Remove a image.

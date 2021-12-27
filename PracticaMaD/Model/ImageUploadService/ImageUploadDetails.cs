@@ -11,6 +11,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         public string title { get; set; }
 
+        public byte[] uploadedImage { get; set; }
+
+        public long usrId { get; set; }
+
         public string descriptions { get; set; }
 
         public System.DateTime uploadDate { get; set; }
@@ -26,10 +30,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         public string wb { get; set; }
 
 
-        public ImageUploadDetails(string title, string descriptions,System.DateTime uploadDate,
+        public ImageUploadDetails(string title, byte[] image, long usrId, string descriptions,System.DateTime uploadDate,
             float f, float t, string iso, string wb, long likes)
         {
             this.title = title;
+            this.uploadedImage = image;
+            this.usrId = usrId;
             this.descriptions = descriptions;
             this.uploadDate = uploadDate;
             this.f = f;
@@ -37,6 +43,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             this.iso = iso;
             this.wb = wb;
             this.likes = likes;
+        }
+
+        public ImageUploadDetails(string title, byte[] image, long usrId, string descriptions)
+        {
+            this.title = title;
+            this.uploadedImage = image;
+            this.usrId = usrId;
+            this.descriptions = descriptions;
         }
 
         /// <summary>
@@ -56,6 +70,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             ImageUploadDetails target = (ImageUploadDetails)obj;
 
             return (this.title == target.title)
+                && (this.uploadedImage == target.uploadedImage)
                 && (this.descriptions == target.descriptions)
                 && (this.uploadDate == target.uploadDate)
                 && (this.f == target.f)

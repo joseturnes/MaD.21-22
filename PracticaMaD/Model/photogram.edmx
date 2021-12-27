@@ -43,11 +43,11 @@
             <PropertyRef Name="imgId" />
           </Key>
           <Property Name="imgId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="url" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="uploadedImage" Type="image" Nullable="false" />
           <Property Name="usrId" Type="bigint" Nullable="false" />
           <Property Name="likes" Type="bigint" Nullable="false" />
           <Property Name="title" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="descriptions" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descriptions" Type="varchar" MaxLength="50" />
           <Property Name="uploadDate" Type="date" Nullable="false" />
           <Property Name="f" Type="float" />
           <Property Name="t" Type="float" />
@@ -258,78 +258,113 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="photogramModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="photogramEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category" EntityType="photogramModel.Category" />
+          <EntitySet Name="Comment" EntityType="photogramModel.Comment" />
+          <EntitySet Name="ImageUpload" EntityType="photogramModel.ImageUpload" />
+          <EntitySet Name="Tag" EntityType="photogramModel.Tag" />
+          <EntitySet Name="UserProfile" EntityType="photogramModel.UserProfile" />
+          <AssociationSet Name="FK_Category" Association="photogramModel.FK_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ImageUpload" EntitySet="ImageUpload" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image" Association="photogramModel.FK_Image">
+            <End Role="ImageUpload" EntitySet="ImageUpload" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Comment" Association="photogramModel.FK_User_Comment">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usr" Association="photogramModel.FK_Usr">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="ImageUpload" EntitySet="ImageUpload" />
+          </AssociationSet>
+          <AssociationSet Name="Follow_table" Association="photogramModel.Follow_table">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="UserProfile1" EntitySet="UserProfile" />
+          </AssociationSet>
+          <AssociationSet Name="ImageTags" Association="photogramModel.ImageTags">
+            <End Role="ImageUpload" EntitySet="ImageUpload" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <AssociationSet Name="Like_table" Association="photogramModel.Like_table">
+            <End Role="ImageUpload" EntitySet="ImageUpload" />
+            <End Role="UserProfile" EntitySet="UserProfile" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="categoryId" />
           </Key>
           <Property Name="categoryId" Type="Int64" Nullable="false" />
-          <Property Name="categoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ImageUpload" Relationship="Self.FK_Category" FromRole="Category" ToRole="ImageUpload" />
+          <Property Name="categoryName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ImageUpload" Relationship="photogramModel.FK_Category" FromRole="Category" ToRole="ImageUpload" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="commentId" />
           </Key>
           <Property Name="commentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="content" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="content" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="usrId" Type="Int64" Nullable="false" />
           <Property Name="imgId" Type="Int64" Nullable="false" />
           <Property Name="comDate" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="ImageUpload" Relationship="Self.FK_Image" FromRole="Comment" ToRole="ImageUpload" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK_User_Comment" FromRole="Comment" ToRole="UserProfile" />
+          <NavigationProperty Name="ImageUpload" Relationship="photogramModel.FK_Image" FromRole="Comment" ToRole="ImageUpload" />
+          <NavigationProperty Name="UserProfile" Relationship="photogramModel.FK_User_Comment" FromRole="Comment" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="ImageUpload">
           <Key>
             <PropertyRef Name="imgId" />
           </Key>
           <Property Name="imgId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uploadedImage" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
           <Property Name="usrId" Type="Int64" Nullable="false" />
           <Property Name="likes" Type="Int64" Nullable="false" />
-          <Property Name="title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="descriptions" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="descriptions" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="uploadDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="f" Type="Double" />
           <Property Name="t" Type="Double" />
           <Property Name="iso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="wb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="categoryId" Type="Int64" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Category" FromRole="ImageUpload" ToRole="Category" />
-          <NavigationProperty Name="Comment" Relationship="Self.FK_Image" FromRole="ImageUpload" ToRole="Comment" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK_Usr" FromRole="ImageUpload" ToRole="UserProfile" />
-          <NavigationProperty Name="Tag" Relationship="Self.ImageTags" FromRole="ImageUpload" ToRole="Tag" />
-          <NavigationProperty Name="UserProfile1" Relationship="Self.Like_table" FromRole="ImageUpload" ToRole="UserProfile" />
-          <Property Name="url" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category" Relationship="photogramModel.FK_Category" FromRole="ImageUpload" ToRole="Category" />
+          <NavigationProperty Name="Comment" Relationship="photogramModel.FK_Image" FromRole="ImageUpload" ToRole="Comment" />
+          <NavigationProperty Name="UserProfile" Relationship="photogramModel.FK_Usr" FromRole="ImageUpload" ToRole="UserProfile" />
+          <NavigationProperty Name="Tag" Relationship="photogramModel.ImageTags" FromRole="ImageUpload" ToRole="Tag" />
+          <NavigationProperty Name="UserProfile1" Relationship="photogramModel.Like_table" FromRole="ImageUpload" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Tag">
           <Key>
             <PropertyRef Name="tagId" />
           </Key>
           <Property Name="tagId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tagname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tagname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="timesUsed" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="ImageUpload" Relationship="Self.ImageTags" FromRole="Tag" ToRole="ImageUpload" />
+          <NavigationProperty Name="ImageUpload" Relationship="photogramModel.ImageTags" FromRole="Tag" ToRole="ImageUpload" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
             <PropertyRef Name="usrId" />
           </Key>
           <Property Name="usrId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="loginName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="enPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="firstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="lastName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="loginName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="enPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="language" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="country" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Comment" Relationship="Self.FK_User_Comment" FromRole="UserProfile" ToRole="Comment" />
-          <NavigationProperty Name="ImageUpload" Relationship="Self.FK_Usr" FromRole="UserProfile" ToRole="ImageUpload" />
-          <NavigationProperty Name="UserProfile1" Relationship="Self.Follow_table" FromRole="UserProfile" ToRole="UserProfile1" />
-          <NavigationProperty Name="UserProfile2" Relationship="Self.Follow_table" FromRole="UserProfile1" ToRole="UserProfile" />
-          <NavigationProperty Name="ImageUpload1" Relationship="Self.Like_table" FromRole="UserProfile" ToRole="ImageUpload" />
+          <NavigationProperty Name="Comment" Relationship="photogramModel.FK_User_Comment" FromRole="UserProfile" ToRole="Comment" />
+          <NavigationProperty Name="ImageUpload" Relationship="photogramModel.FK_Usr" FromRole="UserProfile" ToRole="ImageUpload" />
+          <NavigationProperty Name="UserProfile1" Relationship="photogramModel.Follow_table" FromRole="UserProfile" ToRole="UserProfile1" />
+          <NavigationProperty Name="UserProfile2" Relationship="photogramModel.Follow_table" FromRole="UserProfile1" ToRole="UserProfile" />
+          <NavigationProperty Name="ImageUpload1" Relationship="photogramModel.Like_table" FromRole="UserProfile" ToRole="ImageUpload" />
         </EntityType>
         <Association Name="FK_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="ImageUpload" Type="Self.ImageUpload" Multiplicity="*" />
+          <End Type="photogramModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="categoryId" />
@@ -340,8 +375,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Image">
-          <End Role="ImageUpload" Type="Self.ImageUpload" Multiplicity="1" />
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="1" />
+          <End Type="photogramModel.Comment" Role="Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ImageUpload">
               <PropertyRef Name="imgId" />
@@ -352,8 +387,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Comment">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
+          <End Type="photogramModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="photogramModel.Comment" Role="Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="usrId" />
@@ -364,8 +399,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Usr">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="1" />
-          <End Role="ImageUpload" Type="Self.ImageUpload" Multiplicity="*" />
+          <End Type="photogramModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="usrId" />
@@ -376,53 +411,18 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="Follow_table">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
-          <End Role="UserProfile1" Type="Self.UserProfile" Multiplicity="*" />
+          <End Type="photogramModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+          <End Type="photogramModel.UserProfile" Role="UserProfile1" Multiplicity="*" />
         </Association>
         <Association Name="ImageTags">
-          <End Role="ImageUpload" Type="Self.ImageUpload" Multiplicity="*" />
-          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+          <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="*" />
+          <End Type="photogramModel.Tag" Role="Tag" Multiplicity="*" />
         </Association>
         <Association Name="Like_table">
-          <End Role="ImageUpload" Type="Self.ImageUpload" Multiplicity="*" />
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="*" />
+          <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="*" />
+          <End Type="photogramModel.UserProfile" Role="UserProfile" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="photogramEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Category" EntityType="Self.Category" />
-          <EntitySet Name="Comment" EntityType="Self.Comment" />
-          <EntitySet Name="ImageUpload" EntityType="Self.ImageUpload" />
-          <EntitySet Name="Tag" EntityType="Self.Tag" />
-          <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
-          <AssociationSet Name="FK_Category" Association="Self.FK_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="ImageUpload" EntitySet="ImageUpload" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Image" Association="Self.FK_Image">
-            <End Role="ImageUpload" EntitySet="ImageUpload" />
-            <End Role="Comment" EntitySet="Comment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Comment" Association="Self.FK_User_Comment">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Comment" EntitySet="Comment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Usr" Association="Self.FK_Usr">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="ImageUpload" EntitySet="ImageUpload" />
-          </AssociationSet>
-          <AssociationSet Name="Follow_table" Association="Self.Follow_table">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="UserProfile1" EntitySet="UserProfile" />
-          </AssociationSet>
-          <AssociationSet Name="ImageTags" Association="Self.ImageTags">
-            <End Role="ImageUpload" EntitySet="ImageUpload" />
-            <End Role="Tag" EntitySet="Tag" />
-          </AssociationSet>
-          <AssociationSet Name="Like_table" Association="Self.Like_table">
-            <End Role="ImageUpload" EntitySet="ImageUpload" />
-            <End Role="UserProfile" EntitySet="UserProfile" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -431,85 +431,85 @@
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="photogramModel.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
                 <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comment">
             <EntityTypeMapping TypeName="photogramModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
-                <ScalarProperty Name="commentId" ColumnName="commentId" />
-                <ScalarProperty Name="content" ColumnName="content" />
-                <ScalarProperty Name="usrId" ColumnName="usrId" />
-                <ScalarProperty Name="imgId" ColumnName="imgId" />
                 <ScalarProperty Name="comDate" ColumnName="comDate" />
+                <ScalarProperty Name="imgId" ColumnName="imgId" />
+                <ScalarProperty Name="usrId" ColumnName="usrId" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="commentId" ColumnName="commentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ImageUpload">
             <EntityTypeMapping TypeName="photogramModel.ImageUpload">
               <MappingFragment StoreEntitySet="ImageUpload">
-                <ScalarProperty Name="url" ColumnName="url" />
-                <ScalarProperty Name="imgId" ColumnName="imgId" />
-                <ScalarProperty Name="usrId" ColumnName="usrId" />
-                <ScalarProperty Name="likes" ColumnName="likes" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="descriptions" ColumnName="descriptions" />
-                <ScalarProperty Name="uploadDate" ColumnName="uploadDate" />
-                <ScalarProperty Name="f" ColumnName="f" />
-                <ScalarProperty Name="t" ColumnName="t" />
-                <ScalarProperty Name="iso" ColumnName="iso" />
-                <ScalarProperty Name="wb" ColumnName="wb" />
                 <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+                <ScalarProperty Name="wb" ColumnName="wb" />
+                <ScalarProperty Name="iso" ColumnName="iso" />
+                <ScalarProperty Name="t" ColumnName="t" />
+                <ScalarProperty Name="f" ColumnName="f" />
+                <ScalarProperty Name="uploadDate" ColumnName="uploadDate" />
+                <ScalarProperty Name="descriptions" ColumnName="descriptions" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="likes" ColumnName="likes" />
+                <ScalarProperty Name="usrId" ColumnName="usrId" />
+                <ScalarProperty Name="uploadedImage" ColumnName="uploadedImage" />
+                <ScalarProperty Name="imgId" ColumnName="imgId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tag">
             <EntityTypeMapping TypeName="photogramModel.Tag">
               <MappingFragment StoreEntitySet="Tag">
-                <ScalarProperty Name="tagId" ColumnName="tagId" />
-                <ScalarProperty Name="tagname" ColumnName="tagname" />
                 <ScalarProperty Name="timesUsed" ColumnName="timesUsed" />
+                <ScalarProperty Name="tagname" ColumnName="tagname" />
+                <ScalarProperty Name="tagId" ColumnName="tagId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserProfile">
             <EntityTypeMapping TypeName="photogramModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
-                <ScalarProperty Name="usrId" ColumnName="usrId" />
-                <ScalarProperty Name="loginName" ColumnName="loginName" />
-                <ScalarProperty Name="enPassword" ColumnName="enPassword" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="language" ColumnName="language" />
                 <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="enPassword" ColumnName="enPassword" />
+                <ScalarProperty Name="loginName" ColumnName="loginName" />
+                <ScalarProperty Name="usrId" ColumnName="usrId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="Follow_table" TypeName="photogramModel.Follow_table" StoreEntitySet="Follow_table">
-            <EndProperty Name="UserProfile">
-              <ScalarProperty Name="usrId" ColumnName="usrId" />
-            </EndProperty>
             <EndProperty Name="UserProfile1">
               <ScalarProperty Name="usrId" ColumnName="usrFollows" />
             </EndProperty>
+            <EndProperty Name="UserProfile">
+              <ScalarProperty Name="usrId" ColumnName="usrId" />
+            </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="ImageTags" TypeName="photogramModel.ImageTags" StoreEntitySet="ImageTags">
-            <EndProperty Name="ImageUpload">
-              <ScalarProperty Name="imgId" ColumnName="imgId" />
-            </EndProperty>
             <EndProperty Name="Tag">
               <ScalarProperty Name="tagId" ColumnName="tagId" />
             </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="Like_table" TypeName="photogramModel.Like_table" StoreEntitySet="Like_table">
             <EndProperty Name="ImageUpload">
               <ScalarProperty Name="imgId" ColumnName="imgId" />
             </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Like_table" TypeName="photogramModel.Like_table" StoreEntitySet="Like_table">
             <EndProperty Name="UserProfile">
               <ScalarProperty Name="usrId" ColumnName="usrId" />
+            </EndProperty>
+            <EndProperty Name="ImageUpload">
+              <ScalarProperty Name="imgId" ColumnName="imgId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

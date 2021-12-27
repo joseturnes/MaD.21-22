@@ -4,6 +4,11 @@ using Es.Udc.DotNet.ModelUtil.IoC;
 using Ninject;
 using System.Configuration;
 using System.Data.Entity;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 
 namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
 {
@@ -24,6 +29,28 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             /* UserService */
             kernel.Bind<IUserService>().
                 To<UserService>();
+
+            /* ImageUploadDao */
+            kernel.Bind<IImageUploadDao>().
+                To<ImageUploadDaoEntityFramework>();
+
+            /*ImageUploadService*/
+            kernel.Bind<IImageUploadService>().
+                To<ImageUploadService>();
+
+            /* ITagDao */
+            kernel.Bind<ITagDao>().
+                To<TagDaoEntityFramework>();
+
+            /* ITagService */
+            kernel.Bind<ITagService>().
+                To<TagService>();
+
+            /* ICategoryDao */
+            kernel.Bind<ICategoryDao>().
+                To<CategoryDaoEntityFramework>();
+
+            
 
             /* DbContext */
             string connectionString =

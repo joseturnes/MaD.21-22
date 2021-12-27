@@ -123,6 +123,9 @@
   <data name="btnFollows.Text" xml:space="preserve">
     <value>Follows</value>
   </data>
+  <data name="btnUploadImage.Text" xml:space="preserve">
+    <value>Upload Image</value>
+  </data>
   <data name="lclMenuExplanation.Text" xml:space="preserve">
     <value>Perfil de usuario</value>
   </data>

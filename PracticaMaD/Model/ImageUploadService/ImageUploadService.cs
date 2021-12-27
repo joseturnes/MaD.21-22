@@ -33,6 +33,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         public long UploadImage(ImageUploadDetails img, List<string> tags, string category)
         {
             ImageUpload image = new ImageUpload();
+            image.uploadedImage = img.uploadedImage;
+            image.usrId = img.usrId;
             image.title = img.title;
             image.descriptions = img.descriptions;
             image.uploadDate = DateTime.Now;
@@ -73,13 +75,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             CategoryDao.Update(categoryObj);
             image.categoryId = categoryObj.categoryId;
 
-            ImageUploadDao.Create(image);
 
             return image.imgId;
         }
 
         [Transactional]
-        public void UpdatePublication(long imgId, ImageUploadDetails imageDetails)
+        public void UpdateImage(long imgId, ImageUploadDetails imageDetails)
         {
             ImageUpload img = ImageUploadDao.Find(imgId);
 

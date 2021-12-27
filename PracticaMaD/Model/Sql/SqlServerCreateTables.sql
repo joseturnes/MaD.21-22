@@ -80,11 +80,11 @@ Create Table Category(
 
 CREATE TABLE ImageUpload (
 	imgId bigint IDENTITY(1,1) NOT NULL,
-	url varchar(400) NOT NULL,
+	uploadedImage image NOT NULL,
 	usrId bigint NOT NULL,
 	likes bigint NOT NULL,
 	title varchar(30) NOT NULL,
-	descriptions varchar(50) NOT NULL,
+	descriptions varchar(50), 
 	uploadDate Date NOT NULL,
 	f float,
 	t float,

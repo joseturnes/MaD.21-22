@@ -17,10 +17,9 @@
          <div class="button">
                 <asp:Button ID="btnFollows" runat="server" OnClick="BtnSearchFollowsClick" meta:resourcekey="btnFollows" />
                 <asp:Button ID="btnFollowers" runat="server"  OnClick="BtnSearchFollowersClick" meta:resourcekey="btnFollowers" />
-         </div>
+             <asp:Button ID="btnUploadImage" runat="server"  OnClick="BtnUploadImageClick" meta:resourcekey="btnUploadImage" />
+                
     </center>
-       
-        
     </div>
     </form>
 </asp:Content>

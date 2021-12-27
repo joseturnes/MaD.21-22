@@ -9,7 +9,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
     [Serializable()]
     public class ImageUploadDto
     {
-        public String url { get; set; }
+        public byte[] uploadedImage { get; set; }
 
         public string title { get; set; }
 
@@ -22,10 +22,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         
 
 
-        public ImageUploadDto(string url, string title, string descriptions, System.DateTime uploadDate,
+        public ImageUploadDto(byte [] uploadedImage, string title, string descriptions, System.DateTime uploadDate,
              long likes)
         {
-            this.url = url;
+            this.uploadedImage = uploadedImage;
             this.title = title;
             this.descriptions = descriptions;
             this.uploadDate = uploadDate;
@@ -50,7 +50,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
             return (this.title == target.title)
                 && (this.descriptions == target.descriptions)
-                && (this.url == target.url)
+                && (this.uploadedImage == target.uploadedImage)
                 && (this.uploadDate == target.uploadDate)
                 & (this.likes == target.likes);
         }
@@ -77,7 +77,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
             strImageUploadDto =
                 "[ title = " + title + " | " +
-                "url = " + url + " | " +
+                "uploadedImage = " + uploadedImage + " | " +
                 "descriptions = " + descriptions + " | " +
                 "uploadDate = " + uploadDate + " | " +
                 "likes = " + likes + " ]";
