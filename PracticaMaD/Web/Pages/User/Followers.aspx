@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
-    Codebehind="Followers.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.User.Follows"
+    Codebehind="Followers.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.User.Followers"
     meta:resourcekey="Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"
