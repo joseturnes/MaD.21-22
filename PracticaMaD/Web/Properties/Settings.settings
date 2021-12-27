@@ -23,5 +23,11 @@
     <Setting Name="ObjectDS_User_Dto" Type="System.String" Scope="Application">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="ObjectDS_User_Followers_SelectMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FollowerList</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Followers_CountMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">getNumberOfFollowers</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

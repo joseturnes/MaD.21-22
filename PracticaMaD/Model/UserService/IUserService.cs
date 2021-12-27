@@ -72,7 +72,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// </summary>
         /// <param name="loginName"> User loginName. </param>
         /// <returns> Boolean to indicate if the loginName exists </returns>
+        [Transactional]
         bool UserExists(string loginName);
+
 
         /// <summary>
         /// One user follows another user
@@ -81,12 +83,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="followerLogin">followerLoign</param>
         /// <returns>Nothing</returns>
         /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
         void follow(string followedLogin, string followerLogin);
 
+        [Transactional]
         List<UserProfileDto> FollowerList(long userId, int startIndex, int count);
 
+        [Transactional]
         List<UserProfileDto> ListOfFollows(long userId, int startIndex, int count);
 
+        [Transactional]
         int getNumberOfFollows(long userId);
+
+        [Transactional]
+        int getNumberOfFollowers(long userId);
     }
 }

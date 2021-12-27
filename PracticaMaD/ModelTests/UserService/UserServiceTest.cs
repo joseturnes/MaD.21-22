@@ -472,14 +472,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 var userId2 = userService.RegisterUser("user2", "1234",
                     new UserProfileDetails(firstName, lastName, email, language, country));
 
+                var userId3 = userService.RegisterUser("user3", "1234",
+                    new UserProfileDetails(firstName, lastName, email, language, country));
+
                 userService.follow(loginName, "user2");
+                userService.follow(loginName, "user3");
                 UserProfile user1 = userProfileDao.FindByLoginName(loginName);
                 UserProfile user2 = userProfileDao.FindByLoginName("user2");
+                UserProfile user3 = userProfileDao.FindByLoginName("user3");
                 int number = userService.getNumberOfFollows(userId1);
 
-                Assert.AreEqual(1, number);
+                Assert.AreEqual(2, number);
                 //Assert.IsTrue( userService.ListOfFollows(userId2, 0, 30).Contains(UserProfileConversor.toUserProfileDto(user1)));
-                Assert.AreEqual (userService.ListOfFollows(userId1, 0, 30)[0], UserProfileConversor.toUserProfileDto(user2));
+                //Assert.AreEqual (userService.ListOfFollows(userId1, 0, 30)[0], UserProfileConversor.toUserProfileDto(user2));
                 //Assert.
 
                 // transaction.Complete() is not called, so Rollback is executed.

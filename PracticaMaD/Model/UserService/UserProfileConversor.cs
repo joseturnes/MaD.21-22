@@ -10,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
     {
         public static UserProfileDto toUserProfileDto(UserProfile user)
         {
-            return new UserProfileDto(user.firstName, user.lastName, user.email, user.language, user.country);
+            return new UserProfileDto(user.loginName, user.firstName, user.lastName, user.email, user.language, user.country);
         }
         public static List<UserProfileDto> toUserProfilesDtos(List<UserProfile> users)
         {

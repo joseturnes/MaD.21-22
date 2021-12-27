@@ -3,6 +3,7 @@ using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 
+
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
 
@@ -18,14 +19,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         {
             if (Page.IsValid)
             {
-                    /* Get data. */
-                    Int64 userId = SessionManager.GetUserId(Context);
-                   
-                        String url = String.Format("./Follows.aspx?userId={0}", userId);
-                        Response.Redirect(Response.ApplyAppPathModifier(url));
-                    
-                }
+                /* Get data. */
+                Int64 userId = SessionManager.GetUserId(Context);
+
+                String url = String.Format("./Follows.aspx?userId={0}", userId);
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+
             }
         }
-    }
+
+        protected void BtnSearchFollowersClick(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                /* Get data. */
+                Int64 userId = SessionManager.GetUserId(Context);
+
+                String url = String.Format("./Follows.aspx?userId={0}", userId);
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+
+            }
+        }
+
+
+    }    
+}
+    
 

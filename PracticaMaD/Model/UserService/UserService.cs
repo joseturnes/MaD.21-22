@@ -190,6 +190,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             return UserProfileDao.getNumberOfFollows(userId);
 
         }
+
+        public int getNumberOfFollowers(long userId)
+        {
+            return UserProfileDao.getNumberOfFollowers(userId);
+        }
     }
         #endregion IUserService Members
 }

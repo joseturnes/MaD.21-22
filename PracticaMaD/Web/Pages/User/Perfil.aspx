@@ -13,12 +13,12 @@
     <form id="form1" runat="server">
     <div id="form">
         
-        
+    <center>    
          <div class="button">
                 <asp:Button ID="btnFollows" runat="server" OnClick="BtnSearchFollowsClick" meta:resourcekey="btnFollows" />
+                <asp:Button ID="btnFollowers" runat="server"  OnClick="BtnSearchFollowersClick" meta:resourcekey="btnFollowers" />
          </div>
-
-
+    </center>
        
         
     </div>

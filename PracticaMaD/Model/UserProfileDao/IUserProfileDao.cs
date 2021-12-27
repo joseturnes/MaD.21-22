@@ -28,6 +28,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 
         int getNumberOfFollows(long userId);
 
+        int getNumberOfFollowers(long userId);
+
 
 
     }

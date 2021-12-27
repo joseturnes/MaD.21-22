@@ -124,9 +124,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
                  select u).FirstOrDefault();
 
             return result.UserProfile2.Count();
-
-            #endregion IUserProfileDao Members
         }
+
+        public int getNumberOfFollowers(long id)
+        {
+            UserProfile userProfile = null;
+
+            DbSet<UserProfile> userProfiles = Context.Set<UserProfile>();
+
+            var result =
+                (from u in userProfiles
+                 where u.usrId == id
+                 select u).FirstOrDefault();
+
+            return result.UserProfile1.Count();
+
+
+        }
+        #endregion IUserProfileDao Members
     }
 }
 

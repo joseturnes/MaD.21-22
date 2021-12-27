@@ -20,7 +20,7 @@
                 OnPageIndexChanging="gvFollowsPageIndexChanging"
                 ShowHeaderWhenEmpty="True">
                 <Columns>
-                    <asp:BoundField DataField="FirstName" />
+                    <asp:BoundField DataField="UserName" />
                 </Columns>
             </asp:GridView>
         </form>

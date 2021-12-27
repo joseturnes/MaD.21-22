@@ -104,6 +104,7 @@
   <ItemGroup>
     <Content Include="Css\styles.css" />
     <Content Include="Pages\UserExists.aspx" />
+    <Content Include="Pages\User\Followers.aspx" />
     <Content Include="Pages\User\Follows.aspx" />
     <Content Include="Pages\User\Perfil.aspx" />
     <Content Include="Pages\User\UpdateUserProfile.aspx" />
@@ -141,6 +142,13 @@
     <Compile Include="HTTP\View\ApplicationObjects\Countries.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Languages.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
+    <Compile Include="Pages\User\Followers.aspx.cs">
+      <DependentUpon>Followers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\Followers.aspx.designer.cs">
+      <DependentUpon>Followers.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\User\Follows.aspx.cs">
       <DependentUpon>Follows.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -269,6 +277,7 @@
     <Content Include="Pages\App_LocalResources\UserExists.aspx.es.resx" />
     <Content Include="Pages\App_LocalResources\UserExists.aspx.gl.resx" />
     <Content Include="Pages\User\App_LocalResources\Follows.resx" />
+    <Content Include="Pages\User\App_LocalResources\Followers.resx" />
     <EmbeddedResource Include="Pages\User\App_LocalResources\Register.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.resx">
       <SubType>Designer</SubType>

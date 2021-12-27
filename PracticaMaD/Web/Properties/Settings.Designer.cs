@@ -85,5 +85,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
                 return ((string)(this["ObjectDS_User_Dto"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FollowerList")]
+        public string ObjectDS_User_Followers_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_User_Followers_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("getNumberOfFollowers")]
+        public string ObjectDS_Followers_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_Followers_CountMethod"]));
+            }
+        }
     }
 }
