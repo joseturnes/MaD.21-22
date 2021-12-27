@@ -35,7 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 /* Get data. */
                 Int64 userId = SessionManager.GetUserId(Context);
 
-                String url = String.Format("./Follows.aspx?userId={0}", userId);
+                String url = String.Format("./Followers.aspx?userId={0}", userId);
                 Response.Redirect(Response.ApplyAppPathModifier(url));
 
             }

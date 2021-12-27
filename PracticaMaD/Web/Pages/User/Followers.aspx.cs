@@ -43,7 +43,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 pbpDataSource.SelectParameters.Add("userId", DbType.Int64, userID.ToString());
 
                 pbpDataSource.SelectCountMethod =
-                    Settings.Default.ObjectDS_Follows_CountMethod;
+                    Settings.Default.ObjectDS_Followers_CountMethod;
                 pbpDataSource.StartRowIndexParameterName =
                     Settings.Default.ObjectDS_User_StartIndexParameter;
                 pbpDataSource.MaximumRowsParameterName =

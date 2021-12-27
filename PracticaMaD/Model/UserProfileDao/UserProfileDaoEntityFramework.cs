@@ -76,8 +76,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 
             userProfile = result.FirstOrDefault();
 
-       
-
             if (userProfile == null)
                 throw new InstanceNotFoundException(id,
                     typeof(UserProfile).FullName);
@@ -88,56 +86,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
         public List<UserProfile> FindFollowers(long userId,int startIndex,
             int count)
         {
-            DbSet<UserProfile> followers = Context.Set<UserProfile>();
+            UserProfile userProfile = FindById(userId);
 
-            var result =
-                (from a in followers
-                 where a.UserProfile1.Equals(a)
-                 select a).Skip(startIndex).Take(count).ToList();
 
-            return result;
+            return userProfile.UserProfile1.Skip(startIndex).Take(count).ToList();
         }
 
         public List<UserProfile> FindFollows(long userId, int startIndex, int count)
         {
-            UserProfile userProfile = null;
+            UserProfile userProfile = FindById(userId);
 
-            DbSet<UserProfile> userProfiles = Context.Set<UserProfile>();
 
-            var result =
-                (from u in userProfiles
-                 where u.usrId == userId
-                 select u).FirstOrDefault();
-
-            return result.UserProfile2.Skip(startIndex).Take(count).ToList();
+            return userProfile.UserProfile2.Skip(startIndex).Take(count).ToList();
         }
 
-        public int getNumberOfFollows(long id)
+        public int getNumberOfFollows(long userId)
         {
-            UserProfile userProfile = null;
+            UserProfile userProfile = FindById(userId);
 
-            DbSet<UserProfile> userProfiles = Context.Set<UserProfile>();
 
-            var result =
-                (from u in userProfiles
-                 where u.usrId == id
-                 select u).FirstOrDefault();
-
-            return result.UserProfile2.Count();
+            return userProfile.UserProfile2.Count();
         }
 
-        public int getNumberOfFollowers(long id)
+        public int getNumberOfFollowers(long userId)
         {
-            UserProfile userProfile = null;
+            UserProfile userProfile = FindById(userId);
 
-            DbSet<UserProfile> userProfiles = Context.Set<UserProfile>();
 
-            var result =
-                (from u in userProfiles
-                 where u.usrId == id
-                 select u).FirstOrDefault();
-
-            return result.UserProfile1.Count();
+            return userProfile.UserProfile1.Count();
 
 
         }
