@@ -34,16 +34,18 @@
                             ShowHeaderWhenEmpty="True">
                         <Columns>
                             <asp:TemplateField HeaderText="Publications">
-                                <ItemTemplate>
-                                    <img width="400" height="400" src="data:image/jpg;base64,<%# Convert.ToBase64String((byte[])Eval("UploadedImage"))%>"/>
-                                </ItemTemplate>   
+                                    <ItemTemplate>
+                                        <a href="./Follows.aspx">
+                                            <img width="400" height="400" src="data:image/jpg;base64,<%# Convert.ToBase64String((byte[])Eval("UploadedImage"))%>"/>
+                                        </a>
+                                        </ItemTemplate>
                             </asp:TemplateField> 
                         </Columns>
                         </asp:GridView>
                 </center>
             </div>
-
         </div>
     </form>
+    
     
 </asp:Content>

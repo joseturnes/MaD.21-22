@@ -18,38 +18,40 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         private ObjectDataSource pbpDataSource = new ObjectDataSource();
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
+            if (!IsPostBack) { 
+                try
+                {
+                    pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
 
-                pbpDataSource.TypeName =
-                     Settings.Default.ObjectDS_Image_Service;
+                    pbpDataSource.TypeName =
+                         Settings.Default.ObjectDS_Image_Service;
 
-                pbpDataSource.EnablePaging = true;
+                    pbpDataSource.EnablePaging = true;
 
-                pbpDataSource.SelectMethod =
-                    Settings.Default.ObjectDS_Image_SelectMethod;
+                    pbpDataSource.SelectMethod =
+                        Settings.Default.ObjectDS_Image_SelectMethod;
 
-                Int64 userId = SessionManager.GetUserId(Context);
+                    Int64 userId = SessionManager.GetUserId(Context);
 
-                pbpDataSource.SelectParameters.Add("userId", DbType.Int64, userId.ToString());
+                    pbpDataSource.SelectParameters.Add("userId", DbType.Int64, userId.ToString());
 
-                pbpDataSource.SelectCountMethod =
-                    Settings.Default.ObjectDS_Images_CountMethod;
-                pbpDataSource.StartRowIndexParameterName =
-                    Settings.Default.ObjectDS_User_StartIndexParameter;
-                pbpDataSource.MaximumRowsParameterName =
-                    Settings.Default.ObjectDS_User_CountParameter;
+                    pbpDataSource.SelectCountMethod =
+                        Settings.Default.ObjectDS_Images_CountMethod;
+                    pbpDataSource.StartRowIndexParameterName =
+                        Settings.Default.ObjectDS_User_StartIndexParameter;
+                    pbpDataSource.MaximumRowsParameterName =
+                        Settings.Default.ObjectDS_User_CountParameter;
 
-                gvUploads.AllowPaging = true;
-                gvUploads.PageSize = Settings.Default.PracticaMaD_defaultCount;
+                    gvUploads.AllowPaging = true;
+                    gvUploads.PageSize = Settings.Default.PracticaMaD_defaultCount;
 
-                gvUploads.DataSource = pbpDataSource;
-                gvUploads.DataBind();
-            }
-            catch (TargetInvocationException)
-            {
-                lblInvalidUser.Visible = true;
+                    gvUploads.DataSource=pbpDataSource;
+                    gvUploads.DataBind();
+                }
+                catch (TargetInvocationException)
+                {
+                    lblInvalidUser.Visible = true;
+                }
             }
         }
 
@@ -113,6 +115,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         {
 
         }
+
+        protected void ImageClick(object sender, EventArgs e)
+        {
+            String url = String.Format("./MainPage.aspx");
+            Response.Redirect(Response.ApplyAppPathModifier(url));
+        }
+
     }
 }
 
