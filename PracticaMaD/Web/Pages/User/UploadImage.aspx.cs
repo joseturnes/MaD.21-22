@@ -47,7 +47,48 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
        
             Int64 userId = SessionManager.GetUserId(Context);
 
-            ImageUploadDetails details = new ImageUploadDetails(txtTitle.Text, OriginalImage, userId, txtDescription.Text,DateTime.Now,Convert.ToInt64(txtF.Text), Convert.ToInt64(txtT.Text),txtISO.Text,txtWB.Text,0) ;
+            string auxF;
+            string auxT;
+            string auxISO;
+            string auxWB;
+
+            if (txtF.Text.Equals(""))
+            {
+                auxF = "0";
+            }
+            else
+            {
+                auxF = txtF.Text;
+            }
+
+            if (txtT.Text.Equals(""))
+            {
+                auxT = "0";
+            }
+            else
+            {
+                auxT = txtT.Text;
+            }
+
+            if (txtISO.Text.Equals(""))
+            {
+                auxISO = "0";
+            }
+            else
+            {
+                auxISO = txtISO.Text;
+            }
+
+            if (txtWB.Text.Equals(""))
+            {
+                auxWB = "0";
+            }
+            else
+            {
+                auxWB = txtWB.Text;
+            }
+
+            ImageUploadDetails details = new ImageUploadDetails(txtTitle.Text, OriginalImage, userId, txtDescription.Text,DateTime.Now,Convert.ToInt64(auxF), Convert.ToInt64(auxT),auxISO,auxWB,0) ;
 
             List<String> tags = new List<string>();
 
