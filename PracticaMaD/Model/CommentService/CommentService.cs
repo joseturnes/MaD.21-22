@@ -113,7 +113,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                 throw new InstanceNotFoundException(img, typeof(ImageUpload).FullName);
             }
 
-            return img.Comment.Count;
+            return ImageUploadDao.CountComments(imgId);
         }
 
 

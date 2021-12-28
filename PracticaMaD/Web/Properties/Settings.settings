@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="PracticaMaD_defaultCount" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">10</Value>
+      <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="ObjectDS_User_Service" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Es.Udc.DotNet.PracticaMaD.Model.UserService.IUserService</Value>
@@ -37,6 +37,15 @@
     </Setting>
     <Setting Name="ObjectDS_Images_CountMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">getNumberOfImages</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Comments_SelectMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">searchComments</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Comments_Service" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Es.Udc.DotNet.PracticaMaD.Model.CommentService.ICommentService</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Comments_CountMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">countComments</Value>
     </Setting>
   </Settings>
 </SettingsFile>

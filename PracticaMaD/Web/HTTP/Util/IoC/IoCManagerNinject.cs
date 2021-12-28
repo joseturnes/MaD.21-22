@@ -9,6 +9,8 @@ using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagService;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 
 namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
 {
@@ -41,6 +43,14 @@ namespace Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC
             /* ITagDao */
             kernel.Bind<ITagDao>().
                 To<TagDaoEntityFramework>();
+
+            /* ITagDao */
+            kernel.Bind<ICommentDao>().
+                To<CommentDaoEntityFramework>();
+
+            /* ITagService */
+            kernel.Bind<ICommentService>().
+                To<CommentService>();
 
             /* ITagService */
             kernel.Bind<ITagService>().

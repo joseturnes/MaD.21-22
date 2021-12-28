@@ -11,6 +11,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
     {
         public byte[] uploadedImage { get; set; }
 
+        public long imgId { get; set; }
+
         public string title { get; set; }
 
         public string descriptions { get; set; }
@@ -22,9 +24,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         
 
 
-        public ImageUploadDto(byte [] uploadedImage, string title, string descriptions, System.DateTime uploadDate,
+        public ImageUploadDto(byte [] uploadedImage, long imgId,string title, string descriptions, System.DateTime uploadDate,
              long likes)
         {
+            this.imgId = imgId;
             this.uploadedImage = uploadedImage;
             this.title = title;
             this.descriptions = descriptions;

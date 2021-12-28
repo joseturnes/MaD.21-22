@@ -14,7 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
             for (int i = 0; i < images.Count; i++)
             {
-                result.Add(new ImageUploadDto(images[i].uploadedImage, images[i].title, images[i].descriptions, images[i].uploadDate, images[i].likes));
+                result.Add(new ImageUploadDto(images[i].uploadedImage,images[i].imgId, images[i].title, images[i].descriptions, images[i].uploadDate, images[i].likes));
             }
 
             return result;

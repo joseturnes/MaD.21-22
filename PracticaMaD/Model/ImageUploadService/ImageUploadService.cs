@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using System.Data;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 {
@@ -79,6 +80,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
             return image.imgId;
         }
+
+        
 
         [Transactional]
         public void UpdateImage(long imgId, ImageUploadDetails imageDetails)
@@ -173,9 +176,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
 
         [Transactional]
-        public long countComments(long imgId, int startIndex, int count)
+        public long countComments(long imgId)
         {
-            return ImageUploadDao.CountComments(imgId, startIndex, count);
+            return ImageUploadDao.CountComments(imgId);
         }
 
         [Transactional]
@@ -200,6 +203,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         public List<ImageUploadDto> recentUploads(long userId, int startIndex, int count)
         {
             return ImageUploadConversor.toImageUploadDtos(ImageUploadDao.FindLastPublications(userId, startIndex, count + 1));
+        }
+
+        [Transactional]
+        public ImageUpload findImage(long imgId)
+        {
+            return ImageUploadDao.findImage(imgId);
+        }
+
+        [Transactional]
+        public List<CommentDto> searchComments(long imgId, int startIndex, int count)
+        {
+            return CommentConversor.toCommentDtos(ImageUploadDao.FindLastComments(imgId, startIndex, count));
         }
     }
 }

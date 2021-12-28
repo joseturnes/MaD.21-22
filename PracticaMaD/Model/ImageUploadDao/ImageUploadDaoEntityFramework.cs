@@ -21,16 +21,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         {
         }
 
-        public long CountComments(long imgId, int startIndex, int count)
+        public ImageUpload findImage(long imgId)
+        {
+            DbSet<ImageUpload> images = Context.Set<ImageUpload>();
+
+            ImageUpload result =
+                (from a in images
+                 where a.imgId == imgId
+                 select a).FirstOrDefault();
+
+            return result;
+        }
+
+        public long CountComments(long imgId)
         {
             DbSet<ImageUpload> images = Context.Set<ImageUpload>();
 
             var result =
                 (from a in images
                  where a.imgId == imgId
-                 select a.Comment).Skip(startIndex).Take(count).ToList();
+                 select a.Comment).FirstOrDefault().ToList<Comment>();
 
-            return result.Count;
+            return result.Count();
         }
 
         public List<ImageUpload> FindByTitleOrDescriptionOrCategory(string keyword,int startIndex, int count)
@@ -64,12 +76,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         {
             DbSet<ImageUpload> images = Context.Set<ImageUpload>();
 
-            var comments =
-                (from a in images
-                 where a.imgId == imgId
-                 select a.Comment).FirstOrDefault().Skip(startIndex).Take(NUMBER_OF_COMMENTS).ToList();
+            ImageUpload image = findImage(imgId);
 
-            return comments;
+            return image.Comment.ToList();
         }
 
         public List<ImageUpload> FindLastPublications(long userId, int startIndex, int count)
@@ -79,7 +88,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             var result =
                 (from a in images
                  where a.usrId == userId
-                 orderby a.uploadDate
+                 orderby a.uploadDate descending
                  select a).Skip(startIndex).Take(count).ToList();
             return result;
         }

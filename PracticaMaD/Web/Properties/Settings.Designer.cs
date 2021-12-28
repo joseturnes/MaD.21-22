@@ -25,7 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
         public int PracticaMaD_defaultCount {
             get {
                 return ((int)(this["PracticaMaD_defaultCount"]));
@@ -128,6 +128,33 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         public string ObjectDS_Images_CountMethod {
             get {
                 return ((string)(this["ObjectDS_Images_CountMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("searchComments")]
+        public string ObjectDS_Comments_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_Comments_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Es.Udc.DotNet.PracticaMaD.Model.CommentService.ICommentService")]
+        public string ObjectDS_Comments_Service {
+            get {
+                return ((string)(this["ObjectDS_Comments_Service"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("countComments")]
+        public string ObjectDS_Comments_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_Comments_CountMethod"]));
             }
         }
     }

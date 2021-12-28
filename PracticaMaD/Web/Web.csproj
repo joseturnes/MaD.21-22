@@ -104,8 +104,10 @@
   <ItemGroup>
     <Content Include="Css\styles.css" />
     <Content Include="Pages\UserExists.aspx" />
+    <Content Include="Pages\User\CommentDetails.aspx" />
     <Content Include="Pages\User\Followers.aspx" />
     <Content Include="Pages\User\Follows.aspx" />
+    <Content Include="Pages\User\ImageDetails.aspx" />
     <Content Include="Pages\User\Perfil.aspx" />
     <Content Include="Pages\User\UpdateUserProfile.aspx" />
     <Content Include="Pages\User\UploadImage.aspx" />
@@ -143,6 +145,13 @@
     <Compile Include="HTTP\View\ApplicationObjects\Countries.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Languages.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
+    <Compile Include="Pages\User\CommentDetails.aspx.cs">
+      <DependentUpon>CommentDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\CommentDetails.aspx.designer.cs">
+      <DependentUpon>CommentDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\User\Followers.aspx.cs">
       <DependentUpon>Followers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -156,6 +165,13 @@
     </Compile>
     <Compile Include="Pages\User\Follows.aspx.designer.cs">
       <DependentUpon>Follows.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\ImageDetails.aspx.cs">
+      <DependentUpon>ImageDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\ImageDetails.aspx.designer.cs">
+      <DependentUpon>ImageDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\User\Perfil.aspx.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>

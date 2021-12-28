@@ -18,7 +18,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         private ObjectDataSource pbpDataSource = new ObjectDataSource();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { 
                 try
                 {
                     pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
@@ -52,7 +51,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 {
                     lblInvalidUser.Visible = true;
                 }
-            }
         }
 
 

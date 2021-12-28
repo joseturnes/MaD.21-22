@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Ninject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +12,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
     [Serializable()]
     public class CommentDto
     {
+        [Inject]
+        public IUserProfileDao UserProfileDao { private get; set; }
+
         #region Properties Region
 
         public String content { get; private set; }
 
         public long userId { get; private set; }
+
+        public string userName { get; set; }
 
         public long imgId { get; private set; }
 
@@ -38,6 +46,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             this.userId = userId;
             this.imgId = imgId;
             this.comDate = comDate;
+            userName = UserProfileDao.FindById(userId).loginName;
         }
 
         public override bool Equals(object obj)

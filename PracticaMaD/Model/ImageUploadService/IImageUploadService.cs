@@ -1,4 +1,5 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
@@ -58,7 +59,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         List<ImageUploadDto> recentUploads(long userId, int startIndex, int count);
 
-        long countComments(long imgId, int startIndex, int count);
+        ImageUpload findImage(long imgId);
+
+        List<CommentDto> searchComments(long imgId, int startIndex, int count);
+
+        long countComments(long imgId);
 
         int getNumberOfImages(long userId);
     }
