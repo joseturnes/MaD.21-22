@@ -11,6 +11,8 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
     runat="server">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <asp:HyperLink ID="lnkRegister" runat="server" NavigateUrl="~/Pages/User/Register.aspx" meta:resourcekey="lnkRegister" />
     <div id="form">
         <form id="AuthenticationForm" method="POST" runat="server">
@@ -18,7 +20,7 @@
                 <span class="label">
                     <asp:Localize ID="lclLogin" runat="server" meta:resourcekey="lclLogin" /></span><span
                         class="entry">
-                        <asp:TextBox ID="txtLogin" runat="server" Width="100" Columns="16"></asp:TextBox>
+                        <asp:TextBox class="form-control" ID="txtLogin" runat="server" Width="100" Columns="16"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvLogin" runat="server"
                             ControlToValidate="txtLogin" Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/>
                         <asp:Label ID="lblLoginError" runat="server" ForeColor="Red" Style="position: relative"
@@ -30,7 +32,7 @@
                 <span class="label">
                     <asp:Localize ID="lclPassword" runat="server" meta:resourcekey="lclPassword" /></span><span
                         class="entry">
-                        <asp:TextBox TextMode="Password" ID="txtPassword" runat="server" Width="100" Columns="16"></asp:TextBox>
+                        <asp:TextBox class="form-control" TextMode="Password" ID="txtPassword" runat="server" Width="100" Columns="16"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvPassword" runat="server"
                             ControlToValidate="txtPassword" Display="Dynamic" Text="<%$ Resources:Common, mandatoryField %>"/>
                         <asp:Label ID="lblPasswordError" runat="server" ForeColor="Red" Style="position: relative"
@@ -39,10 +41,10 @@
                     </span>
             </div>
             <div class="checkbox">
-                <asp:CheckBox ID="checkRememberPassword" runat="server" TextAlign="Left" meta:resourcekey="checkRememberPassword" />
+                <asp:CheckBox class="form-check-input" ID="checkRememberPassword" runat="server" TextAlign="Left" meta:resourcekey="checkRememberPassword" />
             </div>
             <div class="button">
-                <asp:Button ID="btnLogin" runat="server" OnClick="BtnLoginClick" meta:resourcekey="btnLogin" />
+                <asp:Button class="btn btn-primary" ID="btnLogin" runat="server" OnClick="BtnLoginClick" meta:resourcekey="btnLogin" />
             </div>
         </form>
     </div>

@@ -30,9 +30,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 pbpDataSource.SelectMethod =
                     Settings.Default.ObjectDS_Image_SelectMethod;
 
-                long userID = Convert.ToInt64(Request.Params.Get("userId"));
+                Int64 userId = SessionManager.GetUserId(Context);
 
-                pbpDataSource.SelectParameters.Add("userId", DbType.Int64, userID.ToString());
+                pbpDataSource.SelectParameters.Add("userId", DbType.Int64, userId.ToString());
 
                 pbpDataSource.SelectCountMethod =
                     Settings.Default.ObjectDS_Images_CountMethod;
@@ -107,6 +107,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 Response.Redirect(Response.ApplyAppPathModifier(url));
 
             }
+        }
+
+        protected void gvUploads_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

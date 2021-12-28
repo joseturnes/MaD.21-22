@@ -10,13 +10,15 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
     runat="server">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <form id="form1" runat="server">
         <div id="form">
         <center>    
              <div class="button">
-                    <asp:Button ID="btnFollows" runat="server" OnClick="BtnSearchFollowsClick" meta:resourcekey="btnFollows" />
-                    <asp:Button ID="btnFollowers" runat="server"  OnClick="BtnSearchFollowersClick" meta:resourcekey="btnFollowers" />
-                 <asp:Button ID="btnUploadImage" runat="server"  OnClick="BtnUploadImageClick" meta:resourcekey="btnUploadImage" />
+                    <asp:Button class="btn btn-info" ID="btnFollows" runat="server" OnClick="BtnSearchFollowsClick" meta:resourcekey="btnFollows" />
+                    <asp:Button class="btn btn-info" ID="btnFollowers" runat="server"  OnClick="BtnSearchFollowersClick" meta:resourcekey="btnFollowers" />
+                    <asp:Button class="btn btn-info" ID="btnUploadImage" runat="server"  OnClick="BtnUploadImageClick" meta:resourcekey="btnUploadImage" />
                 
         </center>
         </div>
@@ -25,15 +27,20 @@
             <asp:Label ID="lblInvalidUser" meta:resourcekey="lblInvalidUser" runat="server" Visible="false"></asp:Label>
             </p>
             <div class="gv">
-                <asp:GridView ID="gvUploads" runat="server"
-                        AutoGenerateColumns="False"
-                        OnPageIndexChanging="gvFollowsPageIndexChanging"
-                        ShowHeaderWhenEmpty="True">
-                    <Columns>
-                        <asp:BoundField DataField="UploadedImage" HeaderText="Title"/>
-                        <asp:ImageField DataImageUrlField="UploadedImage" HeaderText="Image"/>
-                    </Columns>
-                    </asp:GridView>
+                <center>
+                    <asp:GridView ID="gvUploads" runat="server"
+                            AutoGenerateColumns="False"
+                            OnPageIndexChanging="gvFollowsPageIndexChanging"
+                            ShowHeaderWhenEmpty="True">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Publications">
+                                <ItemTemplate>
+                                    <img width="400" height="400" src="data:image/jpg;base64,<%# Convert.ToBase64String((byte[])Eval("UploadedImage"))%>"/>
+                                </ItemTemplate>   
+                            </asp:TemplateField> 
+                        </Columns>
+                        </asp:GridView>
+                </center>
             </div>
 
         </div>

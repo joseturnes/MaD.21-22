@@ -7,15 +7,22 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_MenuLinks" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
-    <form id="formUserExists" runat="server">
-        <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
-        <br />
-        <asp:TextBox ID="txtUserName" runat="server" meta:resourcekey="txtUserNameResource1"></asp:TextBox>
-        <br />
-        <asp:Label ID="lblUserExists" runat="server" meta:resourcekey="lblUserExistsResource1" Visible="False"></asp:Label>
-        <br />
-        <asp:Label ID="lblUserNotExists" runat="server" meta:resourcekey="lblUserNotExistsResource1" Visible="False"></asp:Label>
-        <br />
-        <asp:Button ID="btnUserExists" runat="server" OnClick="btnUserExists_Click" Text="<%$Resources: Common , searchButton %>" />
-    </form>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <center>
+        <form id="formUserExists" runat="server">
+            <div class="w-25 p-3">
+                <div>
+                    <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
+                    <br />
+                    <asp:TextBox class="form-control" ID="txtUserName" runat="server" meta:resourcekey="txtUserNameResource1"></asp:TextBox>
+                    <br />
+                    <asp:Label ID="lblUserExists" runat="server" meta:resourcekey="lblUserExistsResource1" Visible="False"></asp:Label>
+                    <br />
+                    <asp:Label ID="lblUserNotExists" runat="server" meta:resourcekey="lblUserNotExistsResource1" Visible="False"></asp:Label>
+                    <br />
+                    <asp:Button class="btn btn-info" ID="btnUserExists" runat="server" OnClick="btnUserExists_Click" Text="<%$Resources: Common , searchButton %>" />          
+                </div>
+        </form>
+    </center>
 </asp:Content>
