@@ -138,6 +138,7 @@ C:\Users\migue\Documents\MAD\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.
 C:\Users\migue\Documents\MAD\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\migue\Documents\MAD\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.dll
 C:\Users\migue\Documents\MAD\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.pdb
+C:\Users\migue\Documents\MAD\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.AssemblyReference.cache
 C:\Software\MaD.21-22\PracticaMaD\Model\bin\Debug\Model.dll.config
 C:\Software\MaD.21-22\PracticaMaD\Model\bin\Debug\Model.dll
 C:\Software\MaD.21-22\PracticaMaD\Model\bin\Debug\Model.pdb
@@ -160,4 +161,3 @@ C:\Software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.CoreCompileInputs
 C:\Software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.dll
 C:\Software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.pdb
-C:\Users\migue\Documents\MAD\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.AssemblyReference.cache

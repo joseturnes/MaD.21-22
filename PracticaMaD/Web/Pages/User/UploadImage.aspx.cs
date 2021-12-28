@@ -30,6 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         {
             ConsultarImagenes();
         }
+        
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
@@ -50,7 +51,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
             List<String> tags = new List<string>();
 
-            imageUploadService.UploadImage(details, tags, "Ciudades");
+            imageUploadService.UploadImage(details, tags, DropDownList1.SelectedValue);
 
             string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(OriginalImage);
             imagePreview.ImageUrl = ImagenDataURL64;
@@ -88,6 +89,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             Repeater1.DataSource = ImagenesBD;
             Repeater1.DataBind();
 
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

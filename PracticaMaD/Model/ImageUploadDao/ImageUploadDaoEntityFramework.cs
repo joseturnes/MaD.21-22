@@ -1,8 +1,11 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -77,8 +80,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
                 (from a in images
                  where a.usrId == userId
                  orderby a.uploadDate
-                 select a).Skip(startIndex).Take(NUMBER_OF_IMAGES).ToList();
-
+                 select a).Skip(startIndex).Take(count).ToList();
             return result;
         }
 
@@ -100,6 +102,58 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
             return result;
 
+        }
+
+        public int getNumberOfImages(long userId)
+        {
+            DbSet<ImageUpload> images = Context.Set<ImageUpload>();
+
+            List<ImageUpload> result =
+                (from u in images
+                 where u.UserProfile.usrId == userId
+                 select u).ToList<ImageUpload>();
+
+            return result.Count;
+        }
+
+        public DataTable LINQResultToDataTable<T>(IEnumerable<T> Linqlist)
+        {
+            DataTable dt = new DataTable();
+            PropertyInfo[] columns = null;
+
+            if (Linqlist == null) return dt;
+
+            foreach (T Record in Linqlist)
+            {
+
+                if (columns == null)
+                {
+                    columns = Record.GetType().GetProperties();
+                    foreach (PropertyInfo GetProperty in columns)
+                    {
+                        Type colType = GetProperty.PropertyType;
+
+                        if ((colType.IsGenericType) && (colType.GetGenericTypeDefinition()
+                               == typeof(Nullable<>)))
+                        {
+                            colType = colType.GetGenericArguments()[0];
+                        }
+
+                        dt.Columns.Add(new DataColumn(GetProperty.Name, colType));
+                    }
+                }
+
+                DataRow dr = dt.NewRow();
+
+                foreach (PropertyInfo pinfo in columns)
+                {
+                    dr[pinfo.Name] = pinfo.GetValue(Record, null) == null ? DBNull.Value : pinfo.GetValue
+                           (Record, null);
+                }
+
+                dt.Rows.Add(dr);
+            }
+            return dt;
         }
     }
 }

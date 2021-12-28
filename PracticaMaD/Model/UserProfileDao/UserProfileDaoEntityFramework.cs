@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
         /// <param name="loginName"></param>
         /// <returns></returns>
         /// <exception cref="InstanceNotFoundException"></exception>
-        private UserProfile FindById(long id)
+        public UserProfile FindById(long id)
         {
             UserProfile userProfile = null;
 

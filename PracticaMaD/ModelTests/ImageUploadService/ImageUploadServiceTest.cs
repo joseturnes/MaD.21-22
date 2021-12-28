@@ -56,50 +56,50 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
         //        testContextInstance = value;
         //    }
         //}
-        //[TestMethod()]
-        //public void UploadImageTest()
-        //{
-        //    using (var scope = new TransactionScope())
-        //    {
-        //        initializeKernel();
-        //        float f1 = 1;
-        //        float f2 = 1;
+        /*[TestMethod()]
+        public void UploadImageTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+                float f1 = 1;
+                float f2 = 1;
 
-        //        long tagId = tagService.CreateTag("Luces");
+                long tagId = tagService.CreateTag("Luces");
 
-        //        List<string> tags = new List<String>();
-        //        tags.Add("Coruña");
-        //        tags.Add("Navidades");
-        //        tags.Add("Luces");
-        //        tags.Add("Luces2");
-        //        tags.Add("Luces3");
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades");
+                tags.Add("Luces");
+                tags.Add("Luces2");
+                tags.Add("Luces3");
 
 
 
-        //        ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-        //            DateTime.Now,f1,f2, "ISO", "wb");
-        //        ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", "Description2",
-        //            DateTime.Now, f1, f2, "ISO2", "wb2");
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
+                    DateTime.Now,f1,f2, "ISO", "wb");
+                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", "Description2",
+                    DateTime.Now, f1, f2, "ISO2", "wb2");
 
-        //        long id = imageUploadService.UploadImage(img, tags,"Paisaje");
-        //        long id2 = imageUploadService.UploadImage(img2, tags, "Paisaje");
-        //        ImageUpload result = imageUploadDao.Find(id);
-        //        Assert.IsTrue(result.imgId == id);
-        //        Assert.IsTrue(result.Tag.Contains(tagDao.Find(tagId)));
-        //        Assert.IsTrue(tagDao.Find(tagId).ImageUpload.Contains(result));
-        //        Assert.IsTrue(result.Category.categoryName.Equals("Paisaje"));
-        //        Assert.AreEqual(result.Tag.Count, 5);
-        //        Assert.AreEqual(tagDao.Find(tagId).ImageUpload.Count,2);
-        //        Assert.AreEqual(categoryDao.FindByName("Paisaje").ImageUpload.Count,2);
+                long id = imageUploadService.UploadImage(img, tags,"Paisaje");
+                long id2 = imageUploadService.UploadImage(img2, tags, "Paisaje");
+                ImageUpload result = imageUploadDao.Find(id);
+                Assert.IsTrue(result.imgId == id);
+                Assert.IsTrue(result.Tag.Contains(tagDao.Find(tagId)));
+                Assert.IsTrue(tagDao.Find(tagId).ImageUpload.Contains(result));
+                Assert.IsTrue(result.Category.categoryName.Equals("Paisaje"));
+                Assert.AreEqual(result.Tag.Count, 5);
+                Assert.AreEqual(tagDao.Find(tagId).ImageUpload.Count,2);
+                Assert.AreEqual(categoryDao.FindByName("Paisaje").ImageUpload.Count,2);
 
-        //        imageUploadDao.Remove(id);
-        //        Assert.IsFalse(tagDao.Find(tagId).ImageUpload.Contains(result));
-        //        Assert.IsTrue(tagDao.Find(tagId).tagname == "Luces");
+                imageUploadDao.Remove(id);
+                Assert.IsFalse(tagDao.Find(tagId).ImageUpload.Contains(result));
+                Assert.IsTrue(tagDao.Find(tagId).tagname == "Luces");
                 
 
 
-        //    }
-        //}
+            }
+        }*/
 
         //[TestMethod()]
         //public void FindAllTagsTest()

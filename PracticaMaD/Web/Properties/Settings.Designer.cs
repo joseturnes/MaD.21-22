@@ -103,5 +103,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
                 return ((string)(this["ObjectDS_Followers_CountMethod"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.IImageUploadService")]
+        public string ObjectDS_Image_Service {
+            get {
+                return ((string)(this["ObjectDS_Image_Service"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("recentUploads")]
+        public string ObjectDS_Image_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_Image_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("getNumberOfImages")]
+        public string ObjectDS_Images_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_Images_CountMethod"]));
+            }
+        }
     }
 }

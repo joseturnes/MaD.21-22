@@ -126,6 +126,9 @@
   <data name="btnUploadImage.Text" xml:space="preserve">
     <value>Upload Image</value>
   </data>
+  <data name="lblInvalidUser" xml:space="preserve">
+    <value>Invalid User</value>
+  </data>
   <data name="lclMenuExplanation.Text" xml:space="preserve">
     <value>Perfil de usuario</value>
   </data>

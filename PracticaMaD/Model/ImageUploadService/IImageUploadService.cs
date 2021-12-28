@@ -4,6 +4,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Ninject;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,5 +59,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         List<ImageUploadDto> recentUploads(long userId, int startIndex, int count);
 
         long countComments(long imgId, int startIndex, int count);
+
+        int getNumberOfImages(long userId);
     }
 }

@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using System.Data;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 {
@@ -170,33 +171,35 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             }
         }
 
+
         [Transactional]
-
-        List<ImageUploadDto> recentUploads(long userId, int startIndex, int count)
-        {
-            List<ImageUpload> images = ImageUploadDao.FindLastPublications(userId, startIndex, count + 1);
-            return ImageUploadConversor.toImageUploadDtos(images);
-        }
-
-        List<ImageUploadDto> IImageUploadService.recentUploads(long userId, int startIndex, int count)
-        {
-            List<ImageUpload> images = ImageUploadDao.FindLastPublications(userId, startIndex, count);
-            return ImageUploadConversor.toImageUploadDtos(images);
-        }
-
         public long countComments(long imgId, int startIndex, int count)
         {
             return ImageUploadDao.CountComments(imgId, startIndex, count);
         }
 
+        [Transactional]
         List<UserProfile> FollowerList(long userId, int startIndex, int count)
         {
             return UserProfileDao.FindFollowers(userId, startIndex, count);
         }
 
+        [Transactional]
         List<UserProfile> ListOfFollows(long userId, int startIndex, int count)
         {
             return UserProfileDao.FindFollows(userId, startIndex, count);
+        }
+
+        [Transactional]
+        public int getNumberOfImages(long userId)
+        {
+            return ImageUploadDao.getNumberOfImages(userId);
+        }
+
+        [Transactional]
+        public List<ImageUploadDto> recentUploads(long userId, int startIndex, int count)
+        {
+            return ImageUploadConversor.toImageUploadDtos(ImageUploadDao.FindLastPublications(userId, startIndex, count + 1));
         }
     }
 }

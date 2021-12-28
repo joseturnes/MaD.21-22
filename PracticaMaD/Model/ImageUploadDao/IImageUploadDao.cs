@@ -1,6 +1,8 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         List<Comment> FindLastComments(long imgId, int startIndex, int count);
 
         List<UserProfile> findUserProfiles(long imgId);
+
+        int getNumberOfImages(long userId);
 
     }
 }

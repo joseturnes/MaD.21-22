@@ -15,6 +15,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
         /// <exception cref="InstanceNotFoundException"/>
         UserProfile FindByLoginName(String loginName);
 
+        UserProfile FindById(long userId);
+
         /// <summary>
         /// Finds a List of followers
         /// </summary>

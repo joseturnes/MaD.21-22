@@ -29,5 +29,14 @@
     <Setting Name="ObjectDS_Followers_CountMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">getNumberOfFollowers</Value>
     </Setting>
+    <Setting Name="ObjectDS_Image_Service" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.IImageUploadService</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Image_SelectMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">recentUploads</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Images_CountMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">getNumberOfImages</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -9,9 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <form id="form1" runat="server">
-    <center>
+    
     <div class="container">
         <div class="row">
+            <center>
             <div class="col-md-4 col-md-offset-4">
                 Imagen agregada:
                 <br />
@@ -22,8 +23,17 @@
                 <asp:FileUpload ID="fuploadImage" accept=".jpg" runat="server" CssClass="form-control"/>
                 <br />
                 <br />
+                <asp:DropDownList class="form-select" data-width="fit" ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                    <asp:ListItem Selected="True">Select a Category</asp:ListItem>
+                    <asp:ListItem>Retrato</asp:ListItem>
+                    <asp:ListItem>Paisaje Nocturno</asp:ListItem>
+                    <asp:ListItem>Paisaje</asp:ListItem>
+                    <asp:ListItem>Ciudades</asp:ListItem>
+                </asp:DropDownList>
+                <br />
+                <br />
                 Titulo de imagen:
-                <asp:TextBox ID="txtTitle" runat="server"></asp:TextBox>
+                <asp:TextBox class="form-control" ID="txtTitle" runat="server"></asp:TextBox>
                 <br />
                 <asp:Button ID="btnUpload" runat="server" Text="Button" CssClass="btn btn-success" OnClick="btnUpload_Click" />
             </div>
@@ -33,11 +43,15 @@
             <asp:Repeater ID="Repeater1" runat="server"></asp:Repeater>
             <ItemTemplate>
                 <div class="col-md-4">
-                    <asp:Label ID="lblSubject" runat="server" Text='<%#Eval("title") %>' Font-Bold="true"/> 
+                    <img class="img-responsive" src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[]) DataBinder.Eval(Page.GetDataItem(), "UploadedImage")) %>"/> 
+                    <br />
+
                 </div>
             </ItemTemplate>
+            </center>
         </div>
     </div>
-        </center>
+        
   </form>
 </asp:Content>
+
