@@ -302,6 +302,7 @@
     <Content Include="Pages\App_LocalResources\UserExists.aspx.gl.resx" />
     <Content Include="Pages\User\App_LocalResources\Follows.resx" />
     <Content Include="Pages\User\App_LocalResources\Followers.resx" />
+    <Content Include="Pages\User\App_LocalResources\CommentDetails.aspx.resx" />
     <EmbeddedResource Include="Pages\User\App_LocalResources\Register.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.resx">
       <SubType>Designer</SubType>

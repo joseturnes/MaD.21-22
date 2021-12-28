@@ -39,7 +39,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             image.usrId = img.usrId;
             image.title = img.title;
             image.descriptions = img.descriptions;
-            image.uploadDate = DateTime.Now;
+            image.uploadDate = img.uploadDate;
             image.f = img.f;
             image.t = img.t;
             image.iso = img.iso;
@@ -176,7 +176,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
 
         [Transactional]
-        public long countComments(long imgId)
+        public int CountComments(long imgId)
         {
             return ImageUploadDao.CountComments(imgId);
         }
@@ -214,7 +214,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         [Transactional]
         public List<CommentDto> searchComments(long imgId, int startIndex, int count)
         {
-            return CommentConversor.toCommentDtos(ImageUploadDao.FindLastComments(imgId, startIndex, count));
+            List<Comment> comments = ImageUploadDao.FindLastComments(imgId, startIndex, count);
+            List<CommentDto> result = new List<CommentDto>();
+
+            for (int i = 0; i < comments.Count; i++)
+            {
+                string userName = UserProfileDao.FindById(comments[i].usrId).loginName;
+                result.Add(new CommentDto(comments[i].content, comments[i].usrId, userName, comments[i].imgId, comments[i].comDate));
+            }
+
+
+            return result;
         }
     }
 }

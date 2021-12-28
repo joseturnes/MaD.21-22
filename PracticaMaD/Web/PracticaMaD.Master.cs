@@ -12,6 +12,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblTitle.NavigateUrl = "~/Pages/MainPage.aspx";
 
             if (!SessionManager.IsUserAuthenticated(Context))
             {

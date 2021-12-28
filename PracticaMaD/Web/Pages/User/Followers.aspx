@@ -20,7 +20,12 @@
                 OnPageIndexChanging="gvFollowsPageIndexChanging"
                 ShowHeaderWhenEmpty="True">
                 <Columns>
-                    <asp:BoundField DataField="UserName" HeaderText="UserName" />
+                    <asp:HyperLinkField
+                        DataNavigateUrlFields="UserId"
+                        DataNavigateUrlFormatString="userProfile.aspx?userId={0}"
+                        DataTextField="UserName"
+                        HeaderText="User Name"
+                        SortExpression="UserName" />
                 </Columns>
             </asp:GridView>
         </form>

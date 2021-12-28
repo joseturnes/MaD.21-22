@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         List<CommentDto> searchComments(long imgId, int startIndex, int count);
 
-        long countComments(long imgId);
+        int CountComments(long imgId);
 
         int getNumberOfImages(long userId);
     }

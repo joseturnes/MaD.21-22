@@ -22,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         List<ImageUpload> FindLastPublications(long userId, int startIndex, int count);
 
-        long CountComments(long imgId);
+        int CountComments(long imgId);
 
         List<Comment> FindLastComments(long imgId, int startIndex, int count);
 

@@ -85,7 +85,7 @@ CREATE TABLE ImageUpload (
 	likes bigint NOT NULL,
 	title varchar(30) NOT NULL,
 	descriptions varchar(50), 
-	uploadDate Date NOT NULL,
+	uploadDate date NOT NULL,
 	f float,
 	t float,
 	iso varchar(20),

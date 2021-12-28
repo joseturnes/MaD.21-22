@@ -151,7 +151,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("countComments")]
+        [global::System.Configuration.DefaultSettingValueAttribute("CountComments")]
         public string ObjectDS_Comments_CountMethod {
             get {
                 return ((string)(this["ObjectDS_Comments_CountMethod"]));

@@ -28,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 lablTitle.Text = "<h2>"+image.title+"<h2/>";
                 lablLikes.Text = "<h5> Likes: " + image.likes + "<h5/>";
                 labldescription.Text = "<h2> Description: " + image.descriptions + "<h2/>";
-                long numberOfComments = imageUploadService.countComments(imgId);
+                long numberOfComments = imageUploadService.CountComments(imgId);
                 if (numberOfComments==0)
                 {
                     CommentsLink.Visible = false;
@@ -38,6 +38,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 }
                 CommentsLink.Text = "Coments : " + numberOfComments.ToString();
                 CommentsLink.NavigateUrl = commentsUrl;
+                
 
 
 

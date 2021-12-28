@@ -16,6 +16,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public String UserName { get; private set; }
 
+        public long userId { get; private set; }
+
         public String FirstName { get; private set; }
 
         public String Lastname { get; private set; }
@@ -37,10 +39,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="email">The user's email.</param>
         /// <param name="language">The language.</param>
         /// <param name="country">The country.</param>
-        public UserProfileDto(String UserName, String firstName, String lastName,
+        public UserProfileDto(long userId,String UserName, String firstName, String lastName,
             String email, String language, String country)
         {
-
+            this.userId = userId;
             this.UserName = UserName;
             this.FirstName = firstName;
             this.Lastname = lastName;

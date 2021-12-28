@@ -35,6 +35,21 @@
                 Titulo de imagen:
                 <asp:TextBox class="form-control" ID="txtTitle" runat="server"></asp:TextBox>
                 <br />
+                Descripcion:
+                <asp:TextBox class="form-control" ID="txtDescription" runat="server"></asp:TextBox>
+                <br />
+                F:
+                <asp:TextBox class="form-control" type="number" ID="txtF" runat="server"></asp:TextBox>
+                <br />
+                T:
+                <asp:TextBox class="form-control" type="number" ID="txtT" runat="server"></asp:TextBox>
+                <br />
+                ISO:
+                <asp:TextBox class="form-control" ID="txtISO" runat="server"></asp:TextBox>
+                <br />
+                WB:
+                <asp:TextBox class="form-control" ID="txtWB" runat="server"></asp:TextBox>
+                <br />
                 <asp:Button ID="btnUpload" runat="server" Text="Button" CssClass="btn btn-success" OnClick="btnUpload_Click" />
             </div>
         </div>

@@ -12,8 +12,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
     [Serializable()]
     public class CommentDto
     {
-        [Inject]
-        public IUserProfileDao UserProfileDao { private get; set; }
 
         #region Properties Region
 
@@ -39,14 +37,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// <param name="imgId">The publications that the comment references .</param>
         /// <param name="comDate">The date of the comment</param>
 
-        public CommentDto(String content, long userId,
+        public CommentDto(String content, long userId,string userName,
             long imgId, DateTime comDate)
         {
             this.content = content;
             this.userId = userId;
             this.imgId = imgId;
             this.comDate = comDate;
-            userName = UserProfileDao.FindById(userId).loginName;
+            this.userName = userName;
+            //userName = UserProfileDao.FindById(userId).loginName;
         }
 
         public override bool Equals(object obj)

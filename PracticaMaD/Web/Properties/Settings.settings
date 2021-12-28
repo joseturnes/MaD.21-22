@@ -45,7 +45,7 @@
       <Value Profile="(Default)">Es.Udc.DotNet.PracticaMaD.Model.CommentService.ICommentService</Value>
     </Setting>
     <Setting Name="ObjectDS_Comments_CountMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">countComments</Value>
+      <Value Profile="(Default)">CountComments</Value>
     </Setting>
   </Settings>
 </SettingsFile>

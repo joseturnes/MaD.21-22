@@ -47,7 +47,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
        
             Int64 userId = SessionManager.GetUserId(Context);
 
-            ImageUploadDetails details = new ImageUploadDetails(txtTitle.Text, OriginalImage, userId, "HOLA") ;
+            ImageUploadDetails details = new ImageUploadDetails(txtTitle.Text, OriginalImage, userId, txtDescription.Text,DateTime.Now,Convert.ToInt64(txtF.Text), Convert.ToInt64(txtT.Text),txtISO.Text,txtWB.Text,0) ;
 
             List<String> tags = new List<string>();
 

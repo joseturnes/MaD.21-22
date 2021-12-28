@@ -39,7 +39,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 /* Get Account Identifier */
                 long userID = Convert.ToInt64(Request.Params.Get("userId"));
 
-
                 pbpDataSource.SelectParameters.Add("userId", DbType.Int64, userID.ToString());
 
                 pbpDataSource.SelectCountMethod =

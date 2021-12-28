@@ -12,6 +12,10 @@ using Es.Udc.DotNet.PracticaMaD.ModelTests;
 using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
 {
@@ -24,7 +28,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
         private static ITagService tagService;
         private static ITagDao tagDao;
         private static ICategoryDao categoryDao;
+        private static IUserService userService;
+        private static IUserProfileDao userProfileDao;
+        private static ICommentService commentService;
+        private static ICommentDao commentDao;
+        private const string loginName = "loginNameTest";
 
+        private const string clearPassword = "password";
+        private const string firstName = "name";
+        private const string lastName = "lastName";
+        private const string email = "user@udc.es";
+        private const string language = "es";
+        private const string country = "ES";
+        private const long NON_EXISTENT_USER_ID = -1;
 
         private TransactionScope transaction;
 
@@ -38,6 +54,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
             tagService = kernel.Get<ITagService>();
             tagDao = kernel.Get<ITagDao>();
             categoryDao = kernel.Get<ICategoryDao>();
+            userService = kernel.Get<IUserService>();
+            userProfileDao = kernel.Get<IUserProfileDao>();
+            commentService = kernel.Get<ICommentService>();
+            commentDao = kernel.Get<ICommentDao>();
         }
 
 
@@ -45,18 +65,27 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
         ///// Gets or sets the test context which provides information about and functionality for the
         ///// current test run.
         ///// </summary>
-        //public TestContext TestContext
-        //{
-        //    get
-        //    {
-        //        return testContextInstance;
-        //    }
-        //    set
-        //    {
-        //        testContextInstance = value;
-        //    }
-        //}
-        /*[TestMethod()]
+        public TestContext TestContext
+        {
+            get
+            {
+                return testContextInstance;
+            }
+            set
+            {
+                testContextInstance = value;
+            }
+        }
+
+        private byte[] GetByteArray(int sizeInKb)
+        {
+            Random rnd = new Random();
+            byte[] b = new byte[sizeInKb * 1024]; // convert kb to byte
+            rnd.NextBytes(b);
+            return b;
+        }
+
+        [TestMethod()]
         public void UploadImageTest()
         {
             using (var scope = new TransactionScope())
@@ -74,12 +103,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 tags.Add("Luces2");
                 tags.Add("Luces3");
 
+                byte[] image = GetByteArray(512);
+
+                UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
+                long userId = userService.RegisterUser(loginName, clearPassword, user);
 
 
-                ImageUploadDetails img = new ImageUploadDetails("Titulo", "Description",
-                    DateTime.Now,f1,f2, "ISO", "wb");
-                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", "Description2",
-                    DateTime.Now, f1, f2, "ISO2", "wb2");
+
+                ImageUploadDetails img = new ImageUploadDetails("Titulo",image, userId,"Description",DateTime.Now,f1,f2, "ISO", "wb",10);
+                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2",image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2",20);
 
                 long id = imageUploadService.UploadImage(img, tags,"Paisaje");
                 long id2 = imageUploadService.UploadImage(img2, tags, "Paisaje");
@@ -89,17 +121,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 Assert.IsTrue(tagDao.Find(tagId).ImageUpload.Contains(result));
                 Assert.IsTrue(result.Category.categoryName.Equals("Paisaje"));
                 Assert.AreEqual(result.Tag.Count, 5);
-                Assert.AreEqual(tagDao.Find(tagId).ImageUpload.Count,2);
-                Assert.AreEqual(categoryDao.FindByName("Paisaje").ImageUpload.Count,2);
 
-                imageUploadDao.Remove(id);
-                Assert.IsFalse(tagDao.Find(tagId).ImageUpload.Contains(result));
-                Assert.IsTrue(tagDao.Find(tagId).tagname == "Luces");
-                
+                commentService.AddComment(id,"commentary1",userId);
+                commentService.AddComment(id, "commentary2", userId);
+
+                List<CommentDto> comments = imageUploadService.searchComments(id, 0, 10);
+                CommentDto comments1 = new CommentDto("commentary1",userId,loginName,id,DateTime.Now);
+
+                Assert.IsTrue(2==imageUploadService.CountComments(id));
+                Assert.IsNotNull(comments);
+                Assert.IsTrue(2 == comments.Count);
+                Assert.IsTrue(comments.Contains(comments1));
+
+
 
 
             }
-        }*/
+        }
 
         //[TestMethod()]
         //public void FindAllTagsTest()
