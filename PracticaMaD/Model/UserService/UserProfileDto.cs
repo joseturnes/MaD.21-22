@@ -54,13 +54,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         public override bool Equals(object obj)
         {
 
-            UserProfileDetails target = (UserProfileDetails)obj;
+            UserProfileDto target = (UserProfileDto)obj;
 
             return (this.FirstName == target.FirstName)
                   && (this.Lastname == target.Lastname)
                   && (this.Email == target.Email)
                   && (this.Language == target.Language)
-                  && (this.Country == target.Country);
+                  && (this.Country == target.Country)
+                  && (this.userId == target.userId)
+                  && (this.UserName == target.UserName);
         }
 
         // The GetHashCode method is used in hashing algorithms and data 

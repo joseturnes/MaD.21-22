@@ -312,6 +312,7 @@
     <Content Include="Pages\User\App_LocalResources\Followers.resx" />
     <Content Include="Pages\User\App_LocalResources\CommentDetails.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\PerfilCargado.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\ImageDetails.aspx.resx" />
     <EmbeddedResource Include="Pages\User\App_LocalResources\Register.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.resx">
       <SubType>Designer</SubType>

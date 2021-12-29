@@ -44,7 +44,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             UserProfile userProfile = UserProfileDao.Find(userProfileId);
 
             UserProfileDetails userProfileDetails =
-                new UserProfileDetails(userProfile.firstName,
+                new UserProfileDetails(userProfile.loginName,userProfile.firstName,
                     userProfile.lastName, userProfile.email,
                     userProfile.language, userProfile.country);
 
@@ -194,6 +194,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         public int getNumberOfFollowers(long userId)
         {
             return UserProfileDao.getNumberOfFollowers(userId);
+        }
+
+        public bool isFollowed(long userId1, long userId2)
+        {
+            int numberFollows = getNumberOfFollows(userId2);
+            List<UserProfileDto> result = ListOfFollows(userId2, 0, numberFollows);
+            UserProfileDetails perfil = FindUserProfileDetails(userId1);
+            UserProfileDto perfilDto = new UserProfileDto(userId1, perfil.userName,
+                perfil.FirstName, perfil.Lastname, perfil.Email, perfil.Language, perfil.Country);
+            if (result.Contains(perfilDto))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public string findUserNameById(long userId)
+        {
+            return FindUserProfileDetails(userId).userName;
         }
     }
         #endregion IUserService Members

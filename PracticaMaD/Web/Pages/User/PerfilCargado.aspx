@@ -19,7 +19,7 @@
                     <asp:Button class="btn btn-info" ID="btnFollows" runat="server" OnClick="BtnSearchFollowsClick" meta:resourcekey="btnFollows" />
                     <asp:Button class="btn btn-info" ID="btnFollowers" runat="server"  OnClick="BtnSearchFollowersClick" meta:resourcekey="btnFollowers" />
                     <asp:Button class="btn btn-info" ID="btnUploadImage" runat="server"  OnClick="BtnUploadImageClick" meta:resourcekey="btnUploadImage" />
-                
+                    <asp:Button class="btn btn-info" ID="FollowButton" runat="server" OnClick="BtnFollowClick" meta:resourcekey="btnFollow" />
         </center>
         </div>
         <div>

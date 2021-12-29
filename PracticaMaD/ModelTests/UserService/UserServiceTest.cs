@@ -75,7 +75,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
             {
                 initializeKernel();
 
-                UserProfileDetails user = new UserProfileDetails(firstName, lastName, email, language, country);
+                UserProfileDetails user = new UserProfileDetails(loginName, firstName, lastName, email, language, country);
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
                 var userProfile = userProfileDao.Find(userId);
 
@@ -106,11 +106,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 // Register the same user
                 userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }
@@ -128,7 +128,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 var userId = userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 var expected = new LoginResult(userId, firstName,
                     PasswordEncrypter.Crypt(clearPassword), language, country);
@@ -157,7 +157,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 var userId = userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 var expected = new LoginResult(userId, firstName,
                     PasswordEncrypter.Crypt(clearPassword), language, country);
@@ -187,7 +187,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 var userId = userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 // Login with incorrect (clear) password
                 var actual =
@@ -222,7 +222,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 initializeKernel();
 
                 var expected =
-                    new UserProfileDetails(firstName, lastName, email, language, country);
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country);
 
                 var userId =
                     userService.RegisterUser(loginName, clearPassword, expected);
@@ -261,10 +261,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user and update profile details
                 var userId = userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 var expected =
-                    new UserProfileDetails(firstName + "X", lastName + "X",
+                    new UserProfileDetails(loginName, firstName + "X", lastName + "X",
                         email + "X", "XX", "XX");
 
                 userService.UpdateUserProfileDetails(userId, expected);
@@ -291,7 +291,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 initializeKernel();
 
                 userService.UpdateUserProfileDetails(NON_EXISTENT_USER_ID,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails("user1",firstName, lastName, email, language, country));
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }
@@ -309,7 +309,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 var userId = userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 // Change password
                 var newClearPassword = clearPassword + "X";
@@ -336,7 +336,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 var userId = userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 // Change password
                 var newClearPassword = clearPassword + "X";
@@ -371,7 +371,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 bool userExists = userService.UserExists(loginName);
 
@@ -413,16 +413,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 var userId1 = userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 // Register user
                 var userId2 = userService.RegisterUser("user2", "1234",
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails("user2", firstName, lastName, email, language, country));
 
-                userService.follow(loginName,"user2");
+                Assert.IsTrue(loginName.Equals(userService.findUserNameById(userId1)));
+                Assert.IsTrue("user2".Equals(userService.findUserNameById(userId2)));
+
+                UserProfileDetails userDetails1 = userService.FindUserProfileDetails(userId1);
+                UserProfileDetails userDetails2 = userService.FindUserProfileDetails(userId2);
+
+                userService.follow(userDetails1.userName, userDetails2.userName);
                 UserProfile user1 = userProfileDao.FindByLoginName(loginName);
                 UserProfile user2 = userProfileDao.FindByLoginName("user2");
-
+                Assert.IsTrue(userService.isFollowed(userId1,userId2));
+                Assert.IsFalse(userService.isFollowed(userId2, userId1));
                 Assert.IsTrue(user1.UserProfile2.Contains(user2));
                 Assert.IsTrue(user2.UserProfile1.Contains(user1));
 
@@ -445,7 +452,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 var userId2 = userService.RegisterUser("user2", "1234",
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails("user2", firstName, lastName, email, language, country));
 
                 userService.follow("pepe", "user2");
 
@@ -466,14 +473,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 var userId1 = userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 // Register user
                 var userId2 = userService.RegisterUser("user2", "1234",
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails("user2", firstName, lastName, email, language, country));
 
                 var userId3 = userService.RegisterUser("user3", "1234",
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails("user3", firstName, lastName, email, language, country));
 
                 userService.follow(loginName, "user2");
                 userService.follow(loginName, "user3");
@@ -503,14 +510,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 var userId1 = userService.RegisterUser(loginName, clearPassword,
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails(loginName, firstName, lastName, email, language, country));
 
                 // Register user
                 var userId2 = userService.RegisterUser("user2", "1234",
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails("user2",firstName, lastName, email, language, country));
 
                 var userId3 = userService.RegisterUser("user3", "1234",
-                    new UserProfileDetails(firstName, lastName, email, language, country));
+                    new UserProfileDetails("user3", firstName, lastName, email, language, country));
 
                 userService.follow(loginName, "user2");
                 userService.follow(loginName, "user3");

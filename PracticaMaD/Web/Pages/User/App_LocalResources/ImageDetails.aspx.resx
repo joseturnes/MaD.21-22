@@ -117,25 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnFollow.Text" xml:space="preserve">
-    <value>Follow User</value>
-  </data>
-  <data name="btnFollowers.Text" xml:space="preserve">
-    <value>Followers</value>
-  </data>
-  <data name="btnFollows.Text" xml:space="preserve">
-    <value>Follows</value>
-  </data>
-  <data name="btnUploadImage.Text" xml:space="preserve">
-    <value>Upload Image</value>
-  </data>
-  <data name="lblInvalidUser" xml:space="preserve">
-    <value>Invalid User</value>
-  </data>
-  <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>Perfil de usuario</value>
-  </data>
-  <data name="lnkFollows.Text" xml:space="preserve">
-    <value>Follows</value>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Delete Image</value>
   </data>
 </root>

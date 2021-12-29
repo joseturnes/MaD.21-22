@@ -97,5 +97,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         [Transactional]
         int getNumberOfFollowers(long userId);
+
+        [Transactional]
+        bool isFollowed(long userId1, long userId2);
+
+        [Transactional]
+        string findUserNameById(long userId);
     }
 }

@@ -6,14 +6,18 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_MenuLinks" runat="server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
-    <asp:Label class="display-1" ID="lablTitle" runat="server"></asp:Label>
-    <br />
-    <asp:Image ID="Image1" runat="server" width="400" height="400" />
-    <br />
-    <asp:Label class="display-1" ID="lablLikes" runat="server"></asp:Label>
-    <br />
-    <asp:Label class="display-1" ID="labldescription" runat="server"></asp:Label>
-    <br />
-    <asp:HyperLink ID="CommentsLink" runat="server"> </asp:HyperLink>
-
+    <form runat="server">
+        <asp:Label class="display-1" ID="lablTitle" runat="server"></asp:Label>
+        <br />
+        <asp:Image ID="Image1" runat="server" width="400" height="400" />
+        <br />
+        <asp:Label class="display-1" ID="lablLikes" runat="server"></asp:Label>
+        <br />
+        <asp:Label class="display-1" ID="labldescription" runat="server"></asp:Label>
+        <br />
+        <asp:HyperLink ID="CommentsLink" runat="server"> </asp:HyperLink>
+        <br />
+        <br />
+        <asp:Button class="btn btn-danger" ID="btnDelete" runat="server" Text="Button" OnClick="BtnDeleteClick" meta:resourcekey="btnDelete"/>
+    </form>
 </asp:Content>

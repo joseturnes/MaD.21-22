@@ -18,6 +18,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         public String Email { get; private set; }
 
+        public String userName { get; private set; }
+
         public string Language { get; private set; }
 
         public string Country { get; private set; }
@@ -33,7 +35,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="email">The user's email.</param>
         /// <param name="language">The language.</param>
         /// <param name="country">The country.</param>
-        public UserProfileDetails(String firstName, String lastName,
+        public UserProfileDetails(String userName,String firstName, String lastName,
+            String email, String language, String country)
+        {
+            this.userName = userName;
+            this.FirstName = firstName;
+            this.Lastname = lastName;
+            this.Email = email;
+            this.Language = language;
+            this.Country = country;
+        }
+
+        public UserProfileDetails( String firstName, String lastName,
             String email, String language, String country)
         {
             this.FirstName = firstName;

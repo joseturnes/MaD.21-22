@@ -1,6 +1,8 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,10 +40,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 }
                 CommentsLink.Text = "Coments : " + numberOfComments.ToString();
                 CommentsLink.NavigateUrl = commentsUrl;
-                
+            }
+        }
 
+        protected void BtnDeleteClick(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                /* Get data. */
+                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                IImageUploadService imageService = iocManager.Resolve<IImageUploadService>();
+                Int64 userId = SessionManager.GetUserId(Context);
+                Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+                imageService.RemoveImage(imgId);
 
-
+                String url = String.Format("./Perfil.aspx?userId={0}", userId);
+                Response.Redirect(Response.ApplyAppPathModifier(url));
 
             }
         }

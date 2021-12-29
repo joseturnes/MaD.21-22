@@ -9,6 +9,7 @@ using System.Reflection;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using System.Web;
+using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
@@ -18,9 +19,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         private ObjectDataSource pbpDataSource = new ObjectDataSource();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Int64 userId = Convert.ToInt64(Request.Params.Get("ID"));
+            Int64 pageOwner = SessionManager.GetUserId(Context);
+
+
             if (!(SessionManager.GetUserId(Context) == Convert.ToInt64(Request.Params.Get("ID"))))
             {
                 btnUploadImage.Visible = false;
+            }
+            if (SessionManager.GetUserId(Context) == Convert.ToInt64(Request.Params.Get("ID")))
+            {
+                FollowButton.Visible = false;
+            }
+            
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            IUserService userService = iocManager.Resolve<IUserService>();
+
+            if ((SessionManager.GetUserId(Context) != Convert.ToInt64(Request.Params.Get("ID"))) && !userService.isFollowed(userId,pageOwner))
+            {
+                FollowButton.Visible = true;
+                FollowButton.Text = "Already Followed";
             }
 
             try
@@ -35,8 +53,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
                 pbpDataSource.SelectMethod =
                     Settings.Default.ObjectDS_Image_SelectMethod;
-
-                Int64 userId = Convert.ToInt64(Request.Params.Get("ID"));
 
                 pbpDataSource.SelectParameters.Add("userId", DbType.Int64, userId.ToString());
 
@@ -120,8 +136,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
         }
 
+        protected void BtnFollowClick(object sender, EventArgs e)
+        {
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            IUserService userService = iocManager.Resolve<IUserService>();
+            Int64 userId = SessionManager.GetUserId(Context);
+            Int64 ID = Convert.ToInt64(Request.Params.Get("ID"));
+            string login1 = userService.findUserNameById(userId);
+            string login2 = userService.findUserNameById(ID);
+            userService.follow(login1, login2);
+        }
+
         protected void ImageClick(object sender, EventArgs e)
         {
+
             String url = String.Format("./MainPage.aspx");
             Response.Redirect(Response.ApplyAppPathModifier(url));
         }
