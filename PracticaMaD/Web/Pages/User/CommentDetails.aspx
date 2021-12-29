@@ -32,8 +32,14 @@
                                         DataTextField="UserName"
                                         HeaderText="User Name"
                                         SortExpression="UserName" />
-                                    <asp:BoundField DataField="Content" HeaderText="Comment" />
+                                    <asp:HyperLinkField
+                                        DataNavigateUrlFields="ComId"
+                                        DataNavigateUrlFormatString="EditComment.aspx?comId={0}"
+                                        DataTextField="Content"
+                                        HeaderText="Content"
+                                        SortExpression="Content" />
                                     <asp:BoundField DataField="ComDate" HeaderText="Publication Date" />
+ 
                                 </Columns>
                             </asp:GridView>
                         </form>

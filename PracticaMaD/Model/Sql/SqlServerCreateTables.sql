@@ -93,8 +93,8 @@ CREATE TABLE ImageUpload (
 	categoryId bigint,
 
 	CONSTRAINT [PK_Image] PRIMARY KEY (imgId),
-	CONSTRAINT [FK_Usr] FOREIGN KEY (usrId) REFERENCES UserProfile(usrId),
-	CONSTRAINT [FK_Category] FOREIGN KEY (categoryId) REFERENCES Category(categoryId)
+	CONSTRAINT [FK_Usr] FOREIGN KEY (usrId) REFERENCES UserProfile(usrId) ON DELETE CASCADE,
+	CONSTRAINT [FK_Category] FOREIGN KEY (categoryId) REFERENCES Category(categoryId) ON DELETE CASCADE
 )
 
 
@@ -107,7 +107,7 @@ CREATE TABLE Comment (
 	comDate date NOT NULL,
 	
 	CONSTRAINT [PK_Comment] PRIMARY KEY (commentId),
-	CONSTRAINT [FK_Image] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId),
+	CONSTRAINT [FK_Image] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId) ON DELETE CASCADE,
 	CONSTRAINT [FK_User_Comment] FOREIGN KEY (usrId) REFERENCES UserProfile(usrId)
 	
 )

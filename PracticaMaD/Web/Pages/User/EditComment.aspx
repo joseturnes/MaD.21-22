@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
-    Codebehind="AddComment.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.User.AddComment"
+    Codebehind="EditComment.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.User.EditComment"
     meta:resourcekey="Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"
@@ -20,7 +20,10 @@
                         <asp:TextBox class="form-control" ID="txtContent" runat="server" Columns="16"></asp:TextBox>                   
             </div>
             <div class="button">
-                <asp:Button class="btn btn-primary" ID="btnComment" runat="server" Text="Add Comment" OnClick="BtnCommentClick"/>
+                <asp:Button class="btn btn-primary" ID="btnComment" runat="server" OnClick="BtnCommentClick" Text="Modify" />
+            </div>
+            <div class="button">
+                <asp:Button class="btn btn-danger" ID="btnDelete" runat="server" OnClick="BtnDeleteClick" Text="Delete" />
             </div>
         </form>
     </div>

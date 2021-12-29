@@ -17,6 +17,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         public String content { get; private set; }
 
+        public long comId { get; private set; }
+
         public long userId { get; private set; }
 
         public string userName { get; set; }
@@ -37,9 +39,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// <param name="imgId">The publications that the comment references .</param>
         /// <param name="comDate">The date of the comment</param>
 
-        public CommentDto(String content, long userId,string userName,
+        public CommentDto(long comId,String content, long userId,string userName,
             long imgId, DateTime comDate)
         {
+            this.comId = comId;
             this.content = content;
             this.userId = userId;
             this.imgId = imgId;

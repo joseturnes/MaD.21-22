@@ -144,7 +144,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             Int64 ID = Convert.ToInt64(Request.Params.Get("ID"));
             string login1 = userService.findUserNameById(userId);
             string login2 = userService.findUserNameById(ID);
-            userService.follow(login1, login2);
+            userService.follow(login2, login1);
+            Response.Redirect(Request.RawUrl);
         }
 
         protected void ImageClick(object sender, EventArgs e)

@@ -122,11 +122,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 Assert.IsTrue(result.Category.categoryName.Equals("Paisaje"));
                 Assert.AreEqual(result.Tag.Count, 5);
 
-                commentService.AddComment(id,"commentary1",userId);
+                long commId= commentService.AddComment(id,"commentary1",userId);
                 commentService.AddComment(id, "commentary2", userId);
 
                 List<CommentDto> comments = imageUploadService.searchComments(id, 0, 10);
-                CommentDto comments1 = new CommentDto("commentary1",userId,loginName,id,DateTime.Now);
+                CommentDto comments1 = new CommentDto(commId,"commentary1",userId,loginName,id,DateTime.Now);
 
                 Assert.IsTrue(2==imageUploadService.CountComments(id));
                 Assert.IsNotNull(comments);

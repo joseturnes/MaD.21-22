@@ -141,6 +141,7 @@
     <Content Include="lib\font-awesome\webfonts\fa-regular-400.svg" />
     <Content Include="lib\font-awesome\webfonts\fa-solid-900.svg" />
     <Content Include="Pages\UserExists.aspx" />
+    <Content Include="Pages\User\EditComment.aspx" />
     <Content Include="Pages\User\AddComment.aspx" />
     <Content Include="Pages\User\CommentDetails.aspx" />
     <Content Include="Pages\User\Followers.aspx" />
@@ -184,6 +185,13 @@
     <Compile Include="HTTP\View\ApplicationObjects\Countries.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Languages.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
+    <Compile Include="Pages\User\EditComment.aspx.cs">
+      <DependentUpon>EditComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\EditComment.aspx.designer.cs">
+      <DependentUpon>EditComment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\User\AddComment.aspx.cs">
       <DependentUpon>AddComment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

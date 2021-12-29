@@ -220,7 +220,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             for (int i = 0; i < comments.Count; i++)
             {
                 string userName = UserProfileDao.FindById(comments[i].usrId).loginName;
-                result.Add(new CommentDto(comments[i].content, comments[i].usrId, userName, comments[i].imgId, comments[i].comDate));
+                result.Add(new CommentDto(comments[i].commentId,comments[i].content, comments[i].usrId, userName, comments[i].imgId, comments[i].comDate));
             }
 
 
