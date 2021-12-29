@@ -107,7 +107,7 @@ CREATE TABLE Comment (
 	comDate date NOT NULL,
 	
 	CONSTRAINT [PK_Comment] PRIMARY KEY (commentId),
-	CONSTRAINT [FK_Image] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId) ON DELETE CASCADE,
+	CONSTRAINT [FK_Image] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId),
 	CONSTRAINT [FK_User_Comment] FOREIGN KEY (usrId) REFERENCES UserProfile(usrId)
 	
 )

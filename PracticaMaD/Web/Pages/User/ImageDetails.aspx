@@ -11,7 +11,7 @@
         <br />
         <asp:Image ID="Image1" runat="server" width="400" height="400" />
         <br />
-        <asp:Label class="display-1" ID="lablLikes" runat="server"></asp:Label>
+        <asp:Label class="display-1" ID="lablLikes" runat="server"></asp:Label><asp:Button class="btn btn-outline-danger" ID="likeButton" OnClick="BtnLikeClick" runat="server" Text="❤️" />
         <br />
         <asp:Label class="display-1" ID="labldescription" runat="server"></asp:Label>
         <br />

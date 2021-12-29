@@ -16,14 +16,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            long imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+            Int64 userId = SessionManager.GetUserId(Context);
+
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            IImageUploadService imageUploadService = iocManager.Resolve<IImageUploadService>();
+            ImageUpload image = imageUploadService.findImage(imgId);
+
+            if (imageUploadService.isLiked(imgId,userId))
+            {
+                likeButton.Text = "💔";
+            }
+
+            if (!(image.usrId==userId))
+            {
+                btnDelete.Visible = false;
+            }
+
             if (!IsPostBack)
             {
-                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-                IImageUploadService imageUploadService = iocManager.Resolve<IImageUploadService>();
 
-                long imgId = Convert.ToInt64(Request.Params.Get("imgId"));
-
-                ImageUpload image = imageUploadService.findImage(imgId);
                 String commentsUrl = String.Format("./CommentDetails.aspx?imgId={0}", imgId);
 
                 Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(image.uploadedImage);
@@ -59,5 +71,30 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
             }
         }
+
+        protected void BtnLikeClick(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                /* Get data. */
+                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                IImageUploadService imageService = iocManager.Resolve<IImageUploadService>();
+                Int64 userId = SessionManager.GetUserId(Context);
+                Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+                if (!imageService.isLiked(imgId, userId))
+                {
+                    imageService.LikedImage(imgId, userId);
+                    Response.Redirect(Request.RawUrl);
+                }
+                else
+                {
+                    imageService.UnlikeImage(imgId, userId);
+                    Response.Redirect(Request.RawUrl);
+                }
+                
+
+            }
+        }
+
     }
 }

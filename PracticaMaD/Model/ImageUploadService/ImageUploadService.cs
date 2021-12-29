@@ -226,5 +226,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
             return result;
         }
+
+        [Transactional]
+        public bool isLiked(long imgId, long userId)
+        {
+            ImageUpload image = ImageUploadDao.Find(imgId);
+            UserProfile user = UserProfileDao.Find(userId);
+
+            if (image.UserProfile1.Contains(user))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

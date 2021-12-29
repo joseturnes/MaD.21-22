@@ -66,5 +66,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         int CountComments(long imgId);
 
         int getNumberOfImages(long userId);
+
+        bool isLiked(long imgId,long userId);
     }
 }

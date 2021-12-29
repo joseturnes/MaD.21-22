@@ -375,7 +375,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Image">
-          <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="1" />
+          <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="photogramModel.Comment" Role="Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ImageUpload">

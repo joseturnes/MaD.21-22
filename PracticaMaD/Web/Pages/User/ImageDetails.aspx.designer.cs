@@ -42,6 +42,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         protected global::System.Web.UI.WebControls.Label lablLikes;
 
         /// <summary>
+        /// Control likeButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button likeButton;
+
+        /// <summary>
         /// Control labldescription.
         /// </summary>
         /// <remarks>
