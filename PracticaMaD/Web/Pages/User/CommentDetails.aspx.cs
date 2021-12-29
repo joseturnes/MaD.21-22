@@ -39,7 +39,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     Settings.Default.ObjectDS_User_CountParameter;
 
                 gvComments.AllowPaging = true;
-                gvComments.PageSize = 20;
+                gvComments.PageSize = Settings.Default.PracticaMaD_defaultCount;
 
                 gvComments.DataSource = pbpDataSource;
                 gvComments.DataBind();

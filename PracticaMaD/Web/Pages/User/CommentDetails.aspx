@@ -28,7 +28,7 @@
                                 <Columns>
                                     <asp:HyperLinkField
                                         DataNavigateUrlFields="UserId"
-                                        DataNavigateUrlFormatString="userProfile.aspx?ID={0}"
+                                        DataNavigateUrlFormatString="PerfilCargado.aspx?ID={0}"
                                         DataTextField="UserName"
                                         HeaderText="User Name"
                                         SortExpression="UserName" />
