@@ -28,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ConsultarImagenes();
+            //ConsultarImagenes();
         }
         
 
@@ -97,7 +97,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(OriginalImage);
             imagePreview.ImageUrl = ImagenDataURL64;
 
-            ConsultarImagenes();
+            //ConsultarImagenes();
         }
 
 
