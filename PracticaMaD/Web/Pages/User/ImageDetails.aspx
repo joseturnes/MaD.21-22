@@ -11,11 +11,16 @@
         <br />
         <asp:Image ID="Image1" runat="server" width="400" height="400" />
         <br />
-        <asp:Label class="display-1" ID="lablLikes" runat="server"></asp:Label><asp:Button class="btn btn-outline-danger" ID="likeButton" OnClick="BtnLikeClick" runat="server" Text="❤️" />
+        <asp:Label class="display-1" ID="lablLikes" runat="server"></asp:Label>
+        <br />
+        <asp:Button class="btn btn-outline-danger" ID="likeButton" OnClick="BtnLikeClick" runat="server" Text="❤️" />
         <br />
         <asp:Label class="display-1" ID="labldescription" runat="server"></asp:Label>
         <br />
         <asp:HyperLink ID="CommentsLink" runat="server"> </asp:HyperLink>
+        <br />
+        <br />
+        <asp:Button class="btn btn-outline-dark" ID="btnAddComment" OnClick="BtnAddComment" runat="server" Text="✖️ Comment" />
         <br />
         <br />
         <asp:Button class="btn btn-danger" ID="btnDelete" runat="server" Text="Button" OnClick="BtnDeleteClick" meta:resourcekey="btnDelete"/>

@@ -25,12 +25,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
             {
                 tag = TagDao.FindByName(name);
                 if (tag != null)
-                return tag.tagId;
+                {
+                    tag.timesUsed++;
+                    return tag.tagId;
+                }
+                
             }
             catch (InstanceNotFoundException)
             {          
                 tag.tagname = name;
                 TagDao.Create(tag);
+                tag.timesUsed++;
                 return tag.tagId;
                 
             }

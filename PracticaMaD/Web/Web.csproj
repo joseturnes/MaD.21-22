@@ -141,6 +141,7 @@
     <Content Include="lib\font-awesome\webfonts\fa-regular-400.svg" />
     <Content Include="lib\font-awesome\webfonts\fa-solid-900.svg" />
     <Content Include="Pages\UserExists.aspx" />
+    <Content Include="Pages\User\AddComment.aspx" />
     <Content Include="Pages\User\CommentDetails.aspx" />
     <Content Include="Pages\User\Followers.aspx" />
     <Content Include="Pages\User\Follows.aspx" />
@@ -183,6 +184,13 @@
     <Compile Include="HTTP\View\ApplicationObjects\Countries.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Languages.cs" />
     <Compile Include="HTTP\View\ApplicationObjects\Locale.cs" />
+    <Compile Include="Pages\User\AddComment.aspx.cs">
+      <DependentUpon>AddComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\AddComment.aspx.designer.cs">
+      <DependentUpon>AddComment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\User\CommentDetails.aspx.cs">
       <DependentUpon>CommentDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -349,7 +357,8 @@
     <Content Include="Pages\User\App_LocalResources\Followers.resx" />
     <Content Include="Pages\User\App_LocalResources\CommentDetails.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\PerfilCargado.aspx.resx" />
-    <Content Include="Pages\User\App_LocalResources\ImageDetails.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\ImageDetails.resx" />
+    <Content Include="Pages\User\App_LocalResources\UploadImage.aspx.resx" />
     <EmbeddedResource Include="Pages\User\App_LocalResources\Register.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.resx">
       <SubType>Designer</SubType>

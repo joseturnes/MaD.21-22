@@ -16,7 +16,7 @@
             <div class="col-md-4 col-md-offset-4">
                 Imagen agregada:
                 <br />
-                <asp:Image ID="imagePreview" Width="200" ImageUrl="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/512/upload-pictures-icon.png" runat="server" />
+                <asp:Image ID="imagePreview" Width="400" ImageUrl="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/512/upload-pictures-icon.png" runat="server" />
                 <br />
                 <br />
                 Archivo:
@@ -32,11 +32,14 @@
                 </asp:DropDownList>
                 <br />
                 <br />
-                Titulo de imagen:
+                Title:
                 <asp:TextBox class="form-control" ID="txtTitle" runat="server"></asp:TextBox>
                 <br />
                 Descripcion:
                 <asp:TextBox class="form-control" ID="txtDescription" runat="server"></asp:TextBox>
+                <br />
+                Tags:
+                <asp:TextBox class="form-control" ID="txtTags" runat="server"></asp:TextBox>
                 <br />
                 F:
                 <asp:TextBox class="form-control" type="number" ID="txtF" runat="server"></asp:TextBox>
@@ -50,20 +53,9 @@
                 WB:
                 <asp:TextBox class="form-control" ID="txtWB" runat="server"></asp:TextBox>
                 <br />
-                <asp:Button ID="btnUpload" runat="server" Text="Button" CssClass="btn btn-success" OnClick="btnUpload_Click" />
+                <asp:Button ID="btnUpload" runat="server" Text="Upload Image" CssClass="btn btn-success" OnClick="btnUpload_Click" />
+                <asp:Button ID="btnReturn" runat="server" Text="Return to Profile" CssClass="btn btn-success" OnClick="btnPerfil_Click" />
             </div>
-        </div>
-
-        <div class="row">
-            <asp:Repeater ID="Repeater1" runat="server"></asp:Repeater>
-            <ItemTemplate>
-                <div class="col-md-4">
-                    <img class="img-responsive" src="data:image/jpg;base64,<%#Convert.ToBase64String((byte[]) DataBinder.Eval(Page.GetDataItem(), "UploadedImage")) %>"/> 
-                    <br />
-
-                </div>
-            </ItemTemplate>
-            </center>
         </div>
     </div>
         

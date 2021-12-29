@@ -72,6 +72,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             }
         }
 
+        protected void BtnAddComment(object sender, EventArgs e)
+        {
+            Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+            String url = String.Format("./AddComment.aspx?imgId={0}", imgId);
+            Response.Redirect(Response.ApplyAppPathModifier(url));
+        }
+
         protected void BtnLikeClick(object sender, EventArgs e)
         {
             if (Page.IsValid)

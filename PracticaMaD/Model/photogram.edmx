@@ -375,9 +375,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Image">
-          <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="1" >
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="1" ></End>
           <End Type="photogramModel.Comment" Role="Comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ImageUpload">
@@ -417,8 +415,8 @@
           <End Type="photogramModel.UserProfile" Role="UserProfile1" Multiplicity="*" />
         </Association>
         <Association Name="ImageTags">
-          <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="*" />
-          <End Type="photogramModel.Tag" Role="Tag" Multiplicity="*" />
+          <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="*" ></End>
+          <End Type="photogramModel.Tag" Role="Tag" Multiplicity="*" ></End>
         </Association>
         <Association Name="Like_table">
           <End Type="photogramModel.ImageUpload" Role="ImageUpload" Multiplicity="*" />

@@ -69,6 +69,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
 
         /// <summary>
+        /// Control txtTags.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTags;
+
+        /// <summary>
         /// Control txtF.
         /// </summary>
         /// <remarks>
@@ -114,12 +123,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         protected global::System.Web.UI.WebControls.Button btnUpload;
 
         /// <summary>
-        /// Control Repeater1.
+        /// Control btnReturn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        protected global::System.Web.UI.WebControls.Button btnReturn;
     }
 }

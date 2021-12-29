@@ -92,44 +92,34 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
             List<String> tags = new List<string>();
 
+            if (!txtTags.Text.Equals(""))
+            {
+                var array = txtTags.Text.Split(',');
+                tags = array.ToList();
+            }
+            
+
             imageUploadService.UploadImage(details, tags, DropDownList1.SelectedValue);
 
             string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(OriginalImage);
             imagePreview.ImageUrl = ImagenDataURL64;
 
+            btnUpload.Visible = false;
+            fuploadImage.Visible = false;
+            txtF.Visible = false;
+            txtT.Visible = false;
+            txtISO.Visible = false;
+            txtWB.Visible = false;
+            
             //ConsultarImagenes();
         }
 
+        
 
-
-        protected void ConsultarImagenes()
+        protected void btnPerfil_Click(object sender, EventArgs e)
         {
-            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-            IImageUploadService imageUploadService = iocManager.Resolve<IImageUploadService>();
-            //Insertar en la base de datos
-
-            Int64 userId = SessionManager.GetUserId(Context);
-            List<ImageUploadDto> data = imageUploadService.recentUploads(userId, 0, 3);
-
-            PropertyDescriptorCollection properties =
-                TypeDescriptor.GetProperties(typeof(ImageUploadDto));
-            DataTable table = new DataTable();
-            foreach (PropertyDescriptor prop in properties)
-                table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
-            foreach (ImageUploadDto item in data)
-            {
-                DataRow row = table.NewRow();
-                foreach (PropertyDescriptor prop in properties)
-                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
-                table.Rows.Add(row);
-
-            }
-
-                DataTable ImagenesBD = table;
-
-            Repeater1.DataSource = ImagenesBD;
-            Repeater1.DataBind();
-
+            String url = String.Format("./Perfil.aspx?userId={0}", SessionManager.GetUserId(Context));
+            Response.Redirect(Response.ApplyAppPathModifier(url));
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)

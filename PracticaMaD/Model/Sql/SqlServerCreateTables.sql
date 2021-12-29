@@ -101,7 +101,7 @@ CREATE TABLE ImageUpload (
 
 CREATE TABLE Comment (
 	commentId bigint IDENTITY(1,1) NOT NULL,
-	content varchar(100) NOT NULL,
+	content varchar(500) NOT NULL,
 	usrId bigint NOT NULL,
 	imgId bigint NOT NULL,
 	comDate date NOT NULL,
@@ -143,8 +143,8 @@ CREATE TABLE ImageTags(
 	tagId bigint NOT NULL,
 	imgId bigint NOT NULL,
 	CONSTRAINT [PK_ImageTags] PRIMARY KEY (tagId,imgId),
-	CONSTRAINT [FK_Tag_ImageTags] FOREIGN KEY (tagId) REFERENCES Tag(tagId),
-	CONSTRAINT [FK_Image_ImageTags] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId)
+	CONSTRAINT [FK_Tag_ImageTags] FOREIGN KEY (tagId) REFERENCES Tag(tagId) ON DELETE CASCADE,
+	CONSTRAINT [FK_Image_ImageTags] FOREIGN KEY (imgId) REFERENCES ImageUpload(imgId) ON DELETE CASCADE
 )
 
 INSERT INTO Category (categoryId,categoryName) VALUES (1,'Retrato')
