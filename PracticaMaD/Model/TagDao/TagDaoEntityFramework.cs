@@ -42,9 +42,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 
             DbSet<Tag> tags = Context.Set<Tag>();
 
+            string trimmed = String.Concat(name.Where(c => !Char.IsWhiteSpace(c)));
+
             var result =
                 (from u in tags
-                 where u.tagname == name
+                 where u.tagname == trimmed
                  select u);
 
             tag = result.FirstOrDefault();

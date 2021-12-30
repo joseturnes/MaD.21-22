@@ -22,7 +22,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
             Tag tag = new Tag();
             try
             {
-                tag = TagDao.FindByName(name);
+                string trimmed = String.Concat(name.Where(c => !Char.IsWhiteSpace(c)));
+                tag = TagDao.FindByName(trimmed.ToLower());
                 if (tag != null)
                 {
                     tag.timesUsed++;
@@ -31,8 +32,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
                 
             }
             catch (InstanceNotFoundException)
-            {          
-                tag.tagname = name;
+            {
+                string trimmed = String.Concat(name.Where(c => !Char.IsWhiteSpace(c)));
+                tag.tagname = trimmed.ToLower();
                 TagDao.Create(tag);
                 tag.timesUsed++;
                 return tag.tagId;

@@ -98,7 +98,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
 
                 List<string> tags = new List<String>();
                 tags.Add("Coruña");
-                tags.Add("Navidades");
+                tags.Add("Navidades boas");
                 tags.Add("Luces");
                 tags.Add("Luces2");
                 tags.Add("Luces3");
