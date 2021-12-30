@@ -80,7 +80,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                 pbpDataSource.MaximumRowsParameterName =
                     Settings.Default.ObjectDS_User_CountParameter;
 
-                gvTags.AllowPaging = true;
+                gvTags.AllowPaging = false;
                 gvTags.PageSize = Settings.Default.PracticaMaD_defaultCount;
 
                 gvTags.DataSource = pbpDataSource;
