@@ -14,7 +14,6 @@
         <asp:Label ID="lblInvalidUser" meta:resourcekey="lblInvalidUser" runat="server" Visible="false"></asp:Label>
     </p>
     <center>
-        <form runat="server">
             <asp:GridView ID="gvFollows" runat="server" CssClass="userFollows"
                 AutoGenerateColumns="False"
                 OnPageIndexChanging="gvFollowsPageIndexChanging"
@@ -28,6 +27,5 @@
                         SortExpression="UserName" />
                 </Columns>
             </asp:GridView>
-        </form>
     </center>
 </asp:Content>

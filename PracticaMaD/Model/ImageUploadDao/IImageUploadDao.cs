@@ -32,5 +32,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         ImageUpload findImage(long imgId);
 
+
     }
 }

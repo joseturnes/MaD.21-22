@@ -20,9 +20,6 @@
     <Setting Name="ObjectDS_Follows_CountMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">getNumberOfFollows</Value>
     </Setting>
-    <Setting Name="ObjectDS_User_Dto" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="ObjectDS_User_Followers_SelectMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">FollowerList</Value>
     </Setting>
@@ -46,6 +43,21 @@
     </Setting>
     <Setting Name="ObjectDS_Comments_CountMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">CountComments</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Tag_SelectMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">findMostUsedTags</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Tag_Service" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Es.Udc.DotNet.PracticaMaD.Model.TagService.ITagService</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Tag_CountMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">countTags</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Tag_Image_SelectMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">fingImagesByTagId</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Tag_Images_CountMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">countImagesWithTag</Value>
     </Setting>
   </Settings>
 </SettingsFile>

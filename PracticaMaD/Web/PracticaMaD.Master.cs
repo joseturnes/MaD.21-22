@@ -1,6 +1,11 @@
 using System;
-
+using System.Reflection;
+using System.Web;
+using System.Web.UI.WebControls;
+using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web
 {
@@ -9,6 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
     {
 
         public static readonly String USER_SESSION_ATTRIBUTE = "userSession";
+        private ObjectDataSource pbpDataSource = new ObjectDataSource();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,6 +48,61 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                 if (lnkAuthenticate != null)
                     lnkAuthenticate.Visible = false;
             }
+
+            try
+            {
+                // ObjectCreating is executed before ObjectDataSource creates
+                // an instance of the type used as DataSource (UserService).
+                // We need to intercept this call to replace the standard creation
+                // procedure (a new UserService() sentence) to use the Unity
+                // Container that allows to complete the dependences (accountDao,...)
+                pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
+
+                pbpDataSource.TypeName =
+                     Settings.Default.ObjectDS_Tag_Service;
+
+                pbpDataSource.EnablePaging = true;
+
+                pbpDataSource.SelectMethod =
+                    Settings.Default.ObjectDS_Tag_SelectMethod;
+
+                pbpDataSource.StartRowIndexParameterName =
+                    Settings.Default.ObjectDS_User_StartIndexParameter;
+
+                pbpDataSource.SelectCountMethod =
+                    Settings.Default.ObjectDS_Tag_CountMethod;
+                
+                pbpDataSource.MaximumRowsParameterName =
+                    Settings.Default.ObjectDS_User_CountParameter;
+
+                gvTags.AllowPaging = true;
+                gvTags.PageSize = Settings.Default.PracticaMaD_defaultCount;
+
+                gvTags.DataSource = pbpDataSource;
+                gvTags.DataBind();
+            }
+            catch (TargetInvocationException)
+            {
+                
+            }
+        }
+
+        protected void gvTagsPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTags.PageIndex = e.NewPageIndex;
+            gvTags.DataBind();
+        }
+
+        protected void PbpDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
+        {
+            
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            ITagService tagService = iocManager.Resolve<ITagService>();
+
+            e.ObjectInstance = tagService;
         }
     }
+
+
 }
+

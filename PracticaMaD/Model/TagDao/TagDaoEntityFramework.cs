@@ -15,6 +15,18 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         {
         }
 
+        public int countImagesWithTag(long tagId)
+        {
+            DbSet<Tag> tags = Context.Set<Tag>();
+
+            List<ImageUpload> result =
+                (from a in tags
+                 where a.tagId == tagId
+                 select a.ImageUpload).FirstOrDefault().ToList();
+
+            return result.Count();
+        }
+
         public List<Tag> FindAll()
         {
             DbSet<Tag> tags = Context.Set<Tag>();
@@ -44,6 +56,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
             return tag;
         }
 
-        
+        public List<Tag> findMostUsedTags(int startIndex, int count)
+        {
+
+            DbSet<Tag> tags = Context.Set<Tag>();
+
+            var result =
+                (from a in tags
+                 orderby a.timesUsed
+                 select a).Skip(0).Take(6).ToList();
+
+            return result;
+        }
+
+        public List<ImageUpload> fingImagesByTagId(long tagId, int startIndex, int count)
+        {
+            DbSet<Tag> tags = Context.Set<Tag>();
+
+            List<ImageUpload> result =
+                (from a in tags
+                 where a.tagId == tagId
+                 select a.ImageUpload).FirstOrDefault().Skip(startIndex).Take(count).ToList();
+
+            return result;
+        }
     }
 }

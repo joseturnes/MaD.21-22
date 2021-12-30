@@ -20,7 +20,6 @@
             <div class="row">
                 <div class="col-sm">
                     <center>
-                        <form runat="server">
                             <asp:GridView ID="gvComments" runat="server" CssClass="userFollows" Visible="true"
                                     AutoGenerateColumns="False"
                                     OnPageIndexChanging="gvCommentsPageIndexChanging"
@@ -42,7 +41,6 @@
  
                                 </Columns>
                             </asp:GridView>
-                        </form>
                     </center>
                 </div>
             </div>

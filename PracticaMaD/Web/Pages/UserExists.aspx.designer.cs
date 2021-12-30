@@ -33,15 +33,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
         protected global::System.Web.UI.WebControls.Label lblSearchUser;
 
         /// <summary>
-        /// Control formUserExists.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm formUserExists;
-
-        /// <summary>
         /// Control lblUserName.
         /// </summary>
         /// <remarks>

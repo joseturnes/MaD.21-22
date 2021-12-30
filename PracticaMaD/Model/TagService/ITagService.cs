@@ -19,6 +19,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
 
         List<Tag> GetAllTags();
 
+        List<Tag> findMostUsedTags(int startIndex, int count);
+
+        int countTags();
+
+        List<ImageUpload> fingImagesByTagId(long tagId, int startIndex, int count);
+
+        int countImagesWithTag(long tagId);
+
 
     }
 }

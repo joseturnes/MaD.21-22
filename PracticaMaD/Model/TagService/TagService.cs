@@ -19,7 +19,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         [Transactional]
         public long CreateTag(string name)
         {
-            long returned;
             Tag tag = new Tag();
             try
             {
@@ -43,9 +42,38 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         }
 
         [Transactional]
+        public List<Tag> findMostUsedTags(int startIndex, int count)
+        {
+            List<Tag> tags = TagDao.findMostUsedTags(startIndex, count);
+            tags.Reverse();
+            return tags;
+        }
+
+        [Transactional]
         public List<Tag> GetAllTags()
         {
             return TagDao.FindAll();
+        }
+
+        [Transactional]
+        public int countTags()
+        {
+            return TagDao.GetAllElements().Count;
+        }
+
+        public int countTags(int startIndex, int count)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ImageUpload> fingImagesByTagId(long tagId, int startIndex, int count)
+        {
+            return TagDao.fingImagesByTagId(tagId,startIndex,count);
+        }
+
+        public int countImagesWithTag(long tagId)
+        {
+            return TagDao.countImagesWithTag(tagId);
         }
     }
 }

@@ -12,5 +12,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         Tag FindByName(string name);
 
         List<Tag> FindAll();
+
+        List<Tag> findMostUsedTags(int startIndex,int count);
+
+        List<ImageUpload> fingImagesByTagId(long tagId, int startIndex, int count);
+
+        int countImagesWithTag(long tagId);
     }
 }

@@ -14,7 +14,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <div id="form">
-        <form id="AuthenticationForm" method="POST" runat="server">
             <div class="field">
                         Content : 
                         <asp:TextBox class="form-control" ID="txtContent" runat="server" Columns="16"></asp:TextBox>                   
@@ -25,6 +24,5 @@
             <div class="button">
                 <asp:Button class="btn btn-danger" ID="btnDelete" runat="server" OnClick="BtnDeleteClick" Text="Delete" />
             </div>
-        </form>
     </div>
 </asp:Content>

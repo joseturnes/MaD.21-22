@@ -14,14 +14,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <div id="form">
-        <form id="AuthenticationForm" method="POST" runat="server">
-            <div class="field">
-                        Content : 
-                        <asp:TextBox class="form-control" ID="txtContent" runat="server" Columns="16"></asp:TextBox>                   
-            </div>
-            <div class="button">
-                <asp:Button class="btn btn-primary" ID="btnComment" runat="server" Text="Add Comment" OnClick="BtnCommentClick"/>
-            </div>
-        </form>
+        <div class="field">
+                    Content : 
+                    <asp:TextBox class="form-control" ID="txtContent" runat="server" Columns="16"></asp:TextBox>                   
+        </div>
+        <div class="button">
+            <asp:Button class="btn btn-primary" ID="btnComment" runat="server" Text="Add Comment" OnClick="BtnCommentClick"/>
+        </div>
     </div>
 </asp:Content>

@@ -79,15 +79,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ObjectDS_User_Dto {
-            get {
-                return ((string)(this["ObjectDS_User_Dto"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("FollowerList")]
         public string ObjectDS_User_Followers_SelectMethod {
             get {
@@ -155,6 +146,51 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         public string ObjectDS_Comments_CountMethod {
             get {
                 return ((string)(this["ObjectDS_Comments_CountMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("findMostUsedTags")]
+        public string ObjectDS_Tag_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_Tag_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Es.Udc.DotNet.PracticaMaD.Model.TagService.ITagService")]
+        public string ObjectDS_Tag_Service {
+            get {
+                return ((string)(this["ObjectDS_Tag_Service"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("countTags")]
+        public string ObjectDS_Tag_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_Tag_CountMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("fingImagesByTagId")]
+        public string ObjectDS_Tag_Image_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_Tag_Image_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("countImagesWithTag")]
+        public string ObjectDS_Tag_Images_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_Tag_Images_CountMethod"]));
             }
         }
     }

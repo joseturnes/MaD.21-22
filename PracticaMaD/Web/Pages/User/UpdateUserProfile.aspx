@@ -13,7 +13,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <div id="form">
-        <form id="UpdateUserProfileForm" method="POST" runat="server">
             <asp:HyperLink ID="lnkChangePassword" runat="server" 
                 NavigateUrl="~/Pages/User/ChangePassword.aspx"
                 meta:resourcekey="lnkChangePassword"/>
@@ -51,6 +50,5 @@
             <div class="button">
                 <asp:Button class="btn btn-info" ID="btnUpdate" runat="server" OnClick="BtnUpdateClick" meta:resourcekey="btnUpdate"/>
             </div>
-        </form>
     </div>
 </asp:Content>

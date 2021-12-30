@@ -8,7 +8,6 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <form id="form1" runat="server">
     
     <div class="container">
         <div class="row">
@@ -58,7 +57,5 @@
             </div>
         </div>
     </div>
-        
-  </form>
 </asp:Content>
 

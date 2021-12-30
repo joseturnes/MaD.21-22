@@ -14,7 +14,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <div id="form">
-        <form id="ChangePasswordForm" method="post" runat="server">
             <div class="field">
                 <span class="label">
                     <asp:Localize ID="lclOldPassword" runat="server" meta:resourcekey="lclOldPassword" /></span><span
@@ -56,6 +55,5 @@
                 <asp:Button class="btn btn-primary" ID="btnChangePassword" runat="server" OnClick="BtnChangePasswordClick"
                     meta:resourcekey="btnChangePassword" />
             </div>
-        </form>
     </div>
 </asp:Content>

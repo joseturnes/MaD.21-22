@@ -23,7 +23,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             IImageUploadService imageUploadService = iocManager.Resolve<IImageUploadService>();
             ImageUpload image = imageUploadService.findImage(imgId);
 
-            if (imageUploadService.isLiked(imgId,userId))
+            if (imageUploadService.isLiked(imgId,image.usrId))
             {
                 likeButton.Text = "💔";
             }
