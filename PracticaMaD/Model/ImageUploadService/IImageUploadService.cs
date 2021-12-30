@@ -27,11 +27,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         ///<param name="ImageUploadDetails"> The image params. </param>
         long UploadImage(ImageUploadDetails img, List<string> tags, string category);
 
-        /// <summary>
-        /// Search images by keywords.
-        /// </summary>
-        ///<param name="keywords"> The search params. </param>
-        List<ImageUploadDto> SearchByKeywords(string keywords, int startIndex, int count);
 
         /// <summary>
         /// Update a publication.
@@ -67,6 +62,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         int getNumberOfImages(long userId);
 
+        List<ImageUpload> FindByKeywordAndCategory(string keywords,long categoryId, int startIndex,int count);
+
         bool isLiked(long imgId,long userId);
+
+        int countSearchKeywords(string keywords, long categoryId);
+
     }
 }

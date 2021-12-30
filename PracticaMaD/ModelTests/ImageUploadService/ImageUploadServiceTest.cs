@@ -109,13 +109,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
 
-
                 ImageUploadDetails img = new ImageUploadDetails("Titulo",image, userId,"Description",DateTime.Now,f1,f2, "ISO", "wb",10);
                 ImageUploadDetails img2 = new ImageUploadDetails("Titulo2",image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2",20);
 
+                
+
                 long id = imageUploadService.UploadImage(img, tags,"Paisaje");
-                long id2 = imageUploadService.UploadImage(img2, tags, "Paisaje");
+                long id2 = imageUploadService.UploadImage(img2, tags, "Retrato");
                 ImageUpload result = imageUploadDao.Find(id);
+
+                Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("des", 3, 0, 1000).Contains(result));
+                Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("des", 0, 0, 1000).Contains(result));
+                Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("des", 0, 0, 1000).Count()==2);
+                Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("sadasda", 0, 0, 1000).Count() == 0);
+                List<ImageUpload> images = imageUploadService.FindByKeywordAndCategory("des", 0, 0, 1000);
+                Assert.IsTrue(images.Count() == imageUploadService.countSearchKeywords("des",0));
+
                 Assert.IsTrue(result.imgId == id);
                 Assert.IsTrue(result.Tag.Contains(tagDao.Find(tagId)));
                 Assert.IsTrue(tagDao.Find(tagId).ImageUpload.Contains(result));

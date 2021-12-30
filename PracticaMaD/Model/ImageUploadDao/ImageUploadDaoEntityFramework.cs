@@ -45,13 +45,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             return result.Count();
         }
 
-        public List<ImageUpload> FindByTitleOrDescriptionOrCategory(string keyword,int startIndex, int count)
+        public List<ImageUpload> FindByTitleOrDescription(string keyword,int startIndex, int count)
         {
             DbSet<ImageUpload> images = Context.Set<ImageUpload>();
+            keyword = keyword.ToLower();
 
             var result =
                 (from a in images
-                 where (a.title.Contains(keyword) || a.descriptions.Contains(keyword))
+                 where (a.title.ToLower().Contains(keyword) || a.descriptions.ToLower().Contains(keyword))
                  orderby a.uploadDate
                  select a).Skip(startIndex).Take(count).ToList();
 
@@ -127,5 +128,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             return result.Count;
         }
 
+        public List<ImageUpload> FindByCategory(long categoryId, int startIndex, int count)
+        {
+            DbSet<ImageUpload> images = Context.Set<ImageUpload>();
+
+            var result =
+                (from a in images
+                 where a.categoryId==categoryId
+                 orderby a.uploadDate
+                 select a).Skip(startIndex).Take(count).ToList();
+
+            return result;
+        }
     }
 }

@@ -14,10 +14,7 @@
     <div id="window">
         <!-- Page title. -->
         <div id="pageTitle">
-            <asp:HyperLink ID="lblTitle" runat="server"><asp:Localize ID="lclPageTitle" runat="server" meta:resourcekey="lclPageTitle" /></asp:HyperLink>
-        </div>
-        <!-- Menu. -->
-        <div id="menu">
+            <asp:HyperLink ID="lblTitle" runat="server"><asp:Localize ID="lclPageTitle" runat="server" meta:resourcekey="lclPageTitle" /></asp:HyperLink></div><!-- Menu. --><div id="menu">
             <span id="menuWelcome">
 
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_MenuWelcome" runat="server">
@@ -50,7 +47,17 @@
                         NavigateUrl="~/Pages/User/Logout.aspx"
                         meta:resourcekey="lnkLogout" />
                 </asp:ContentPlaceHolder>
-            </span>
+                    <br />
+                    <br />
+                    <asp:TextBox class="form-group mx-sm-3 mb-2" ID="txtKeywords" runat="server"></asp:TextBox>
+                    <asp:DropDownList class="form-select" Width="200" data-width="fit" ID="DropDownList1" runat="server">
+                        <asp:ListItem Selected="True">Select a Category</asp:ListItem>
+                        <asp:ListItem>Retrato</asp:ListItem>
+                        <asp:ListItem>Paisaje Nocturno</asp:ListItem>
+                        <asp:ListItem>Paisaje</asp:ListItem>
+                        <asp:ListItem>Ciudades</asp:ListItem>
+                    </asp:DropDownList><br />
+                    <asp:Button class="btn btn-light float-right" ID="searchKeywords" runat="server" Text="Search" OnClick="searchKeywords_Click"  /></span>
         </div>
         <div>
             

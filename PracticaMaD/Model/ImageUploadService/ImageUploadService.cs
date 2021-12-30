@@ -108,10 +108,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         }
 
         [Transactional]
-        public List<ImageUploadDto> SearchByKeywords(string keywords, int startIndex, int count)
+        public List<ImageUpload> FindByKeywordAndCategory(string keywords, long categoryId, int startIndex, int count)
         {
-            List<ImageUpload> images = ImageUploadDao.FindByTitleOrDescriptionOrCategory(keywords, startIndex, count + 1);
-            return ImageUploadConversor.toImageUploadDtos(images);
+            List<ImageUpload> result = new List<ImageUpload>();
+            List<ImageUpload> resultaux = new List<ImageUpload>();
+
+            if(categoryId == 0)
+            {
+                result = ImageUploadDao.FindByTitleOrDescription(keywords, startIndex, count);
+            }
+            else
+            {
+                resultaux = ImageUploadDao.FindByCategory(categoryId, startIndex, count);
+                foreach (var res in resultaux)
+                {
+                    if ((res.descriptions.ToLower().Contains(keywords.ToLower())) || (res.title.ToLower().Contains(keywords.ToLower())))
+                    {
+                        result.Add(res);
+                    }
+                }
+            }
+
+            
+            return result;
         }
 
         [Transactional]
@@ -241,6 +260,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             {
                 return false;
             }
+        }
+
+        [Transactional]
+        public int countSearchKeywords(string keywords, long categoryId)
+        {
+            return FindByKeywordAndCategory(keywords, categoryId, 0, 10000).Count;
         }
     }
 }

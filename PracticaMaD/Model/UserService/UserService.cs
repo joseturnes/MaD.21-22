@@ -217,6 +217,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         {
             return FindUserProfileDetails(userId).userName;
         }
+
+        
     }
         #endregion IUserService Members
 }

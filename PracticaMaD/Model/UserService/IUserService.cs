@@ -103,5 +103,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
 
         [Transactional]
         string findUserNameById(long userId);
+
+        
     }
 }

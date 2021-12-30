@@ -193,5 +193,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
                 return ((string)(this["ObjectDS_Tag_Images_CountMethod"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FindByKeywordAndCategory")]
+        public string ObjectDS_Search_keywords_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_Search_keywords_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("countSearchKeywords")]
+        public string ObjectDS_Search_Keywords_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_Search_Keywords_CountMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FindByKeyword")]
+        public string ObjectDS_Search_keywords_without_category_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_Search_keywords_without_category_SelectMethod"]));
+            }
+        }
     }
 }

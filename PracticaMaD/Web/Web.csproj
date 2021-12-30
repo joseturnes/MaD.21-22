@@ -147,6 +147,7 @@
     <Content Include="Pages\User\Followers.aspx" />
     <Content Include="Pages\User\Follows.aspx" />
     <Content Include="Pages\User\ImageDetails.aspx" />
+    <Content Include="Pages\User\RenderSearch.aspx" />
     <Content Include="Pages\User\TagImages.aspx" />
     <Content Include="Pages\User\PerfilCargado.aspx" />
     <Content Include="Pages\User\Perfil.aspx" />
@@ -227,6 +228,13 @@
     </Compile>
     <Compile Include="Pages\User\ImageDetails.aspx.designer.cs">
       <DependentUpon>ImageDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\User\RenderSearch.aspx.cs">
+      <DependentUpon>RenderSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\User\RenderSearch.aspx.designer.cs">
+      <DependentUpon>RenderSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\User\TagImages.aspx.cs">
       <DependentUpon>TagImages.aspx</DependentUpon>

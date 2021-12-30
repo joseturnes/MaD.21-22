@@ -11,7 +11,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 {
     public interface IImageUploadDao : IGenericDao<ImageUpload, Int64>
     {
-        List<ImageUpload> FindByTitleOrDescriptionOrCategory(string keyword, int startIndex, int count);
+        List<ImageUpload> FindByTitleOrDescription(string keyword, int startIndex, int count);
+
+        List<ImageUpload> FindByCategory(long categoryId, int startIndex, int count);
 
         /// <summary>
         /// Finds a list of publications of a user

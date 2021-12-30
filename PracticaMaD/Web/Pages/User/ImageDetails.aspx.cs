@@ -16,42 +16,52 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            long imgId = Convert.ToInt64(Request.Params.Get("imgId"));
-            Int64 userId = SessionManager.GetUserId(Context);
-
-            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-            IImageUploadService imageUploadService = iocManager.Resolve<IImageUploadService>();
-            ImageUpload image = imageUploadService.findImage(imgId);
-
-            if (imageUploadService.isLiked(imgId,image.usrId))
+            if (SessionManager.IsUserAuthenticated(Context))
             {
-                likeButton.Text = "💔";
-            }
+                long imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+                Int64 userId = SessionManager.GetUserId(Context);
 
-            if (!(image.usrId==userId))
-            {
-                btnDelete.Visible = false;
-            }
+                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                IImageUploadService imageUploadService = iocManager.Resolve<IImageUploadService>();
+                ImageUpload image = imageUploadService.findImage(imgId);
 
-            if (!IsPostBack)
-            {
-
-                String commentsUrl = String.Format("./CommentDetails.aspx?imgId={0}", imgId);
-
-                Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(image.uploadedImage);
-                lablTitle.Text = "<h2>"+image.title+"<h2/>";
-                lablLikes.Text = "<h5> Likes: " + image.likes + "<h5/>";
-                labldescription.Text = "<h2> Description: " + image.descriptions + "<h2/>";
-                long numberOfComments = imageUploadService.CountComments(imgId);
-                if (numberOfComments==0)
+                if (imageUploadService.isLiked(imgId, image.usrId))
                 {
-                    CommentsLink.Visible = false;
+                    likeButton.Text = "💔";
                 }
-                else {
-                    CommentsLink.Visible = true;
+
+                if (!(image.usrId == userId))
+                {
+                    btnDelete.Visible = false;
                 }
-                CommentsLink.Text = "Coments : " + numberOfComments.ToString();
-                CommentsLink.NavigateUrl = commentsUrl;
+
+                if (!IsPostBack)
+                {
+
+                    String commentsUrl = String.Format("./CommentDetails.aspx?imgId={0}", imgId);
+
+                    Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(image.uploadedImage);
+                    lablTitle.Text = "<h2>" + image.title + "<h2/>";
+                    lablLikes.Text = "<h5> Likes: " + image.likes + "<h5/>";
+                    labldescription.Text = "<h2> Description: " + image.descriptions + "<h2/>";
+                    long numberOfComments = imageUploadService.CountComments(imgId);
+                    if (numberOfComments == 0)
+                    {
+                        CommentsLink.Visible = false;
+                    }
+                    else
+                    {
+                        CommentsLink.Visible = true;
+                    }
+                    CommentsLink.Text = "Coments : " + numberOfComments.ToString();
+                    CommentsLink.NavigateUrl = commentsUrl;
+
+                }
+            }
+            else
+            {
+                String url = String.Format("./Authentication.aspx");
+                Response.Redirect(Response.ApplyAppPathModifier(url));
             }
         }
 

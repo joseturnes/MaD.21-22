@@ -59,5 +59,14 @@
     <Setting Name="ObjectDS_Tag_Images_CountMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">countImagesWithTag</Value>
     </Setting>
+    <Setting Name="ObjectDS_Search_keywords_SelectMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FindByKeywordAndCategory</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Search_Keywords_CountMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">countSearchKeywords</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Search_keywords_without_category_SelectMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FindByKeyword</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

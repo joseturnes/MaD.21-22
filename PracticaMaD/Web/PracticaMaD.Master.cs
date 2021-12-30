@@ -1,8 +1,10 @@
 using System;
+using System.Data;
 using System.Reflection;
 using System.Web;
 using System.Web.UI.WebControls;
 using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
@@ -100,6 +102,32 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             ITagService tagService = iocManager.Resolve<ITagService>();
 
             e.ObjectInstance = tagService;
+        }
+
+        protected void searchKeywords_Click(object sender, EventArgs e)
+        {
+            int category = 0;
+            if (DropDownList1.SelectedValue.Equals("Retrato"))
+                category = 1;
+            if (DropDownList1.SelectedValue.Equals("Paisaje Nocturno"))
+                category = 2;
+            if (DropDownList1.SelectedValue.Equals("Paisaje"))
+                category = 3;
+            if (DropDownList1.SelectedValue.Equals("Ciudades"))
+                category = 4;
+
+            if (DropDownList1.SelectedValue.Equals("Select a Category"))
+            {
+                string keywords = txtKeywords.Text;
+                string url = "~/Pages/User/RenderSearch.aspx?keywords=" + keywords + "?category=" + "0";
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+            }
+            else
+            {
+                string keywords = txtKeywords.Text;
+                string url = "~/Pages/User/RenderSearch.aspx?keywords=" + keywords + "&category=" + category.ToString();
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+            }
         }
     }
 
