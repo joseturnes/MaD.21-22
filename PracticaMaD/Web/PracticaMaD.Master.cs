@@ -18,9 +18,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
         public static readonly String USER_SESSION_ATTRIBUTE = "userSession";
         private ObjectDataSource pbpDataSource = new ObjectDataSource();
 
+
         protected void Page_Load(object sender, EventArgs e)
         {
             lblTitle.NavigateUrl = "~/Pages/MainPage.aspx";
+
 
             if (!SessionManager.IsUserAuthenticated(Context))
             {
@@ -50,6 +52,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                 if (lnkAuthenticate != null)
                     lnkAuthenticate.Visible = false;
             }
+            
 
             try
             {
@@ -82,11 +85,20 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
                 gvTags.DataSource = pbpDataSource;
                 gvTags.DataBind();
+
+                var rows = gvTags.Rows;
+
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    rows[i].Font.Size = 20 - 2 * i;
+                }
             }
             catch (TargetInvocationException)
             {
                 
             }
+           
+            
         }
 
         protected void gvTagsPageIndexChanging(object sender, GridViewPageEventArgs e)
