@@ -238,5 +238,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
                 return ((string)(this["ObjectDS_Recent_Images_CountMethod"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FindImageTags")]
+        public string ObjectDS_Image_Tag_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_Image_Tag_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CountImageTags")]
+        public string ObjectDS_Image_Tag_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_Image_Tag_CountMethod"]));
+            }
+        }
     }
 }

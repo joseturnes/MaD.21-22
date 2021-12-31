@@ -69,6 +69,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         protected global::System.Web.UI.WebControls.Label labldescription;
 
         /// <summary>
+        /// Control gvTags.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTags;
+
+        /// <summary>
+        /// Control EditTagsButton.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button EditTagsButton;
+
+        /// <summary>
         /// Control CommentsLink.
         /// </summary>
         /// <remarks>

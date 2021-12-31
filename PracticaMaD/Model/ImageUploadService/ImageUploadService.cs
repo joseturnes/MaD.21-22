@@ -277,5 +277,28 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         {
             return ImageUploadDao.countRecentUploads();
         }
+
+        public List<Tag> FindImageTags(long imgId, int startIndex, int count)
+        {
+            return ImageUploadDao.FindImageTags(imgId,startIndex,count);
+        }
+
+        public int CountImageTags(long imgId)
+        {
+            return ImageUploadDao.CountImageTags(imgId);
+        }
+
+        public void addTag(Tag tag, long imgId)
+        {
+            ImageUpload image = ImageUploadDao.Find(imgId);
+            List<Tag> tags = image.Tag.ToList();
+
+            if (image != null)
+            {
+                tags.Add(tag);
+                image.Tag = tags;
+                ImageUploadDao.Update(image);
+            }
+        }
     }
 }

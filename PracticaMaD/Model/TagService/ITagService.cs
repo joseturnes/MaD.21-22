@@ -27,6 +27,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
 
         int countImagesWithTag(long tagId);
 
+        void updateTags(long imgId, List<String> tags);
+
+
 
     }
 }

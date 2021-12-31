@@ -38,6 +38,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         int countRecentUploads();
 
+        List<Tag> FindImageTags(long imgId, int startIndex, int count);
+
+        int CountImageTags(long imgId);
+
 
     }
 }

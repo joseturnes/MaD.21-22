@@ -15,11 +15,38 @@
         <br />
         <asp:Label class="display-1" ID="labldescription" runat="server"></asp:Label>
         <br />
+        <asp:GridView ID="gvTags" runat="server" CssClass="userFollows"
+                    AutoGenerateColumns="False"
+                    OnPageIndexChanging="gvTagsPageIndexChanging"
+                    ShowHeaderWhenEmpty="True"
+                    Font-Size="14">
+                    <Columns>
+                        <asp:HyperLinkField
+                                        DataNavigateUrlFields="tagid"
+                                        DataNavigateUrlFormatString="~/Pages/User/TagImages.aspx?ID={0}"
+                                        DataTextField="tagname"
+                                        HeaderText="Tag Name"
+                                        SortExpression="tagname" />
+                    </Columns>
+                    <rowstyle backcolor="#FFFFFF"  
+                       forecolor="DarkBlue"
+                       font-italic="true"
+                       Font-Size="12"/>
+                    
+                    <alternatingrowstyle backcolor="#FFFFFF"  
+                      forecolor="DarkBlue"
+                      font-italic="true"
+                      Font-Size="12"/>
+                </asp:GridView>
+        <br />
+        <br />
+            <asp:Button class="btn btn-outline-dark" ID="EditTagsButton" OnClick="BtnEditTags" runat="server" Text="Edit Tags" />
+        <br />
         <asp:HyperLink ID="CommentsLink" runat="server"> </asp:HyperLink>
         <br />
         <br />
         <asp:Button class="btn btn-outline-dark" ID="btnAddComment" OnClick="BtnAddComment" runat="server" Text="✖️ Comment" />
         <br />
         <br />
-        <asp:Button class="btn btn-danger" ID="btnDelete" runat="server" Text="Button" OnClick="BtnDeleteClick" meta:resourcekey="btnDelete"/>
+        <asp:Button class="btn btn-danger" ID="btnDelete" runat="server" Text="Delete Image" OnClick="BtnDeleteClick" meta:resourcekey="btnDelete"/>
 </asp:Content>

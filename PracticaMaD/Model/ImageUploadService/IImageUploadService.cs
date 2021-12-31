@@ -72,5 +72,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         int countRecentUploads();
 
+        List<Tag> FindImageTags(long imgId, int startIndex, int count);
+
+        int CountImageTags(long imgId);
+
+        void addTag(Tag tag, long imgId);
+
     }
 }

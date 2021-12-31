@@ -1,11 +1,15 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
+using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,6 +18,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
     public partial class ImageDetails : System.Web.UI.Page
     {
+        private ObjectDataSource pbpDataSource = new ObjectDataSource();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             lclMenuExplanation.Text = "Image Details";
@@ -35,6 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 if (!(image.usrId == userId))
                 {
                     btnDelete.Visible = false;
+                    EditTagsButton.Visible = false;
                 }
 
                 if (!IsPostBack)
@@ -59,12 +66,75 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     CommentsLink.NavigateUrl = commentsUrl;
 
                 }
+
+                try
+                {
+
+                    // ObjectCreating is executed before ObjectDataSource creates
+                    // an instance of the type used as DataSource (UserService).
+                    // We need to intercept this call to replace the standard creation
+                    // procedure (a new UserService() sentence) to use the Unity
+                    // Container that allows to complete the dependences (accountDao,...)
+                    pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
+
+                    pbpDataSource.TypeName =
+                         Settings.Default.ObjectDS_Image_Service;
+
+                    pbpDataSource.EnablePaging = true;
+
+                    pbpDataSource.SelectMethod =
+                        Settings.Default.ObjectDS_Image_Tag_SelectMethod;
+
+                    pbpDataSource.SelectParameters.Add("imgId", DbType.Int64, imgId.ToString());
+
+                    pbpDataSource.StartRowIndexParameterName =
+                        Settings.Default.ObjectDS_User_StartIndexParameter;
+
+                    pbpDataSource.SelectCountMethod =
+                        Settings.Default.ObjectDS_Image_Tag_CountMethod;
+
+                    pbpDataSource.MaximumRowsParameterName =
+                        Settings.Default.ObjectDS_User_CountParameter;
+
+                    gvTags.AllowPaging = true;
+                    gvTags.PageSize = Settings.Default.PracticaMaD_defaultCount;
+
+                    gvTags.DataSource = pbpDataSource;
+                    gvTags.DataBind();
+
+                   
+                }
+                catch (TargetInvocationException)
+                {
+
+                }
             }
             else
             {
                 String url = String.Format("./Authentication.aspx");
                 Response.Redirect(Response.ApplyAppPathModifier(url));
             }
+        }
+        protected void gvTagsPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvTags.PageIndex = e.NewPageIndex;
+            gvTags.DataBind();
+        }
+
+        protected void PbpDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
+        {
+
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            IImageUploadService imageService = iocManager.Resolve<IImageUploadService>();
+
+            e.ObjectInstance = imageService;
+        }
+
+        protected void BtnEditTags(object sender, EventArgs e)
+        {
+            Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+            String url = String.Format("./EditTags.aspx?imgId={0}", imgId);
+            Response.Redirect(Response.ApplyAppPathModifier(url));
         }
 
         protected void BtnDeleteClick(object sender, EventArgs e)

@@ -74,5 +74,11 @@
     <Setting Name="ObjectDS_Recent_Images_CountMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">countRecentUploads</Value>
     </Setting>
+    <Setting Name="ObjectDS_Image_Tag_SelectMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">FindImageTags</Value>
+    </Setting>
+    <Setting Name="ObjectDS_Image_Tag_CountMethod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">CountImageTags</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -153,5 +153,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         {
             return NUMBER_OF_IMAGES;
         }
+
+        public List<Tag> FindImageTags(long imgId, int startIndex, int count)
+        {
+            DbSet<ImageUpload> images = Context.Set<ImageUpload>();
+
+            var result =
+                (from a in images
+                 where a.imgId == imgId
+                 select a.Tag).FirstOrDefault().ToList();
+
+            return result;
+        }
+
+        public int CountImageTags(long imgId)
+        {
+            DbSet<ImageUpload> images = Context.Set<ImageUpload>();
+
+            var result =
+                (from a in images
+                 where a.imgId == imgId
+                 select a.Tag).FirstOrDefault().ToList();
+
+            return result.Count;
+        }
     }
 }
