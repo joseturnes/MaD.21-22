@@ -16,11 +16,9 @@
                     ShowHeaderWhenEmpty="True">
                 <Columns>
                     <asp:TemplateField HeaderText="Publications">
-                            <ItemTemplate>
-                                <a href="ImageDetails.aspx?imgId=<%# Eval("ImgId")%>">
-                                    <img width="400" height="400" src="data:image/jpg;base64,<%# Convert.ToBase64String((byte[])Eval("UploadedImage"))%>"/>
-                                </a>
-                                </ItemTemplate>
+                            <ItemTemplate>                           
+                                <img width="400" height="400" src="data:image/jpg;base64,<%# Convert.ToBase64String((byte[])Eval("UploadedImage"))%>"/>
+                            </ItemTemplate>
                     </asp:TemplateField> 
                 </Columns>
                 </asp:GridView>
