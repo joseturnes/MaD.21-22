@@ -220,5 +220,23 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
                 return ((string)(this["ObjectDS_Search_keywords_without_category_SelectMethod"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("findRecentUploads")]
+        public string ObjectDS_Recent_Image_SelectMethod {
+            get {
+                return ((string)(this["ObjectDS_Recent_Image_SelectMethod"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("countRecentUploads")]
+        public string ObjectDS_Recent_Images_CountMethod {
+            get {
+                return ((string)(this["ObjectDS_Recent_Images_CountMethod"]));
+            }
+        }
     }
 }
