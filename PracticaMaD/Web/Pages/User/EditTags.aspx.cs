@@ -17,7 +17,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            lclMenuExplanation.Text = "Edit Tags";
+            lclMenuExplanation.Text = lclMenuExplanation.Text;
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             IImageUploadService imageService = iocManager.Resolve<IImageUploadService>();
 

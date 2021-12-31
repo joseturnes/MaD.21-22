@@ -19,7 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            lclMenuExplanation.Text = "Follower List";
+            lclMenuExplanation.Text = lclMenuExplanation.Text;
 
             try
             {

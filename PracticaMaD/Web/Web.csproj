@@ -383,14 +383,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Pages\App_LocalResources\UserExists.aspx.resx" />
-    <Content Include="Pages\App_LocalResources\UserExists.aspx.es.resx" />
-    <Content Include="Pages\App_LocalResources\UserExists.aspx.gl.resx" />
-    <Content Include="Pages\User\App_LocalResources\Follows.resx" />
-    <Content Include="Pages\User\App_LocalResources\Followers.resx" />
+    <Content Include="Pages\User\App_LocalResources\Follows.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\Followers.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\CommentDetails.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\PerfilCargado.aspx.resx" />
-    <Content Include="Pages\User\App_LocalResources\ImageDetails.resx" />
+    <Content Include="Pages\User\App_LocalResources\ImageDetails.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\UploadImage.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\AddComment.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\EditComment.aspx.resx" />
+    <Content Include="Pages\User\App_LocalResources\EditTags.aspx.resx" />
     <EmbeddedResource Include="Pages\User\App_LocalResources\Register.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.resx">
       <SubType>Designer</SubType>
@@ -398,14 +399,6 @@
     <Content Include="Pages\User\App_LocalResources\Perfil.aspx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Pages\App_LocalResources\MainPage.aspx.es.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Pages\App_LocalResources\MainPage.aspx.gl.resx">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Global.asax" />
   </ItemGroup>
   <ItemGroup>

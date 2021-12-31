@@ -9,13 +9,13 @@
         <br />
         <asp:Image ID="Image1" runat="server" width="400" height="400" />
         <br />
-        <asp:HyperLink ID="txtUser" runat="server"></asp:HyperLink>
+        <asp:HyperLink ID="txtUser" runat="server" meta:resourcekey="txtUser"></asp:HyperLink>
         <br />
-        <asp:Label class="display-1" ID="lablLikes" runat="server"></asp:Label>
+        <asp:Label class="display-1" ID="lablLikes" runat="server" meta:resourcekey="lablLikes"></asp:Label>
         <br />
         <asp:Button class="btn btn-outline-danger" ID="likeButton" OnClick="BtnLikeClick" runat="server" Text="❤️" />
         <br />
-        <asp:Label class="display-1" ID="labldescription" runat="server"></asp:Label>
+        <asp:Label class="display-1" ID="labldescription" runat="server" meta:resourcekey="lblDescription"></asp:Label>
         <br />
         <asp:GridView ID="gvTags" runat="server" CssClass="userFollows"
                     AutoGenerateColumns="False"
@@ -44,18 +44,18 @@
         <br />
             <asp:Button class="btn btn-outline-dark" ID="EditTagsButton" OnClick="BtnEditTags" runat="server" Text="Edit Tags" />
         <br />
-        <asp:HyperLink ID="CommentsLink" runat="server"> </asp:HyperLink>
+        <asp:HyperLink ID="CommentsLink" runat="server" meta:resourcekey="CommentsLink"></asp:HyperLink>
         <br />
         <br />
-        <asp:Button class="btn btn-outline-dark" ID="btnAddComment" OnClick="BtnAddComment" runat="server" Text="✖️ Comment" />
+        <asp:Button class="btn btn-outline-dark" ID="btnAddComment" OnClick="BtnAddComment" runat="server"  meta:resourcekey="btnComment" />
         <br />
-        <asp:Label ID="txtF" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="txtF" runat="server" meta:resourcekey="txtF"></asp:Label>
         <br />
-        <asp:Label ID="txtT" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="txtT" runat="server" meta:resourcekey="txtT"></asp:Label>
         <br />
-        <asp:Label ID="txtISO" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="txtISO" runat="server" meta:resourcekey="txtISO"></asp:Label>
         <br />
-        <asp:Label ID="txtWB" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="txtWB" runat="server" meta:resourcekey="txtWB"></asp:Label>
         <br />
         <br />
         <asp:Button class="btn btn-danger" ID="btnDelete" runat="server" Text="Delete Image" OnClick="BtnDeleteClick" meta:resourcekey="btnDelete"/>
