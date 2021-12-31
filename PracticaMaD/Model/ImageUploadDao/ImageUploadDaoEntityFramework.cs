@@ -96,6 +96,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             return result;
         }
 
+        public List<UserProfile> findUserProfiles(long imgId)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<UserProfile> findUserProfiles(long imgId, int startIndex,
             int count)
         {
@@ -134,24 +139,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
                  select a).Skip(startIndex).Take(count).ToList();
 
             return result;
-        }
-
-        public List<ImageUpload> findRecentUploads(int startIndex, int count)
-        {
-            DbSet<ImageUpload> images = Context.Set<ImageUpload>();
-
-            var result =
-                (from a in images
-                 orderby a.uploadDate
-                 select a).Skip(startIndex).Take(count).ToList();
-            result.Reverse();
-            
-            return result;
-        }
-
-        public int countRecentUploads()
-        {
-            return NUMBER_OF_IMAGES;
         }
     }
 }

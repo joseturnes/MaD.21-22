@@ -68,11 +68,5 @@
     <Setting Name="ObjectDS_Search_keywords_without_category_SelectMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">FindByKeyword</Value>
     </Setting>
-    <Setting Name="ObjectDS_Recent_Image_SelectMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">findRecentUploads</Value>
-    </Setting>
-    <Setting Name="ObjectDS_Recent_Images_CountMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">countRecentUploads</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

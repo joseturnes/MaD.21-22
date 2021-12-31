@@ -65,11 +65,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 
             var result =
                 (from a in tags
-                 orderby a.timesUsed descending
+                 orderby a.timesUsed
                  select a).Skip(0).Take(6).ToList();
-            
-            result.Reverse();
-            
+
             return result;
         }
 

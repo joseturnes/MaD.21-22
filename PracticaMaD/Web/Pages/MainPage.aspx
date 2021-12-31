@@ -8,24 +8,6 @@
     <br />
     <br />
     <br />
-    <div class="gv">
-        <center>
-            <asp:GridView ID="gvRecentUploads" runat="server"
-                    AutoGenerateColumns="False"
-                    OnPageIndexChanging="gvFollowsPageIndexChanging"
-                    ShowHeaderWhenEmpty="True">
-                <Columns>
-                    <asp:TemplateField HeaderText="Publications">
-                            <ItemTemplate>
-                                <a href="ImageDetails.aspx?imgId=<%# Eval("ImgId")%>">
-                                    <img width="400" height="400" src="data:image/jpg;base64,<%# Convert.ToBase64String((byte[])Eval("UploadedImage"))%>"/>
-                                </a>
-                                </ItemTemplate>
-                    </asp:TemplateField> 
-                </Columns>
-                </asp:GridView>
-        </center>
-    </div>
     <br />
     <asp:Localize ID="lclContent" runat="server" meta:resourcekey="lclContent" />
     <br />

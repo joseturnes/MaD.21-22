@@ -28,15 +28,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         List<Comment> FindLastComments(long imgId, int startIndex, int count);
 
-        List<UserProfile> findUserProfiles(long imgId, int startIndex, int count);
+        List<UserProfile> findUserProfiles(long imgId);
 
         int getNumberOfImages(long userId);
 
         ImageUpload findImage(long imgId);
-
-        List<ImageUpload> findRecentUploads(int startIndex, int count);
-
-        int countRecentUploads();
 
 
     }
