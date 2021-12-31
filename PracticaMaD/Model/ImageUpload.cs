@@ -73,6 +73,76 @@ public partial class ImageUpload
 
     public virtual ICollection<UserProfile> UserProfile1 { get; set; }
 
-}
+        /// <summary>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures 
+        /// like a hash table. It uses the Josh Bloch implementation from "Effective Java"
+        /// Primary key of entity is not included in the hash calculation to avoid errors
+        /// with Entity Framework creation of key values.
+        /// </summary>
+        /// <returns>
+        /// Returns a hash code for this instance.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int multiplier = 31;
+                int hash = GetType().GetHashCode();
+
+                hash = hash * multiplier + (uploadedImage == null ? 0 : uploadedImage.GetHashCode());
+                hash = hash * multiplier + (title == null ? 0 : title.GetHashCode());
+                hash = hash * multiplier + (descriptions == null ? 0 : descriptions.GetHashCode());
+                hash = hash * multiplier + (uploadDate == null ? 0 : uploadDate.GetHashCode());
+                hash = hash * multiplier + (f == null ? 0 : f.GetHashCode());
+                hash = hash * multiplier + (t == null ? 0 : t.GetHashCode());
+                hash = hash * multiplier + (iso == null ? 0 : iso.GetHashCode());
+                hash = hash * multiplier + (wb == null ? 0 : wb.GetHashCode());
+                hash = hash * multiplier + (categoryId == null ? 0 : categoryId.GetHashCode());
+                hash = hash * multiplier + (Category == null ? 0 : Category.GetHashCode());
+                hash = hash * multiplier + (Comment == null ? 0 : Comment.GetHashCode());
+                hash = hash * multiplier + (UserProfile == null ? 0 : UserProfile.GetHashCode());
+                hash = hash * multiplier + (Tag == null ? 0 : Tag.GetHashCode());
+                hash = hash * multiplier + (UserProfile1 == null ? 0 : UserProfile1.GetHashCode());
+
+                return hash;
+            }
+
+        }
+
+        /// <summary>
+        /// Compare this object against another instance using a value approach (field-by-field) 
+        /// </summary>
+        /// <remarks>See http://www.loganfranken.com/blog/687/overriding-equals-in-c-part-1/ for detailed info </remarks>
+        public override bool Equals(object obj)
+        {
+
+            if (ReferenceEquals(null, obj)) return false;        // Is Null?
+            if (ReferenceEquals(this, obj)) return true;         // Is same object?
+            if (obj.GetType() != this.GetType()) return false;   // Is same type? 
+
+            ImageUpload target = obj as ImageUpload;
+
+            return true
+               && (this.imgId == target.imgId)
+               && (this.uploadedImage == target.uploadedImage)
+               && (this.usrId == target.usrId)
+               && (this.likes == target.likes)
+               && (this.title == target.title)
+               && (this.descriptions == target.descriptions)
+               && (this.uploadDate == target.uploadDate)
+               && (this.f == target.f)
+               && (this.t == target.t)
+               && (this.iso == target.iso)
+               && (this.wb == target.wb)
+               && (this.categoryId == target.categoryId)
+               && (this.Category == target.Category)
+               && (this.Comment == target.Comment)
+               && (this.UserProfile == target.UserProfile)
+               && (this.Tag == target.Tag)
+               && (this.UserProfile1 == target.UserProfile1)
+               ;
+
+        }
+    }
 
 }
