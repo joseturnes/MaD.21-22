@@ -9,6 +9,8 @@
         <br />
         <asp:Image ID="Image1" runat="server" width="400" height="400" />
         <br />
+        <asp:HyperLink ID="txtUser" runat="server"></asp:HyperLink>
+        <br />
         <asp:Label class="display-1" ID="lablLikes" runat="server"></asp:Label>
         <br />
         <asp:Button class="btn btn-outline-danger" ID="likeButton" OnClick="BtnLikeClick" runat="server" Text="❤️" />
@@ -46,6 +48,14 @@
         <br />
         <br />
         <asp:Button class="btn btn-outline-dark" ID="btnAddComment" OnClick="BtnAddComment" runat="server" Text="✖️ Comment" />
+        <br />
+        <asp:Label ID="txtF" runat="server" Text="Label"></asp:Label>
+        <br />
+        <asp:Label ID="txtT" runat="server" Text="Label"></asp:Label>
+        <br />
+        <asp:Label ID="txtISO" runat="server" Text="Label"></asp:Label>
+        <br />
+        <asp:Label ID="txtWB" runat="server" Text="Label"></asp:Label>
         <br />
         <br />
         <asp:Button class="btn btn-danger" ID="btnDelete" runat="server" Text="Delete Image" OnClick="BtnDeleteClick" meta:resourcekey="btnDelete"/>

@@ -42,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 
             DbSet<Tag> tags = Context.Set<Tag>();
 
-            string trimmed = String.Concat(name.Where(c => !Char.IsWhiteSpace(c)));
+            string trimmed = String.Concat(name.Where(c => !Char.IsWhiteSpace(c))).ToLower();
 
             var result =
                 (from u in tags

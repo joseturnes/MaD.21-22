@@ -2,6 +2,8 @@
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         ITagDao TagDao { set; }
         [Inject]
         ICategoryDao CategoryDao { set; }
+        [Inject]
+        IUserProfileDao UserProfileDao { set; }
+        [Inject]
+        ITagService TagService { set; }
 
         /// <summary>
         /// Upload an image.

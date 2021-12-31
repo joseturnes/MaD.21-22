@@ -46,30 +46,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             image.wb = img.wb;
             Category categoryObj = new Category();
 
-            if (!(tags==null))
-            {
-                for (int i = 0; i < tags.Count; i++)
-                {
-                    try
-                    {
-                        TagService.CreateTag(tags[i]);
-                    }
-                    catch (AlreadyCreatedException)
-                    {
-                    }
-                    finally
-                    {
-                        Tag tag = TagDao.FindByName(tags[i]);
-                        if (!(image.Tag.Contains(tag) && tag.ImageUpload.Contains(image)))
-                        {
-                            image.Tag.Add(tag);
-                            //tag.ImageUpload.Add(image);
-                            //TagDao.Update(tag);
-                        }
-                    }
-
-                }
-            }
 
             categoryObj = CategoryDao.FindByName(category);
 
@@ -77,6 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             CategoryDao.Update(categoryObj);
             image.categoryId = categoryObj.categoryId;
 
+            TagService.updateTags(image.imgId,tags);
 
             return image.imgId;
         }

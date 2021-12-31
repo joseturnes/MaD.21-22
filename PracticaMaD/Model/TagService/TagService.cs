@@ -21,8 +21,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         [Inject]
         public IImageUploadDao ImageDao { private get; set; }
 
-        [Inject]
-        public IImageUploadService ImageService { private get; set; }
 
         [Transactional]
         public long CreateTag(string name)
@@ -94,7 +92,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
                 {
                     result = true;
                 }
-                else
+            }
+            return result;
+        }
+
+        private bool existString(List<string> tags, Tag str)
+        {
+            string trimmed = "";
+            bool result = true;
+
+            foreach (var tag in tags)
+            {
+                trimmed = String.Concat(tag.Where(c => !Char.IsWhiteSpace(c))).ToLower();
+                if (trimmed.Equals(str.tagname))
                 {
                     result = false;
                 }
@@ -106,19 +116,39 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         public void updateTags(long imgId, List<string> strtags)
         {
             ImageUpload image = ImageDao.Find(imgId);
-            List<Tag> tags = ImageService.FindImageTags(imgId,0,10);
+            List<Tag> tags = image.Tag.ToList();
 
             if (image != null)
             {
                 foreach (var tag in strtags)
                 {
-                    if (!existTag(tags, tag))
+                    string trimmed = String.Concat(tag.Where(c => !Char.IsWhiteSpace(c))).ToLower();
+                    if (!existTag(tags, trimmed))
                     {
-                        long tagId = CreateTag(tag);
+                        long tagId = CreateTag(trimmed);
                         Tag aux = TagDao.Find(tagId);
-                        ImageService.addTag(aux, imgId);
+                        tags.Add(aux);
+                        image.Tag = tags;
+                        ImageDao.Update(image);
                     }
+                    try
+                    {
+                        ImageUpload image2 = ImageDao.Find(imgId);
+                        List<Tag> tags2 = image2.Tag.ToList();
+                        Tag aux2 = TagDao.FindByName(tag);
+                        if (existString(strtags, aux2))
+                        {
+                            tags2.Remove(aux2);
+                            image.Tag = tags2;
+                            ImageDao.Update(image);
+                        }
+                    }
+                    catch (InstanceNotFoundException)
+                    {
+                    }
+                    
                 }
+
             }
             
         }

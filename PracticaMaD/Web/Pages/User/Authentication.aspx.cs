@@ -32,6 +32,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     FormsAuthentication.
                         RedirectFromLoginPage(txtLogin.Text,
                             checkRememberPassword.Checked);
+
+                    Int64 userId = SessionManager.GetUserId(Context);
+
+                    String url = String.Format("./Perfil.aspx?userId={0}",userId);
+                    Response.Redirect(Response.ApplyAppPathModifier(url));
                 }
                 catch (InstanceNotFoundException)
                 {

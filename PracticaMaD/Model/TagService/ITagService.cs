@@ -6,13 +6,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
 {
     public interface ITagService
     {
+
         [Inject]
         ITagDao TagDao { set; }
+
+        [Inject]
+        IImageUploadDao ImageDao  { set; }
+
+
+
 
         /// <exception cref="AlreadyCreatedException"/>
         long CreateTag(string name);

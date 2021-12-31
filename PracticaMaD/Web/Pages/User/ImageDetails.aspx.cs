@@ -24,96 +24,122 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         {
             lclMenuExplanation.Text = "Image Details";
 
-            if (SessionManager.IsUserAuthenticated(Context))
+            
+            long imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+            Int64 userId = SessionManager.GetUserId(Context);
+
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            IImageUploadService imageUploadService = iocManager.Resolve<IImageUploadService>();
+            IUserService userService = iocManager.Resolve<IUserService>();
+
+            ImageUpload image = imageUploadService.findImage(imgId);
+
+            if (imageUploadService.isLiked(imgId, image.usrId))
             {
-                long imgId = Convert.ToInt64(Request.Params.Get("imgId"));
-                Int64 userId = SessionManager.GetUserId(Context);
+                likeButton.Text = "💔";
+            }
 
-                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-                IImageUploadService imageUploadService = iocManager.Resolve<IImageUploadService>();
-                ImageUpload image = imageUploadService.findImage(imgId);
+            if (!(image.usrId == userId))
+            {
+                btnDelete.Visible = false;
+                EditTagsButton.Visible = false;
+            }
 
-                if (imageUploadService.isLiked(imgId, image.usrId))
+            if (!IsPostBack)
+            {
+
+                String commentsUrl = String.Format("./CommentDetails.aspx?imgId={0}", imgId);
+                
+
+                Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(image.uploadedImage);
+                lablTitle.Text = "<h2>" + image.title + "<h2/>";
+                lablLikes.Text = "<h5> Likes: " + image.likes + "<h5/>";
+                labldescription.Text = "<h2> Description: " + image.descriptions + "<h2/>";
+                txtUser.Text = "User : "+ userService.findUserNameById(image.usrId);
+                String profileUrl = String.Format("./PerfilCargado.aspx?ID={0}", image.usrId);
+
+                if(image.f == 0)
                 {
-                    likeButton.Text = "💔";
+                    txtF.Visible = false;
+                }
+                if (image.t == 0)
+                {
+                    txtT.Visible = false;
+                }
+                if (image.iso == "0")
+                {
+                    txtISO.Visible = false;
+                }
+                if (image.wb == "0")
+                {
+                    txtWB.Visible = false;
                 }
 
-                if (!(image.usrId == userId))
+                txtF.Text = image.f.ToString();
+                txtT.Text = image.t.ToString();
+                txtISO.Text = image.iso.ToString();
+                txtWB.Text = image.wb.ToString();
+
+
+                txtUser.NavigateUrl =profileUrl;
+
+                long numberOfComments = imageUploadService.CountComments(imgId);
+                if (numberOfComments == 0)
                 {
-                    btnDelete.Visible = false;
-                    EditTagsButton.Visible = false;
+                    CommentsLink.Visible = false;
                 }
-
-                if (!IsPostBack)
+                else
                 {
-
-                    String commentsUrl = String.Format("./CommentDetails.aspx?imgId={0}", imgId);
-
-                    Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(image.uploadedImage);
-                    lablTitle.Text = "<h2>" + image.title + "<h2/>";
-                    lablLikes.Text = "<h5> Likes: " + image.likes + "<h5/>";
-                    labldescription.Text = "<h2> Description: " + image.descriptions + "<h2/>";
-                    long numberOfComments = imageUploadService.CountComments(imgId);
-                    if (numberOfComments == 0)
-                    {
-                        CommentsLink.Visible = false;
-                    }
-                    else
-                    {
-                        CommentsLink.Visible = true;
-                    }
-                    CommentsLink.Text = "Coments : " + numberOfComments.ToString();
-                    CommentsLink.NavigateUrl = commentsUrl;
-
+                    CommentsLink.Visible = true;
                 }
+                CommentsLink.Text = "Coments : " + numberOfComments.ToString();
+                CommentsLink.NavigateUrl = commentsUrl;
 
-                try
-                {
+            }
 
-                    // ObjectCreating is executed before ObjectDataSource creates
-                    // an instance of the type used as DataSource (UserService).
-                    // We need to intercept this call to replace the standard creation
-                    // procedure (a new UserService() sentence) to use the Unity
-                    // Container that allows to complete the dependences (accountDao,...)
-                    pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
+            try
+            {
 
-                    pbpDataSource.TypeName =
-                         Settings.Default.ObjectDS_Image_Service;
+                // ObjectCreating is executed before ObjectDataSource creates
+                // an instance of the type used as DataSource (UserService).
+                // We need to intercept this call to replace the standard creation
+                // procedure (a new UserService() sentence) to use the Unity
+                // Container that allows to complete the dependences (accountDao,...)
+                pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
 
-                    pbpDataSource.EnablePaging = true;
+                pbpDataSource.TypeName =
+                        Settings.Default.ObjectDS_Image_Service;
 
-                    pbpDataSource.SelectMethod =
-                        Settings.Default.ObjectDS_Image_Tag_SelectMethod;
+                pbpDataSource.EnablePaging = true;
 
-                    pbpDataSource.SelectParameters.Add("imgId", DbType.Int64, imgId.ToString());
+                pbpDataSource.SelectMethod =
+                    Settings.Default.ObjectDS_Image_Tag_SelectMethod;
 
-                    pbpDataSource.StartRowIndexParameterName =
-                        Settings.Default.ObjectDS_User_StartIndexParameter;
+                pbpDataSource.SelectParameters.Add("imgId", DbType.Int64, imgId.ToString());
 
-                    pbpDataSource.SelectCountMethod =
-                        Settings.Default.ObjectDS_Image_Tag_CountMethod;
+                pbpDataSource.StartRowIndexParameterName =
+                    Settings.Default.ObjectDS_User_StartIndexParameter;
 
-                    pbpDataSource.MaximumRowsParameterName =
-                        Settings.Default.ObjectDS_User_CountParameter;
+                pbpDataSource.SelectCountMethod =
+                    Settings.Default.ObjectDS_Image_Tag_CountMethod;
 
-                    gvTags.AllowPaging = true;
-                    gvTags.PageSize = Settings.Default.PracticaMaD_defaultCount;
+                pbpDataSource.MaximumRowsParameterName =
+                    Settings.Default.ObjectDS_User_CountParameter;
 
-                    gvTags.DataSource = pbpDataSource;
-                    gvTags.DataBind();
+                gvTags.AllowPaging = true;
+                gvTags.PageSize = Settings.Default.PracticaMaD_defaultCount;
+
+                gvTags.DataSource = pbpDataSource;
+                gvTags.DataBind();
 
                    
-                }
-                catch (TargetInvocationException)
-                {
-
-                }
             }
-            else
+            catch (TargetInvocationException)
             {
-                String url = String.Format("./Authentication.aspx");
-                Response.Redirect(Response.ApplyAppPathModifier(url));
+
             }
+            
+            
         }
         protected void gvTagsPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -132,14 +158,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
         protected void BtnEditTags(object sender, EventArgs e)
         {
-            Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
-            String url = String.Format("./EditTags.aspx?imgId={0}", imgId);
-            Response.Redirect(Response.ApplyAppPathModifier(url));
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+                String url = String.Format("./EditTags.aspx?imgId={0}", imgId);
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+            }
+            else
+            {
+                String url = String.Format("./Authentication.aspx");
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+            }
         }
 
         protected void BtnDeleteClick(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+            if (Page.IsValid && SessionManager.IsUserAuthenticated(Context))
             {
                 /* Get data. */
                 IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
@@ -152,35 +186,56 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 Response.Redirect(Response.ApplyAppPathModifier(url));
 
             }
+            else
+            {
+                String url = String.Format("./Authentication.aspx");
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+            }
         }
 
         protected void BtnAddComment(object sender, EventArgs e)
         {
-            Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
-            String url = String.Format("./AddComment.aspx?imgId={0}", imgId);
-            Response.Redirect(Response.ApplyAppPathModifier(url));
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+                String url = String.Format("./AddComment.aspx?imgId={0}", imgId);
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+            }
+            else
+            {
+                String url = String.Format("./Authentication.aspx");
+                Response.Redirect(Response.ApplyAppPathModifier(url));
+            }
         }
 
         protected void BtnLikeClick(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-                /* Get data. */
-                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-                IImageUploadService imageService = iocManager.Resolve<IImageUploadService>();
-                Int64 userId = SessionManager.GetUserId(Context);
-                Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
-                if (!imageService.isLiked(imgId, userId))
+                if (SessionManager.IsUserAuthenticated(Context))
                 {
-                    imageService.LikedImage(imgId, userId);
-                    Response.Redirect(Request.RawUrl);
+                    /* Get data. */
+                    IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                    IImageUploadService imageService = iocManager.Resolve<IImageUploadService>();
+                    Int64 userId = SessionManager.GetUserId(Context);
+                    Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+                    if (!imageService.isLiked(imgId, userId))
+                    {
+                        imageService.LikedImage(imgId, userId);
+                        Response.Redirect(Request.RawUrl);
+                    }
+                    else
+                    {
+                        imageService.UnlikeImage(imgId, userId);
+                        Response.Redirect(Request.RawUrl);
+                    }
                 }
                 else
                 {
-                    imageService.UnlikeImage(imgId, userId);
-                    Response.Redirect(Request.RawUrl);
+                    String url = String.Format("./Authentication.aspx");
+                    Response.Redirect(Response.ApplyAppPathModifier(url));
                 }
-                
+
 
             }
         }
