@@ -16,6 +16,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            lclMenuExplanation.Text = "Image Details";
+
             if (SessionManager.IsUserAuthenticated(Context))
             {
                 long imgId = Convert.ToInt64(Request.Params.Get("imgId"));
