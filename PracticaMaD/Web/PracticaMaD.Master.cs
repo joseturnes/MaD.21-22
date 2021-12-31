@@ -128,18 +128,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             if (DropDownList1.SelectedValue.Equals("Ciudades"))
                 category = 4;
 
-            if (DropDownList1.SelectedValue.Equals("Select a Category"))
-            {
                 string keywords = txtKeywords.Text;
-                string url = "~/Pages/User/RenderSearch.aspx?keywords=" + keywords + "?category=" + "0";
+                String url = String.Format("~/Pages/User/RenderSearch.aspx?keywords={0}&category={1}", keywords, category);
                 Response.Redirect(Response.ApplyAppPathModifier(url));
-            }
-            else
-            {
-                string keywords = txtKeywords.Text;
-                string url = "~/Pages/User/RenderSearch.aspx?keywords=" + keywords + "&category=" + category.ToString();
-                Response.Redirect(Response.ApplyAppPathModifier(url));
-            }
         }
     }
 

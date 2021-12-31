@@ -19,7 +19,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         protected void Page_Load(object sender, EventArgs e)
         {
             string keywords = Request.Params.Get("keywords");
-            string category =Request.Params.Get("category");
+            string category = Request.Params.Get("category");
           
             try
             {
@@ -66,7 +66,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
 
 
-        protected void gvFollowsPageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void gvRenderPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvSearch.PageIndex = e.NewPageIndex;
             gvSearch.DataBind();

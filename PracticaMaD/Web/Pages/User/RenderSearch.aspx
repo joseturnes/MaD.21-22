@@ -15,7 +15,7 @@
                 <center>
                     <asp:GridView ID="gvSearch" runat="server"
                             AutoGenerateColumns="False"
-                            OnPageIndexChanging="gvFollowsPageIndexChanging"
+                            OnPageIndexChanging="gvRenderPageIndexChanging"
                             ShowHeaderWhenEmpty="True">
                         <Columns>
                             <asp:TemplateField HeaderText="Publications">

@@ -148,22 +148,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
        
         public void follow(string followedLogin, string followerLogin)
         {
-            UserProfile user1 = UserProfileDao.FindByLoginName(followedLogin);
-            UserProfile user2 = UserProfileDao.FindByLoginName(followerLogin);
+            UserProfile followed = UserProfileDao.FindByLoginName(followedLogin);
+            UserProfile follower = UserProfileDao.FindByLoginName(followerLogin);
 
-            if (user1.Equals(null))
+            if (followed.Equals(null))
             {
                 throw new InstanceNotFoundException(followedLogin, typeof(UserProfile).FullName);
             }
-            if (user2.Equals(null))
+            if (follower.Equals(null))
             {
                 throw new InstanceNotFoundException(followerLogin, typeof(UserProfile).FullName);
             }
 
-            if (!user1.UserProfile1.Contains(user2))
+            if (!(followed.UserProfile2.Contains(follower) && follower.UserProfile1.Contains(followed)))
             {
-                user1.UserProfile2.Add(user2);
-                user2.UserProfile1.Add(user1);
+                followed.UserProfile2.Add(follower);
+                follower.UserProfile1.Add(followed);
             }
 
         }

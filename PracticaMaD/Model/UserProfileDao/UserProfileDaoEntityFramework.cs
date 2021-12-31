@@ -89,7 +89,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             UserProfile userProfile = FindById(userId);
 
 
-            return userProfile.UserProfile1.Skip(startIndex).Take(count).ToList();
+            return userProfile.UserProfile2.Skip(startIndex).Take(count).ToList();
         }
 
         public List<UserProfile> FindFollows(long userId, int startIndex, int count)
@@ -97,7 +97,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             UserProfile userProfile = FindById(userId);
 
 
-            return userProfile.UserProfile2.Skip(startIndex).Take(count).ToList();
+            return userProfile.UserProfile1.Skip(startIndex).Take(count).ToList();
         }
 
         public int getNumberOfFollows(long userId)
@@ -105,7 +105,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             UserProfile userProfile = FindById(userId);
 
 
-            return userProfile.UserProfile2.Count();
+            return userProfile.UserProfile1.Count();
         }
 
         public int getNumberOfFollowers(long userId)
@@ -113,7 +113,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             UserProfile userProfile = FindById(userId);
 
 
-            return userProfile.UserProfile1.Count();
+            return userProfile.UserProfile2.Count();
 
 
         }
