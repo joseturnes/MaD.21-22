@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true" CodeBehind="UploadImage.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.User.UploadImage" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuWelcome" runat="server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation" runat="server">
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_MenuLinks" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"
+    runat="server">
+    <asp:Localize ID="lclMenuExplanation" runat="server" meta:resourcekey="lclMenuExplanation" />
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,10 +19,10 @@
                 <br />
                 <br />
                 Archivo:
-                <asp:FileUpload ID="fuploadImage" accept=".jpg" runat="server" CssClass="form-control"/>
+                <asp:FileUpload ID="fuploadImage" accept=".jpg" runat="server" CssClass="form-control" required/>
                 <br />
                 <br />
-                <asp:DropDownList class="form-select" data-width="fit" ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                <asp:DropDownList class="form-select" data-width="fit" ID="DropDownList1" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" required>
                     <asp:ListItem Selected="True">Select a Category</asp:ListItem>
                     <asp:ListItem>Retrato</asp:ListItem>
                     <asp:ListItem>Paisaje Nocturno</asp:ListItem>
@@ -32,10 +32,10 @@
                 <br />
                 <br />
                 Title:
-                <asp:TextBox class="form-control" ID="txtTitle" runat="server"></asp:TextBox>
+                <asp:TextBox class="form-control" ID="txtTitle" runat="server" required></asp:TextBox>
                 <br />
                 Descripcion:
-                <asp:TextBox class="form-control" ID="txtDescription" runat="server"></asp:TextBox>
+                <asp:TextBox class="form-control" ID="txtDescription" runat="server" required></asp:TextBox>
                 <br />
                 Tags:
                 <asp:TextBox class="form-control" ID="txtTags" runat="server"></asp:TextBox>

@@ -74,11 +74,11 @@
                                         SortExpression="tagname" />
                         <asp:BoundField DataField="timesUsed" HeaderText="Times Used" />
                     </Columns>
-                    <rowstyle backcolor="LightCyan"  
+                    <rowstyle backcolor="#7c7a7a"  
                        forecolor="DarkBlue"
                        font-italic="true"/>
                     
-                    <alternatingrowstyle backcolor="PaleTurquoise"  
+                    <alternatingrowstyle backcolor="#494949"  
                       forecolor="DarkBlue"
                       font-italic="true"/>
                 </asp:GridView>

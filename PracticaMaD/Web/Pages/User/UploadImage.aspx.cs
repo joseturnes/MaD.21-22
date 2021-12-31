@@ -28,7 +28,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //ConsultarImagenes();
+            lclMenuExplanation.Text = "Image Upload";
         }
         
 

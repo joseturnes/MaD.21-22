@@ -14,7 +14,7 @@
                 <div>
                     <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
                     <br />
-                    <asp:TextBox class="form-control" ID="txtUserName" runat="server" meta:resourcekey="txtUserNameResource1"></asp:TextBox>
+                    <asp:TextBox class="form-control" ID="txtUserName" runat="server" meta:resourcekey="txtUserNameResource1" required></asp:TextBox>
                     <br />
                     <asp:Label ID="lblUserExists" runat="server" meta:resourcekey="lblUserExistsResource1" Visible="False"></asp:Label>
                     <br />

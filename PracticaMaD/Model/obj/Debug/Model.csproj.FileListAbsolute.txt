@@ -157,8 +157,8 @@ C:\Software\MaD.21-22\PracticaMaD\Model\bin\Debug\Microsoft.Practices.Enterprise
 C:\Software\MaD.21-22\PracticaMaD\Model\bin\Debug\Ninject.xml
 C:\Software\MaD.21-22\PracticaMaD\Model\bin\Debug\Ninject.Extensions.Interception.xml
 C:\Software\MaD.21-22\PracticaMaD\Model\bin\Debug\es\Microsoft.Data.Tools.Components.resources.dll
+C:\Software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.AssemblyReference.cache
 C:\Software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
 C:\Software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.dll
 C:\Software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.pdb
-C:\Software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.AssemblyReference.cache

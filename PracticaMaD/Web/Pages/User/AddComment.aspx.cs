@@ -14,7 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            lclMenuExplanation.Text = "Add Comment";
         }
 
         protected void BtnCommentClick(object sender, EventArgs e)

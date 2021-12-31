@@ -13,6 +13,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         protected void Page_Load(object sender, EventArgs e)
         {
             lblLoginError.Visible = false;
+            lclMenuExplanation.Text = "Register";
 
             if (!IsPostBack)
             {

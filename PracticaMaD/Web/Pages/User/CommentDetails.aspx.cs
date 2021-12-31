@@ -18,6 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         private ObjectDataSource pbpDataSource = new ObjectDataSource();
         protected void Page_Load(object sender, EventArgs e)
         {
+            lclMenuExplanation.Text = "Comment Details";
             long imgId = Convert.ToInt64(Request.Params.Get("imgId"));
 
             try
