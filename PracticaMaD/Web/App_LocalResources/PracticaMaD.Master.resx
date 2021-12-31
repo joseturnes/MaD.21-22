@@ -136,7 +136,7 @@
     <value>Logout</value>
   </data>
   <data name="lnkPerfil.Text" xml:space="preserve">
-    <value>Mi Perfil</value>
+    <value>My profile</value>
   </data>
   <data name="lnkUpdate.Text" xml:space="preserve">
     <value>Update Profile</value>

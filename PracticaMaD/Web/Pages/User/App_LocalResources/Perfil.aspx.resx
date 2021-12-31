@@ -130,7 +130,7 @@
     <value>Invalid User</value>
   </data>
   <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>Perfil de usuario</value>
+    <value>User profile</value>
   </data>
   <data name="lnkFollows.Text" xml:space="preserve">
     <value>Follows</value>

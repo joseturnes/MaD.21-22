@@ -112,15 +112,45 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lclContent.Text" xml:space="preserve">
-    <value>Contenido de la Página Principal de Photogram</value>
+  <data name="btnComment.Text" xml:space="preserve">
+    <value>+ Comment</value>
   </data>
-  <data name="Page.Title" xml:space="preserve">
-    <value>Photogram - Página Principal</value>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="CommentsLink.Text" xml:space="preserve">
+    <value>Comments:</value>
+  </data>
+  <data name="lablLikes.Text" xml:space="preserve">
+    <value>Likes:</value>
+  </data>
+  <data name="lblDescription.Text" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="lblImageTitle.Text" xml:space="preserve">
+    <value>Title:</value>
+  </data>
+  <data name="lclMenuExplanation.Text" xml:space="preserve">
+    <value>Image Details</value>
+  </data>
+  <data name="txtF.Text" xml:space="preserve">
+    <value>Diaphragm aperture (f):</value>
+  </data>
+  <data name="txtISO.Text" xml:space="preserve">
+    <value>ISO:</value>
+  </data>
+  <data name="txtT.Text" xml:space="preserve">
+    <value>Exhibithion time (t):</value>
+  </data>
+  <data name="txtUser.Text" xml:space="preserve">
+    <value>User:</value>
+  </data>
+  <data name="txtWB.Text" xml:space="preserve">
+    <value>White balace (wb):</value>
   </data>
 </root>

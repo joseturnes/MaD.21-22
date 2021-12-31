@@ -22,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            lclMenuExplanation.Text = "Image Details";
+            lclMenuExplanation.Text = lclMenuExplanation.Text;
 
             
             long imgId = Convert.ToInt64(Request.Params.Get("imgId"));
@@ -52,10 +52,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 
 
                 Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(image.uploadedImage);
-                lablTitle.Text = "<h2>" + image.title + "<h2/>";
-                lablLikes.Text = "<h5> Likes: " + image.likes + "<h5/>";
-                labldescription.Text = "<h2> Description: " + image.descriptions + "<h2/>";
-                txtUser.Text = "User : "+ userService.findUserNameById(image.usrId);
+                lablTitle.Text = "<h3>" + image.title + "<h3/>";
+                lablLikes.Text = "<h3>" +  lablLikes.Text + image.likes + "<h3/>";
+                labldescription.Text = "<h3>" + labldescription.Text + image.descriptions + "<h3/>";
+                txtUser.Text = "<h3>" + txtUser.Text  + userService.findUserNameById(image.usrId) + "<h3/>";
                 String profileUrl = String.Format("./PerfilCargado.aspx?ID={0}", image.usrId);
 
                 if(image.f == 0)
@@ -75,10 +75,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     txtWB.Visible = false;
                 }
 
-                txtF.Text = image.f.ToString();
-                txtT.Text = image.t.ToString();
-                txtISO.Text = image.iso.ToString();
-                txtWB.Text = image.wb.ToString();
+                txtF.Text = "<h4>" + txtF.Text + image.f.ToString() + "<h4/>";
+                txtT.Text = "<h4>" + txtT.Text + image.t.ToString() + "<h4/>";
+                txtISO.Text = "<h4>" + txtISO.Text + image.iso.ToString() + "<h4/>";
+                txtWB.Text = "<h4>" + txtWB.Text + image.wb.ToString() + "<h4/>";
 
 
                 txtUser.NavigateUrl =profileUrl;
@@ -92,7 +92,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 {
                     CommentsLink.Visible = true;
                 }
-                CommentsLink.Text = "Coments : " + numberOfComments.ToString();
+                CommentsLink.Text = CommentsLink.Text + numberOfComments.ToString();
                 CommentsLink.NavigateUrl = commentsUrl;
 
             }
