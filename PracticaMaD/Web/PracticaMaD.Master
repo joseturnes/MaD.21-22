@@ -64,7 +64,7 @@
                 <asp:GridView ID="gvTags" runat="server" CssClass="userFollows"
                     AutoGenerateColumns="False"
                     OnPageIndexChanging="gvTagsPageIndexChanging"
-                    ShowHeaderWhenEmpty="True">
+                    ShowHeaderWhenEmpty="False">
                     <Columns>
                         <asp:HyperLinkField
                                         DataNavigateUrlFields="tagid"

@@ -12,11 +12,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <div id="form">
             <div class="field">
-                        Content : 
-                        <asp:TextBox class="form-control" ID="txtTags" runat="server" Columns="16"></asp:TextBox>                   
+                        <asp:Label ID="lblEditTags" runat="server" meta:resourcekey="lblEditTags"></asp:Label>
+                        <asp:TextBox class="form-control" ID="txtTags" runat="server" ></asp:TextBox>                   
             </div>
             <div class="button">
-                <asp:Button class="btn btn-primary" ID="btnComment" runat="server" OnClick="BtnCommentClick" Text="Modify" />
+                <asp:Button class="btn btn-primary" ID="btnComment" runat="server" OnClick="BtnEditClick" Text="Modify" />
             </div>
     </div>
 </asp:Content>

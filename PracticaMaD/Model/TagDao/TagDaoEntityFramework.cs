@@ -1,5 +1,7 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,6 +16,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         public TagDaoEntityFramework()
         {
         }
+
+        [Inject]
+        public IImageUploadDao ImageDao { private get; set; }
 
         public int countImagesWithTag(long tagId)
         {
@@ -83,6 +88,65 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
                  select a.ImageUpload).FirstOrDefault().Skip(startIndex).Take(count).ToList();
 
             return result;
+        }
+        public Tag CreateTag(string name)
+        {
+            Tag tag = new Tag();
+            try
+            {
+                string trimmed = String.Concat(name.Where(c => !Char.IsWhiteSpace(c)));
+                tag = FindByName(trimmed.ToLower());
+                if (tag != null)
+                {
+                    return tag;
+                }
+
+            }
+            catch (InstanceNotFoundException)
+            {
+                string trimmed = String.Concat(name.Where(c => !Char.IsWhiteSpace(c)));
+                tag.tagname = trimmed.ToLower();
+                Create(tag);
+                return tag;
+
+            }
+            return tag;
+        }
+
+        public void updateTags(long imgId, List<String> strtags) 
+        {
+            ImageUpload image = ImageDao.Find(imgId);
+
+            image.Tag.Clear();
+
+            List<String> strtags2 = null;
+
+            strtags.ForEach(t => t.ToLower());
+
+            if (image != null && strtags != null)
+            {
+                var imageTags = image.Tag;
+
+                foreach (var tag in imageTags)
+                {
+                    if (!strtags.Contains(tag.tagname))
+                    image.Tag.Remove(tag);
+                }
+
+             
+                foreach (String tag in strtags)
+                {
+                    
+                    Tag tagEntity = CreateTag(tag);
+                    if (!image.Tag.Contains(tagEntity))
+                    {
+                        tagEntity.timesUsed++;
+                        image.Tag.Add(tagEntity);
+                        tagEntity.ImageUpload.Add(image);
+                    }
+                }
+            }
+            ImageDao.Update(image);
         }
     }
 }

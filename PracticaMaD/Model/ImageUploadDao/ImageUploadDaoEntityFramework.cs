@@ -156,14 +156,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         public List<Tag> FindImageTags(long imgId, int startIndex, int count)
         {
-            DbSet<ImageUpload> images = Context.Set<ImageUpload>();
+            ImageUpload image = findImage(imgId);
 
-            var result =
-                (from a in images
-                 where a.imgId == imgId
-                 select a.Tag).FirstOrDefault().ToList();
-
-            return result;
+            return image.Tag.ToList();
         }
 
         public int CountImageTags(long imgId)

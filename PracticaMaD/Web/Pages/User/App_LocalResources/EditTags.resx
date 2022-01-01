@@ -117,58 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lblAddedImage.Text" xml:space="preserve">
-    <value>AddedImage</value>
-  </data>
-  <data name="lblDescription.Text" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="lblF.Text" xml:space="preserve">
-    <value>F</value>
-  </data>
-  <data name="lblFile.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="lblInvalidUser" xml:space="preserve">
-    <value>Invalid User</value>
-  </data>
-  <data name="lblISO.Text" xml:space="preserve">
-    <value>ISO</value>
-  </data>
-  <data name="lblT.Text" xml:space="preserve">
-    <value>T</value>
-  </data>
-  <data name="lblTags.Text" xml:space="preserve">
-    <value>Tags</value>
-  </data>
-  <data name="lblTittle.Text" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="lblWB.Text" xml:space="preserve">
-    <value>WB</value>
-  </data>
-  <data name="lclMenuExplanation.Text" xml:space="preserve">
-    <value>Image Upload</value>
-  </data>
-  <data name="txtDescription.Text" xml:space="preserve">
-    <value>Descripcion:</value>
-  </data>
-  <data name="txtF.Text" xml:space="preserve">
-    <value>F:</value>
-  </data>
-  <data name="txtISO.Text" xml:space="preserve">
-    <value>ISO:</value>
-  </data>
-  <data name="txtT.Text" xml:space="preserve">
-    <value>T:</value>
-  </data>
-  <data name="txtTags.Text" xml:space="preserve">
-    <value>Tags:</value>
-  </data>
-  <data name="txtTitle.Text" xml:space="preserve">
-    <value>Title:</value>
-  </data>
-  <data name="txtWB.Text" xml:space="preserve">
-    <value>WB:</value>
+  <data name="lblEditTags.Text" xml:space="preserve">
+    <value>New tags separated by commas.</value>
   </data>
 </root>

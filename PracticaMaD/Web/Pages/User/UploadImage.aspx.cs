@@ -29,6 +29,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         protected void Page_Load(object sender, EventArgs e)
         {
             lclMenuExplanation.Text = lclMenuExplanation.Text;
+            lblDescription.Visible = false;
+            lblF.Visible = false;
+            lblISO.Visible = false;
+            lblT.Visible = false;
+            lblTags.Visible = false;
+            lblTittle.Visible = false;
+            lblWB.Visible = false;
         }
         
 
@@ -90,31 +97,43 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
             ImageUploadDetails details = new ImageUploadDetails(txtTitle.Text, OriginalImage, userId, txtDescription.Text,DateTime.Now,Convert.ToInt64(auxF), Convert.ToInt64(auxT),auxISO,auxWB,0) ;
 
-            List<String> tags = new List<string>();
+            String [] tags = null;
 
             if (!txtTags.Text.Equals(""))
             {
-                var array = txtTags.Text.Split(',');
-                tags = array.ToList();
+                tags = txtTags.Text.Split(',');
             }
             
 
-            imageUploadService.UploadImage(details, tags, DropDownList1.SelectedValue);
+            imageUploadService.UploadImage(details, tags.ToList(), DropDownList1.SelectedValue);
 
             string ImagenDataURL64 = "data:image/jpg;base64," + Convert.ToBase64String(OriginalImage);
             imagePreview.ImageUrl = ImagenDataURL64;
 
             btnUpload.Visible = false;
             fuploadImage.Visible = false;
+
+            DropDownList1.Visible = false;
+
+            txtTitle.Visible = false;
+            txtDescription.Visible = false;
+            txtTags.Visible = false;
             txtF.Visible = false;
             txtT.Visible = false;
             txtISO.Visible = false;
             txtWB.Visible = false;
-            
-            //ConsultarImagenes();
+
+            lblFile.Visible = false;
+            lblDescription.Visible = false;
+            lblF.Visible = false;
+            lblISO.Visible = false;
+            lblT.Visible = false;
+            lblTags.Visible = false;
+            lblTittle.Visible = false;
+            lblWB.Visible = false;
         }
 
-        
+
 
         protected void btnPerfil_Click(object sender, EventArgs e)
         {

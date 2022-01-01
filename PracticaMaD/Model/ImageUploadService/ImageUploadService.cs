@@ -79,8 +79,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             img.likes = imageDetails.likes;
             img.wb = imageDetails.wb; 
 
-
-
             ImageUploadDao.Update(img);
         }
 

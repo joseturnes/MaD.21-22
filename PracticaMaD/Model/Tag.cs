@@ -39,6 +39,11 @@ public partial class Tag
 
     public virtual ICollection<ImageUpload> ImageUpload { get; set; }
 
-}
+        public override bool Equals(object obj)
+        {
+            return obj is Tag tag &&
+                   tagname == tag.tagname;
+        }
+    }
 
 }

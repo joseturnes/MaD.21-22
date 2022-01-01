@@ -94,8 +94,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 float f1 = 1;
                 float f2 = 1;
 
-                long tagId = tagService.CreateTag("Luces");
-                long tagId2 = tagService.CreateTag("Vigo");
+                long tagId = tagDao.CreateTag("Luces").tagId;
+                long tagId2 = tagDao.CreateTag("Vigo").tagId;
 
                 List<string> tags = new List<String>();
                 tags.Add("Coruña");
@@ -103,6 +103,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 tags.Add("Luces");
                 tags.Add("Luces2");
                 tags.Add("Luces3");
+                tags.Add("Vigo");
 
                 byte[] image = GetByteArray(512);
 
@@ -138,7 +139,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 tags2.Add("Vigo");
                 tags2.Add("Vigo");
 
-                tagService.updateTags(id, tags2);
+                tagService.updateTags(id, tags);
 
                 Tag vigo = tagDao.Find(tagId2);
 
@@ -155,7 +156,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 Assert.IsTrue(result.Tag.Contains(tagDao.Find(tagId)));
                 Assert.IsTrue(tagDao.Find(tagId).ImageUpload.Contains(result));
                 Assert.IsTrue(result.Category.categoryName.Equals("Paisaje"));
-                Assert.AreEqual(result.Tag.Count, 6);
+                Assert.AreEqual(6, result.Tag.Count);
+                tagService.updateTags(id, tags2);
+                Assert.AreEqual(2, result.Tag.Count);
                 Assert.IsTrue(result.Tag.Contains(vigo));
 
                 long commId= commentService.AddComment(id,"commentary1",userId);

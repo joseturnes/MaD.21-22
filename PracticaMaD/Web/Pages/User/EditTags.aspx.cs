@@ -15,54 +15,55 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
     public partial class EditTags : SpecificCulturePage
     {
+        IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
         protected void Page_Load(object sender, EventArgs e)
         {
-            lclMenuExplanation.Text = lclMenuExplanation.Text;
-            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-            IImageUploadService imageService = iocManager.Resolve<IImageUploadService>();
-
-            Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
-
-            var tags = imageService.FindImageTags(imgId, 0, 10);
-            string result = "";
-
-            foreach (var tag in tags)
+            if (!Page.IsPostBack)
             {
-                result = result + "," + tag.tagname;
+                lblEditTags.Visible = true;
+
+                lclMenuExplanation.Text = lclMenuExplanation.Text;
+
+                IImageUploadService imageService = iocManager.Resolve<IImageUploadService>();
+
+                Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+
+                var tags = imageService.FindImageTags(imgId, 0, 100);
+                string result = "";
+
+                foreach (var tag in tags)
+                {
+                    result = result + "," + tag.tagname;
+                }
+
+                var array = result.Split(',');
+
+                var array2 = array.Skip(1);
+
+                result = string.Join(",", array2);
+
+                txtTags.Text = result;
             }
-
-            var array = result.Split(',');
-            
-            var array2 = array.Skip(1);
-
-            result = string.Join(",",array2); 
-
-            txtTags.Text = result;
         }
 
-        protected void BtnCommentClick(object sender, EventArgs e)
+        protected void BtnEditClick(object sender, EventArgs e)
         {
-            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            //IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             ITagService tagService = iocManager.Resolve<ITagService>();
             //Insertar en la base de datos
 
             Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
 
           
-            List<String> tags = new List<string>();
+            String [] tags = null;
 
-            if (!txtTags.Text.Equals(""))
-            {
-                var array = txtTags.Text.Split(',');
-                tags = array.ToList();
-            }
-
-            tagService.updateTags(imgId, tags);           
+          
+            tags = txtTags.Text.Split(',');
+           
+            tagService.updateTags(imgId, tags.ToList());           
 
             String url = String.Format("./ImageDetails.aspx?imgId={0}",imgId);
             Response.Redirect(Response.ApplyAppPathModifier(url));
-
         }
-
     }
 }

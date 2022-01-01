@@ -18,6 +18,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         List<ImageUpload> fingImagesByTagId(long tagId, int startIndex, int count);
 
         int countImagesWithTag(long tagId);
+        void updateTags(long imgId, List<String> tags);
+
+        Tag CreateTag(string name);
 
     }
 }

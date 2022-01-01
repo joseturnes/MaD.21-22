@@ -13,12 +13,13 @@
         <div class="row">
             <center>
             <div class="col-md-4 col-md-offset-4">
-                Imagen agregada:
+                
+                <asp:Label ID="lblAddedImage" runat="server" meta:resourcekey="lblAddedImage"></asp:Label>
                 <br />
                 <asp:Image ID="imagePreview" Width="400" ImageUrl="https://icons.iconarchive.com/icons/papirus-team/papirus-apps/512/upload-pictures-icon.png" runat="server" />
                 <br />
                 <br />
-                Archivo:
+                <asp:Label ID="lblFile" runat="server" meta:resourcekey="lblFile"></asp:Label>
                 <asp:FileUpload ID="fuploadImage" accept=".jpg" runat="server" CssClass="form-control" required/>
                 <br />
                 <br />
@@ -31,30 +32,31 @@
                 </asp:DropDownList>
                 <br />
                 <br />
-                Title:
-                <asp:TextBox class="form-control" ID="txtTitle" runat="server" required></asp:TextBox>
+                <asp:Label ID="lblTittle" runat="server" meta:resourcekey="lblTittle"></asp:Label>
+                <asp:TextBox class="form-control" ID="txtTitle" runat="server" placeholder="Title" required></asp:TextBox>
                 <br />
-                Descripcion:
-                <asp:TextBox class="form-control" ID="txtDescription" runat="server" required></asp:TextBox>
+                <asp:Label ID="lblDescription" runat="server" meta:resourcekey="lblDescription"></asp:Label>
+                <asp:TextBox class="form-control" ID="txtDescription" runat="server" placeholder="Description" required></asp:TextBox>
                 <br />
-                Tags:
-                <asp:TextBox class="form-control" ID="txtTags" runat="server"></asp:TextBox>
+                <asp:Label ID="lblTags" runat="server" meta:resourcekey="lblTags"></asp:Label>
+                <asp:TextBox class="form-control" ID="txtTags" runat="server" placeholder="Tags"></asp:TextBox>
                 <br />
-                F:
-                <asp:TextBox class="form-control" type="number" ID="txtF" runat="server"></asp:TextBox>
+               <asp:Label ID="lblF" runat="server" meta:resourcekey="lblF"></asp:Label>
+                <asp:TextBox class="form-control" type="number" ID="txtF" runat="server" placeholder="F"></asp:TextBox>
                 <br />
-                T:
-                <asp:TextBox class="form-control" type="number" ID="txtT" runat="server"></asp:TextBox>
+                <asp:Label ID="lblT" runat="server" meta:resourcekey="lblT"></asp:Label>
+                <asp:TextBox class="form-control" type="number" ID="txtT" runat="server"  placeholder="T"></asp:TextBox>
                 <br />
-                ISO:
-                <asp:TextBox class="form-control" ID="txtISO" runat="server"></asp:TextBox>
+                <asp:Label ID="lblISO" runat="server" meta:resourcekey="lblISO"></asp:Label>
+                <asp:TextBox class="form-control" ID="txtISO" runat="server" placeholder="ISO"></asp:TextBox>
                 <br />
-                WB:
-                <asp:TextBox class="form-control" ID="txtWB" runat="server"></asp:TextBox>
+                <asp:Label ID="lblWB" runat="server" meta:resourcekey="lblWB"></asp:Label>
+                <asp:TextBox class="form-control" ID="txtWB" runat="server" placeholder="WB"></asp:TextBox>
                 <br />
                 <asp:Button ID="btnUpload" runat="server" Text="Upload Image" CssClass="btn btn-success" OnClick="btnUpload_Click" />
                 <asp:Button ID="btnReturn" runat="server" Text="Return to Profile" CssClass="btn btn-success" OnClick="btnPerfil_Click" />
             </div>
+          </center>
         </div>
     </div>
 </asp:Content>

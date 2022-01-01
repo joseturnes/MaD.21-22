@@ -20,12 +20,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         [Inject]
         IImageUploadDao ImageDao  { set; }
 
-
-
-
-        /// <exception cref="AlreadyCreatedException"/>
-        long CreateTag(string name);
-
         List<Tag> GetAllTags();
 
         List<Tag> findMostUsedTags(int startIndex, int count);

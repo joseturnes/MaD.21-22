@@ -13,7 +13,7 @@
             <asp:GridView ID="gvRecentUploads" runat="server"
                     AutoGenerateColumns="False"
                     OnPageIndexChanging="gvFollowsPageIndexChanging"
-                    ShowHeaderWhenEmpty="True">
+                    ShowHeaderWhenEmpty="False">
                 <Columns>
                     <asp:TemplateField HeaderText="Publications">
                             <ItemTemplate>                           
