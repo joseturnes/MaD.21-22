@@ -4,7 +4,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     margin: 10px 20px;
-    background-color: #98C1D9;
+    background-color: #cfcaca;
 }
 
 /* Links. */
@@ -25,29 +25,29 @@ a:hover {
     border: #000 1px solid;
     background-color: #fff;
     padding: 7px;
-    width: 98%;
+    width: 100%;
 }
 
 /* Page title. */
 
 #pageTitle {
-    background-color: #4B244A;
+    background-color: #cfcaca;
     color: #fff;
     text-align: center;
     font-weight: bold;
     padding: 5px 0 5px 5px;
-    width: 99%;
+    width: 100%;
     font-weight: bold;
 }
 
 /* Menu. */
 
 #menu {
-    background-color: #533A7B;
+    background-color: #808080;
     color: #fff;
     text-align: left;
     padding: 5px 0 5px 5px;
-    width: 99%;
+    width: 100%;
 }
 
 #menuWelcome {
@@ -55,7 +55,7 @@ a:hover {
 }
 
 #menuLinks a {
-    color: #58a4b0;
+    color: #fff;
 }
 
 /* Content. */
@@ -112,7 +112,7 @@ div.button {
 }
 
 input, select, textarea {
-    background-color: #58a4b0;
+    background-color: #ffffff;
 }
 
 /* Error messages. */

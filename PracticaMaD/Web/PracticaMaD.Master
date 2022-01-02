@@ -46,18 +46,23 @@
                     <asp:HyperLink ID="lnkLogout" runat="server"
                         NavigateUrl="~/Pages/User/Logout.aspx"
                         meta:resourcekey="lnkLogout" />
+                    <br/>
+                    <div class="row">
+                        &nbsp&nbsp&nbsp&nbsp<asp:TextBox class="form-group col-md-3" style="float:right" ID="txtKeywords" runat="server"></asp:TextBox>&nbsp&nbsp&nbsp&nbsp
+                        <asp:DropDownList class="form-select col-md-4" style="float:inline-end" Width="200" data-width="fit" ID="DropDownList1" runat="server">
+                            <asp:ListItem Selected="True">Select a Category</asp:ListItem>
+                            <asp:ListItem>Retrato</asp:ListItem>
+                            <asp:ListItem>Paisaje Nocturno</asp:ListItem>
+                            <asp:ListItem>Paisaje</asp:ListItem>
+                            <asp:ListItem>Ciudades</asp:ListItem>
+                        </asp:DropDownList>&nbsp&nbsp&nbsp&nbsp
+                        <asp:Button class="btn btn-light float-right btn-sm col-md-1" style="float:right" ID="searchKeywords" runat="server" Text="Search" OnClick="searchKeywords_Click"  />                   
+                    </div>
+                    
                 </asp:ContentPlaceHolder>
                     <br />
                     <br />
-                    <asp:TextBox class="form-group mx-sm-3 mb-2 col-md-2" ID="txtKeywords" runat="server"></asp:TextBox>
-                    <asp:DropDownList class="form-select" Width="200" data-width="fit" ID="DropDownList1" runat="server">
-                        <asp:ListItem Selected="True">Select a Category</asp:ListItem>
-                        <asp:ListItem>Retrato</asp:ListItem>
-                        <asp:ListItem>Paisaje Nocturno</asp:ListItem>
-                        <asp:ListItem>Paisaje</asp:ListItem>
-                        <asp:ListItem>Ciudades</asp:ListItem>
-                    </asp:DropDownList><br />
-                    <asp:Button class="btn btn-light float-right" ID="searchKeywords" runat="server" Text="Search" OnClick="searchKeywords_Click"  /></span>
+                    </span>
         </div>
         <div>
             
@@ -84,7 +89,7 @@
                 </asp:GridView>
             
         </div>
-
+        
 
         <!-- Body content. -->
         <div id="content">
