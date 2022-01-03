@@ -97,12 +97,7 @@ public partial class ImageUpload
                 hash = hash * multiplier + (t == null ? 0 : t.GetHashCode());
                 hash = hash * multiplier + (iso == null ? 0 : iso.GetHashCode());
                 hash = hash * multiplier + (wb == null ? 0 : wb.GetHashCode());
-                hash = hash * multiplier + (categoryId == null ? 0 : categoryId.GetHashCode());
-                hash = hash * multiplier + (Category == null ? 0 : Category.GetHashCode());
-                hash = hash * multiplier + (Comment == null ? 0 : Comment.GetHashCode());
-                hash = hash * multiplier + (UserProfile == null ? 0 : UserProfile.GetHashCode());
-                hash = hash * multiplier + (Tag == null ? 0 : Tag.GetHashCode());
-                hash = hash * multiplier + (UserProfile1 == null ? 0 : UserProfile1.GetHashCode());
+                
 
                 return hash;
             }
@@ -133,14 +128,7 @@ public partial class ImageUpload
                && (this.f == target.f)
                && (this.t == target.t)
                && (this.iso == target.iso)
-               && (this.wb == target.wb)
-               && (this.categoryId == target.categoryId)
-               && (this.Category == target.Category)
-               && (this.Comment == target.Comment)
-               && (this.UserProfile == target.UserProfile)
-               && (this.Tag == target.Tag)
-               && (this.UserProfile1 == target.UserProfile1)
-               ;
+               && (this.wb == target.wb);
 
         }
     }
