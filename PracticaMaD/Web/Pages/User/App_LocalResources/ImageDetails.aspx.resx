@@ -124,33 +124,33 @@
     <value>Delete</value>
   </data>
   <data name="CommentsLink.Text" xml:space="preserve">
-    <value>Comments:</value>
+    <value>Comments :</value>
   </data>
   <data name="lablLikes.Text" xml:space="preserve">
-    <value>Likes:</value>
+    <value>Likes :</value>
   </data>
   <data name="lblDescription.Text" xml:space="preserve">
-    <value>Description:</value>
+    <value>Description :</value>
   </data>
   <data name="lblImageTitle.Text" xml:space="preserve">
-    <value>Title:</value>
+    <value>Title :</value>
   </data>
   <data name="lclMenuExplanation.Text" xml:space="preserve">
     <value>Image Details</value>
   </data>
   <data name="txtF.Text" xml:space="preserve">
-    <value>Diaphragm aperture (f):</value>
+    <value>Diaphragm aperture (f) :</value>
   </data>
   <data name="txtISO.Text" xml:space="preserve">
-    <value>ISO:</value>
+    <value>ISO :</value>
   </data>
   <data name="txtT.Text" xml:space="preserve">
-    <value>Exhibithion time (t):</value>
+    <value>Exhibithion time (t) :</value>
   </data>
   <data name="txtUser.Text" xml:space="preserve">
-    <value>User:</value>
+    <value>User :</value>
   </data>
   <data name="txtWB.Text" xml:space="preserve">
-    <value>White balace (wb):</value>
+    <value>White balace (wb) :</value>
   </data>
 </root>

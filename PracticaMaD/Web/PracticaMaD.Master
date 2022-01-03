@@ -13,8 +13,8 @@
     <!-- Window. -->
     <div id="window">
         <!-- Page title. -->
-        <div id="pageTitle">
-            <asp:HyperLink ID="lblTitle" runat="server"><asp:Localize ID="lclPageTitle" runat="server" meta:resourcekey="lclPageTitle" /></asp:HyperLink></div><!-- Menu. --><div id="menu">
+        <div id="pageTitle" >
+            <asp:HyperLink ID="lblTitle" ForeColor="Black" runat="server"><asp:Localize ID="lclPageTitle" runat="server" meta:resourcekey="lclPageTitle" /></asp:HyperLink></div><!-- Menu. --><div id="menu">
             <span id="menuWelcome">
 
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder_MenuWelcome" runat="server">
@@ -69,14 +69,16 @@
                 <asp:GridView ID="gvTags" runat="server" CssClass="userFollows"
                     AutoGenerateColumns="False"
                     OnPageIndexChanging="gvTagsPageIndexChanging"
-                    ShowHeaderWhenEmpty="False">
+                    ShowHeaderWhenEmpty="False"
+                    BorderStyle="None">
                     <Columns>
                         <asp:HyperLinkField
                                         DataNavigateUrlFields="tagid"
                                         DataNavigateUrlFormatString="~/Pages/User/TagImages.aspx?ID={0}"
                                         DataTextField="tagname"
                                         HeaderText="Tag Name"
-                                        SortExpression="tagname" />
+                                        SortExpression="tagname" 
+                                        ControlStyle-ForeColor="White"/>
                         <asp:BoundField DataField="timesUsed" HeaderText="Times Used" />
                     </Columns>
                     <rowstyle backcolor="#7c7a7a"  

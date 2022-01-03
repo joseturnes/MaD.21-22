@@ -22,8 +22,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            lclMenuExplanation.Text = lclMenuExplanation.Text;
-
             
             long imgId = Convert.ToInt64(Request.Params.Get("imgId"));
             Int64 userId = SessionManager.GetUserId(Context);
@@ -33,6 +31,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             IUserService userService = iocManager.Resolve<IUserService>();
 
             ImageUpload image = imageUploadService.findImage(imgId);
+
+            lclMenuExplanation.Text = lclMenuExplanation.Text + " of " + image.title;
 
             if (imageUploadService.isLiked(imgId, image.usrId))
             {
@@ -55,7 +55,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 lablTitle.Text = "<h3>" + image.title + "<h3/>";
                 lablLikes.Text = "<h3>" +  lablLikes.Text + image.likes + "<h3/>";
                 labldescription.Text = "<h3>" + labldescription.Text + image.descriptions + "<h3/>";
-                txtUser.Text = "<h3>" + txtUser.Text  + userService.findUserNameById(image.usrId) + "<h3/>";
+                txtUser.Text = "<h3>" + txtUser.Text  +" "+ userService.findUserNameById(image.usrId) + "<h3/>";
                 String profileUrl = String.Format("./PerfilCargado.aspx?ID={0}", image.usrId);
 
                 if(image.f == 0)

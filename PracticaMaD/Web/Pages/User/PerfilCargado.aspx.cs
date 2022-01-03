@@ -22,6 +22,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             Int64 userId = Convert.ToInt64(Request.Params.Get("ID"));
             Int64 pageOwner = SessionManager.GetUserId(Context);
 
+            IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+            IUserService userService = iocManager.Resolve<IUserService>();
+
+            string username = userService.findUserNameById(userId);
+
+            lclMenuExplanation.Text = lclMenuExplanation.Text + username+"'s profile";
+
             if (SessionManager.IsUserAuthenticated(Context))
             {
                 if (!(SessionManager.GetUserId(Context) == Convert.ToInt64(Request.Params.Get("ID"))))
@@ -33,56 +40,62 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     FollowButton.Visible = false;
                 }
 
-                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
-                IUserService userService = iocManager.Resolve<IUserService>();
+                
 
                 if ((SessionManager.GetUserId(Context) != Convert.ToInt64(Request.Params.Get("ID"))) && !userService.isFollowed(userId, pageOwner))
                 {
                     FollowButton.Visible = true;
                     FollowButton.Text = "Already Followed";
-                }  
-
-                try
-                {
-
-                    pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
-
-                    pbpDataSource.TypeName =
-                            Settings.Default.ObjectDS_Image_Service;
-
-                    pbpDataSource.EnablePaging = true;
-
-                    pbpDataSource.SelectMethod =
-                        Settings.Default.ObjectDS_Image_SelectMethod;
-
-                    pbpDataSource.SelectParameters.Add("userId", DbType.Int64, userId.ToString());
-
-                    pbpDataSource.SelectCountMethod =
-                        Settings.Default.ObjectDS_Images_CountMethod;
-                    pbpDataSource.StartRowIndexParameterName =
-                        Settings.Default.ObjectDS_User_StartIndexParameter;
-                    pbpDataSource.MaximumRowsParameterName =
-                        Settings.Default.ObjectDS_User_CountParameter;
-
-                    gvUploads.AllowPaging = true;
-                    gvUploads.PageSize = Settings.Default.PracticaMaD_defaultCount;
-
-                    gvUploads.DataSource = pbpDataSource;
-                    gvUploads.DataBind();
                 }
-                catch (TargetInvocationException)
-                {
-                    lblInvalidUser.Visible = true;
-                }
+
+                fillGridView(pbpDataSource, userId.ToString());
             }
             else
             {
-                String url = String.Format("./Authentication.aspx");
-                Response.Redirect(Response.ApplyAppPathModifier(url));
+                
+                btnUploadImage.Visible = false;
+                
+                FollowButton.Visible = false;
+
+                fillGridView(pbpDataSource,userId.ToString());
             }
             }
 
+        private void fillGridView(ObjectDataSource pbpDataSource, string userId)
+        {
+            try
+            {
 
+                pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
+
+                pbpDataSource.TypeName =
+                        Settings.Default.ObjectDS_Image_Service;
+
+                pbpDataSource.EnablePaging = true;
+
+                pbpDataSource.SelectMethod =
+                    Settings.Default.ObjectDS_Image_SelectMethod;
+
+                pbpDataSource.SelectParameters.Add("userId", DbType.Int64, userId.ToString());
+
+                pbpDataSource.SelectCountMethod =
+                    Settings.Default.ObjectDS_Images_CountMethod;
+                pbpDataSource.StartRowIndexParameterName =
+                    Settings.Default.ObjectDS_User_StartIndexParameter;
+                pbpDataSource.MaximumRowsParameterName =
+                    Settings.Default.ObjectDS_User_CountParameter;
+
+                gvUploads.AllowPaging = true;
+                gvUploads.PageSize = Settings.Default.PracticaMaD_defaultCount;
+
+                gvUploads.DataSource = pbpDataSource;
+                gvUploads.DataBind();
+            }
+            catch (TargetInvocationException)
+            {
+                lblInvalidUser.Visible = true;
+            }
+        }
 
         protected void gvFollowsPageIndexChanging(object sender, GridViewPageEventArgs e)
         {

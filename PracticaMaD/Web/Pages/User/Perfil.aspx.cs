@@ -18,6 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         private ObjectDataSource pbpDataSource = new ObjectDataSource();
         protected void Page_Load(object sender, EventArgs e)
         {
+
             if (SessionManager.IsUserAuthenticated(Context))
             {
                 try

@@ -91,6 +91,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                 for (int i = 0; i < rows.Count; i++)
                 {
                     rows[i].Font.Size = 20 - 2 * i;
+                    rows[i].ControlStyle.ForeColor = System.Drawing.Color.White;
                 }
             }
             catch (TargetInvocationException)

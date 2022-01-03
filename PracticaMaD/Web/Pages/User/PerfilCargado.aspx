@@ -1,11 +1,11 @@
 <%@ Page Language="C#" MasterPageFile="~/PracticaMaD.Master" AutoEventWireup="true"
     Codebehind="PerfilCargado.aspx.cs" Inherits="Es.Udc.DotNet.PracticaMaD.Web.Pages.User.PerfilCargado"
     meta:resourcekey="Page" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_MenuExplanation"
     runat="server">
     - <asp:Localize ID="lclMenuExplanation" runat="server" meta:resourcekey="lclMenuExplanation" />
 </asp:Content>
+   
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder_BodyContent"
     runat="server">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">

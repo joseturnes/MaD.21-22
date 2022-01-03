@@ -160,4 +160,3 @@ C:\Users\migue\Documents\MAD\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.
 C:\Users\migue\Documents\MAD\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.CopyComplete
 C:\Users\migue\Documents\MAD\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.dll
 C:\Users\migue\Documents\MAD\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.pdb
-C:\Software\MaD.21-22\PracticaMaD\Model\obj\Debug\Model.csproj.AssemblyReference.cache

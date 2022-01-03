@@ -21,13 +21,14 @@
                     AutoGenerateColumns="False"
                     OnPageIndexChanging="gvTagsPageIndexChanging"
                     ShowHeaderWhenEmpty="True"
-                    Font-Size="14">
+                    Font-Size="14"
+                    BorderStyle="None">
                     <Columns>
                         <asp:HyperLinkField
                                         DataNavigateUrlFields="tagid"
                                         DataNavigateUrlFormatString="~/Pages/User/TagImages.aspx?ID={0}"
                                         DataTextField="tagname"
-                                        HeaderText="Tag Name"
+                                        HeaderText="Tag List"
                                         SortExpression="tagname" />
                     </Columns>
                     <rowstyle backcolor="#FFFFFF"  
