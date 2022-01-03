@@ -28,7 +28,6 @@
                                         </a>
                                         </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="title" HeaderText="Title" />
                         </Columns>
                         </asp:GridView>
                 </center>

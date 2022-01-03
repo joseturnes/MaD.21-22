@@ -15,21 +15,21 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
     {
 
         /// <summary>
-        /// Control gvRecentUploads.
+        /// Control lblRecentUploads.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRecentUploads;
+        protected global::System.Web.UI.WebControls.Label lblRecentUploads;
 
         /// <summary>
-        /// Control lclContent.
+        /// Control lvRecentUploads.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Localize lclContent;
+        protected global::System.Web.UI.WebControls.ListView lvRecentUploads;
     }
 }

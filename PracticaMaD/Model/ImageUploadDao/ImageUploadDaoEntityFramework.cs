@@ -15,7 +15,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         GenericDaoEntityFramework<ImageUpload, Int64>, IImageUploadDao
     {
         int NUMBER_OF_COMMENTS = 3;
-        int NUMBER_OF_IMAGES = 6;
+        int NUMBER_OF_IMAGES = 12;
 
         public ImageUploadDaoEntityFramework()
         {
@@ -136,14 +136,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             return result;
         }
 
-        public List<ImageUpload> findRecentUploads(int startIndex, int count)
+        public List<ImageUpload> findRecentUploads()
         {
             DbSet<ImageUpload> images = Context.Set<ImageUpload>();
 
             var result =
                 (from a in images
                  orderby a.uploadDate
-                 select a).Skip(startIndex).Take(count).ToList();
+                 select a).ToList();
             result.Reverse();
             
             return result;

@@ -23,35 +23,22 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
                 pbpDataSource.TypeName =
                         Settings.Default.ObjectDS_Image_Service;
 
-                pbpDataSource.EnablePaging = true;
+                pbpDataSource.EnablePaging = false;
 
                 pbpDataSource.SelectMethod =
                     Settings.Default.ObjectDS_Recent_Image_SelectMethod;
 
-                Int64 userId = SessionManager.GetUserId(Context);
-
                 pbpDataSource.SelectCountMethod =
                     Settings.Default.ObjectDS_Recent_Images_CountMethod;
-                pbpDataSource.StartRowIndexParameterName =
-                    Settings.Default.ObjectDS_User_StartIndexParameter;
-                pbpDataSource.MaximumRowsParameterName =
-                    Settings.Default.ObjectDS_User_CountParameter;
 
-                gvRecentUploads.AllowPaging = true;
-                gvRecentUploads.PageSize = Settings.Default.PracticaMaD_defaultCount;
-
-                gvRecentUploads.DataSource = pbpDataSource;
-                gvRecentUploads.DataBind();
+                lvRecentUploads.DataSource = pbpDataSource;
+                lvRecentUploads.DataBind();
             }
             catch (TargetInvocationException)
             {
             }
-        }
 
-        protected void gvFollowsPageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvRecentUploads.PageIndex = e.NewPageIndex;
-            gvRecentUploads.DataBind();
+            
         }
 
         protected void PbpDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)

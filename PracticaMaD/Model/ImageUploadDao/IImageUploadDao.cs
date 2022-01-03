@@ -34,7 +34,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         ImageUpload findImage(long imgId);
 
-        List<ImageUpload> findRecentUploads(int startIndex, int count);
+        List<ImageUpload> findRecentUploads();
 
         int countRecentUploads();
 

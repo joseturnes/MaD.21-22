@@ -241,9 +241,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             return FindByKeywordAndCategory(keywords, categoryId, 0, 10000).Count;
         }
 
-        public List<ImageUpload> FindRecentUploads(int startIndex, int count)
+        public List<ImageUpload> FindRecentUploads()
         {
-            return ImageUploadDao.findRecentUploads(startIndex,count);
+            return ImageUploadDao.findRecentUploads();
         }
 
         public int countRecentUploads()

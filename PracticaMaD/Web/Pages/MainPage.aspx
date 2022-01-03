@@ -8,24 +8,20 @@
     <br />
     <br />
     <br />
+    <center>
+        <asp:Label ID="lblRecentUploads" runat="server" meta:resourcekey="lblRecentUploads"></asp:Label>
+        <br />
+    </center>
     <div class="gv">
-        <center>
-            <asp:GridView ID="gvRecentUploads" runat="server"
-                    AutoGenerateColumns="False"
-                    OnPageIndexChanging="gvFollowsPageIndexChanging"
-                    ShowHeaderWhenEmpty="False">
-                <Columns>
-                    <asp:TemplateField HeaderText="Publications">
-                            <ItemTemplate>                           
-                                <img width="400" height="400" src="data:image/jpg;base64,<%# Convert.ToBase64String((byte[])Eval("UploadedImage"))%>"/>
-                            </ItemTemplate>
-                    </asp:TemplateField> 
-                </Columns>
-                </asp:GridView>
-        </center>
+            <asp:ListView ID="lvRecentUploads" runat="server">
+                <ItemTemplate>                           
+                    <a href="User/ImageDetails.aspx?imgId=<%# Eval("ImgId")%>">
+                        <img width="400" height="400" src="data:image/jpg;base64,<%# Convert.ToBase64String((byte[])Eval("UploadedImage"))%>"/>
+                    </a>
+                </ItemTemplate>
+        </asp:ListView>
     </div>
     <br />
-    <asp:Localize ID="lclContent" runat="server" meta:resourcekey="lclContent" />
     <br />
     <br />
     <br />

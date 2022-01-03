@@ -46,7 +46,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         [Transactional]
         public List<ImageUpload> fingImagesByTagId(long tagId, int startIndex, int count)
         {
-            return TagDao.fingImagesByTagId(tagId,startIndex,count);
+            List<ImageUpload> result = TagDao.fingImagesByTagId(tagId, startIndex, count);
+            result.Reverse();
+
+            return result;
         }
 
         [Transactional]

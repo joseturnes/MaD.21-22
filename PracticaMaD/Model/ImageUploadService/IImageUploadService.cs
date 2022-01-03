@@ -74,7 +74,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         int countSearchKeywords(string keywords, long categoryId);
 
-        List<ImageUpload> FindRecentUploads(int startIndex, int count);
+        List<ImageUpload> FindRecentUploads();
 
         int countRecentUploads();
 
