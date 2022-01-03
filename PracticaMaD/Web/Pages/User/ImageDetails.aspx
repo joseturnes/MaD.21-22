@@ -9,7 +9,7 @@
         <br />
         <asp:Image ID="Image1" runat="server" width="400" height="400" />
         <br />
-        <asp:HyperLink ID="txtUser" runat="server" meta:resourcekey="txtUser"></asp:HyperLink>
+        <asp:HyperLink ID="txtUser" runat="server" ForeColor="Black" meta:resourcekey="txtUser"></asp:HyperLink>
         <br />
         <asp:Label class="display-1" ID="lablLikes" runat="server" meta:resourcekey="lablLikes"></asp:Label>
         <br />
@@ -45,7 +45,7 @@
         <br />
             <asp:Button class="btn btn-outline-dark" ID="EditTagsButton" OnClick="BtnEditTags" runat="server" Text="Edit Tags" />
         <br />
-        <asp:HyperLink ID="CommentsLink" runat="server" meta:resourcekey="CommentsLink"></asp:HyperLink>
+        <asp:HyperLink ID="CommentsLink" ForeColor="Black" runat="server" meta:resourcekey="CommentsLink"></asp:HyperLink>
         <br />
         <br />
         <asp:Button class="btn btn-outline-dark" ID="btnAddComment" OnClick="BtnAddComment" runat="server"  meta:resourcekey="btnComment" />
@@ -57,7 +57,6 @@
         <asp:Label ID="txtISO" runat="server" meta:resourcekey="txtISO"></asp:Label>
         <br />
         <asp:Label ID="txtWB" runat="server" meta:resourcekey="txtWB"></asp:Label>
-        <br />
         <br />
         <asp:Button class="btn btn-danger" ID="btnDelete" runat="server" Text="Delete Image" OnClick="BtnDeleteClick" meta:resourcekey="btnDelete"/>
 </asp:Content>

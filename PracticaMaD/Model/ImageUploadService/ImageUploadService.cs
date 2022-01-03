@@ -39,7 +39,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             image.usrId = img.usrId;
             image.title = img.title;
             image.descriptions = img.descriptions;
-            image.uploadDate = img.uploadDate;
+            image.uploadDate = DateTime.Now;
             image.f = img.f;
             image.t = img.t;
             image.iso = img.iso;
@@ -194,7 +194,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         [Transactional]
         public List<ImageUploadDto> recentUploads(long userId, int startIndex, int count)
         {
-            return ImageUploadConversor.toImageUploadDtos(ImageUploadDao.FindLastPublications(userId, startIndex, count + 1));
+            List<ImageUploadDto> result = ImageUploadConversor.toImageUploadDtos(ImageUploadDao.FindLastPublications(userId, startIndex, count + 1));
+            result.Reverse();
+            return result;
         }
 
         [Transactional]

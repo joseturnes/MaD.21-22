@@ -28,13 +28,15 @@
                                         DataNavigateUrlFormatString="PerfilCargado.aspx?ID={0}"
                                         DataTextField="UserName"
                                         HeaderText="User Name"
-                                        SortExpression="UserName" />
+                                        SortExpression="UserName" 
+                                        ControlStyle-ForeColor ="#333333"/>
                                     <asp:HyperLinkField
                                         DataNavigateUrlFields="ComId"
                                         DataNavigateUrlFormatString="EditComment.aspx?comId={0}"
                                         DataTextField="Content"
                                         HeaderText="Content"
-                                        SortExpression="Content" />
+                                        SortExpression="Content"
+                                        ControlStyle-ForeColor ="#333333"/>
                                     <asp:BoundField DataField="ComDate" HeaderText="Publication Date" />
  
                                 </Columns>

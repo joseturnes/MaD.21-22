@@ -34,15 +34,24 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
             lclMenuExplanation.Text = lclMenuExplanation.Text + " of " + image.title;
 
+            
             if (imageUploadService.isLiked(imgId, image.usrId))
             {
                 likeButton.Text = "💔";
             }
-
-            if (!(image.usrId == userId))
+            if (SessionManager.IsUserAuthenticated(Context))
+            {
+                btnDelete.Visible = true;
+                if (!(image.usrId == userId))
+                {
+                    btnDelete.Visible = false;
+                    EditTagsButton.Visible = false;
+                }
+            }
+            else
             {
                 btnDelete.Visible = false;
-                EditTagsButton.Visible = false;
+
             }
 
             if (!IsPostBack)
@@ -95,8 +104,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 CommentsLink.Text = CommentsLink.Text + numberOfComments.ToString();
                 CommentsLink.NavigateUrl = commentsUrl;
 
-            }
+                fillGridView(pbpDataSource, imgId.ToString());
 
+            }
+     
+
+        }
+
+        private void fillGridView(ObjectDataSource objectDataSource, string imgId)
+        {
             try
             {
 
@@ -132,15 +148,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 gvTags.DataSource = pbpDataSource;
                 gvTags.DataBind();
 
-                   
+
             }
             catch (TargetInvocationException)
             {
 
             }
-            
-            
         }
+
         protected void gvTagsPageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             gvTags.PageIndex = e.NewPageIndex;

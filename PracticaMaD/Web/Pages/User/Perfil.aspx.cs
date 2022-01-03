@@ -18,9 +18,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         private ObjectDataSource pbpDataSource = new ObjectDataSource();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Int64 userId = SessionManager.GetUserId(Context);
 
             if (SessionManager.IsUserAuthenticated(Context))
             {
+                IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
+                IUserService userService = iocManager.Resolve<IUserService>();
+
+                int numFollows = userService.getNumberOfFollows(userId);
+                int numFollowers = userService.getNumberOfFollowers(userId);
+
+                btnFollows.Text = btnFollows.Text + " (" + numFollows.ToString() + ") ";
+                btnFollowers.Text = btnFollowers.Text + " (" + numFollowers.ToString() + ") ";
+
                 try
                 {
                     pbpDataSource.ObjectCreating += this.PbpDataSource_ObjectCreating;
@@ -33,7 +43,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     pbpDataSource.SelectMethod =
                         Settings.Default.ObjectDS_Image_SelectMethod;
 
-                    Int64 userId = SessionManager.GetUserId(Context);
 
                     pbpDataSource.SelectParameters.Add("userId", DbType.Int64, userId.ToString());
 

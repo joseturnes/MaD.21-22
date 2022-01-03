@@ -136,13 +136,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
              
                 foreach (String tag in strtags)
                 {
-                    
-                    Tag tagEntity = CreateTag(tag);
-                    if (!image.Tag.Contains(tagEntity))
-                    {
-                        tagEntity.timesUsed++;
-                        image.Tag.Add(tagEntity);
-                        tagEntity.ImageUpload.Add(image);
+                    if (!tag.Equals(""))
+                    {                        
+                        Tag tagEntity = CreateTag(tag);
+                        if (!image.Tag.Contains(tagEntity))
+                        {
+                            tagEntity.timesUsed++;
+                            image.Tag.Add(tagEntity);
+                            tagEntity.ImageUpload.Add(image);
+                        }
                     }
                 }
             }

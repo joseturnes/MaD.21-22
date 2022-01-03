@@ -25,6 +25,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             IUserService userService = iocManager.Resolve<IUserService>();
 
+            int numFollows = userService.getNumberOfFollows(userId);
+            int numFollowers = userService.getNumberOfFollowers(userId);
+
             string username = userService.findUserNameById(userId);
 
             lclMenuExplanation.Text = lclMenuExplanation.Text + username+"'s profile";
@@ -59,7 +62,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
                 fillGridView(pbpDataSource,userId.ToString());
             }
-            }
+
+            btnFollows.Text = btnFollows.Text +" ("+ numFollows.ToString()+") ";
+            btnFollowers.Text = btnFollowers.Text + " ("+ numFollowers.ToString() + ") ";
+
+        }
 
         private void fillGridView(ObjectDataSource pbpDataSource, string userId)
         {
