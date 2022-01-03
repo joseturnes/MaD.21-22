@@ -30,7 +30,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
             string username = userService.findUserNameById(userId);
 
-            lclMenuExplanation.Text = lclMenuExplanation.Text + username+"'s profile";
+            if (!Page.IsPostBack)
+                lclMenuExplanation.Text = lclMenuExplanation.Text + username+"'s profile";
 
             if (SessionManager.IsUserAuthenticated(Context))
             {
@@ -63,8 +64,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 fillGridView(pbpDataSource,userId.ToString());
             }
 
-            btnFollows.Text = btnFollows.Text +" ("+ numFollows.ToString()+") ";
-            btnFollowers.Text = btnFollowers.Text + " ("+ numFollowers.ToString() + ") ";
+            if (!Page.IsPostBack)
+            {
+                btnFollows.Text = btnFollows.Text + " (" + numFollows.ToString() + ") ";
+                btnFollowers.Text = btnFollowers.Text + " (" + numFollowers.ToString() + ") ";
+            }
 
         }
 

@@ -195,7 +195,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         public List<ImageUploadDto> recentUploads(long userId, int startIndex, int count)
         {
             List<ImageUploadDto> result = ImageUploadConversor.toImageUploadDtos(ImageUploadDao.FindLastPublications(userId, startIndex, count + 1));
-            result.Reverse();
+            //result.Reverse();
             return result;
         }
 

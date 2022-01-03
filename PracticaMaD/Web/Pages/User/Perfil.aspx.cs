@@ -27,9 +27,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
                 int numFollows = userService.getNumberOfFollows(userId);
                 int numFollowers = userService.getNumberOfFollowers(userId);
-
-                btnFollows.Text = btnFollows.Text + " (" + numFollows.ToString() + ") ";
-                btnFollowers.Text = btnFollowers.Text + " (" + numFollowers.ToString() + ") ";
+                if (!Page.IsPostBack)
+                {
+                    btnFollows.Text = btnFollows.Text + " (" + numFollows.ToString() + ") ";
+                    btnFollowers.Text = btnFollowers.Text + " (" + numFollowers.ToString() + ") ";
+                }
 
                 try
                 {

@@ -32,7 +32,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
             ImageUpload image = imageUploadService.findImage(imgId);
 
-            lclMenuExplanation.Text = lclMenuExplanation.Text + " of " + image.title;
+            if (!Page.IsPostBack)
+                lclMenuExplanation.Text = lclMenuExplanation.Text + " of " + image.title;
 
             
             if (imageUploadService.isLiked(imgId, image.usrId))
