@@ -13,7 +13,7 @@
         <br />
         <asp:Label class="display-1" ID="lablLikes" runat="server" meta:resourcekey="lablLikes"></asp:Label>
         <br />
-        <asp:Button class="btn btn-outline-danger" ID="likeButton" OnClick="BtnLikeClick" runat="server" Text="❤️" />
+        <asp:Button class="btn btn-outline-danger" ID="likeButton" OnClick="BtnLikeClick" runat="server" Text="🖤" />
         <br />
         <asp:Label class="display-1" ID="labldescription" runat="server" meta:resourcekey="lblDescription"></asp:Label>
         <br />

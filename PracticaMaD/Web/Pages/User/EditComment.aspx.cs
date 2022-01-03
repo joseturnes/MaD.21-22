@@ -26,7 +26,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             Int64 userId = SessionManager.GetUserId(Context);
             Int64 comId = Convert.ToInt64(Request.Params.Get("comId"));
 
-            commentService.UpdateComment(comId,txtContent.Text);
+            if (!txtContent.Text.Equals(""))
+            {
+                commentService.UpdateComment(comId, txtContent.Text);
+            }
 
             String url = String.Format("./PerfilCargado.aspx?ID={0}",userId);
             Response.Redirect(Response.ApplyAppPathModifier(url));

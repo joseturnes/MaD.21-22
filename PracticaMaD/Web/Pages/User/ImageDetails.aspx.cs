@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(image.uploadedImage);
                 lablTitle.Text = "<h3>" + image.title + "<h3/>";
                 lablLikes.Text = "<h3>" +  lablLikes.Text + image.likes + "<h3/>";
-                labldescription.Text = "<h3>" + labldescription.Text + image.descriptions + "<h3/>";
+                labldescription.Text = "<h3>" + labldescription.Text + " " +image.descriptions + "<h3/>";
                 txtUser.Text = "<h3>" + txtUser.Text  +" "+ userService.findUserNameById(image.usrId) + "<h3/>";
                 String profileUrl = String.Format("./PerfilCargado.aspx?ID={0}", image.usrId);
 
