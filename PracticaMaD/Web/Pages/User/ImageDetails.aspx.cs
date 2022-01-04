@@ -52,6 +52,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             else
             {
                 btnDelete.Visible = false;
+                EditTagsButton.Visible = false;
 
             }
 
@@ -182,7 +183,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             }
             else
             {
-                String url = String.Format("./Authentication.aspx");
+                String url = String.Format("./Authentication.aspx?ID={0}");
                 Response.Redirect(Response.ApplyAppPathModifier(url));
             }
         }
@@ -211,15 +212,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
         protected void BtnAddComment(object sender, EventArgs e)
         {
+            Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+
             if (SessionManager.IsUserAuthenticated(Context))
             {
-                Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
                 String url = String.Format("./AddComment.aspx?imgId={0}", imgId);
                 Response.Redirect(Response.ApplyAppPathModifier(url));
             }
             else
             {
-                String url = String.Format("./Authentication.aspx");
+                String url = String.Format("./Authentication.aspx?ID={0}",imgId);
                 Response.Redirect(Response.ApplyAppPathModifier(url));
             }
         }
@@ -228,13 +230,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         {
             if (Page.IsValid)
             {
+                Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId")); 
+
                 if (SessionManager.IsUserAuthenticated(Context))
                 {
                     /* Get data. */
                     IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
                     IImageUploadService imageService = iocManager.Resolve<IImageUploadService>();
                     Int64 userId = SessionManager.GetUserId(Context);
-                    Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
+                    
                     if (!imageService.isLiked(imgId, userId))
                     {
                         imageService.LikedImage(imgId, userId);
@@ -248,7 +252,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 }
                 else
                 {
-                    String url = String.Format("./Authentication.aspx");
+                    String url = String.Format("./Authentication.aspx?ID={0}", imgId);
                     Response.Redirect(Response.ApplyAppPathModifier(url));
                 }
 

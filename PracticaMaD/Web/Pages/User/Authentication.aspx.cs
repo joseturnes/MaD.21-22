@@ -24,27 +24,58 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         {
             if (Page.IsValid)
             {
-                try
+
+                Int64 imgId = Convert.ToInt64(Request.Params.Get("ID"));
+                if (imgId==0)
                 {
-                    SessionManager.Login(Context, txtLogin.Text,
-                        txtPassword.Text, checkRememberPassword.Checked);
+                    try
+                    {
+                        SessionManager.Login(Context, txtLogin.Text,
+                            txtPassword.Text, checkRememberPassword.Checked);
 
-                    FormsAuthentication.
-                        RedirectFromLoginPage(txtLogin.Text,
-                            checkRememberPassword.Checked);
+                        FormsAuthentication.
+                            RedirectFromLoginPage(txtLogin.Text,
+                                checkRememberPassword.Checked);
 
-                    Int64 userId = SessionManager.GetUserId(Context);
+                        Int64 userId = SessionManager.GetUserId(Context);
 
-                    String url = String.Format("./Perfil.aspx?userId={0}",userId);
-                    Response.Redirect(Response.ApplyAppPathModifier(url));
+                        String url = String.Format("./Perfil.aspx?userId={0}",userId);
+                        Response.Redirect(Response.ApplyAppPathModifier(url));
+                    }
+                    catch (InstanceNotFoundException)
+                    {
+                        lblLoginError.Visible = true;
+                    }
+                    catch (IncorrectPasswordException)
+                    {
+                        lblPasswordError.Visible = true;
+                    }
                 }
-                catch (InstanceNotFoundException)
+                else
                 {
-                    lblLoginError.Visible = true;
-                }
-                catch (IncorrectPasswordException)
-                {
-                    lblPasswordError.Visible = true;
+                    try
+                    {
+                        SessionManager.Login(Context, txtLogin.Text,
+                            txtPassword.Text, checkRememberPassword.Checked);
+
+                        FormsAuthentication.
+                            RedirectFromLoginPage(txtLogin.Text,
+                                checkRememberPassword.Checked);
+
+                        Int64 userId = SessionManager.GetUserId(Context);
+
+                        String url = String.Format("./ImageDetails.aspx?imgId={0}", imgId);
+                        Response.Redirect(Response.ApplyAppPathModifier(url));
+                    }
+                    catch (InstanceNotFoundException)
+                    {
+                        lblLoginError.Visible = true;
+                    }
+                    catch (IncorrectPasswordException)
+                    {
+                        lblPasswordError.Visible = true;
+                    }
+                    
                 }
             }
         }
