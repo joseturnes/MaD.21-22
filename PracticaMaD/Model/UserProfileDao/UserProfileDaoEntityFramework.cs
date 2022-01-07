@@ -100,7 +100,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             return userProfile.UserProfile1.Skip(startIndex).Take(count).ToList();
         }
 
-        public int getNumberOfFollows(long userId)
+        public int GetNumberOfFollows(long userId)
         {
             UserProfile userProfile = FindById(userId);
 
@@ -108,7 +108,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             return userProfile.UserProfile1.Count();
         }
 
-        public int getNumberOfFollowers(long userId)
+        public int GetNumberOfFollowers(long userId)
         {
             UserProfile userProfile = FindById(userId);
 
@@ -116,6 +116,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             return userProfile.UserProfile2.Count();
 
 
+        }
+
+        public void Follow(UserProfile followed, UserProfile follower)
+        {
+            if (!(followed.UserProfile2.Contains(follower) && follower.UserProfile1.Contains(followed)))
+            {
+                followed.UserProfile2.Add(follower);
+                follower.UserProfile1.Add(followed);
+            }
         }
         #endregion IUserProfileDao Members
     }

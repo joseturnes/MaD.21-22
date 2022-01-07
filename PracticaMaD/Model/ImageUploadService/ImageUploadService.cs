@@ -53,7 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             CategoryDao.Update(categoryObj);
             image.categoryId = categoryObj.categoryId;
 
-            TagService.updateTags(image.imgId,tags);
+            TagService.UpdateTags(image.imgId,tags);
 
             return image.imgId;
         }
@@ -103,7 +103,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
                     }
                 }
             }
-            return ImageUploadConversor.toImageUploadDtos (result);
+            return ImageUploadConversor.ToImageUploadDtos (result);
         }
 
         [Transactional]
@@ -115,7 +115,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         }
 
         [Transactional]
-        public void LikedImage(long imgId, long userId)
+        public void LikeImage(long imgId, long userId)
         {
             ImageUpload img = ImageUploadDao.Find(imgId);
             UserProfile user = UserProfileDao.Find(userId);
@@ -130,14 +130,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
                 throw new InstanceNotFoundException(userId, typeof(long).FullName);
             }
 
-            if (!(img.UserProfile1.Contains(user) || user.ImageUpload1.Contains(img)))
-            {
-                img.likes++;
-                img.UserProfile1.Add(user);
-                ImageUploadDao.Update(img);
-                user.ImageUpload1.Add(img);
-                UserProfileDao.Update(user);
-            }
+            ImageUploadDao.LikeImage(imgId, userId);
         }
 
         [Transactional]
@@ -156,14 +149,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
                 throw new InstanceNotFoundException(userId, typeof(long).FullName);
             }
 
-            if ((img.UserProfile1.Contains(user) || user.ImageUpload1.Contains(img)))
-            {
-                img.likes--;
-                img.UserProfile1.Remove(user);
-                ImageUploadDao.Update(img);
-                user.ImageUpload1.Remove(img);
-                UserProfileDao.Update(user);
-            }
+            ImageUploadDao.UnlikeImage(imgId, userId);
         }
 
 
@@ -174,26 +160,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         }
 
         [Transactional]
-        public int getNumberOfImages(long userId)
+        public int GetNumberOfImages(long userId)
         {
-            return ImageUploadDao.getNumberOfImages(userId);
+            return ImageUploadDao.GetNumberOfImages(userId);
         }
 
         [Transactional]
-        public List<ImageUploadDto> recentUploads(long userId, int startIndex, int count)
+        public List<ImageUploadDto> RecentUploads(long userId, int startIndex, int count)
         {
-            List<ImageUploadDto> result = ImageUploadConversor.toImageUploadDtos(ImageUploadDao.FindLastPublications(userId, startIndex, count + 1));
+            List<ImageUploadDto> result = ImageUploadConversor.ToImageUploadDtos(ImageUploadDao.FindLastPublications(userId, startIndex, count + 1));
             return result;
         }
 
         [Transactional]
-        public ImageUploadDto findImage(long imgId)
+        public ImageUploadDto FindImage(long imgId)
         {
-            return ImageUploadConversor.toImageUploadDto(ImageUploadDao.findImage(imgId));
+            return ImageUploadConversor.ToImageUploadDto(ImageUploadDao.FindImage(imgId));
         }
 
         [Transactional]
-        public List<CommentDto> searchComments(long imgId, int startIndex, int count)
+        public List<CommentDto> SearchComments(long imgId, int startIndex, int count)
         {
             List<Comment> comments = ImageUploadDao.FindLastComments(imgId, startIndex, count);
             List<CommentDto> result = new List<CommentDto>();
@@ -209,36 +195,26 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         }
 
         [Transactional]
-        public bool isLiked(long imgId, long userId)
+        public bool IsLiked(long imgId, long userId)
         {
-            ImageUpload image = ImageUploadDao.Find(imgId);
-            UserProfile user = UserProfileDao.Find(userId);
-
-            if (image.UserProfile1.Contains(user))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return ImageUploadDao.IsLiked(imgId, userId);
         }
 
         [Transactional]
-        public int countSearchKeywords(string keywords, long categoryId)
+        public int CountSearchKeywords(string keywords, long categoryId)
         {
             return FindByKeywordAndCategory(keywords, categoryId, 0, 10000).Count;
         }
 
         public List<ImageUploadDto> FindRecentUploads()
         {
-            List<ImageUploadDto> result = ImageUploadConversor.toImageUploadDtos(ImageUploadDao.findRecentUploads());
+            List<ImageUploadDto> result = ImageUploadConversor.ToImageUploadDtos(ImageUploadDao.FindRecentUploads());
             return result;
         }
 
-        public int countRecentUploads()
+        public int CountRecentUploads()
         {
-            return ImageUploadDao.countRecentUploads();
+            return ImageUploadDao.CountRecentUploads();
         }
 
         public List<Tag> FindImageTags(long imgId, int startIndex, int count)
@@ -251,7 +227,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             return ImageUploadDao.CountImageTags(imgId);
         }
 
-        public void addTag(Tag tag, long imgId)
+        public void AddTag(Tag tag, long imgId)
         {
             ImageUpload image = ImageUploadDao.Find(imgId);
             List<Tag> tags = image.Tag.ToList();

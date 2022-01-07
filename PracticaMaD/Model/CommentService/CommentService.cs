@@ -67,7 +67,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             List<CommentDto> result = new List<CommentDto>();
             coments.ToArray();
 
-            result = CommentConversor.toCommentDtos(coments);
+            result = CommentConversor.ToCommentDtos(coments);
 
             return result;
         }

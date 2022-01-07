@@ -1,5 +1,6 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,6 +15,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
     public class ImageUploadDaoEntityFramework : 
         GenericDaoEntityFramework<ImageUpload, Int64>, IImageUploadDao
     {
+        [Inject]
+        public IUserProfileDao UserProfileDao { private get; set; }
+
         int NUMBER_OF_COMMENTS = 3;
         int NUMBER_OF_IMAGES = 12;
 
@@ -21,7 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         {
         }
 
-        public ImageUpload findImage(long imgId)
+        public ImageUpload FindImage(long imgId)
         {
             DbSet<ImageUpload> images = Context.Set<ImageUpload>();
 
@@ -77,7 +81,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         {
             DbSet<ImageUpload> images = Context.Set<ImageUpload>();
 
-            ImageUpload image = findImage(imgId);
+            ImageUpload image = FindImage(imgId);
 
             List<Comment> result = image.Comment.ToList();
             result.Reverse();
@@ -96,7 +100,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             return result;
         }
 
-        public List<UserProfile> findUserProfiles(long imgId, int startIndex,
+        public List<UserProfile> FindUserProfiles(long imgId, int startIndex,
             int count)
         {
 
@@ -111,7 +115,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         }
 
-        public int getNumberOfImages(long userId)
+        public int GetNumberOfImages(long userId)
         {
             DbSet<ImageUpload> images = Context.Set<ImageUpload>();
 
@@ -136,7 +140,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             return result;
         }
 
-        public List<ImageUpload> findRecentUploads()
+        public List<ImageUpload> FindRecentUploads()
         {
             DbSet<ImageUpload> images = Context.Set<ImageUpload>();
 
@@ -149,14 +153,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             return result;
         }
 
-        public int countRecentUploads()
+        public int CountRecentUploads()
         {
             return NUMBER_OF_IMAGES;
         }
 
         public List<Tag> FindImageTags(long imgId, int startIndex, int count)
         {
-            ImageUpload image = findImage(imgId);
+            ImageUpload image = FindImage(imgId);
 
             return image.Tag.ToList();
         }
@@ -171,6 +175,52 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
                  select a.Tag).FirstOrDefault().ToList();
 
             return result.Count;
+        }
+
+        public bool IsLiked(long imgId, long usrId)
+        {
+            ImageUpload image = Find(imgId);
+            UserProfile user = UserProfileDao.Find(usrId);
+
+            if (image.UserProfile1.Contains(user))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void LikeImage(long imgId, long usrId)
+        {
+            ImageUpload img = Find(imgId);
+            UserProfile user = UserProfileDao.Find(usrId);
+
+            if (!(img.UserProfile1.Contains(user) || user.ImageUpload1.Contains(img)))
+            {
+                img.likes++;
+                img.UserProfile1.Add(user);
+                Update(img);
+                user.ImageUpload1.Add(img);
+                UserProfileDao.Update(user);
+            }
+
+        }
+
+        public void UnlikeImage(long imgId, long usrId)
+        {
+            ImageUpload img = Find(imgId);
+            UserProfile user = UserProfileDao.Find(usrId);
+
+            if ((img.UserProfile1.Contains(user) || user.ImageUpload1.Contains(img)))
+            {
+                img.likes--;
+                img.UserProfile1.Remove(user);
+                Update(img);
+                user.ImageUpload1.Remove(img);
+                UserProfileDao.Update(user);
+            }
         }
     }
 }

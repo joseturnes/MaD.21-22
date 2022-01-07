@@ -25,10 +25,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             IUserService userService = iocManager.Resolve<IUserService>();
 
-            int numFollows = userService.getNumberOfFollows(userId);
-            int numFollowers = userService.getNumberOfFollowers(userId);
+            int numFollows = userService.GetNumberOfFollows(userId);
+            int numFollowers = userService.GetNumberOfFollowers(userId);
 
-            string username = userService.findUserNameById(userId);
+            string username = userService.FindUserNameById(userId);
 
             if (!Page.IsPostBack)
                 lclMenuExplanation.Text = lclMenuExplanation.Text + username+"'s profile";
@@ -46,7 +46,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
                 
 
-                if ((SessionManager.GetUserId(Context) != Convert.ToInt64(Request.Params.Get("ID"))) && !userService.isFollowed(userId, pageOwner))
+                if ((SessionManager.GetUserId(Context) != Convert.ToInt64(Request.Params.Get("ID"))) && !userService.IsFollowed(userId, pageOwner))
                 {
                     FollowButton.Visible = true;
                     FollowButton.Text = "Already Followed";
@@ -173,10 +173,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             IUserService userService = iocManager.Resolve<IUserService>();
             Int64 userId = SessionManager.GetUserId(Context);
             Int64 ID = Convert.ToInt64(Request.Params.Get("ID"));
-            string login1 = userService.findUserNameById(userId);
-            string login2 = userService.findUserNameById(ID);
+            string login1 = userService.FindUserNameById(userId);
+            string login2 = userService.FindUserNameById(ID);
 
-            userService.follow(login2, login1);
+            userService.Follow(login2, login1);
 
             Response.Redirect(Request.RawUrl);
             Server.TransferRequest(Request.Url.AbsolutePath, false);

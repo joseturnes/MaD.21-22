@@ -53,7 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             IImageUploadService imageUploadService = iocManager.Resolve<IImageUploadService>();
 
-            ImageUploadDto image = imageUploadService.findImage(imgId);
+            ImageUploadDto image = imageUploadService.FindImage(imgId);
 
             Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(image.uploadedImage);
             lablTitle.Text = "<h2>" + image.title + "<h2/>";

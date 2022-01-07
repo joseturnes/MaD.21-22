@@ -60,7 +60,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
           
             tags = txtTags.Text.Split(',');
            
-            tagService.updateTags(imgId, tags.ToList());           
+            tagService.UpdateTags(imgId, tags.ToList());           
 
             String url = String.Format("./ImageDetails.aspx?imgId={0}",imgId);
             Response.Redirect(Response.ApplyAppPathModifier(url));

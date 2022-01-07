@@ -70,7 +70,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("getNumberOfFollows")]
+        [global::System.Configuration.DefaultSettingValueAttribute("GetNumberOfFollows")]
         public string ObjectDS_Follows_CountMethod {
             get {
                 return ((string)(this["ObjectDS_Follows_CountMethod"]));
@@ -88,7 +88,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("getNumberOfFollowers")]
+        [global::System.Configuration.DefaultSettingValueAttribute("GetNumberOfFollowers")]
         public string ObjectDS_Followers_CountMethod {
             get {
                 return ((string)(this["ObjectDS_Followers_CountMethod"]));
@@ -106,7 +106,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("recentUploads")]
+        [global::System.Configuration.DefaultSettingValueAttribute("RecentUploads")]
         public string ObjectDS_Image_SelectMethod {
             get {
                 return ((string)(this["ObjectDS_Image_SelectMethod"]));
@@ -115,7 +115,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("getNumberOfImages")]
+        [global::System.Configuration.DefaultSettingValueAttribute("GetNumberOfImages")]
         public string ObjectDS_Images_CountMethod {
             get {
                 return ((string)(this["ObjectDS_Images_CountMethod"]));
@@ -151,7 +151,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("findMostUsedTags")]
+        [global::System.Configuration.DefaultSettingValueAttribute("FindMostUsedTags")]
         public string ObjectDS_Tag_SelectMethod {
             get {
                 return ((string)(this["ObjectDS_Tag_SelectMethod"]));
@@ -169,7 +169,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("countTags")]
+        [global::System.Configuration.DefaultSettingValueAttribute("CountTags")]
         public string ObjectDS_Tag_CountMethod {
             get {
                 return ((string)(this["ObjectDS_Tag_CountMethod"]));
@@ -178,7 +178,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("fingImagesByTagId")]
+        [global::System.Configuration.DefaultSettingValueAttribute("FingImagesByTagId")]
         public string ObjectDS_Tag_Image_SelectMethod {
             get {
                 return ((string)(this["ObjectDS_Tag_Image_SelectMethod"]));
@@ -187,7 +187,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("countImagesWithTag")]
+        [global::System.Configuration.DefaultSettingValueAttribute("CountImagesWithTag")]
         public string ObjectDS_Tag_Images_CountMethod {
             get {
                 return ((string)(this["ObjectDS_Tag_Images_CountMethod"]));
@@ -205,7 +205,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("countSearchKeywords")]
+        [global::System.Configuration.DefaultSettingValueAttribute("CountSearchKeywords")]
         public string ObjectDS_Search_Keywords_CountMethod {
             get {
                 return ((string)(this["ObjectDS_Search_Keywords_CountMethod"]));
@@ -223,7 +223,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("findRecentUploads")]
+        [global::System.Configuration.DefaultSettingValueAttribute("FindRecentUploads")]
         public string ObjectDS_Recent_Image_SelectMethod {
             get {
                 return ((string)(this["ObjectDS_Recent_Image_SelectMethod"]));
@@ -232,7 +232,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("countRecentUploads")]
+        [global::System.Configuration.DefaultSettingValueAttribute("CountRecentUploads")]
         public string ObjectDS_Recent_Images_CountMethod {
             get {
                 return ((string)(this["ObjectDS_Recent_Images_CountMethod"]));

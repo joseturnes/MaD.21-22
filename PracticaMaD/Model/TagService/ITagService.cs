@@ -22,15 +22,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
 
         List<Tag> GetAllTags();
 
-        List<Tag> findMostUsedTags(int startIndex, int count);
+        List<Tag> FindMostUsedTags(int startIndex, int count);
 
-        int countTags();
+        int CountTags();
 
-        List<ImageUpload> fingImagesByTagId(long tagId, int startIndex, int count);
+        List<ImageUpload> FingImagesByTagId(long tagId, int startIndex, int count);
 
-        int countImagesWithTag(long tagId);
+        int CountImagesWithTag(long tagId);
 
-        void updateTags(long imgId, List<String> tags);
+        void UpdateTags(long imgId, List<String> tags);
 
 
 

@@ -419,17 +419,17 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 var userId2 = userService.RegisterUser("user2", "1234",
                     new UserProfileDetails("user2", firstName, lastName, email, language, country));
 
-                Assert.IsTrue(loginName.Equals(userService.findUserNameById(userId1)));
-                Assert.IsTrue("user2".Equals(userService.findUserNameById(userId2)));
+                Assert.IsTrue(loginName.Equals(userService.FindUserNameById(userId1)));
+                Assert.IsTrue("user2".Equals(userService.FindUserNameById(userId2)));
 
                 UserProfileDetails userDetails1 = userService.FindUserProfileDetails(userId1);
                 UserProfileDetails userDetails2 = userService.FindUserProfileDetails(userId2);
 
-                userService.follow(userDetails1.userName, userDetails2.userName);
+                userService.Follow(userDetails1.userName, userDetails2.userName);
                 UserProfile user1 = userProfileDao.FindByLoginName(loginName);
                 UserProfile user2 = userProfileDao.FindByLoginName("user2");
-                Assert.IsTrue(userService.isFollowed(userId2,userId1));
-                Assert.IsFalse(userService.isFollowed(userId1, userId2));
+                Assert.IsTrue(userService.IsFollowed(userId2,userId1));
+                Assert.IsFalse(userService.IsFollowed(userId1, userId2));
                 Assert.IsTrue(user1.UserProfile2.Contains(user2));
                 Assert.IsTrue(user2.UserProfile1.Contains(user1));
 
@@ -454,7 +454,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 var userId2 = userService.RegisterUser("user2", "1234",
                     new UserProfileDetails("user2", firstName, lastName, email, language, country));
 
-                userService.follow("pepe", "user2");
+                userService.Follow("pepe", "user2");
 
 
                 // transaction.Complete() is not called, so Rollback is executed.
@@ -482,12 +482,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 var userId3 = userService.RegisterUser("user3", "1234",
                     new UserProfileDetails("user3", firstName, lastName, email, language, country));
 
-                userService.follow("user2", loginName);
-                userService.follow("user3", loginName);
+                userService.Follow("user2", loginName);
+                userService.Follow("user3", loginName);
                 UserProfile user1 = userProfileDao.FindByLoginName(loginName);
                 UserProfile user2 = userProfileDao.FindByLoginName("user2");
                 UserProfile user3 = userProfileDao.FindByLoginName("user3");
-                int number = userService.getNumberOfFollows(userId1);
+                int number = userService.GetNumberOfFollows(userId1);
 
                 Assert.AreEqual(2, number);
                 Assert.IsTrue( userProfileDao.FindFollows(userId1, 0, 30).Contains(user2));
@@ -519,13 +519,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 var userId3 = userService.RegisterUser("user3", "1234",
                     new UserProfileDetails("user3", firstName, lastName, email, language, country));
 
-                userService.follow("user2", loginName);
-                userService.follow("user3", loginName);
+                userService.Follow("user2", loginName);
+                userService.Follow("user3", loginName);
                 UserProfile user1 = userProfileDao.FindByLoginName(loginName);
                 UserProfile user2 = userProfileDao.FindByLoginName("user2");
                 UserProfile user3 = userProfileDao.FindByLoginName("user3");
-                int number2 = userService.getNumberOfFollowers(userId2);
-                int number3 = userService.getNumberOfFollowers(userId3);
+                int number2 = userService.GetNumberOfFollowers(userId2);
+                int number3 = userService.GetNumberOfFollowers(userId3);
 
                 Assert.AreEqual(1, number2);
                 Assert.AreEqual(1, number3);

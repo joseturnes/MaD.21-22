@@ -54,35 +54,35 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         /// </summary>
         /// <param name="pubId"> The publication id. </param>
         /// <exception cref="InstanceNotFoundException"/>
-        void LikedImage(long imgId, long usrId);
+        void LikeImage(long imgId, long usrId);
 
         void UnlikeImage(long imgId, long usrId);
 
-        List<ImageUploadDto> recentUploads(long userId, int startIndex, int count);
+        List<ImageUploadDto> RecentUploads(long userId, int startIndex, int count);
 
-        ImageUploadDto findImage(long imgId);
+        ImageUploadDto FindImage(long imgId);
 
-        List<CommentDto> searchComments(long imgId, int startIndex, int count);
+        List<CommentDto> SearchComments(long imgId, int startIndex, int count);
 
         int CountComments(long imgId);
 
-        int getNumberOfImages(long userId);
+        int GetNumberOfImages(long userId);
 
         List<ImageUploadDto> FindByKeywordAndCategory(string keywords,long categoryId, int startIndex,int count);
 
-        bool isLiked(long imgId,long userId);
+        bool IsLiked(long imgId,long userId);
 
-        int countSearchKeywords(string keywords, long categoryId);
+        int CountSearchKeywords(string keywords, long categoryId);
 
         List<ImageUploadDto> FindRecentUploads();
 
-        int countRecentUploads();
+        int CountRecentUploads();
 
         List<Tag> FindImageTags(long imgId, int startIndex, int count);
 
         int CountImageTags(long imgId);
 
-        void addTag(Tag tag, long imgId);
+        void AddTag(Tag tag, long imgId);
 
     }
 }

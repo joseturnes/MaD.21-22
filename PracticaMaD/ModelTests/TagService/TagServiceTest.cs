@@ -146,7 +146,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService.Test
                 long id2 = imageUploadService.UploadImage(img2, tags2, "Retrato");
                 ImageUpload result = imageUploadDao.Find(id);
 
-                var imageTag = tagService.findMostUsedTags(0, 5);
+                var imageTag = tagService.FindMostUsedTags(0, 5);
 
                 Assert.IsTrue(imageTag.Contains(tagDao.Find(tagId)));
                 Assert.IsTrue(imageTag.Contains(tagDao.Find(tagId2)));
@@ -189,7 +189,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService.Test
                 ImageUpload result = imageUploadDao.Find(id);
                 ImageUpload result2 = imageUploadDao.Find(id2);
 
-                var imageTag = tagService.fingImagesByTagId(tagId, 0, 3);
+                var imageTag = tagService.FingImagesByTagId(tagId, 0, 3);
 
                 Assert.IsTrue(imageTag.Contains(result));
                 Assert.IsTrue(imageTag.Contains(result2));
@@ -230,7 +230,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService.Test
                 updateTags.Add("Coruña");
                 updateTags.Add("Luces");
 
-                tagService.updateTags(id, updateTags);
+                tagService.UpdateTags(id, updateTags);
 
                 ImageUpload result = imageUploadDao.Find(id);
 

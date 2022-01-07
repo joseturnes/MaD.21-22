@@ -18,22 +18,22 @@
       <Value Profile="(Default)">count</Value>
     </Setting>
     <Setting Name="ObjectDS_Follows_CountMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">getNumberOfFollows</Value>
+      <Value Profile="(Default)">GetNumberOfFollows</Value>
     </Setting>
     <Setting Name="ObjectDS_User_Followers_SelectMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">FollowerList</Value>
     </Setting>
     <Setting Name="ObjectDS_Followers_CountMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">getNumberOfFollowers</Value>
+      <Value Profile="(Default)">GetNumberOfFollowers</Value>
     </Setting>
     <Setting Name="ObjectDS_Image_Service" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.IImageUploadService</Value>
     </Setting>
     <Setting Name="ObjectDS_Image_SelectMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">recentUploads</Value>
+      <Value Profile="(Default)">RecentUploads</Value>
     </Setting>
     <Setting Name="ObjectDS_Images_CountMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">getNumberOfImages</Value>
+      <Value Profile="(Default)">GetNumberOfImages</Value>
     </Setting>
     <Setting Name="ObjectDS_Comments_SelectMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">searchComments</Value>
@@ -45,34 +45,34 @@
       <Value Profile="(Default)">CountComments</Value>
     </Setting>
     <Setting Name="ObjectDS_Tag_SelectMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">findMostUsedTags</Value>
+      <Value Profile="(Default)">FindMostUsedTags</Value>
     </Setting>
     <Setting Name="ObjectDS_Tag_Service" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Es.Udc.DotNet.PracticaMaD.Model.TagService.ITagService</Value>
     </Setting>
     <Setting Name="ObjectDS_Tag_CountMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">countTags</Value>
+      <Value Profile="(Default)">CountTags</Value>
     </Setting>
     <Setting Name="ObjectDS_Tag_Image_SelectMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">fingImagesByTagId</Value>
+      <Value Profile="(Default)">FingImagesByTagId</Value>
     </Setting>
     <Setting Name="ObjectDS_Tag_Images_CountMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">countImagesWithTag</Value>
+      <Value Profile="(Default)">CountImagesWithTag</Value>
     </Setting>
     <Setting Name="ObjectDS_Search_keywords_SelectMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">FindByKeywordAndCategory</Value>
     </Setting>
     <Setting Name="ObjectDS_Search_Keywords_CountMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">countSearchKeywords</Value>
+      <Value Profile="(Default)">CountSearchKeywords</Value>
     </Setting>
     <Setting Name="ObjectDS_Search_keywords_without_category_SelectMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">FindByKeyword</Value>
     </Setting>
     <Setting Name="ObjectDS_Recent_Image_SelectMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">findRecentUploads</Value>
+      <Value Profile="(Default)">FindRecentUploads</Value>
     </Setting>
     <Setting Name="ObjectDS_Recent_Images_CountMethod" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">countRecentUploads</Value>
+      <Value Profile="(Default)">CountRecentUploads</Value>
     </Setting>
     <Setting Name="ObjectDS_Image_Tag_SelectMethod" Type="System.String" Scope="Application">
       <Value Profile="(Default)">FindImageTags</Value>

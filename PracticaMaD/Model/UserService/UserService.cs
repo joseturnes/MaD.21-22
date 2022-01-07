@@ -146,7 +146,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         }
 
        
-        public void follow(string followedLogin, string followerLogin)
+        public void Follow(string followedLogin, string followerLogin)
         {
             UserProfile followed = UserProfileDao.FindByLoginName(followedLogin);
             UserProfile follower = UserProfileDao.FindByLoginName(followerLogin);
@@ -159,19 +159,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             {
                 throw new InstanceNotFoundException(followerLogin, typeof(UserProfile).FullName);
             }
-
-            if (!(followed.UserProfile2.Contains(follower) && follower.UserProfile1.Contains(followed)))
-            {
-                followed.UserProfile2.Add(follower);
-                follower.UserProfile1.Add(followed);
-            }
+            UserProfileDao.Follow(followed, follower);
+            
 
         }
 
         public List<UserProfileDto> FollowerList(long userId, int startIndex, int count)
         {
             List<UserProfile> users = UserProfileDao.FindFollowers(userId, startIndex, count);
-            return UserProfileConversor.toUserProfilesDtos(users);
+            return UserProfileConversor.ToUserProfilesDtos(users);
         }
 
         public List<UserProfileDto> ListOfFollows(long userId, int startIndex, int count)
@@ -180,25 +176,25 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             users = UserProfileDao.FindFollows(userId, startIndex, count);
           
             
-            return UserProfileConversor.toUserProfilesDtos(users);
+            return UserProfileConversor.ToUserProfilesDtos(users);
             
         }
 
-       public int getNumberOfFollows(long userId) 
+       public int GetNumberOfFollows(long userId) 
         {
 
-            return UserProfileDao.getNumberOfFollows(userId);
+            return UserProfileDao.GetNumberOfFollows(userId);
 
         }
 
-        public int getNumberOfFollowers(long userId)
+        public int GetNumberOfFollowers(long userId)
         {
-            return UserProfileDao.getNumberOfFollowers(userId);
+            return UserProfileDao.GetNumberOfFollowers(userId);
         }
 
-        public bool isFollowed(long userId1, long userId2)
+        public bool IsFollowed(long userId1, long userId2)
         {
-            int numberFollows = getNumberOfFollows(userId2);
+            int numberFollows = GetNumberOfFollows(userId2);
             List<UserProfileDto> result = ListOfFollows(userId2, 0, numberFollows);
             UserProfileDetails perfil = FindUserProfileDetails(userId1);
             UserProfileDto perfilDto = new UserProfileDto(userId1, perfil.userName,
@@ -213,7 +209,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             }
         }
 
-        public string findUserNameById(long userId)
+        public string FindUserNameById(long userId)
         {
             return FindUserProfileDetails(userId).userName;
         }

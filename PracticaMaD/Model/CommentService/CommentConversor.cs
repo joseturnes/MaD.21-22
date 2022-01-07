@@ -10,7 +10,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
     public class CommentConversor
     {
-        public static List<CommentDto> toCommentDtos (List<Comment> comments)
+        public static List<CommentDto> ToCommentDtos (List<Comment> comments)
         {
             List<CommentDto> result = new List<CommentDto>();
 

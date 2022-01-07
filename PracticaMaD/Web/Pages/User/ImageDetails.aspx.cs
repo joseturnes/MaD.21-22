@@ -30,13 +30,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             IImageUploadService imageUploadService = iocManager.Resolve<IImageUploadService>();
             IUserService userService = iocManager.Resolve<IUserService>();
 
-            ImageUploadDto image = imageUploadService.findImage(imgId);
+            ImageUploadDto image = imageUploadService.FindImage(imgId);
 
             if (!Page.IsPostBack)
                 lclMenuExplanation.Text = lclMenuExplanation.Text + " of " + image.title;
 
             
-            if (imageUploadService.isLiked(imgId, image.usrId))
+            if (imageUploadService.IsLiked(imgId, image.usrId))
             {
                 likeButton.Text = "💔";
             }
@@ -66,7 +66,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 lablTitle.Text = "<h3>" + image.title + "<h3/>";
                 lablLikes.Text = "<h3>" +  lablLikes.Text + image.likes + "<h3/>";
                 labldescription.Text = "<h3>" + labldescription.Text + " " +image.descriptions + "<h3/>";
-                txtUser.Text = "<h3>" + txtUser.Text  +" "+ userService.findUserNameById(image.usrId) + "<h3/>";
+                txtUser.Text = "<h3>" + txtUser.Text  +" "+ userService.FindUserNameById(image.usrId) + "<h3/>";
                 String profileUrl = String.Format("./PerfilCargado.aspx?ID={0}", image.usrId);
 
                 if(image.f == 0)
@@ -239,9 +239,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     IImageUploadService imageService = iocManager.Resolve<IImageUploadService>();
                     Int64 userId = SessionManager.GetUserId(Context);
                     
-                    if (!imageService.isLiked(imgId, userId))
+                    if (!imageService.IsLiked(imgId, userId))
                     {
-                        imageService.LikedImage(imgId, userId);
+                        imageService.LikeImage(imgId, userId);
                         Response.Redirect(Request.RawUrl);
                     }
                     else

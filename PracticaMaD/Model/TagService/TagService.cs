@@ -24,7 +24,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
 
 
         [Transactional]
-        public List<Tag> findMostUsedTags(int startIndex, int count)
+        public List<Tag> FindMostUsedTags(int startIndex, int count)
         {
             List<Tag> tags = TagDao.findMostUsedTags(startIndex, count);
             tags.Reverse();
@@ -38,13 +38,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         }
 
         [Transactional]
-        public int countTags()
+        public int CountTags()
         {
             return TagDao.GetAllElements().Count;
         }
 
         [Transactional]
-        public List<ImageUpload> fingImagesByTagId(long tagId, int startIndex, int count)
+        public List<ImageUpload> FingImagesByTagId(long tagId, int startIndex, int count)
         {
             List<ImageUpload> result = TagDao.fingImagesByTagId(tagId, startIndex, count);
             result.Reverse();
@@ -53,12 +53,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         }
 
         [Transactional]
-        public int countImagesWithTag(long tagId)
+        public int CountImagesWithTag(long tagId)
         {
             return TagDao.countImagesWithTag(tagId);
         }
         [Transactional]
-        public void updateTags(long imgId, List<string> strtags)
+        public void UpdateTags(long imgId, List<string> strtags)
         {
             TagDao.updateTags(imgId, strtags);   
         }

@@ -35,14 +35,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
         private const float f2 = 1;
         private static IKernel kernel;
         private static IImageUploadService imageUploadService;
-        private static IImageUploadDao imageUploadDao;
         private static IUserService userService;
-        private static IUserProfileDao userProfileDao;
         private static ICommentService commentService;
         private static ICommentDao commentDao;
-
-
-        private TransactionScope transaction;
 
         private TestContext testContextInstance;
 

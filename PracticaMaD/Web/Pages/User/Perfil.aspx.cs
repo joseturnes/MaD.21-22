@@ -25,8 +25,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
                 IUserService userService = iocManager.Resolve<IUserService>();
 
-                int numFollows = userService.getNumberOfFollows(userId);
-                int numFollowers = userService.getNumberOfFollowers(userId);
+                int numFollows = userService.GetNumberOfFollows(userId);
+                int numFollowers = userService.GetNumberOfFollowers(userId);
                 if (!Page.IsPostBack)
                 {
                     btnFollows.Text = btnFollows.Text + " (" + numFollows.ToString() + ") ";

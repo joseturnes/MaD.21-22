@@ -28,9 +28,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
 
         List<UserProfile> FindFollows(long userId, int startIndex, int count);
 
-        int getNumberOfFollows(long userId);
+        int GetNumberOfFollows(long userId);
 
-        int getNumberOfFollowers(long userId);
+        int GetNumberOfFollowers(long userId);
+
+        void Follow(UserProfile followed, UserProfile follower);
 
 
 

@@ -84,7 +84,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <returns>Nothing</returns>
         /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
-        void follow(string followedLogin, string followerLogin);
+        void Follow(string followedLogin, string followerLogin);
 
         [Transactional]
         List<UserProfileDto> FollowerList(long userId, int startIndex, int count);
@@ -93,16 +93,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         List<UserProfileDto> ListOfFollows(long userId, int startIndex, int count);
 
         [Transactional]
-        int getNumberOfFollows(long userId);
+        int GetNumberOfFollows(long userId);
 
         [Transactional]
-        int getNumberOfFollowers(long userId);
+        int GetNumberOfFollowers(long userId);
 
         [Transactional]
-        bool isFollowed(long userId1, long userId2);
+        bool IsFollowed(long userId1, long userId2);
 
         [Transactional]
-        string findUserNameById(long userId);
+        string FindUserNameById(long userId);
 
         
     }
