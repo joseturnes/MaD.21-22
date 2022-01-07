@@ -14,8 +14,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model
 
 using System;
     using System.Collections.Generic;
-    
-public partial class UserProfile
+    using System.Text;
+
+    public partial class UserProfile
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -126,6 +127,32 @@ public partial class UserProfile
                && (this.country == target.country)
                ;
 
+        }
+
+        /// <summary>
+        /// Returns a <see cref="T:System.String"></see> that represents the 
+        /// current <see cref="T:System.Object"></see>.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"></see> that represents the current 
+        /// <see cref="T:System.Object"></see>.
+        /// </returns>
+    	public override String ToString()
+        {
+            StringBuilder strUserProfile = new StringBuilder();
+
+            strUserProfile.Append("[ ");
+            strUserProfile.Append(" usrId = " + usrId + " | ");
+            strUserProfile.Append(" loginName = " + loginName + " | ");
+            strUserProfile.Append(" enPassword = " + enPassword + " | ");
+            strUserProfile.Append(" firstName = " + firstName + " | ");
+            strUserProfile.Append(" lastName = " + lastName + " | ");
+            strUserProfile.Append(" email = " + email + " | ");
+            strUserProfile.Append(" language = " + language + " | ");
+            strUserProfile.Append(" country = " + country + " | ");
+            strUserProfile.Append("] ");
+
+            return strUserProfile.ToString();
         }
 
     }

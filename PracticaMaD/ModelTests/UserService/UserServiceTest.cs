@@ -428,8 +428,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 userService.follow(userDetails1.userName, userDetails2.userName);
                 UserProfile user1 = userProfileDao.FindByLoginName(loginName);
                 UserProfile user2 = userProfileDao.FindByLoginName("user2");
-                Assert.IsTrue(userService.isFollowed(userId1,userId2));
-                Assert.IsFalse(userService.isFollowed(userId2, userId1));
+                Assert.IsTrue(userService.isFollowed(userId2,userId1));
+                Assert.IsFalse(userService.isFollowed(userId1, userId2));
                 Assert.IsTrue(user1.UserProfile2.Contains(user2));
                 Assert.IsTrue(user2.UserProfile1.Contains(user1));
 
@@ -482,8 +482,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 var userId3 = userService.RegisterUser("user3", "1234",
                     new UserProfileDetails("user3", firstName, lastName, email, language, country));
 
-                userService.follow(loginName, "user2");
-                userService.follow(loginName, "user3");
+                userService.follow("user2", loginName);
+                userService.follow("user3", loginName);
                 UserProfile user1 = userProfileDao.FindByLoginName(loginName);
                 UserProfile user2 = userProfileDao.FindByLoginName("user2");
                 UserProfile user3 = userProfileDao.FindByLoginName("user3");
@@ -519,8 +519,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 var userId3 = userService.RegisterUser("user3", "1234",
                     new UserProfileDetails("user3", firstName, lastName, email, language, country));
 
-                userService.follow(loginName, "user2");
-                userService.follow(loginName, "user3");
+                userService.follow("user2", loginName);
+                userService.follow("user3", loginName);
                 UserProfile user1 = userProfileDao.FindByLoginName(loginName);
                 UserProfile user2 = userProfileDao.FindByLoginName("user2");
                 UserProfile user3 = userProfileDao.FindByLoginName("user3");
