@@ -13,6 +13,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         public long imgId { get; set; }
 
+        public long usrId { get; set; }
+
         public string title { get; set; }
 
         public string descriptions { get; set; }
@@ -21,19 +23,29 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
        
         public long likes { get; set; }
 
-        
+        public Nullable<double> f { get; set; }
 
+        public Nullable<double> t { get; set; }
 
-        public ImageUploadDto(byte [] uploadedImage, long imgId,string title, string descriptions, System.DateTime uploadDate,
-             long likes)
+        public string iso { get; set; }
+
+        public string wb { get; set; }
+
+        public ImageUploadDto(byte[] uploadedImage, long imgId, long usrId, string title, string descriptions, DateTime uploadDate, long likes, double? f, double? t, string iso, string wb)
         {
-            this.imgId = imgId;
             this.uploadedImage = uploadedImage;
+            this.imgId = imgId;
+            this.usrId = usrId;
             this.title = title;
             this.descriptions = descriptions;
             this.uploadDate = uploadDate;
             this.likes = likes;
+            this.f = f;
+            this.t = t;
+            this.iso = iso;
+            this.wb = wb;
         }
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageUploadDetails"/>

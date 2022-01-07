@@ -60,7 +60,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         List<ImageUploadDto> recentUploads(long userId, int startIndex, int count);
 
-        ImageUpload findImage(long imgId);
+        ImageUploadDto findImage(long imgId);
 
         List<CommentDto> searchComments(long imgId, int startIndex, int count);
 
@@ -68,13 +68,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         int getNumberOfImages(long userId);
 
-        List<ImageUpload> FindByKeywordAndCategory(string keywords,long categoryId, int startIndex,int count);
+        List<ImageUploadDto> FindByKeywordAndCategory(string keywords,long categoryId, int startIndex,int count);
 
         bool isLiked(long imgId,long userId);
 
         int countSearchKeywords(string keywords, long categoryId);
 
-        List<ImageUpload> FindRecentUploads();
+        List<ImageUploadDto> FindRecentUploads();
 
         int countRecentUploads();
 

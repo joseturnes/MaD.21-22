@@ -83,7 +83,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         }
 
         [Transactional]
-        public List<ImageUpload> FindByKeywordAndCategory(string keywords, long categoryId, int startIndex, int count)
+        public List<ImageUploadDto> FindByKeywordAndCategory(string keywords, long categoryId, int startIndex, int count)
         {
             List<ImageUpload> result = new List<ImageUpload>();
             List<ImageUpload> resultaux = new List<ImageUpload>();
@@ -103,7 +103,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
                     }
                 }
             }
-            return result;
+            return ImageUploadConversor.toImageUploadDtos (result);
         }
 
         [Transactional]
@@ -183,14 +183,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         public List<ImageUploadDto> recentUploads(long userId, int startIndex, int count)
         {
             List<ImageUploadDto> result = ImageUploadConversor.toImageUploadDtos(ImageUploadDao.FindLastPublications(userId, startIndex, count + 1));
-            //result.Reverse();
             return result;
         }
 
         [Transactional]
-        public ImageUpload findImage(long imgId)
+        public ImageUploadDto findImage(long imgId)
         {
-            return ImageUploadDao.findImage(imgId);
+            return ImageUploadConversor.toImageUploadDto(ImageUploadDao.findImage(imgId));
         }
 
         [Transactional]
@@ -231,9 +230,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             return FindByKeywordAndCategory(keywords, categoryId, 0, 10000).Count;
         }
 
-        public List<ImageUpload> FindRecentUploads()
+        public List<ImageUploadDto> FindRecentUploads()
         {
-            return ImageUploadDao.findRecentUploads();
+            List<ImageUploadDto> result = ImageUploadConversor.toImageUploadDtos(ImageUploadDao.findRecentUploads());
+            return result;
         }
 
         public int countRecentUploads()

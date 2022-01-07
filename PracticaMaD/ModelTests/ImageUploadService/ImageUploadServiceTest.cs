@@ -345,14 +345,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
 
                 long id = imageUploadService.UploadImage(img, tags, "Paisaje");
                 long id2 = imageUploadService.UploadImage(img2, tags, "Retrato");
-                ImageUpload result = imageUploadDao.Find(id);
+                ImageUploadDto result = ImageUploadConversor.toImageUploadDto(imageUploadDao.Find(id));
 
 
                 Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("des", 3, 0, 1000).Contains(result));
                 Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("des", 0, 0, 1000).Contains(result));
                 Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("des", 0, 0, 1000).Count() == 2);
                 Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("sadasda", 0, 0, 1000).Count() == 0);
-                List<ImageUpload> images = imageUploadService.FindByKeywordAndCategory("des", 0, 0, 1000);
+                List<ImageUploadDto> images = imageUploadService.FindByKeywordAndCategory("des", 0, 0, 1000);
                 Assert.IsTrue(images.Count() == imageUploadService.countSearchKeywords("des", 0));
 
             }
@@ -393,7 +393,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 ImageUpload result = imageUploadDao.Find(id);
 
 
-                List<ImageUpload> recentImages = new List<ImageUpload>();
+                List<ImageUploadDto> recentImages = new List<ImageUploadDto>();
 
                 recentImages.Add(imageUploadService.findImage(id));
                 recentImages.Add(imageUploadService.findImage(id2));
@@ -438,7 +438,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 long id = imageUploadService.UploadImage(img, tags, "Paisaje");
                 long id2 = imageUploadService.UploadImage(img2, tags, "Retrato");
                 
-                ImageUpload result = imageUploadDao.Find(id);
+                ImageUploadDto result = ImageUploadConversor.toImageUploadDto( imageUploadDao.Find(id));
 
 
                 Assert.AreEqual(result, imageUploadService.findImage(id));
@@ -539,7 +539,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
             }
         }
 
-        /*
+        
         [TestMethod()]
         public void FindRecentUploadsTest()
         {
@@ -573,19 +573,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 ImageUpload result = imageUploadDao.Find(id);
 
 
-                List<ImageUpload> recentImages = new List<ImageUpload>();
+                List<ImageUploadDto> recentImages = new List<ImageUploadDto>();
 
                 recentImages.Add(imageUploadService.findImage(id));
                 recentImages.Add(imageUploadService.findImage(id2));
 
-                List<ImageUpload> images = imageUploadService.FindRecentUploads();
+                List<ImageUploadDto> images = imageUploadService.FindRecentUploads();
 
                 Assert.AreEqual(recentImages.Count, images.Count);
 
 
             }
         } 
-        */
+        
 
         [TestMethod()]
         public void FindImagesTagsTest()
@@ -635,10 +635,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
 
                 Assert.AreEqual(imageTags.Count, imageUploadService.FindImageTags(id, 0, 7).Count);
                 Assert.AreEqual(7, imageUploadService.CountImageTags(id));
-
-
-
-
             }
         }
 

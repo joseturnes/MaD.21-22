@@ -30,7 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             IImageUploadService imageUploadService = iocManager.Resolve<IImageUploadService>();
             IUserService userService = iocManager.Resolve<IUserService>();
 
-            ImageUpload image = imageUploadService.findImage(imgId);
+            ImageUploadDto image = imageUploadService.findImage(imgId);
 
             if (!Page.IsPostBack)
                 lclMenuExplanation.Text = lclMenuExplanation.Text + " of " + image.title;

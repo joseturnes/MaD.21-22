@@ -7,9 +7,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <br />
     <br />
-    <br />
     <center>
-        <asp:Label ID="lblRecentUploads" runat="server" meta:resourcekey="lblRecentUploads"></asp:Label>
+        <asp:Label ID="lblRecentUploads" runat="server" meta:resourcekey="lblRecentUploads" Font-Size="Larger" Font-Bold="true"></asp:Label>
+        <br />
         <br />
     </center>
     <div class="gv">
@@ -21,9 +21,4 @@
                 </ItemTemplate>
         </asp:ListView>
     </div>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
 </asp:Content>

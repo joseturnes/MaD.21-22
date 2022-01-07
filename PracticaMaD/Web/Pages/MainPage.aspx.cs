@@ -33,6 +33,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
 
                 lvRecentUploads.DataSource = pbpDataSource;
                 lvRecentUploads.DataBind();
+
+                if (lvRecentUploads.Items.Count <= 0)
+                    lblRecentUploads.Visible = false;
             }
             catch (TargetInvocationException)
             {

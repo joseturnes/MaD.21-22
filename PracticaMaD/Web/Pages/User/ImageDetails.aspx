@@ -7,7 +7,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder_BodyContent" runat="server">
         <asp:Label class="display-1" ID="lablTitle" runat="server"></asp:Label>
         <br />
-        <asp:Image ID="Image1" runat="server" width="400" height="400" />
+        <asp:Image ID="Image1" runat="server"/>
         <br />
         <asp:HyperLink ID="txtUser" runat="server" ForeColor="Black" meta:resourcekey="txtUser"></asp:HyperLink>
         <br />
