@@ -183,61 +183,453 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
             }
         }
 
-        //[TestMethod()]
-        //public void FindAllTagsTest()
-        //{
-        //    using (var scope = new TransactionScope())
-        //    {
-        //        initializeKernel();
+        [TestMethod()]
+        public void UpdateImageTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+                float f1 = 1;
+                float f2 = 1;
+
+                long tagId = tagDao.CreateTag("Luces").tagId;
+                long tagId2 = tagDao.CreateTag("Vigo").tagId;
+
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades boas");
+                tags.Add("Luces");
+                tags.Add("Luces2");
+                tags.Add("Luces3");
+                tags.Add("Vigo");
+
+                byte[] image = GetByteArray(512);
+
+                UserProfileDetails user = new UserProfileDetails(loginName, firstName, lastName, email, language, country);
+                long userId = userService.RegisterUser(loginName, clearPassword, user);
+
+
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
+                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2", 20);
+
+
+                long id = imageUploadService.UploadImage(img, tags, "Paisaje");
+
+                ImageUpload result = imageUploadDao.Find(id);
+
+
+
+
+            }
+        }
+
+        [TestMethod()]
+        public void RemoveImageTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+                float f1 = 1;
+                float f2 = 1;
+
+                long tagId = tagDao.CreateTag("Luces").tagId;
+                long tagId2 = tagDao.CreateTag("Vigo").tagId;
+
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades boas");
+                tags.Add("Luces");
+                tags.Add("Luces2");
+                tags.Add("Luces3");
+                tags.Add("Vigo");
+
+                byte[] image = GetByteArray(512);
+
+                UserProfileDetails user = new UserProfileDetails(loginName, firstName, lastName, email, language, country);
+                long userId = userService.RegisterUser(loginName, clearPassword, user);
+
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
+
+                long id = imageUploadService.UploadImage(img, tags, "Paisaje");
+    
+                ImageUpload result = imageUploadDao.Find(id);
+
+                Assert.IsNotNull(result);
+
+                imageUploadDao.Remove(id);
+
+                Assert.IsNotNull(result);
+
+
+            }
+        }
+
+        [TestMethod()]
+        public void LikedImageTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+                float f1 = 1;
+                float f2 = 1;
+
+                long tagId = tagDao.CreateTag("Luces").tagId;
+                long tagId2 = tagDao.CreateTag("Vigo").tagId;
+
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades boas");
+                tags.Add("Luces");
+                tags.Add("Luces2");
+                tags.Add("Luces3");
+                tags.Add("Vigo");
+
+                byte[] image = GetByteArray(512);
+
+                UserProfileDetails user = new UserProfileDetails(loginName, firstName, lastName, email, language, country);
+                long userId = userService.RegisterUser(loginName, clearPassword, user);
+
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
+
+                long id = imageUploadService.UploadImage(img, tags, "Paisaje");
+
+                ImageUpload result = imageUploadDao.Find(id);
+
+                imageUploadService.LikedImage(id, userId);
+
+                result = imageUploadDao.Find(id);
+
+                long numLikes = result.likes;
+
+                Assert.AreEqual(1, numLikes);
+
+
+
+            }
+        }
+
+        [TestMethod()]
+        public void UnLikedImageTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+                float f1 = 1;
+                float f2 = 1;
+
+                long tagId = tagDao.CreateTag("Luces").tagId;
+                long tagId2 = tagDao.CreateTag("Vigo").tagId;
+
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades boas");
+                tags.Add("Luces");
+                tags.Add("Luces2");
+                tags.Add("Luces3");
+                tags.Add("Vigo");
+
+                byte[] image = GetByteArray(512);
+
+                UserProfileDetails user = new UserProfileDetails(loginName, firstName, lastName, email, language, country);
+                long userId = userService.RegisterUser(loginName, clearPassword, user);
+
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
+
+                long id = imageUploadService.UploadImage(img, tags, "Paisaje");
+
+                ImageUpload result = imageUploadDao.Find(id);
+
+                imageUploadService.LikedImage(id, userId);
+
+                result = imageUploadDao.Find(id);
+
+                long numLikes = result.likes;
+
+                Assert.AreEqual(1, numLikes);
+
+                imageUploadService.UnlikeImage(id, userId);
+
+                result = imageUploadDao.Find(id);
+
+                numLikes = result.likes;
+
+                Assert.AreEqual(0, numLikes);
+
+
+
+            }
+        }
+
+
+        [TestMethod()]
+        public void FindByKeywordAndCategoryTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+                float f1 = 1;
+                float f2 = 1;
+
+                long tagId = tagDao.CreateTag("Luces").tagId;
+                long tagId2 = tagDao.CreateTag("Vigo").tagId;
+
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades boas");
+                tags.Add("Luces");
+                tags.Add("Luces2");
+                tags.Add("Luces3");
+                tags.Add("Vigo");
+
+                byte[] image = GetByteArray(512);
+
+                UserProfileDetails user = new UserProfileDetails(loginName, firstName, lastName, email, language, country);
+                long userId = userService.RegisterUser(loginName, clearPassword, user);
+
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
+                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2", 20);
+
+                long id = imageUploadService.UploadImage(img, tags, "Paisaje");
+                long id2 = imageUploadService.UploadImage(img2, tags, "Retrato");
+                ImageUpload result = imageUploadDao.Find(id);
+
+
+                Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("des", 3, 0, 1000).Contains(result));
+                Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("des", 0, 0, 1000).Contains(result));
+                Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("des", 0, 0, 1000).Count() == 2);
+                Assert.IsTrue(imageUploadService.FindByKeywordAndCategory("sadasda", 0, 0, 1000).Count() == 0);
+                List<ImageUpload> images = imageUploadService.FindByKeywordAndCategory("des", 0, 0, 1000);
+                Assert.IsTrue(images.Count() == imageUploadService.countSearchKeywords("des", 0));
+
+
+            }
+        }
+
+
+
+        [TestMethod()]
+        public void RecentUploadsTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+                float f1 = 1;
+                float f2 = 1;
+
+                long tagId = tagDao.CreateTag("Luces").tagId;
+                long tagId2 = tagDao.CreateTag("Vigo").tagId;
+
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades boas");
+                tags.Add("Luces");
+                tags.Add("Luces2");
+                tags.Add("Luces3");
+                tags.Add("Vigo");
+
+                byte[] image = GetByteArray(512);
+
+                UserProfileDetails user = new UserProfileDetails(loginName, firstName, lastName, email, language, country);
+                long userId = userService.RegisterUser(loginName, clearPassword, user);
+
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
+                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2", 20);
+
+                long id = imageUploadService.UploadImage(img, tags, "Paisaje");
+                long id2 = imageUploadService.UploadImage(img2, tags, "Retrato");
+                ImageUpload result = imageUploadDao.Find(id);
+
+
+                List<ImageUpload> recentImages = new List<ImageUpload>();
+
+                recentImages.Add(imageUploadService.findImage(id));
+                recentImages.Add(imageUploadService.findImage(id2));
+
+
+                Assert.AreEqual(recentImages.Count, imageUploadService.recentUploads(userId, 0, 6).Count);
+
+
+            }
+        }
+
+
+        [TestMethod()]
+        public void FindImageTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+                float f1 = 1;
+                float f2 = 1;
+
+                long tagId = tagDao.CreateTag("Luces").tagId;
+                long tagId2 = tagDao.CreateTag("Vigo").tagId;
+
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades boas");
+                tags.Add("Luces");
+                tags.Add("Luces2");
+                tags.Add("Luces3");
+                tags.Add("Vigo");
+
+                byte[] image = GetByteArray(512);
+
+                UserProfileDetails user = new UserProfileDetails(loginName, firstName, lastName, email, language, country);
+                long userId = userService.RegisterUser(loginName, clearPassword, user);
+
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
+                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2", 20);
+
+                long id = imageUploadService.UploadImage(img, tags, "Paisaje");
+                long id2 = imageUploadService.UploadImage(img2, tags, "Retrato");
                 
-        //        long tagId1 = tagService.CreateTag("Luces");
-        //        long tagId2 = tagService.CreateTag("Coruña");
-        //        long tagId3 = tagService.CreateTag("Navidad");
+                ImageUpload result = imageUploadDao.Find(id);
 
-        //        Tag tag1 = tagDao.Find(tagId1);
-        //        Tag tag2 = tagDao.Find(tagId2);
-        //        Tag tag3 = tagDao.Find(tagId3);
 
-        //        List<Tag> tags = tagService.GetAllTags();
+                Assert.AreEqual(result, imageUploadService.findImage(id));
 
-        //        Assert.IsTrue(tags.Contains(tag1)&& tags.Contains(tag2)&& tags.Contains(tag3));
-            
 
-        //    }
-        //}
+            }
+        }
 
-        //[TestMethod()]
-        //public void SearchUploadImagesTest()
-        //{
-        //    using (var scope = new TransactionScope())
-        //    {
-        //        initializeKernel();
-        //        float f1 = 1;
-        //        float f2 = 1;
 
-        //        ImageUploadDetails img = new ImageUploadDetails("Arboles", "Description arboles",
-        //            DateTime.Now, f1, f2, "ISO", "wb");
-        //        ImageUploadDetails img2 = new ImageUploadDetails("Cascadas", "Description cascadas",
-        //            DateTime.Now, f1, f2, "ISO", "wb");
-        //        ImageUploadDetails img3 = new ImageUploadDetails("Ciudades", "Description ciudades",
-        //            DateTime.Now, f1, f2, "ISO", "wb");
-        //        ImageUploadDetails img4 = new ImageUploadDetails("Arboles2", "Description arboles",
-        //            DateTime.Now, f1, f2, "ISO", "wb");
+        [TestMethod()]
+        public void IsLikedTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+                float f1 = 1;
+                float f2 = 1;
 
-        //        long id = imageUploadService.UploadImage(img, null,"paisaje");
-        //        long id2 = imageUploadService.UploadImage(img2, null, "paisaje");
-        //        long id3 = imageUploadService.UploadImage(img3, null, "paisaje");
-        //        long id4 = imageUploadService.UploadImage(img4, null, "paisaje");
-        //        ImageUpload result = imageUploadDao.Find(id);
-        //        ImageUpload result2 = imageUploadDao.Find(id2);
-        //        ImageUpload result3 = imageUploadDao.Find(id3);
-        //        ImageUpload result4 = imageUploadDao.Find(id4);
+                long tagId = tagDao.CreateTag("Luces").tagId;
+                long tagId2 = tagDao.CreateTag("Vigo").tagId;
 
-        //        List<ImageUpload> images = imageUploadDao.FindByTitleOrDescriptionOrCategory("Arboles", 0, 10);
-        //        Assert.IsTrue(images.Contains(result) && images.Contains(result4));
-        //        List<ImageUpload> images2 = imageUploadDao.FindByTitleOrDescriptionOrCategory("Description", 0, 10);
-        //        Assert.IsTrue(images2.Contains(result) && images2.Contains(result2) && images2.Contains(result3) && images2.Contains(result4));
-        //    }
-        //}
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades boas");
+                tags.Add("Luces");
+                tags.Add("Luces2");
+                tags.Add("Luces3");
+                tags.Add("Vigo");
+
+                byte[] image = GetByteArray(512);
+
+                UserProfileDetails user = new UserProfileDetails(loginName, firstName, lastName, email, language, country);
+                long userId = userService.RegisterUser(loginName, clearPassword, user);
+
+                UserProfileDetails user1 = new UserProfileDetails("user2", firstName, lastName, email, language, country);
+                long user1Id = userService.RegisterUser("user2", "1234", user);
+                
+
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
+                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2", 20);
+
+                long id = imageUploadService.UploadImage(img, tags, "Paisaje");
+                long id2 = imageUploadService.UploadImage(img2, tags, "Retrato");
+
+                ImageUpload result = imageUploadDao.Find(id);
+
+                imageUploadService.LikedImage(id, user1Id);
+
+                Assert.AreEqual(true, imageUploadService.isLiked(id, user1Id));
+
+
+            }
+        }
+
+
+        [TestMethod()]
+        public void GetNumberOfImagesTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+                float f1 = 1;
+                float f2 = 1;
+
+                long tagId = tagDao.CreateTag("Luces").tagId;
+                long tagId2 = tagDao.CreateTag("Vigo").tagId;
+
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades boas");
+                tags.Add("Luces");
+                tags.Add("Luces2");
+                tags.Add("Luces3");
+                tags.Add("Vigo");
+
+                byte[] image = GetByteArray(512);
+
+                UserProfileDetails user = new UserProfileDetails(loginName, firstName, lastName, email, language, country);
+                long userId = userService.RegisterUser(loginName, clearPassword, user);
+
+                UserProfileDetails user1 = new UserProfileDetails("user2", firstName, lastName, email, language, country);
+                long user1Id = userService.RegisterUser("user2", "1234", user);
+
+
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
+                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2", 20);
+
+                long id = imageUploadService.UploadImage(img, tags, "Paisaje");
+                long id2 = imageUploadService.UploadImage(img2, tags, "Retrato");
+
+                ImageUpload result = imageUploadDao.Find(id);
+
+                long numberOfImages = imageUploadService.getNumberOfImages(userId);
+
+                Assert.AreEqual(2, numberOfImages);
+
+
+            }
+        }
+
+
+        [TestMethod()]
+        public void FindRecentUploadsTest()
+        {
+            using (var scope = new TransactionScope())
+            {
+                initializeKernel();
+                float f1 = 1;
+                float f2 = 1;
+
+                long tagId = tagDao.CreateTag("Luces").tagId;
+                long tagId2 = tagDao.CreateTag("Vigo").tagId;
+
+                List<string> tags = new List<String>();
+                tags.Add("Coruña");
+                tags.Add("Navidades boas");
+                tags.Add("Luces");
+                tags.Add("Luces2");
+                tags.Add("Luces3");
+                tags.Add("Vigo");
+
+                byte[] image = GetByteArray(512);
+
+                UserProfileDetails user = new UserProfileDetails(loginName, firstName, lastName, email, language, country);
+                long userId = userService.RegisterUser(loginName, clearPassword, user);
+
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
+                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2", 20);
+
+                long id = imageUploadService.UploadImage(img, tags, "Paisaje");
+                long id2 = imageUploadService.UploadImage(img2, tags, "Retrato");
+                ImageUpload result = imageUploadDao.Find(id);
+
+
+                List<ImageUpload> recentImages = new List<ImageUpload>();
+
+                recentImages.Add(imageUploadService.findImage(id));
+                recentImages.Add(imageUploadService.findImage(id2));
+
+                List<ImageUpload> images = imageUploadService.FindRecentUploads();
+
+                //Assert.AreEqual(recentImages.Count, images.Count);
+
+
+            }
+        }
     }
 }

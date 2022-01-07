@@ -174,18 +174,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         }
 
         [Transactional]
-        List<UserProfile> FollowerList(long userId, int startIndex, int count)
-        {
-            return UserProfileDao.FindFollowers(userId, startIndex, count);
-        }
-
-        [Transactional]
-        List<UserProfile> ListOfFollows(long userId, int startIndex, int count)
-        {
-            return UserProfileDao.FindFollows(userId, startIndex, count);
-        }
-
-        [Transactional]
         public int getNumberOfImages(long userId)
         {
             return ImageUploadDao.getNumberOfImages(userId);
