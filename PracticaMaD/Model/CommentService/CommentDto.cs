@@ -1,11 +1,4 @@
-﻿
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Ninject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
@@ -39,7 +32,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// <param name="imgId">The publications that the comment references .</param>
         /// <param name="comDate">The date of the comment</param>
 
-        public CommentDto(long comId,String content, long userId,string userName,
+        public CommentDto(long comId, String content, long userId, string userName,
             long imgId, DateTime comDate)
         {
             this.comId = comId;

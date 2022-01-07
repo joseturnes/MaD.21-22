@@ -13,7 +13,7 @@
     <div id="form">
         <div class="field">
                     Content : 
-                    <asp:TextBox class="form-control" ID="txtContent" runat="server" Columns="16"></asp:TextBox>                   
+                    <asp:TextBox class="form-control" ID="txtContent" runat="server" Columns="16" required></asp:TextBox>                   
         </div>
         <div class="button">
             <asp:Button class="btn btn-primary" ID="btnComment" runat="server" Text="Add Comment" OnClick="BtnCommentClick"/>

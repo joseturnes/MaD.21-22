@@ -1,21 +1,18 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using Es.Udc.DotNet.PracticaMaD.Model.TagService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.ModelTests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ninject;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using System.Transactions;
-using Es.Udc.DotNet.PracticaMaD.ModelTests;
-using Es.Udc.DotNet.PracticaMaD.Model.TagService;
-using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
 {
@@ -41,8 +38,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
         private const string language = "es";
         private const string country = "ES";
         private const long NON_EXISTENT_USER_ID = -1;
-
-        private TransactionScope transaction;
 
         private TestContext testContextInstance;
 
@@ -111,11 +106,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 long userId = userService.RegisterUser(loginName, clearPassword, user);
 
 
-                ImageUploadDetails img = new ImageUploadDetails("Titulo",image, userId,"Description",DateTime.Now,f1,f2, "ISO", "wb",10);
-                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2",image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2",20);
+                ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
+                ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2", 20);
 
 
-                long id = imageUploadService.UploadImage(img, tags,"Paisaje");
+                long id = imageUploadService.UploadImage(img, tags, "Paisaje");
                 long id2 = imageUploadService.UploadImage(img2, tags, "Retrato");
                 ImageUpload result = imageUploadDao.Find(id);
 
@@ -123,13 +118,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
 
                 // Commment
 
-                long commId= commentService.AddComment(id,"commentary1",userId);
+                long commId = commentService.AddComment(id, "commentary1", userId);
                 commentService.AddComment(id, "commentary2", userId);
 
                 List<CommentDto> comments = imageUploadService.SearchComments(id, 0, 10);
-                CommentDto comments1 = new CommentDto(commId,"commentary1",userId,loginName,id,DateTime.Now);
+                CommentDto comments1 = new CommentDto(commId, "commentary1", userId, loginName, id, DateTime.Now);
 
-                Assert.IsTrue(2==imageUploadService.CountComments(id));
+                Assert.IsTrue(2 == imageUploadService.CountComments(id));
                 Assert.IsNotNull(comments);
                 Assert.IsTrue(2 == comments.Count);
 
@@ -205,7 +200,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
 
                 long id = imageUploadService.UploadImage(img, tags, "Paisaje");
-    
+
                 ImageUpload result = imageUploadDao.Find(id);
 
                 Assert.IsNotNull(result);
@@ -437,8 +432,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
 
                 long id = imageUploadService.UploadImage(img, tags, "Paisaje");
                 long id2 = imageUploadService.UploadImage(img2, tags, "Retrato");
-                
-                ImageUploadDto result = ImageUploadConversor.ToImageUploadDto( imageUploadDao.Find(id));
+
+                ImageUploadDto result = ImageUploadConversor.ToImageUploadDto(imageUploadDao.Find(id));
 
 
                 Assert.AreEqual(result, imageUploadService.FindImage(id));
@@ -475,7 +470,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
 
                 UserProfileDetails user1 = new UserProfileDetails("user2", firstName, lastName, email, language, country);
                 long user1Id = userService.RegisterUser("user2", "1234", user);
-                
+
 
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
                 ImageUploadDetails img2 = new ImageUploadDetails("Titulo2", image, userId, "Description2", DateTime.Now, f1, f2, "ISO2", "wb2", 20);
@@ -539,7 +534,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
             }
         }
 
-        
+
         [TestMethod()]
         public void FindRecentUploadsTest()
         {
@@ -584,8 +579,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService.Test
 
 
             }
-        } 
-        
+        }
+
 
         [TestMethod()]
         public void FindImagesTagsTest()

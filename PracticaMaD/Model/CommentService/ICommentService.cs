@@ -1,8 +1,7 @@
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using System;
 using Ninject;
+using System;
 using System.Collections.Generic;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
@@ -25,7 +24,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// <param name="commentId"> The comment id. </param>
         /// <param name="commentDetails"> The comment details. </param>
         /// <exception cref="InstanceNotFoundException"/>
-        void UpdateComment(long commentId, String content );
+        void UpdateComment(long commentId, String content);
 
         /// <summary>
         /// Remove a comment.

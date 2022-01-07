@@ -1,26 +1,19 @@
-﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.ModelUtil.Transactions;
+﻿using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
-using Es.Udc.DotNet.PracticaMaD.Model.TagService.Exceptions;
 using Ninject;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
 {
     public class TagService : ITagService
     {
         [Inject]
-        public ITagDao TagDao { private get;set ; }
+        public ITagDao TagDao { private get; set; }
 
         [Inject]
         public IImageUploadDao ImageDao { private get; set; }
-        
+
 
 
         [Transactional]
@@ -60,7 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
         [Transactional]
         public void UpdateTags(long imgId, List<string> strtags)
         {
-            TagDao.updateTags(imgId, strtags);   
+            TagDao.updateTags(imgId, strtags);
         }
     }
 }

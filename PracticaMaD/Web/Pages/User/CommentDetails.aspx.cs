@@ -1,15 +1,12 @@
-﻿using System;
+﻿using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
+using System;
 using System.Data;
 using System.Reflection;
-using Es.Udc.DotNet.ModelUtil.IoC;
 using System.Web;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
-using Es.Udc.DotNet.PracticaMaD.Model;
+using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
@@ -58,7 +55,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(image.uploadedImage);
             lablTitle.Text = "<h2>" + image.title + "<h2/>";
 
-            
+
         }
 
         protected void gvCommentsPageIndexChanging(object sender, GridViewPageEventArgs e)

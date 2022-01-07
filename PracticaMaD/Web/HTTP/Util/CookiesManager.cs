@@ -32,12 +32,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util
 
             /* Set maximum age to cookies. */
             loginNameCookie.Expires = DateTime.Now.AddSeconds(timeToLive);
-            encryptedPasswordCookie.Expires = DateTime.Now.AddSeconds(timeToLive);            
+            encryptedPasswordCookie.Expires = DateTime.Now.AddSeconds(timeToLive);
             authTicket.Expires = DateTime.Now.AddSeconds(timeToLive);
 
             /* Add cookies to response. */
             context.Response.Cookies.Add(loginNameCookie);
-            context.Response.Cookies.Add(encryptedPasswordCookie);           
+            context.Response.Cookies.Add(encryptedPasswordCookie);
         }
 
         public static void RemoveCookies(HttpContext context)
@@ -59,7 +59,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util
             /* Add cookies to response. */
             context.Response.Cookies.Add(loginNameCookie);
             context.Response.Cookies.Add(encryptedPasswordCookie);
-            
+
         }
 
         public static String GetLoginName(HttpContext context)

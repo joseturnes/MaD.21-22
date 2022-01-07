@@ -1,15 +1,12 @@
-using System;
+using Es.Udc.DotNet.ModelUtil.IoC;
+using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using System.Web.UI.WebControls;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
+using System;
 using System.Data;
 using System.Reflection;
-using Es.Udc.DotNet.ModelUtil.IoC;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using System.Web;
-using Es.Udc.DotNet.PracticaMaD.Model.TagService;
+using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
@@ -45,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 gvTagImages.AllowPaging = true;
                 gvTagImages.PageSize = Settings.Default.PracticaMaD_defaultCount;
 
-                gvTagImages.DataSource=pbpDataSource;
+                gvTagImages.DataSource = pbpDataSource;
                 gvTagImages.DataBind();
             }
             catch (TargetInvocationException)

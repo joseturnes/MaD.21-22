@@ -4,7 +4,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Util;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using System;
-using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 

@@ -1,11 +1,11 @@
+using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Ninject;
 using System;
 using System.Collections.Generic;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Es.Udc.DotNet.ModelUtil.Transactions;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 {
@@ -42,13 +42,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
             Comment newComment = new Comment();
 
-                newComment.content = comment;
-                newComment.usrId = userId;
-                newComment.imgId = imgId;
-                newComment.comDate = DateTime.Now;
+            newComment.content = comment;
+            newComment.usrId = userId;
+            newComment.imgId = imgId;
+            newComment.comDate = DateTime.Now;
 
-                CommentDao.Create(newComment);
-            
+            CommentDao.Create(newComment);
+
             return newComment.commentId;
 
         }
@@ -63,7 +63,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
                 throw new InstanceNotFoundException(imgId, typeof(long).FullName);
             }
 
-            List <Comment> coments = CommentDao.FindByPubIdOrderByDateAsc((int)imgId, startIndex, count + 1);
+            List<Comment> coments = CommentDao.FindByPubIdOrderByDateAsc((int)imgId, startIndex, count + 1);
             List<CommentDto> result = new List<CommentDto>();
             coments.ToArray();
 

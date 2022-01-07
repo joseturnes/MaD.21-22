@@ -1,7 +1,7 @@
-﻿using Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.ModelUtil.IoC;
+﻿using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.ModelUtil.Log;
+using Es.Udc.DotNet.PracticaMaD.HTTP.Util.IoC;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Ninject;
 using System;
 

@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.ModelTests
         /// <returns>The NInject kernel</returns>
         public static IKernel ConfigureNInjectKernel()
         {
-           
+
             IKernel kernel = new StandardKernel();
 
             kernel.Bind<ITagService>().

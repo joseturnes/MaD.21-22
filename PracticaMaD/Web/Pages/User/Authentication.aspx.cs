@@ -1,6 +1,6 @@
+using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
 using System;
 using System.Web.Security;
 
@@ -26,7 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             {
 
                 Int64 imgId = Convert.ToInt64(Request.Params.Get("ID"));
-                if (imgId==0)
+                if (imgId == 0)
                 {
                     try
                     {
@@ -39,7 +39,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
                         Int64 userId = SessionManager.GetUserId(Context);
 
-                        String url = String.Format("./Perfil.aspx?userId={0}",userId);
+                        String url = String.Format("./Perfil.aspx?userId={0}", userId);
                         Response.Redirect(Response.ApplyAppPathModifier(url));
                     }
                     catch (InstanceNotFoundException)
@@ -75,7 +75,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     {
                         lblPasswordError.Visible = true;
                     }
-                    
+
                 }
             }
         }

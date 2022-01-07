@@ -1,13 +1,8 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Dao;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Ninject;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 {

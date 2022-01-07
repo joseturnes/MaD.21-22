@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 {
@@ -20,7 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         public string descriptions { get; set; }
 
         public System.DateTime uploadDate { get; set; }
-       
+
         public long likes { get; set; }
 
         public Nullable<double> f { get; set; }

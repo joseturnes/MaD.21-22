@@ -6,19 +6,16 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 {
-    public class ImageUploadDaoEntityFramework : 
+    public class ImageUploadDaoEntityFramework :
         GenericDaoEntityFramework<ImageUpload, Int64>, IImageUploadDao
     {
         [Inject]
         public IUserProfileDao UserProfileDao { private get; set; }
 
-        int NUMBER_OF_COMMENTS = 3;
+
         int NUMBER_OF_IMAGES = 12;
 
         public ImageUploadDaoEntityFramework()
@@ -49,7 +46,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             return result.Count();
         }
 
-        public List<ImageUpload> FindByTitleOrDescription(string keyword,int startIndex, int count)
+        public List<ImageUpload> FindByTitleOrDescription(string keyword, int startIndex, int count)
         {
             DbSet<ImageUpload> images = Context.Set<ImageUpload>();
             keyword = keyword.ToLower();
@@ -70,7 +67,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
             var result =
                 (from a in images
-                 where a.usrId==userId
+                 where a.usrId == userId
                  orderby a.uploadDate
                  select a).Skip(startIndex).Take(count).ToList();
 
@@ -133,7 +130,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
             var result =
                 (from a in images
-                 where a.categoryId==categoryId
+                 where a.categoryId == categoryId
                  orderby a.uploadDate
                  select a).Skip(startIndex).Take(count).ToList();
 
@@ -149,7 +146,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
                  orderby a.uploadDate
                  select a).ToList();
             result.Reverse();
-            
+
             return result;
         }
 

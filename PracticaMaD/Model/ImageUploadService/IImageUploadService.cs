@@ -5,12 +5,7 @@ using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Ninject;
-using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 {
@@ -68,9 +63,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         int GetNumberOfImages(long userId);
 
-        List<ImageUploadDto> FindByKeywordAndCategory(string keywords,long categoryId, int startIndex,int count);
+        List<ImageUploadDto> FindByKeywordAndCategory(string keywords, long categoryId, int startIndex, int count);
 
-        bool IsLiked(long imgId,long userId);
+        bool IsLiked(long imgId, long userId);
 
         int CountSearchKeywords(string keywords, long categoryId);
 

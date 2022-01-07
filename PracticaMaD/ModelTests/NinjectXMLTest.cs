@@ -1,6 +1,5 @@
 ﻿using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System;

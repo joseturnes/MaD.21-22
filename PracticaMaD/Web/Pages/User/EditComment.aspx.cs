@@ -1,12 +1,8 @@
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System;
-using System.Web.Security;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.ModelUtil.IoC;
-using System.Web;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using System;
+using System.Web;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
@@ -31,7 +27,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 commentService.UpdateComment(comId, txtContent.Text);
             }
 
-            String url = String.Format("./PerfilCargado.aspx?ID={0}",userId);
+            String url = String.Format("./PerfilCargado.aspx?ID={0}", userId);
             Response.Redirect(Response.ApplyAppPathModifier(url));
 
         }

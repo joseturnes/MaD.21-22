@@ -1,19 +1,15 @@
 ﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.Transactions;
 using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
-using Es.Udc.DotNet.PracticaMaD.Model.TagService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.TagService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Es.Udc.DotNet.ModelUtil.Transactions;
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using System.Data;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 {
@@ -53,12 +49,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             CategoryDao.Update(categoryObj);
             image.categoryId = categoryObj.categoryId;
 
-            TagService.UpdateTags(image.imgId,tags);
+            TagService.UpdateTags(image.imgId, tags);
 
             return image.imgId;
         }
 
-        
+
 
         [Transactional]
         public void UpdateImage(long imgId, ImageUploadDetails imageDetails)
@@ -77,7 +73,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             img.t = imageDetails.t;
             img.iso = imageDetails.iso;
             img.likes = imageDetails.likes;
-            img.wb = imageDetails.wb; 
+            img.wb = imageDetails.wb;
 
             ImageUploadDao.Update(img);
         }
@@ -103,7 +99,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
                     }
                 }
             }
-            return ImageUploadConversor.ToImageUploadDtos (result);
+            return ImageUploadConversor.ToImageUploadDtos(result);
         }
 
         [Transactional]
@@ -187,7 +183,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             for (int i = 0; i < comments.Count; i++)
             {
                 string userName = UserProfileDao.FindById(comments[i].usrId).loginName;
-                result.Add(new CommentDto(comments[i].commentId,comments[i].content, comments[i].usrId, userName, comments[i].imgId, comments[i].comDate));
+                result.Add(new CommentDto(comments[i].commentId, comments[i].content, comments[i].usrId, userName, comments[i].imgId, comments[i].comDate));
             }
 
 
@@ -219,7 +215,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         public List<Tag> FindImageTags(long imgId, int startIndex, int count)
         {
-            return ImageUploadDao.FindImageTags(imgId,startIndex,count);
+            return ImageUploadDao.FindImageTags(imgId, startIndex, count);
         }
 
         public int CountImageTags(long imgId)

@@ -1,8 +1,8 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
+using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.ModelUtil.Transactions;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -44,7 +44,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             UserProfile userProfile = UserProfileDao.Find(userProfileId);
 
             UserProfileDetails userProfileDetails =
-                new UserProfileDetails(userProfile.loginName,userProfile.firstName,
+                new UserProfileDetails(userProfile.loginName, userProfile.firstName,
                     userProfile.lastName, userProfile.email,
                     userProfile.language, userProfile.country);
 
@@ -145,7 +145,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             return true;
         }
 
-       
+
         public void Follow(string followedLogin, string followerLogin)
         {
             UserProfile followed = UserProfileDao.FindByLoginName(followedLogin);
@@ -160,7 +160,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
                 throw new InstanceNotFoundException(followerLogin, typeof(UserProfile).FullName);
             }
             UserProfileDao.Follow(followed, follower);
-            
+
 
         }
 
@@ -174,13 +174,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         {
             List<UserProfile> users = new List<UserProfile>();
             users = UserProfileDao.FindFollows(userId, startIndex, count);
-          
-            
+
+
             return UserProfileConversor.ToUserProfilesDtos(users);
-            
+
         }
 
-       public int GetNumberOfFollows(long userId) 
+        public int GetNumberOfFollows(long userId)
         {
 
             return UserProfileDao.GetNumberOfFollows(userId);
@@ -214,7 +214,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             return FindUserProfileDetails(userId).userName;
         }
 
-        
+
     }
-        #endregion IUserService Members
+    #endregion IUserService Members
 }

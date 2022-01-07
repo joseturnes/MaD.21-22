@@ -1,12 +1,8 @@
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System;
-using System.Web.Security;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.ModelUtil.IoC;
-using System.Web;
 using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using System;
+using System.Web;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
@@ -26,7 +22,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             Int64 userId = SessionManager.GetUserId(Context);
             Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
 
-            commentService.AddComment(imgId,txtContent.Text,userId);
+            commentService.AddComment(imgId, txtContent.Text, userId);
 
             String url = String.Format("./ImageDetails.aspx?imgId={0}", imgId);
             Response.Redirect(Response.ApplyAppPathModifier(url));

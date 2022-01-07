@@ -21,7 +21,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects
             set { language = value; }
         }
 
-        
+
         public string Country
         {
             get { return country; }

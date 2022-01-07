@@ -1,15 +1,13 @@
-using System;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using System.Web.UI.WebControls;
-using Es.Udc.DotNet.PracticaMaD.Web.Properties;
-using System.Data;
-using System.Reflection;
 using Es.Udc.DotNet.ModelUtil.IoC;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using Es.Udc.DotNet.PracticaMaD.Web.Properties;
+using System;
+using System.Data;
+using System.Reflection;
 using System.Web;
-using System.Collections.Generic;
+using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
@@ -31,7 +29,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             string username = userService.FindUserNameById(userId);
 
             if (!Page.IsPostBack)
-                lclMenuExplanation.Text = lclMenuExplanation.Text + username+"'s profile";
+                lclMenuExplanation.Text = lclMenuExplanation.Text + username + "'s profile";
 
             if (SessionManager.IsUserAuthenticated(Context))
             {
@@ -44,7 +42,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     FollowButton.Visible = false;
                 }
 
-                
+
 
                 if ((SessionManager.GetUserId(Context) != Convert.ToInt64(Request.Params.Get("ID"))) && !userService.IsFollowed(userId, pageOwner))
                 {
@@ -56,12 +54,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             }
             else
             {
-                
+
                 btnUploadImage.Visible = false;
-                
+
                 FollowButton.Visible = false;
 
-                fillGridView(pbpDataSource,userId.ToString());
+                fillGridView(pbpDataSource, userId.ToString());
             }
 
             if (!Page.IsPostBack)

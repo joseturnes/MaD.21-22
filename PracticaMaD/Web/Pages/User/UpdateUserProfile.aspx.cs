@@ -1,7 +1,7 @@
-using System;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using System;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
@@ -14,7 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
             if (!IsPostBack)
             {
-                UserProfileDetails userProfileDetails = 
+                UserProfileDetails userProfileDetails =
                     SessionManager.FindUserProfileDetails(Context);
 
                 txtFirstName.Text = userProfileDetails.FirstName;
@@ -24,9 +24,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 /* Combo box initialization */
                 UpdateComboLanguage(userProfileDetails.Language);
                 UpdateComboCountry(userProfileDetails.Language,
-                    userProfileDetails.Country);               
-            }  
-         
+                    userProfileDetails.Country);
+            }
+
         }
 
         /// <summary>
@@ -84,9 +84,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
         protected void ComboLanguageSelectedIndexChanged(object sender, EventArgs e)
         {
-          /* After a language change, the countries are printed in the
-           * correct language.
-           */
+            /* After a language change, the countries are printed in the
+             * correct language.
+             */
             this.UpdateComboCountry(comboLanguage.SelectedValue,
                 comboCountry.SelectedValue);
         }

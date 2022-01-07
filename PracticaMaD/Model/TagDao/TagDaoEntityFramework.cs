@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 {
@@ -72,9 +70,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
                 (from a in tags
                  orderby a.timesUsed descending
                  select a).Skip(0).Take(6).ToList();
-            
+
             result.Reverse();
-            
+
             return result;
         }
 
@@ -113,13 +111,11 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
             return tag;
         }
 
-        public void updateTags(long imgId, List<String> strtags) 
+        public void updateTags(long imgId, List<String> strtags)
         {
             ImageUpload image = ImageDao.Find(imgId);
 
             image.Tag.Clear();
-
-            List<String> strtags2 = null;
 
             strtags.ForEach(t => t.ToLower());
 
@@ -130,14 +126,14 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
                 foreach (var tag in imageTags)
                 {
                     if (!strtags.Contains(tag.tagname))
-                    image.Tag.Remove(tag);
+                        image.Tag.Remove(tag);
                 }
 
-             
+
                 foreach (String tag in strtags)
                 {
                     if (!tag.Equals(""))
-                    {                        
+                    {
                         Tag tagEntity = CreateTag(tag);
                         if (!image.Tag.Contains(tagEntity))
                         {

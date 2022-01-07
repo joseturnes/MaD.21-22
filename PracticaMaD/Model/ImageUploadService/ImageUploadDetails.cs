@@ -30,7 +30,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
         public string wb { get; set; }
 
 
-        public ImageUploadDetails(string title, byte[] image, long usrId, string descriptions,System.DateTime uploadDate,
+        public ImageUploadDetails(string title, byte[] image, long usrId, string descriptions, System.DateTime uploadDate,
             float f, float t, string iso, string wb, long likes)
         {
             this.title = title;

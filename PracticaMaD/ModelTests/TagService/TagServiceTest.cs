@@ -1,21 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
+using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.ModelTests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ninject;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using System.Transactions;
-using Es.Udc.DotNet.PracticaMaD.ModelTests;
-using Es.Udc.DotNet.PracticaMaD.Model.TagService;
-using Es.Udc.DotNet.PracticaMaD.Model.TagDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CategoryDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.TagService.Test
 {
@@ -41,8 +37,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService.Test
         private const string language = "es";
         private const string country = "ES";
         private const long NON_EXISTENT_USER_ID = -1;
-
-        private TransactionScope transaction;
 
         private TestContext testContextInstance;
 
@@ -224,7 +218,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService.Test
                 ImageUploadDetails img = new ImageUploadDetails("Titulo", image, userId, "Description", DateTime.Now, f1, f2, "ISO", "wb", 10);
 
                 long id = imageUploadService.UploadImage(img, tags, "Paisaje");
-                
+
 
                 List<string> updateTags = new List<String>();
                 updateTags.Add("Coruña");

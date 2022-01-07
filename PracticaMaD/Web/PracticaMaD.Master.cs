@@ -1,13 +1,11 @@
-using System;
-using System.Data;
-using System.Reflection;
-using System.Web;
-using System.Web.UI.WebControls;
 using Es.Udc.DotNet.ModelUtil.IoC;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
+using System;
+using System.Reflection;
+using System.Web;
+using System.Web.UI.WebControls;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web
 {
@@ -43,7 +41,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             }
             else
             {
-                if (lblWelcome != null)                   
+                if (lblWelcome != null)
                     lblWelcome.Text =
                         GetLocalResourceObject("lblWelcome.Hello.Text").ToString()
                         + " " + SessionManager.GetUserSession(Context).FirstName;
@@ -52,7 +50,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
                 if (lnkAuthenticate != null)
                     lnkAuthenticate.Visible = false;
             }
-            
+
 
             try
             {
@@ -76,7 +74,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
                 pbpDataSource.SelectCountMethod =
                     Settings.Default.ObjectDS_Tag_CountMethod;
-                
+
                 pbpDataSource.MaximumRowsParameterName =
                     Settings.Default.ObjectDS_User_CountParameter;
 
@@ -96,10 +94,10 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             }
             catch (TargetInvocationException)
             {
-                
+
             }
-           
-            
+
+
         }
 
         protected void gvTagsPageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -110,7 +108,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
 
         protected void PbpDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
         {
-            
+
             IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
             ITagService tagService = iocManager.Resolve<ITagService>();
 
@@ -129,9 +127,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web
             if (DropDownList1.SelectedValue.Equals("Ciudades"))
                 category = 4;
 
-                string keywords = txtKeywords.Text;
-                String url = String.Format("~/Pages/User/RenderSearch.aspx?keywords={0}&category={1}", keywords, category);
-                Response.Redirect(Response.ApplyAppPathModifier(url));
+            string keywords = txtKeywords.Text;
+            String url = String.Format("~/Pages/User/RenderSearch.aspx?keywords={0}&category={1}", keywords, category);
+            Response.Redirect(Response.ApplyAppPathModifier(url));
         }
     }
 

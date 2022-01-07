@@ -3,7 +3,6 @@ using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
-using System.Data;
 using System.Reflection;
 using System.Web;
 using System.Web.UI.WebControls;
@@ -41,7 +40,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             {
             }
 
-            
+
         }
 
         protected void PbpDataSource_ObjectCreating(object sender, ObjectDataSourceEventArgs e)
@@ -53,5 +52,9 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages
             e.ObjectInstance = userService;
         }
 
+        protected void lvRecentUploads_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         /// <param name="email">The user's email.</param>
         /// <param name="language">The language.</param>
         /// <param name="country">The country.</param>
-        public UserProfileDetails(String userName,String firstName, String lastName,
+        public UserProfileDetails(String userName, String firstName, String lastName,
             String email, String language, String country)
         {
             this.userName = userName;
@@ -46,7 +46,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
             this.Country = country;
         }
 
-        public UserProfileDetails( String firstName, String lastName,
+        public UserProfileDetails(String firstName, String lastName,
             String email, String language, String country)
         {
             this.FirstName = firstName;

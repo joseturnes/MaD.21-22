@@ -2,7 +2,6 @@
 using Es.Udc.DotNet.ModelUtil.Exceptions;
 using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Data.Entity;
 using System.Linq;
 
@@ -83,7 +82,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao
             return userProfile;
         }
 
-        public List<UserProfile> FindFollowers(long userId,int startIndex,
+        public List<UserProfile> FindFollowers(long userId, int startIndex,
             int count)
         {
             UserProfile userProfile = FindById(userId);

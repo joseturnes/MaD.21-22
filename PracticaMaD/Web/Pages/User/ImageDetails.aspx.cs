@@ -1,14 +1,10 @@
 ﻿using Es.Udc.DotNet.ModelUtil.IoC;
-using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
-using Es.Udc.DotNet.PracticaMaD.Model.TagService;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.Properties;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.UI;
@@ -22,7 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             long imgId = Convert.ToInt64(Request.Params.Get("imgId"));
             Int64 userId = SessionManager.GetUserId(Context);
 
@@ -35,7 +31,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             if (!Page.IsPostBack)
                 lclMenuExplanation.Text = lclMenuExplanation.Text + " of " + image.title;
 
-            
+
             if (imageUploadService.IsLiked(imgId, image.usrId))
             {
                 likeButton.Text = "💔";
@@ -60,16 +56,16 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             {
 
                 String commentsUrl = String.Format("./CommentDetails.aspx?imgId={0}", imgId);
-                
+
 
                 Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(image.uploadedImage);
                 lablTitle.Text = "<h3>" + image.title + "<h3/>";
-                lablLikes.Text = "<h3>" +  lablLikes.Text + image.likes + "<h3/>";
-                labldescription.Text = "<h3>" + labldescription.Text + " " +image.descriptions + "<h3/>";
-                txtUser.Text = "<h3>" + txtUser.Text  +" "+ userService.FindUserNameById(image.usrId) + "<h3/>";
+                lablLikes.Text = "<h3>" + lablLikes.Text + image.likes + "<h3/>";
+                labldescription.Text = "<h3>" + labldescription.Text + " " + image.descriptions + "<h3/>";
+                txtUser.Text = "<h3>" + txtUser.Text + " " + userService.FindUserNameById(image.usrId) + "<h3/>";
                 String profileUrl = String.Format("./PerfilCargado.aspx?ID={0}", image.usrId);
 
-                if(image.f == 0)
+                if (image.f == 0)
                 {
                     txtF.Visible = false;
                 }
@@ -92,7 +88,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 txtWB.Text = "<h4>" + txtWB.Text + image.wb.ToString() + "<h4/>";
 
 
-                txtUser.NavigateUrl =profileUrl;
+                txtUser.NavigateUrl = profileUrl;
 
                 long numberOfComments = imageUploadService.CountComments(imgId);
                 if (numberOfComments == 0)
@@ -109,7 +105,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                 fillGridView(pbpDataSource, imgId.ToString());
 
             }
-     
+
 
         }
 
@@ -221,7 +217,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             }
             else
             {
-                String url = String.Format("./Authentication.aspx?ID={0}",imgId);
+                String url = String.Format("./Authentication.aspx?ID={0}", imgId);
                 Response.Redirect(Response.ApplyAppPathModifier(url));
             }
         }
@@ -230,7 +226,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
         {
             if (Page.IsValid)
             {
-                Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId")); 
+                Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
 
                 if (SessionManager.IsUserAuthenticated(Context))
                 {
@@ -238,7 +234,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
                     IIoCManager iocManager = (IIoCManager)HttpContext.Current.Application["managerIoC"];
                     IImageUploadService imageService = iocManager.Resolve<IImageUploadService>();
                     Int64 userId = SessionManager.GetUserId(Context);
-                    
+
                     if (!imageService.IsLiked(imgId, userId))
                     {
                         imageService.LikeImage(imgId, userId);

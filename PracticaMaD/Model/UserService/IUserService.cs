@@ -1,7 +1,7 @@
-﻿using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.ModelUtil.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -104,6 +104,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService
         [Transactional]
         string FindUserNameById(long userId);
 
-        
+
     }
 }

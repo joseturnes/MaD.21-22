@@ -1,9 +1,7 @@
-﻿using System;
-using System.Diagnostics;
-using System.Security.Cryptography;
-using Es.Udc.DotNet.PracticaMaD.Model;
+﻿using Es.Udc.DotNet.PracticaMaD.Model;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Es.Udc.DotNet.PracticaMaD.ModelTests
 {

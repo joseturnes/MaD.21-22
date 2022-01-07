@@ -1,6 +1,5 @@
 
 using Es.Udc.DotNet.ModelUtil.Log;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
 using Es.Udc.DotNet.PracticaMaD.Web.HTTP.View.ApplicationObjects;
 using System;
 using System.Globalization;

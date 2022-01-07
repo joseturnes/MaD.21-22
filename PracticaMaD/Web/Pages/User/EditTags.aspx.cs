@@ -1,15 +1,10 @@
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using System;
-using System.Web.Security;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.ModelUtil.IoC;
-using System.Web;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
 using Es.Udc.DotNet.PracticaMaD.Model.TagService;
-using System.Collections.Generic;
+using Es.Udc.DotNet.PracticaMaD.Web.HTTP.Session;
+using System;
 using System.Linq;
+using System.Web;
 
 namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 {
@@ -54,15 +49,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
 
             Int64 imgId = Convert.ToInt64(Request.Params.Get("imgId"));
 
-          
-            String [] tags = null;
 
-          
+            String[] tags = null;
+
+
             tags = txtTags.Text.Split(',');
-           
-            tagService.UpdateTags(imgId, tags.ToList());           
 
-            String url = String.Format("./ImageDetails.aspx?imgId={0}",imgId);
+            tagService.UpdateTags(imgId, tags.ToList());
+
+            String url = String.Format("./ImageDetails.aspx?imgId={0}", imgId);
             Response.Redirect(Response.ApplyAppPathModifier(url));
         }
     }

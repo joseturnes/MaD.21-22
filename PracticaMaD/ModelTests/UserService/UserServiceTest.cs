@@ -1,17 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ninject;
+﻿using Es.Udc.DotNet.ModelUtil.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using System.Transactions;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
 using Es.Udc.DotNet.PracticaMaD.Model.UserService.Util;
 using Es.Udc.DotNet.PracticaMaD.ModelTests;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService.Exceptions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
+using System;
+using System.Transactions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 {
@@ -33,8 +28,6 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
         private static IUserService userService;
         private static IUserProfileDao userProfileDao;
 
-        private TransactionScope transaction;
-
         private TestContext testContextInstance;
 
         private void initializeKernel()
@@ -44,7 +37,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
             userProfileDao = kernel.Get<IUserProfileDao>();
         }
 
-       
+
 
         /// <summary>
         /// Gets or sets the test context which provides information about and functionality for the
@@ -291,7 +284,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 initializeKernel();
 
                 userService.UpdateUserProfileDetails(NON_EXISTENT_USER_ID,
-                    new UserProfileDetails("user1",firstName, lastName, email, language, country));
+                    new UserProfileDetails("user1", firstName, lastName, email, language, country));
 
                 // transaction.Complete() is not called, so Rollback is executed.
             }
@@ -428,7 +421,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 userService.Follow(userDetails1.userName, userDetails2.userName);
                 UserProfile user1 = userProfileDao.FindByLoginName(loginName);
                 UserProfile user2 = userProfileDao.FindByLoginName("user2");
-                Assert.IsTrue(userService.IsFollowed(userId2,userId1));
+                Assert.IsTrue(userService.IsFollowed(userId2, userId1));
                 Assert.IsFalse(userService.IsFollowed(userId1, userId2));
                 Assert.IsTrue(user1.UserProfile2.Contains(user2));
                 Assert.IsTrue(user2.UserProfile1.Contains(user1));
@@ -490,7 +483,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
                 int number = userService.GetNumberOfFollows(userId1);
 
                 Assert.AreEqual(2, number);
-                Assert.IsTrue( userProfileDao.FindFollows(userId1, 0, 30).Contains(user2));
+                Assert.IsTrue(userProfileDao.FindFollows(userId1, 0, 30).Contains(user2));
                 Assert.IsTrue(userProfileDao.FindFollows(userId1, 0, 30).Contains(user3));
                 //Assert.
 
@@ -514,7 +507,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.UserService.ModelTests
 
                 // Register user
                 var userId2 = userService.RegisterUser("user2", "1234",
-                    new UserProfileDetails("user2",firstName, lastName, email, language, country));
+                    new UserProfileDetails("user2", firstName, lastName, email, language, country));
 
                 var userId3 = userService.RegisterUser("user3", "1234",
                     new UserProfileDetails("user3", firstName, lastName, email, language, country));

@@ -1,19 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentService;
+﻿using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
+using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
+using Es.Udc.DotNet.PracticaMaD.Model.UserService;
+using Es.Udc.DotNet.PracticaMaD.ModelTests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ninject;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService;
-using Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao;
 using System.Transactions;
-using Es.Udc.DotNet.PracticaMaD.Model.UserService;
-using Es.Udc.DotNet.PracticaMaD.Model.UserProfileDao;
-using Es.Udc.DotNet.PracticaMaD.Model.CommentDao;
-using Es.Udc.DotNet.PracticaMaD.ModelTests;
-using Es.Udc.DotNet.ModelUtil.Exceptions;
 
 namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 {
@@ -99,7 +93,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
                 Comment comment1 = commentDao.Find(commentId1);
 
                 Assert.IsTrue(comment1.content.Equals("Hola"));
-     
+
             }
         }
 
@@ -193,7 +187,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService.Tests
 
                 Assert.IsTrue(comment1.content.Equals("Commentary1"));
                 Assert.IsTrue(comment2.content.Equals("Commentary2"));
-                
+
                 var result = commentService.ShowComments(imgId, 0, 2);
 
                 Assert.IsTrue(result.Count == 2);
