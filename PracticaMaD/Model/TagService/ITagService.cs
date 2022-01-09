@@ -25,6 +25,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService
 
         int CountImagesWithTag(long tagId);
 
+        /// <exception cref="InstanceNotFoundException"/>
         void UpdateTags(long imgId, List<String> tags);
 
 

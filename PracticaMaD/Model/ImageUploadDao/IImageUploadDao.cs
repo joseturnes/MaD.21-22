@@ -41,10 +41,13 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         int CountImageTags(long imgId);
 
+        /// <exception cref="InstanceNotFoundException"/>
         bool IsLiked(long imgId, long usrId);
 
+        /// <exception cref="InstanceNotFoundException"/>
         void LikeImage(long imgId, long usrId);
 
+        /// <exception cref="InstanceNotFoundException"/>
         void UnlikeImage(long imgId, long usrId);
 
     }

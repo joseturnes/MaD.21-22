@@ -55,7 +55,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         }
 
 
-
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         public void UpdateImage(long imgId, ImageUploadDetails imageDetails)
         {
@@ -102,14 +102,15 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             return ImageUploadConversor.ToImageUploadDtos(result);
         }
 
-        [Transactional]
         /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
         public void RemoveImage(long imgId)
         {
             ImageUpload img = ImageUploadDao.Find(imgId);
             ImageUploadDao.Remove(imgId);
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         public void LikeImage(long imgId, long userId)
         {
@@ -129,6 +130,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             ImageUploadDao.LikeImage(imgId, userId);
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         public void UnlikeImage(long imgId, long userId)
         {
@@ -168,6 +170,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             return result;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         public ImageUploadDto FindImage(long imgId)
         {
@@ -190,6 +193,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             return result;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         public bool IsLiked(long imgId, long userId)
         {
@@ -213,6 +217,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             return ImageUploadDao.CountRecentUploads();
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public List<Tag> FindImageTags(long imgId, int startIndex, int count)
         {
             return ImageUploadDao.FindImageTags(imgId, startIndex, count);
@@ -223,6 +228,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
             return ImageUploadDao.CountImageTags(imgId);
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public void AddTag(Tag tag, long imgId)
         {
             ImageUpload image = ImageUploadDao.Find(imgId);

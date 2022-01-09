@@ -14,7 +14,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CategoryDao
         {
         }
 
-        /// <exception cref="InstanceNotFoundException"></exception>
+        /// <exception cref="InstanceNotFoundException"/>
         public Category FindByName(string name)
         {
             Category category = null;

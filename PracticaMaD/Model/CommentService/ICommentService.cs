@@ -16,6 +16,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
         /// </summary>
         /// <param name="pubId"> The publication id. </param>
         /// <param name="comment"> The comment. </param>
+        /// /// <exception cref="InstanceNotFoundException"/>
         long AddComment(long imgId, string comment, long userId);
 
         /// <summary>

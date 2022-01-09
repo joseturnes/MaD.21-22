@@ -6,17 +6,19 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 {
     public interface ITagDao : IGenericDao<Tag, Int64>
     {
+        /// <exception cref="InstanceNotFoundException"/>
         Tag FindByName(string name);
 
         List<Tag> FindAll();
 
-        List<Tag> findMostUsedTags(int startIndex, int count);
+        List<Tag> FindMostUsedTags(int startIndex, int count);
 
-        List<ImageUpload> fingImagesByTagId(long tagId, int startIndex, int count);
+        List<ImageUpload> FingImagesByTagId(long tagId, int startIndex, int count);
 
-        int countImagesWithTag(long tagId);
-        void updateTags(long imgId, List<String> tags);
+        int CountImagesWithTag(long tagId);
+        void UpdateTags(long imgId, List<String> tags);
 
+        /// <exception cref="InstanceNotFoundException"/>
         Tag CreateTag(string name);
 
     }

@@ -174,6 +174,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             return result.Count;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public bool IsLiked(long imgId, long usrId)
         {
             ImageUpload image = Find(imgId);
@@ -189,6 +190,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
             }
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public void LikeImage(long imgId, long usrId)
         {
             ImageUpload img = Find(imgId);
@@ -205,6 +207,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadDao
 
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public void UnlikeImage(long imgId, long usrId)
         {
             ImageUpload img = Find(imgId);

@@ -26,6 +26,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         /// Upload an image.
         /// </summary>
         ///<param name="ImageUploadDetails"> The image params. </param>
+        ////// <exception cref="InstanceNotFoundException"/>
         long UploadImage(ImageUploadDetails img, List<string> tags, string category);
 
 
@@ -51,10 +52,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
         /// <exception cref="InstanceNotFoundException"/>
         void LikeImage(long imgId, long usrId);
 
+        /// <exception cref="InstanceNotFoundException"/>
         void UnlikeImage(long imgId, long usrId);
 
         List<ImageUploadDto> RecentUploads(long userId, int startIndex, int count);
 
+        /// <exception cref="InstanceNotFoundException"/>
         ImageUploadDto FindImage(long imgId);
 
         List<CommentDto> SearchComments(long imgId, int startIndex, int count);
@@ -65,6 +68,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         List<ImageUploadDto> FindByKeywordAndCategory(string keywords, long categoryId, int startIndex, int count);
 
+        /// <exception cref="InstanceNotFoundException"/>
         bool IsLiked(long imgId, long userId);
 
         int CountSearchKeywords(string keywords, long categoryId);
@@ -73,10 +77,12 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.ImageUploadService
 
         int CountRecentUploads();
 
+        /// <exception cref="InstanceNotFoundException"/>
         List<Tag> FindImageTags(long imgId, int startIndex, int count);
 
         int CountImageTags(long imgId);
 
+        /// <exception cref="InstanceNotFoundException"/>
         void AddTag(Tag tag, long imgId);
 
     }

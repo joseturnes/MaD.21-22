@@ -18,7 +18,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
         [Inject]
         public IImageUploadDao ImageDao { private get; set; }
 
-        public int countImagesWithTag(long tagId)
+        public int CountImagesWithTag(long tagId)
         {
             DbSet<Tag> tags = Context.Set<Tag>();
 
@@ -39,6 +39,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
             return result;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         public Tag FindByName(string name)
         {
             Tag tag = null;
@@ -61,7 +62,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
             return tag;
         }
 
-        public List<Tag> findMostUsedTags(int startIndex, int count)
+        public List<Tag> FindMostUsedTags(int startIndex, int count)
         {
 
             DbSet<Tag> tags = Context.Set<Tag>();
@@ -76,7 +77,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
             return result;
         }
 
-        public List<ImageUpload> fingImagesByTagId(long tagId, int startIndex, int count)
+        public List<ImageUpload> FingImagesByTagId(long tagId, int startIndex, int count)
         {
             DbSet<Tag> tags = Context.Set<Tag>();
 
@@ -87,6 +88,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
 
             return result;
         }
+
+        /// <exception cref="InstanceNotFoundException"/>
         public Tag CreateTag(string name)
         {
             Tag tag = new Tag();
@@ -111,7 +114,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagDao
             return tag;
         }
 
-        public void updateTags(long imgId, List<String> strtags)
+        public void UpdateTags(long imgId, List<String> strtags)
         {
             ImageUpload image = ImageDao.Find(imgId);
 

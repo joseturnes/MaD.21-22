@@ -53,6 +53,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
 
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         public List<CommentDto> ShowComments(long imgId, int startIndex, int count)
         {
@@ -72,6 +73,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             return result;
         }
 
+        /// <exception cref="InstanceNotFoundException"/>
         [Transactional]
         public void UpdateComment(long commentId, String content)
         {
@@ -87,9 +89,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             CommentDao.Update(comment);
         }
 
-
-        [Transactional]
         /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
         public void RemoveComment(long commentId)
         {
             Comment comment = CommentDao.Find(commentId);
@@ -102,8 +103,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.CommentService
             CommentDao.Remove(commentId);
         }
 
-        [Transactional]
         /// <exception cref="InstanceNotFoundException"/>
+        [Transactional]
         public long CountComents(long imgId)
         {
             ImageUpload img = ImageUploadDao.Find(imgId);
