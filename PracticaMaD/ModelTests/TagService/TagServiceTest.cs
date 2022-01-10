@@ -140,7 +140,7 @@ namespace Es.Udc.DotNet.PracticaMaD.Model.TagService.Test
                 long id2 = imageUploadService.UploadImage(img2, tags2, "Retrato");
                 ImageUpload result = imageUploadDao.Find(id);
 
-                var imageTag = tagService.FindMostUsedTags(0, 5);
+                var imageTag = tagService.FindMostUsedTags(0, 1000);
 
                 Assert.IsTrue(imageTag.Contains(tagDao.Find(tagId)));
                 Assert.IsTrue(imageTag.Contains(tagDao.Find(tagId2)));

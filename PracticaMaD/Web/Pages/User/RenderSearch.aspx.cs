@@ -57,7 +57,8 @@ namespace Es.Udc.DotNet.PracticaMaD.Web.Pages.User
             }
             catch (TargetInvocationException)
             {
-
+                String url = String.Format("~/Pages/Errors/InternalError.aspx");
+                Response.Redirect(Response.ApplyAppPathModifier(url));
             }
 
         }

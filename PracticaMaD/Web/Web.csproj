@@ -392,7 +392,6 @@
     <Content Include="Pages\User\App_LocalResources\AddComment.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\EditComment.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\EditTags.aspx.resx" />
-    <Content Include="Pages\User\App_LocalResources\EditTags.resx" />
     <EmbeddedResource Include="Pages\User\App_LocalResources\Register.aspx.resx" />
     <Content Include="Pages\User\App_LocalResources\UpdateUserProfile.aspx.resx">
       <SubType>Designer</SubType>

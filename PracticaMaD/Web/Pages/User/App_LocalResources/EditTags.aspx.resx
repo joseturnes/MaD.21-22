@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnModifyTags.Text" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="btnModifyTags.ToolTip" xml:space="preserve">
+    <value>Add or modify desired tags separated by commas ','</value>
+  </data>
   <data name="lclMenuExplanation.Text" xml:space="preserve">
     <value>Edit Tags</value>
+  </data>
+  <data name="txtTags.ToolTip" xml:space="preserve">
+    <value>Add desired tags separated by commas ','</value>
   </data>
 </root>
